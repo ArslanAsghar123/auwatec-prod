@@ -18,3 +18,17 @@
 /install.lock
 public/asset-manifest.json
 ###< shopware/core ###
+
+###> database dumps ###
+*.sql
+*.sql.gz
+*.sql.bz2
+*_backup.sql
+*_dump.sql
+auwatec_*.sql
+###< database dumps ###
+
+###> local development ###
+php.ini
+.env.local.php
+###< local development ###
