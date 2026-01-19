@@ -59,7 +59,7 @@ class GpsrInfoStruct extends Struct
     protected ?int $priority = 10;
     protected $documents = [];
 
-    public function __construct(string $id = null)
+    public function __construct(?string $id = null)
     {
         if(empty($id)) $id = Uuid::randomHex();
         $this->id = $id;

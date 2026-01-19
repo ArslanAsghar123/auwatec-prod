@@ -19,4 +19,9 @@
 public/asset-manifest.json
 ###< shopware/core ###
 
+###> local development ###
 auwatec_sw6prod_2026-01-19_09-34-35.sql
+docker-compose.local.yml
+docker-compose.dev.yml
+php.ini
+###< local development ###
