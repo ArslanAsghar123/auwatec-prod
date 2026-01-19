@@ -26,6 +26,7 @@ public/asset-manifest.json
 *_backup.sql
 *_dump.sql
 auwatec_*.sql
+auwatec_sw6prod_2026-01-19_09-34-35.sql
 ###< database dumps ###
 
 ###> local development ###
