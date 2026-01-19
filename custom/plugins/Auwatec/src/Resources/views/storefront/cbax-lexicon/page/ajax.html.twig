@@ -1,0 +1,40 @@
+{% sw_extends '@Storefront/storefront/cbax-lexicon/page/ajax.html.twig' %}
+
+{# changend button classes & added icon #}
+{% block cbax_lexicon_page_ajax_more %}
+    {# More #}
+    {% if CbaxModulLexiconConfig.showFooter %}
+
+        {% if cbaxModulLexicon.entry.translated.linkDescription %}
+            {% set linkDescription = cbaxModulLexicon.entry.translated.linkDescription %}
+        {%  else %}
+            {% set linkDescription = "cbaxLexicon.page.ajax.linkDescription"|trans %}
+        {% endif %}
+
+        {% if cbaxModulLexicon.entry.linkTarget == '_blank' %}
+            {% set linkTarget = '_blank' %}
+        {%  else %}
+            {% set linkTarget = '_parent' %}
+        {% endif %}
+
+        <div class="ajax-keyword-box-action">
+            {% if cbaxModulLexicon.entry.link %}
+                <a href="{{ cbaxModulLexicon.entry.link }}"
+                   class="btn btn-outline-primary"
+                   target="{{ linkTarget }}"
+                   title="{{ linkDescription }}">
+                    {{ linkDescription }}
+                    {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+                </a>
+            {% else %}
+                <a href="{{ seoUrl('frontend.cbax.lexicon.detail', { id: cbaxModulLexicon.entry.id } ) }}"
+                   class="btn btn-outline-primary"
+                   target="{{ linkTarget }}"
+                   title="{{ linkDescription }}">
+                    {{ linkDescription }}
+                    {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+<div class="weedesign-images2webp-admin-component weedesign-images2webp-admin-component-upgrade">
+    <p v-if="start==false" class="weedesign-images2webp-admin-component-upgrade-intro">{{ $tc("weedesign-images2webp.media.upgrade.info.intro") }}</p>
+    <p v-if="start==true" class="weedesign-images2webp-admin-component-upgrade-intro">{{ $tc("weedesign-images2webp.media.upgrade.start.intro") }}</p>
+    <p class="weedesign-images2webp-admin-info" v-if="start==false">{{ $tc("weedesign-images2webp.media.upgrade.recommendation") }}</p>
+    <sw-button-process
+        v-if="start==false"
+        :isLoading="isLoading"
+        :processSuccess="isUpgradeSuccessful"
+        @process-finish="upgradeFinish"
+        @click="upgrade"
+    >{{ $tc("weedesign-images2webp.media.upgrade.keep.button") }}</sw-button-process>
+    <p v-if="start==false" class="weedesign-images2webp-admin-component-upgrade-info">{{ $tc("weedesign-images2webp.media.upgrade.keep.info") }}</p>
+    <sw-button-process
+        v-if="start==false"
+        class="sw-button--primary"
+        :isLoading="isLoading"
+        :processSuccess="isUpgradeSuccessful"
+        @process-finish="upgradeFinish"
+        @click="upgradeDelete"
+    >{{ $tc("weedesign-images2webp.media.upgrade.delete.button") }}</sw-button-process>
+    <p v-if="start==false" class="weedesign-images2webp-admin-component-upgrade-info">{{ $tc("weedesign-images2webp.media.upgrade.delete.info") }}</p>
+    <p class="weedesign-images2webp-admin-info" v-if="webp!=0">{{ $tc("weedesign-images2webp.media.upgrade.thanks") }}</p>
+    <sw-progress-bar :value="webp" :maxValue="images" v-if="webp!=0">{{ $tc("weedesign-images2webp.media.upgrade.progress") }}</sw-progress-bar>
+    <p v-if="start==true && webp==0" class="weedesign-images2webp-admin-component-upgrade-status weedesign-images2webp-admin-component-upgrade-status-info">{{ $tc("weedesign-images2webp.media.upgrade.start.info") }}</p>
+    <p v-if="start==true && webp!=0" class="weedesign-images2webp-admin-component-upgrade-status"><span v-html="webpString"></span> {{ $tc("weedesign-images2webp.media.upgrade.status.start") }} <span v-html="imagesString"></span> {{ $tc("weedesign-images2webp.media.upgrade.status.end") }}</p>
+</div>

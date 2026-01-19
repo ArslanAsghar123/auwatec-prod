@@ -1,0 +1,46 @@
+{% set customFields = page.header.navigation.active.customFields %}
+{% if
+    (customFields.custom_seo_text_headline || customFields.custom_seo_text_text)
+    and controllerName == 'Navigation'
+%}
+    <div class="seo-text" data-seo-text="true">
+        <div class="container">
+            {% if customFields.custom_seo_text_headline %}
+                <h1 class="seo-text-headline">
+                    {{ customFields.custom_seo_text_headline }}
+                </h1>
+            {% endif %}
+
+            {% if customFields.custom_seo_text_text %}
+                <div class="seo-text-text">
+                    {{ customFields.custom_seo_text_text|raw }}
+                </div>
+            {% endif %}
+
+            {% if customFields.custom_seo_text_expandable %}
+                <div class="seo-text-expandable">
+                    <div class="seo-text-expandable-text">
+                        {{ customFields.custom_seo_text_expandable|raw }}
+                    </div>
+                    <div class="seo-text-expandable-button">
+                        <div class="seo-text-trigger" data-seo-text-trigger="true">
+                            <div class="seo-text-expandable-button-content">
+                                <span class="seo-text-expandable-button-icon">
+                                {% sw_icon 'plus-a' style { 'namespace': 'Auwatec' } %}
+                                </span>
+                                {{ 'seoText.readMore'|trans }}
+                            </div>
+
+                            <div class="seo-text-expandable-button-content-expaned">
+                                <span class="seo-text-expandable-button-icon">
+                                {% sw_icon 'minus-a' style { 'namespace': 'Auwatec' } %}
+                                </span>
+                                {{ 'seoText.readLess'|trans }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

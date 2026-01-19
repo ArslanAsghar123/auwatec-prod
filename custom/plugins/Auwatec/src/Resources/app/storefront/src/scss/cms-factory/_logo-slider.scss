@@ -1,0 +1,19 @@
+.logo-slider-header{
+  margin-bottom: 20px;
+}
+.logo-slider-header-headline{
+  margin-bottom: 0;
+}
+.logo-slider-slider{
+  padding: 20px 0;
+  background: $white;
+  .tns-horizontal.tns-subpixel > .tns-item {
+    vertical-align: middle;
+  }
+}
+.logo-slider-item{
+  img{
+    margin: auto;
+    display: block;
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "IronMatomo": {
+        "cookie": {
+            "name": "Matomo Tracking",
+            "description": "Tracking statistieken om gebruikersprocessen te optimaliseren. Er worden geen persoonlijke gegevens opgeslagen."
+        }
+    }
+}

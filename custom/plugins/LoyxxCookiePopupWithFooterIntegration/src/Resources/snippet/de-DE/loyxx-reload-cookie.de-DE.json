@@ -1,0 +1,17 @@
+{
+    "loyxx": {
+        "cookie": {
+            "message": {
+                "para1": "Wir benötigen Ihre Zustimmung, bevor Sie unsere Website weiter besuchen können.",
+                "para2": "Wir verwenden Cookies und andere Technologien auf unserer Webseite. Einige von ihnen sind essenziell, während andere uns helfen, diese Webseite und Ihre Erfahrung zu verbessern. Personenbezogene Daten können verarbeitet werden (z. B. IP-Adressen), z. B. für personalisierte Anzeigen und Inhalte oder Anzeigen- und Inhaltsmessung. Weitere Informationen über die Verwendung Ihrer Daten finden Sie in unserer Datenschutzerklärung. Sie können Ihre Auswahl jederzeit unter Cookie-Einstellungen widerrufen oder anpassen.",
+                "para3": "Weitere Informationen finden Sie in unseren <a data-ajax-modal=\"true\" data-url=\"%url%\" href=\"%url%\" title=\"Datenschutzbestimmungen\">Datenschutzbestimmungen</a>."
+            },
+            "open_settings": "Cookie-Einstellungen",
+            "acceptAll": "Alle akzeptieren",
+            "acceptAll_title": "Alle Cookies akzeptieren",
+            "save": "Auswahl speichern",
+            "save_technical": "Alle ablehnen",
+            "save_technical_title": "Alle ablehnen(nur technisch notwenige Cookies zulassen)"
+        }
+    }
+}

@@ -1,0 +1,40 @@
+{
+    "name": "aku/cms-factory",
+    "description": "CMS Factory",
+    "version": "1.5.3",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Adrian Kuehnis"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "AkuCmsFactory\\AkuCmsFactory",
+        "plugin-icon": "src/Resources/config/icon.png",
+        "label": {
+            "de-DE": "CMS Factory",
+            "en-GB": "CMS Factory"
+        },
+        "description": {
+            "de-DE": "Erstellen Sie eigene, wiederverwendbare Erlebniswelten-Elemente.",
+            "en-GB": "Create custom, reusable Shopping Experience elements."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://skouz.de",
+            "en-GB": "https://skouz.de"
+        },
+        "supportLink": {
+            "de-DE": "https://skouz.de",
+            "en-GB": "https://skouz.de"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "AkuCmsFactory\\": "src/"
+        }
+    }
+}

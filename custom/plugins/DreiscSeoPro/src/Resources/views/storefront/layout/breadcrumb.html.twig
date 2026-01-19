@@ -1,0 +1,48 @@
+{% sw_extends '@Storefront/storefront/layout/breadcrumb.html.twig' %}
+
+{% block layout_breadcrumb_list_item %}
+    {% if dreiscSeoCustomSettings.richSnippets.general.active %}
+        {% set homeShowInBreadcrumbMode = dreiscSeoCustomSettings.richSnippets.breadcrumb.home.showInBreadcrumbMode %}
+        {% set homeShowInBreadcrumb = 'onlyShop' == homeShowInBreadcrumbMode or 'shopAndJsonLd' == homeShowInBreadcrumbMode %}
+
+        {% set productShowInBreadcrumbMode = dreiscSeoCustomSettings.richSnippets.breadcrumb.product.showInBreadcrumbMode %}
+        {% set productShowInBreadcrumb = product and (
+            'onlyShop' == productShowInBreadcrumbMode or 'shopAndJsonLd' == productShowInBreadcrumbMode)
+        %}
+
+        {# Make sure, that we are before the first item #}
+        {# EXPLAIN: key = current id of the breadcrumb array; breadcrumb|keys|first = id of the first breadcrumb item #}
+        {% block dreisc_seo__layout_breadcrumb_list_item__add_home_breadcrumb %}
+            {% if homeShowInBreadcrumb and breadcrumbKeys|first == key %}
+                {% sw_include '@Storefront/storefront/dreisc-seo/component/breadcrumb/home.html.twig' with { } only %}
+            {% endif %}
+        {% endblock %}
+
+        {% if productShowInBreadcrumb %}
+            {% block dreisc_seo__layout_breadcrumb_list_item__modify_default %}
+                {# We make sure that we do not set the is-active class because the product name is issued as a bread crumb. #}
+                {% sw_include '@Storefront/storefront/dreisc-seo/component/breadcrumb/default.html.twig' with {
+                    ignoreActive: true
+                } %}
+            {% endblock %}
+        {% else %}
+            {# Otherwise: Call the parent as fallback #}
+            {% sw_include '@Storefront/storefront/dreisc-seo/component/breadcrumb/default.html.twig' with {
+                ignoreActive: false
+            } %}
+        {% endif %}
+
+        {# Check, if we reached the last breadcrumb item #}
+        {# EXPLAIN: key = current id of the breadcrumb array; breadcrumbCategories|last = last id of the breadcrumb array #}
+        {% block dreisc_seo__layout_breadcrumb_list_item__add_product_breadcrumb %}
+            {% if productShowInBreadcrumb and breadcrumbKeys|last== key %}
+                {% sw_include '@Storefront/storefront/dreisc-seo/component/breadcrumb/product.html.twig' with {
+                    product: product
+                } only %}
+            {% endif %}
+        {% endblock %}
+    {% else %}
+        {# Otherwise: Call the parent as fallback #}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

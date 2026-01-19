@@ -1,0 +1,45 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% set tsConfig = config('trustedShopsApp.config') %}
+{% set tsChannelId = context.salesChannel.id ?? null %}
+{% set activeLanguageIsoCode = page.header.activeLanguage.translationCode.code ?? null %}
+{% set tsChannelRef = tsChannelId ~ '.' ~ activeLanguageIsoCode %}
+{% set expectedMapping = [] %}
+
+{% for mappedChannel in tsConfig.mappedChannels %}
+    {% set expectedMapping = expectedMapping|merge({ (mappedChannel.salesChannelRef): mappedChannel.eTrustedChannelRef}) %}
+{% endfor %}
+
+{% block base_body_script %}
+    {{ parent() }}
+
+    {% if tsConfig[tsChannelId][activeLanguageIsoCode].trustbadgeConfiguration is defined and expectedMapping[tsChannelRef] === tsConfig[tsChannelId][activeLanguageIsoCode].trustbadgeConfiguration.eTrustedChannelRef %}
+        {% set tsTrustBadgeConfiguration = tsConfig[tsChannelId][activeLanguageIsoCode].trustbadgeConfiguration.children %}
+
+        {% sw_include '@Storefront/storefront/includes/script-assembler.html.twig' with {
+            scriptConfig: tsTrustBadgeConfiguration[0]
+        } %}
+    {% endif %}
+{% endblock %}
+
+{#
+{% block base_main_inner %}
+    {{ parent() }}
+    {% if tsChannelId is not null %}
+        {% if tsConfig[tsChannelId].productReviewActive is defined and tsConfig[tsChannelId].productReviewActive is not null %}
+            <!-- added by Trusted Shops app: Start -->
+            <div class="ts-margin-container container">
+                <div class="row">
+                    <div class="col-12">
+                        {% sw_include '@Storefront/storefront/includes/widget-assembler.html.twig' with {
+                            widgets: tsConfig[tsChannelId].widgets.children.0.children,
+                            product: product,
+                            widgetLocationId: 'wdg-loc-lrm'
+                        } %}
+                    </div>
+                </div>
+            </div>
+            <!-- End -->
+        {% endif %}
+    {% endif %}
+{% endblock %}#}

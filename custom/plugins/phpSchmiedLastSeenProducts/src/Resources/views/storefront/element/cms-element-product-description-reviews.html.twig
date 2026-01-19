@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-description-reviews.html.twig' %}
+
+{% block element_product_description_reviews_tabs_content_review %}
+    {{ parent() }}
+
+    {% block php_schmiede_last_seen_products_page_product_detail_tabs_content_last_seen %}
+        <div class="tab-pane fade"
+             id="last-seen-products-tab-pane"
+             role="tabpanel"
+             aria-labelledby="last-seen-products-tab"
+        >
+            {% sw_include '@phpSchmiedLastSeenProducts/storefront/page/product-detail/tabs/last-seen-products-tab.html.twig' with {
+                type: 'info'
+            } %}
+        </div>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/component/buy-widget/buy-widget.html.twig' %}
+
+{% block buy_widget_rich_snippets %}
+    {% block buy_widget_rich_snippets_name %}
+        {% if config('AtlSeoUrlManager.config.metaTagName') %}
+            <meta itemprop="name" content="{{ page.product.translated.name }}" />
+        {% endif %}
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}

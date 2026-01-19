@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/component/line-item/element/total-price.html.twig' %}
+
+{% block component_line_item_total_price_value %}
+    {{ parent() }}
+
+    {% if lineItem.payload.acrisListPrice and (lineItem.payload.acrisListPrice.totalPrice or lineItem.payload.acrisListPrice.totalPercentage) and config("AcrisDiscountGroupCS.config.cartColumnLayout") == "default" %}
+        {% block component_line_item_total_price_value_list_price %}
+            {% if config("AcrisDiscountGroupCS.config.discountAtSubtotal") != 'no' %}
+                <div class="line-item-total-list-price">
+                    {% if config("AcrisDiscountGroupCS.config.discountAtSubtotal") == 'listPriceAndDiscount' or config("AcrisDiscountGroupCS.config.discountAtSubtotal") == 'listPrice' %}
+                        {% if lineItem.payload.acrisListPrice.totalPrice %}
+                            <span class="line-item-total-list-price-price">{{ lineItem.payload.acrisListPrice.totalPrice|currency }}{% block page_checkout_item_total_list_price_tax_symbol %}{{ "general.star"|trans|sw_sanitize }}{% endblock %}</span>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if config("AcrisDiscountGroupCS.config.discountAtSubtotal") == 'listPriceAndDiscount' or config("AcrisDiscountGroupCS.config.discountAtSubtotal") == 'discount' %}
+                        {% if lineItem.payload.acrisListPrice.totalPercentage %}
+                            <span class="line-item-total-list-price-percentage">{{ "acris-discount-group.checkout.listPricePercentage"|trans({'%price%': lineItem.payload.acrisListPrice.totalPercentage })|sw_sanitize }}</span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endblock %}
+    {% endif %}
+{% endblock %}

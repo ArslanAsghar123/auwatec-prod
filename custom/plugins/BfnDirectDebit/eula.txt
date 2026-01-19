@@ -1,0 +1,51 @@
+BFN IT
+
+Endbenutzer-Lizenzvertrag (EULA) für die Nutzung von Shopware Plugins
+
+1 Geltungsbereich
+1.1. Diese Endbenutzer-Lizenzvereinbarung ("EULA") ist eine rechtlich bindende Vereinbarung zwischen Ihnen („Kunde“) und der BFN Informationstechnik GmbH („BFN IT“). Sie ist Grundlage eines jeden durch Kauf oder Miete erworbenen Plugins von BFN IT. Dies gilt auch, wenn der Erwerb der Software über einen Distributor (z.B. Shopware) erfolgt.
+1.2. Soweit BFN IT eine kostenlose Testversion von Shopware Plugin-Software anbietet, gilt diese EULA auch für diese Testversion.
+1.3. Wenn Sie diese EULA im Namen eines Unternehmens oder einer anderen juristischen Person abschließen, garantieren Sie, dass Sie die Befugnis haben, dieses Unternehmen an diese Bedingungen zu binden.
+1.4. Diese EULA gilt nur für die von BFN IT bereitgestellte Software, unabhängig davon, ob auf andere Software verwiesen oder hierin beschrieben wird. Die Bedingungen gelten auch für Aktualisierungen, Ergänzungen, internetbasierte Dienste und Supportleistungen von BFN IT für die Software, sofern bei der Lieferung keine anderen Bedingungen schriftlich bestimmt wurden.
+
+2. Leistungsgegenstand
+2.1. Plugins sind Erweiterungen des Basis-Produkts von Shopware. Das Basis-Produkt wird von der Shopware AG angeboten und ist nicht Gegenstand dieser EULA.
+2.2. In bestimmten Fällen wird zusammen mit der Software von BFN IT auch Software von Dritten ausgeliefert, wozu auch Software gehören kann, die Open-Source Software-Lizenzen unterliegt. Die hierfür geltenden Lizenzbestimmungen sind der Software jeweils beigefügt. Sie unterfällt nicht dieser EULA.
+
+3. Nutzungsrecht von Plugins
+3.1. Die Plugins von BFN IT sind urheberrechtlich geschützt.
+3.2. BFN IT räumt dem Kunden das einfache, nicht ausschließliche Recht, das Pugin im Fall der kostenfreien Überlassung bzw. des Kaufs auf Dauer und im Fall der Miete auf die Mietzeit begrenzt in einem Onlineshop zu betreiben und dazu im erforderlichen Umfang auf einem Web- oder Datenbankserver zu installieren und ablaufen zu lassen. Die Rechte werden pro Überlassung bzw. Kauf oder Miete allein für die Nutzung auf einem Web- oder Datenbank-Server eingeräumt. Die Nutzung der Software zum Betrieb eines weiteren Servers bedarf der erneuten und weiteren Einräumung von Nutzungsrechten durch BFN IT.
+3.3. Ohne vorherige Zustimmung von BFN IT ist das Kopieren der überlassenen Programme nur erlaubt, soweit dies zur bestimmungsgemäßen Benutzung der Programme gemäß Einzelvertrag – z.B. durch Einlesen in den Arbeitsspeicher oder auf die Festplatte des Rechners – erforderlich ist. Außerdem darf der Kunde eine angemessene Anzahl von Kopien der Software ausschließlich für Archiv- und Sicherungszwecke anfertigen, die den Urheberrechtsvermerk des Originals tragen müssen.
+3.4. Die Anzahl der Web- und Datenbank-Server, auf der der Kunde das Plugin nutzen darf, kann nachträglich durch vertragliche Vereinbarung erhöht werden.
+3.5. In keinem Fall hat der Kunde das Recht, die erworbene Vertragssoftware zu vermieten oder in sonstiger Weise unterzulizenzieren, sie drahtgebunden oder drahtlos öffentlich wiederzugeben oder zugänglich zu machen oder sie Dritten entgeltlich oder unentgeltlich zur Verfügung zu stellen, z.B. im Wege des Application Service Providing oder als Software as a Service. Das Recht zur dauerhaften Veräußerung bleibt hiervon unberührt.
+3.6. Der Kunde ist jedoch berechtigt, die Software durch Dritte hosten zu lassen. Der Kunde ist jedoch nicht berechtigt, dem Hostinganbieter zu gestatten, Dritten Zugriff auf die Software zu ermöglichen.
+
+4. Bearbeitungsrecht
+4.1. Der Kunde darf das Plugin weder verändern noch bearbeiten, es sei denn, dies ist gesetzlich zwingend vorgeschrieben.
+
+5. Nutzungsverbote
+5.1. Jede über die eingeräumten Nutzungsrechte aus Ziff. 3 hinausgehende Nutzung ist unzulässig.
+5.2. Wird das Plugin auf mehr als der vereinbarten Anzahl von Web- oder Datenbankservern genutzt, hat der Kunde BFN IT die über die erlaubte Nutzung hinausgehende Nutzung gesondert zu vergüten. Die Höhe der Vergütung entspricht der zweifachen Höhe des regulären Preises des Plugins für jeden weiteren Webserver für die Dauer der Nutzung.
+5.3. Das Plugin darf nicht für betriebliche oder sonstige Zwecke eines Dritten, insbesondere nicht zur Durchführung von Rechenzentrumsleistungen oder Online-Diensten für Dritte vermietet werden. Eine Nutzung durch verbundene Unternehmen ist nur mit ausdrücklicher Zustimmung von BFN IT erlaubt.
+
+6. Weitergabe an Dritte
+6.1. Die Software kann an Dritte übergeben werden sofern diese den Nutzungsbedingungen in vollem Umfang zustimmen. Im Falle der Übergabe hat der Kunde alle eigenen Kopien der Software zu löschen und darf die Software nicht weiter nutzen. Alle Rechte und Pflichten die sich aus dem Nutzungsbedingungen ergeben gehen an den Dritten als neuen Nutzer über.
+
+7. Gewährleistung
+7.1. BFN IT leistet Gewähr für die vereinbarte Beschaffenheit sowie dafür, dass der Kunde die Vertragssoftware ohne Verstoß gegen Rechte Dritter nutzen kann. Die Sachmängelgewährleistung gilt nicht für Mängel, die darauf beruhen, dass die Vertragssoftware in einer Hardware- und Softwareumgebung eingesetzt wird, die den in der Leistungsbeschreibung genannten Anforderungen nicht gerecht wird.
+7.2. Ist der Kunde Unternehmer, hat er die Vertragssoftware unverzüglich nach Erhalt auf offensichtliche Mängel zu überprüfen und diese bei Vorliegen BFN IT unverzüglich mitzuteilen, ansonsten ist eine Gewähr-leistung für diese Mängel ausgeschlossen. Entsprechendes gilt, wenn sich später ein solcher Mangel zeigt. § 377 HGB findet Anwendung.
+7.3. Ist der Kunde Unternehmer, so ist BFN IT im Falle eines Sachmangels zunächst zur Nacherfüllung berechtigt, d.h. nach eigener Wahl zur Beseitigung des Mangels („Nachbesserung“) oder Ersatzlieferung. Im Rahmen der Ersatzlieferung wird der Kunde gegebenenfalls einen neuen Stand der Software übernehmen, es sei denn dies führt zu unzumutbaren Beeinträchtigungen. Bei Rechtsmängeln wird der Verkäufer dem Kunden nach eigener Wahl eine rechtlich einwandfreie Nutzungsmöglichkeit an der Vertragssoftware verschaffen oder diese so abändern, dass keine Rechte Dritter mehr verletzt werden.
+7.4. Der Verkäufer ist berechtigt, die Gewährleistung in den Räumlichkeiten des Kunden zu erbringen. Der Verkäufer genügt seiner Pflicht zur Nachbesserung auch, indem er mit einer automatischen Installationsroutine versehene Updates auf seiner Homepage zum Download bereitstellt und dem Kunden telefonischen Support zur Lösung etwa auftretender Installationsprobleme anbietet.
+7.5. Das Recht des Kunden, im Falle des zweimaligen Fehlschlagens der Nachbesserung oder Ersatzlieferung nach seiner Wahl den Kaufpreis zu mindern oder vom Vertrag zurück zu treten, bleibt unberührt. Ein Rücktrittsrecht besteht nicht bei unerheblichen Mängeln.
+7.6. Ist der Kunde Verbraucher, finden die gesetzlichen Gewährleistungsregeln unbeschränkt Anwendung.
+
+8. Haftung
+8.1. Sofern nicht ausdrücklich etwas anderes geregelt ist, haftet BFN IT für alle durch sie bzw. ihre Erfüllungs- und Verrichtungsgehilfen verursachten Schäden nur, soweit diese Schäden auf vorsätzlichem oder grob fahrlässigem Verhalten beruhen.
+8.2. Eine Haftung von BFN IT für einfache Fahrlässigkeit besteht nur bei einer Verletzung wesentlicher Vertragspflichten (sog. Kardinalpflichten) und ist in diesem Fall auf den vorhersehbaren und typischerweise eintretenden Schaden beschränkt. Der Begriff der wesentlichen Vertragspflichten bezeichnet dabei abstrakt solche Vertragspflichten, deren Erfüllung die ordnungsgemäße Durchführung des Vertrages überhaupt erst ermöglicht und auf deren Einhaltung die jeweils andere Partei regelmäßig vertrauen darf.
+8.3. Die vorstehenden Haftungsbeschränkungen gelten nicht für abgegebene Garantien, Verletzungen des Lebens, des Körpers und der Gesundheit und für Ansprüche aus dem Produkthaftungsgesetz oder anderer zwingender gesetzlicher Vorschriften, für welche BFN IT im gesetzlichen Umfang haftet.
+
+9. Schlussbestimmungen
+9.1. Es gilt das Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts.
+9.2. Falls einzelne Bestimmungen dieser Vertragsbedingungen unwirksam oder nichtig sind oder werden sollten, wird die Wirksamkeit der übrigen Bestimmungen dadurch nicht berührt.
+9.3. Abweichungen von diesen Bedingungen und/oder Ergänzungen bedürfen der Schriftform.
+9.4. Bei Rechtstreitigkeiten aus oder in Zusammenhang mit dieser EULA ist Gerichtsstand der Sitz von BFN IT. BFN IT ist berechtigt, auch an jedem anderen gesetzlich vorgesehenen Gerichtsstand zu klagen.

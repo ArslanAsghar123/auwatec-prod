@@ -1,0 +1,16 @@
+.sw-cms-el-preview-lexicon-products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1px;
+    height: 100%;
+
+    .sw-cms-preview-cbax-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        height: 20px;
+        width: 20px;
+    }
+
+}

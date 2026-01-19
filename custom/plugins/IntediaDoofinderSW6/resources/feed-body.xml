@@ -1,0 +1,46 @@
+<item>
+    <g:id>{{ product.productNumber }}</g:id>
+    <g:item_group_id>{{ doofinderGroupId(product, groupIds, context.context) }}</g:item_group_id>
+    <title>{{ product.translated.name|escape }}</title>
+    <description><![CDATA[ {{ imClean(product.translated.description)|escape }} ]]></description>
+    <g:product_type>{{ doofinderCategories(product, productStreamCategories, categoryTree)|join(' %% ') }}</g:product_type>
+    <link>{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}</link>
+    {% if product.cover and product.cover.media %}
+        {% if product.cover.media.thumbnails|length > 0 %}
+            <g:image_link>{{ thumbnailWidth(product.cover.media.thumbnails) }}</g:image_link>
+        {% else %}
+            <g:image_link>{{ product.cover.media.url }}</g:image_link>
+        {% endif %}
+    {% elseif product.media and product.media.first and product.media.media %}
+        {% if product.media.first.media.thumbnails|length > 0 %}
+            <g:image_link>{{ thumbnailWidth(product.media.first.media.thumbnails) }}</g:image_link>
+        {% else %}
+            <g:image_link>{{ product.media.first.media.url }}</g:image_link>
+        {% endif %}
+    {% endif %}
+    <g:condition>new</g:condition>
+    <g:availability>
+        {%- if product.availableStock >= product.minPurchase or product.isCloseout == false -%}
+        in_stock
+        {%- else -%}
+        out_of_stock
+        {%- endif -%}
+    </g:availability>
+    {% set price = product.calculatedPrice %}
+    {% if product.calculatedPrices.count > 0 %}
+        {% set price = product.calculatedPrices.last %}
+    {% endif %}
+    {% set listPrice = price.listPrice %}
+
+    {% if listPrice %}
+        <g:sale_price>{{ price.unitPrice|number_format(context.currency.itemRounding.decimals, '.', '') }} {{ context.currency.isoCode }}</g:sale_price>
+        <g:price>{{ listPrice.price|number_format(context.currency.itemRounding.decimals, '.', '') }} {{ context.currency.isoCode }}</g:price>
+    {% else %}
+        <g:price>{{ price.unitPrice|number_format(context.currency.itemRounding.decimals, '.', '') }} {{ context.currency.isoCode }}</g:price>
+    {% endif %}
+    {% if product.manufacturer %}<g:brand>{{ product.manufacturer.translated.name|escape }}</g:brand> {% endif %}
+    <g:gtin>{{ product.ean }}</g:gtin>
+    <g:mpn>{{ product.manufacturerNumber }}</g:mpn>
+    <keywords>{{ product.keywords }}</keywords>
+    <search_keywords>{% if product.customSearchKeywords|length %}{{ product.customSearchKeywords|map( term => term|replace({'/': '\/'}))|join('/') }}{% endif %}</search_keywords>
+</item>

@@ -1,0 +1,449 @@
+{% block acris_gpsr_note_detail %}
+    <sw-page class="acris-gpsr-note-detail" v-if="item">
+
+        {% block acris_gpsr_note_detail_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block acris_gpsr_note_detail_smart_bar_header_title %}
+                    <h2>{{ $tc('acris-gpsr-note.detail.textHeadline') }}</h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+
+        {% block acris_gpsr_note_detail_smart_bar_language %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"
+                                    :disabled="$route.params.newItem"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+
+        {% block acris_gpsr_note_detail_smart_bar_actions %}
+            <template #smart-bar-actions>
+                {% block acris_gpsr_note_detail_smart_bar_actions_cancel %}
+                    <sw-button :disabled="item.isLoading" :routerLink="{ name: 'acris.gpsr.note.index' }">
+                        {{ $tc('acris-gpsr-note.detail.buttonCancel') }}
+                    </sw-button>
+                {% endblock %}
+
+                {% block acris_gpsr_note_detail_smart_bar_actions_save %}
+                    <sw-button-process
+                            class="acris-gpsr-note-detail__save-action"
+                            :isLoading="isLoading"
+                            :processSuccess="processSuccess"
+                            variant="primary"
+                            :disabled="item.productStreams.length == 0"
+                            @update:processSuccess="saveFinish"
+                            @click="onClickSave">
+                        {{ $tc('acris-gpsr-note.detail.buttonSave') }}
+                    </sw-button-process>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_note_detail_content %}
+            <template #content>
+                <sw-card-view>
+
+                    {% block acris_gpsr_note_detail_general_card %}
+                        <sw-card :isLoading="isLoading" v-if="item"
+                                 position-identifier="acris-gpsr-note-detail-content"
+                                 :title="$tc('acris-gpsr-note.detail.cardTitleGeneral')">
+
+                            {% block acris_gpsr_note_detail_general_hint %}
+                                <sw-alert
+                                        class="acris-gpsr-note-detail__gpsr-genral-hint"
+                                        variant="info">
+                                    {{ $tc('acris-gpsr-note.detail.generalNote') }}
+                                </sw-alert>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_general_active %}
+                                <sw-switch-field v-model:value="item.active"
+                                                 class="acris-gpsr-note-detail__item_active"
+                                                 :label="$tc('acris-gpsr-note.detail.fieldTitleLabelActive')"
+                                                 :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextActive')">
+                                </sw-switch-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_content_internal_id %}
+                                <sw-text-field v-model:value="item.internalId"
+                                               class="acris-gpsr-note-detail__item_internal-id"
+                                               :label="$tc('acris-gpsr-note.detail.fieldTitleLabelInternalId')"
+                                               :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderInternalId')"
+                                               :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextInternalId')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_content_internal_name %}
+                                <sw-text-field v-model:value="item.internalName"
+                                               class="acris-gpsr-note-detail__item_internal-name"
+                                               :label="$tc('acris-gpsr-note.detail.fieldTitleLabelInternalName')"
+                                               :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderInternalName')"
+                                               :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextInternalName')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_content_internal_note %}
+                                <sw-text-field
+                                        v-model:value="item.internalNotice"
+                                        class="acris-gpsr-note-detail__item_internal-notice"
+                                        :label="$tc('acris-gpsr-note.detail.fieldTitleLabelInternalNote')"
+                                        :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderInternalNote')"
+                                        :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextInternalNote')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_content_type %}
+                                <sw-single-select v-model:value="item.noteType"
+                                                  class="acris-gpsr-note-detail__item_type"
+                                                  :label="$tc('acris-gpsr-note.detail.fieldTitleLabelType')"
+                                                  :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextType')"
+                                                  :options="typeOptions">
+                                </sw-single-select>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_content_priority %}
+                                <sw-number-field v-model:value="item.priority"
+                                                 numberType="int"
+                                                 class="acris-gpsr-note-detail__item_priority"
+                                                 :label="$tc('acris-gpsr-note.detail.fieldTitleLabelPriority')"
+                                                 :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextPriority')"
+                                                 :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderPriority')">
+                                </sw-number-field>
+                            {% endblock %}
+
+                        </sw-card>
+                    {% endblock %}
+
+
+                    {% block acris_gpsr_note_detail_assignment_card %}
+                        <sw-card :isLoading="isLoading" v-if="item"
+                                 position-identifier="acris-gpsr-note-detail-content"
+                                 :title="$tc('acris-gpsr-note.detail.cardTitleAssignment')">
+
+                            {% block acris_gpsr_note_detail_assignment_sales_channel %}
+                                <sw-entity-many-to-many-select
+                                        v-if="item.salesChannels"
+                                        :localMode="true"
+                                        :label="$tc('acris-gpsr-note.detail.fieldTitleLabelSalesChannel')"
+                                        :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextSalesChannel')"
+                                        :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderSalesChannel')"
+                                        :entity-collection="item.salesChannels"
+                                        @update:entity-collection="onSalesChannelChange">
+                                </sw-entity-many-to-many-select>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_assignment_streams %}
+                                <sw-entity-many-to-many-select
+                                        v-if="item.productStreams"
+                                        required
+                                        :localMode="true"
+                                        :label="$tc('acris-gpsr-note.detail.fieldTitleProductStream')"
+                                        :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextProductStream')"
+                                        :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderProductStream')"
+                                        :entity-collection="item.productStreams"
+                                        @update:entity-collection="onProductStreamChange">
+                                </sw-entity-many-to-many-select>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_assignment_rule %}
+                                <sw-entity-many-to-many-select
+                                        v-if="item.rules"
+                                        :localMode="true"
+                                        :label="$tc('acris-gpsr-note.detail.fieldTitleLabelRule')"
+                                        :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextRule')"
+                                        :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderRule')"
+                                        :entity-collection="item.rules"
+                                        @update:entity-collection="onRulesChange">
+                                </sw-entity-many-to-many-select>
+                            {% endblock %}
+                        </sw-card>
+                    {% endblock %}
+
+
+                    {% block acris_gpsr_note_detail_display_card %}
+                        <sw-card :isLoading="isLoading" v-if="item"
+                                 position-identifier="acris-gpsr-note-detail-content"
+                                 :title="$tc('acris-gpsr-note.detail.cardTitleDisplay')">
+
+                            {% block acris_gpsr_note_detail_display_headline %}
+                                <sw-text-field v-model:value="item.headline"
+                                               class="acris-gpsr-note-detail__item_hint-headline"
+                                               :label="$tc('acris-gpsr-note.detail.fieldTitleHeadline')"
+                                               :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderHeadline')"
+                                               :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextHeadline')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_display_text %}
+                                <sw-text-editor type="textarea"
+                                                v-model:value="item.text"
+                                                class="acris-gpsr-note-detail__item_hint-text"
+                                                :label="$tc('acris-gpsr-note.detail.fieldTitleText')"
+                                                :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderText')">
+                                </sw-text-editor>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_display_type %}
+                                <sw-single-select v-model:value="item.displayType"
+                                                  class="acris-gpsr-note-detail__item_display-type"
+                                                  :label="$tc('acris-gpsr-note.detail.fieldTitleDisplayType')"
+                                                  :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextDisplayType')"
+                                                  :options="displayTypeOptions">
+                                </sw-single-select>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_display_tab_wrapper %}
+                                <div :class="{ 'hide-options': item.displayType === 'description', 'show-link': item.displayType !== 'description' }">
+                                    {% block acris_gpsr_note_detail_display_tab_text %}
+                                        <sw-external-link
+                                                v-if="item.displayType === 'tab'"
+                                                class="acris-gpsr-note-detail__item_display-link"
+                                                :href="$tc('acris-gpsr-note.detail.fieldTabLink')"
+                                        >
+                                            {{ $tc('acris-gpsr-note.detail.fieldTitleTabLink') }}
+                                        </sw-external-link>
+                                        <sw-external-link
+                                                v-if="item.displayType === 'gpsrTab'"
+                                                class="acris-gpsr-note-detail__item_display-link"
+                                                :href="$tc('acris-gpsr-note.detail.fieldGpsrTabLink')"
+                                        >
+                                            {{ $tc('acris-gpsr-note.detail.fieldTitleGpsrTabLink') }}
+                                        </sw-external-link>
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_note_detail_display_tab_position %}
+                                        <sw-single-select v-model:value="item.tabPosition"
+                                                          v-if="item.displayType === 'tab'"
+                                                          class="acris-gpsr-note-detail__item_tab-position"
+                                                          :label="$tc('acris-gpsr-note.detail.fieldTitleTabPosition')"
+                                                          :options="tabPositionOptions">
+                                        </sw-single-select>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_display_description_wrapper %}
+                                <div :class="{ 'hide-options': item.displayType === 'tab' || item.displayType === 'gpsrTab' }">
+                                    {% block acris_gpsr_note_detail_display_description_display %}
+                                        <sw-single-select v-model:value="item.descriptionDisplay"
+                                                          class="acris-gpsr-note-detail__item_description-display"
+                                                          :label="$tc('acris-gpsr-note.detail.fieldTitleDescriptionType')"
+                                                          :options="descriptionDisplayOptions">
+                                        </sw-single-select>
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_note_detail_display_description_modal_wrapper %}
+                                        <div :class="{ 'hide-options': item.displayType === 'description' && item.descriptionDisplay === 'amongEachOther' }">
+                                            {% block acris_gpsr_note_detail_display_modal_info %}
+                                                <sw-text-field v-model:value="item.modalInfoText"
+                                                               class="acris-gpsr-note-detail__item_modal-info"
+                                                               :label="$tc('acris-gpsr-note.detail.fieldTitleModalText')"
+                                                               :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderModalText')"
+                                                               :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextModalText')">
+                                                </sw-text-field>
+                                            {% endblock %}
+                                            {% block acris_gpsr_note_detail_display_modal_link %}
+                                                <sw-text-field v-model:value="item.modalLinkText"
+                                                               class="acris-gpsr-note-detail__item_modal-link"
+                                                               :label="$tc('acris-gpsr-note.detail.fieldTitleModalLinkText')"
+                                                               :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderModalLinkText')"
+                                                               :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextModalLinkText')">
+                                                </sw-text-field>
+                                            {% endblock %}
+                                        </div>
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_note_detail_display_description_beneath_wrapper %}
+                                        <div :class="{ 'hide-options': item.displayType === 'tab' || item.displayType === 'gpsrTab' }">
+                                            {% block acris_gpsr_note_detail_display_description_position %}
+                                                <sw-single-select v-model:value="item.descriptionPosition"
+                                                                  class="acris-gpsr-note-detail__item_description-position"
+                                                                  :label="$tc('acris-gpsr-note.detail.fieldTitleDescriptionPosition')"
+                                                                  :options="descriptionPositionOptions">
+                                                </sw-single-select>
+                                            {% endblock %}
+                                        </div>
+                                    {% endblock %}
+
+                                </div>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_detail_display_separator %}
+                                <sw-single-select v-model:value="item.displaySeparator"
+                                                  class="acris-gpsr-note-detail__item_description-position"
+                                                  :label="$tc('acris-gpsr-note.detail.fieldTitleSeparator')"
+                                                  :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextSeparator')"
+                                                  :options="separatorOptions">
+                                </sw-single-select>
+                            {% endblock %}
+                            {% block acris_gpsr_note_detail_note_file %}
+                                <acris-gpsr-file-download-form
+                                        :entity="item"
+                                        extensionName="acrisGpsrNoteDownloads"
+                                        repositoryName="acris_gpsr_n_d"
+                                        entityName="acris_gpsr_n_d"
+                                        acrisUploadTag="acrisGpsrNoteDownloads"
+                                        @media-open="onOpenDownloadModal">
+                                </acris-gpsr-file-download-form>
+                            {% endblock %}
+                        </sw-card>
+                    {% endblock %}
+
+
+                    {% block acris_gpsr_note_detail_layout_card %}
+                        <sw-card :isLoading="isLoading" v-if="item"
+                                 position-identifier="acris-gpsr-note-detail-content"
+                                 :title="$tc('acris-gpsr-note.detail.cardTitleFormat')">
+
+                            <sw-container columns="1fr 1fr" gap="0px 30px" align="start">
+                                {% block acris_gpsr_note_detail_layout_card_headline_seo_size %}
+                                    <sw-select-field
+                                            :label="$tc('acris-gpsr-note.detail.fieldTitleHeadlineSeoSize')"
+                                            v-model:value="item.hintHeadlineSeoSize">
+                                        <option value="">{{ $tc('acris-gpsr-note.detail.optionDefault') }}</option>
+                                        <option value="h1">{{ $tc('acris-gpsr-note.detail.optionHeadline1') }}</option>
+                                        <option value="h2">{{ $tc('acris-gpsr-note.detail.optionHeadline2') }}</option>
+                                        <option value="h3" selected>{{ $tc('acris-gpsr-note.detail.optionHeadline3') }}</option>
+                                        <option value="h4">{{ $tc('acris-gpsr-note.detail.optionHeadline4') }}</option>
+                                        <option value="h5">{{ $tc('acris-gpsr-note.detail.optionHeadline5') }}</option>
+                                        <option value="h6">{{ $tc('acris-gpsr-note.detail.optionHeadline6') }}</option>
+                                        <option value="p">{{ $tc('acris-gpsr-note.detail.optionParagraph') }}</option>
+                                    </sw-select-field>
+                                {% endblock %}
+
+
+                                {% block acris_gpsr_note_detail_layout_card_headline_individual_size_active %}
+                                    <sw-switch-field
+                                            v-model:value="item.hintEnableHeadlineSize"
+                                            bordered
+                                            :label="$tc('acris-gpsr-note.detail.fieldTitleHeadlineIndividualSizeActive')"
+                                            :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextHeadlineIndividualSizeActive')">
+                                    </sw-switch-field>
+                                {% endblock %}
+
+                                {% block acris_gpsr_note_detail_layout_card_headline_seo_size %}
+                                    <sw-select-field :label="$tc('acris-gpsr-note.detail.fieldTitleHeadlineIndividualSize')"
+                                                     :disabled="!item.hintEnableHeadlineSize"
+                                                     v-model:value="item.hintHeadlineSize">
+                                        <option value="h1">{{ $tc('acris-gpsr-note.detail.optionHeadline1') }}</option>
+                                        <option value="h2">{{ $tc('acris-gpsr-note.detail.optionHeadline2') }}</option>
+                                        <option value="h3">{{ $tc('acris-gpsr-note.detail.optionHeadline3') }}</option>
+                                        <option value="h4" selected>{{ $tc('acris-gpsr-note.detail.optionHeadline4') }}</option>
+                                        <option value="h5">{{ $tc('acris-gpsr-note.detail.optionHeadline5') }}</option>
+                                        <option value="h6">{{ $tc('acris-gpsr-note.detail.optionHeadline6') }}</option>
+                                    </sw-select-field>
+                                {% endblock %}
+
+                                {% block acris_gpsr_note_detail_layout_card_headline_align %}
+                                    <sw-select-field :label="$tc('acris-gpsr-note.detail.fieldTitleHeadlineAlignment')"
+                                                     v-model:value="item.hintAlignment">
+                                        <option value="start">{{ $tc('acris-gpsr-note.detail.fieldOptionHeadlineAlignmentLeft') }}</option>
+                                        <option value="center">{{ $tc('acris-gpsr-note.detail.fieldOptionHeadlineAlignmentCenter') }}</option>
+                                        <option value="end">{{ $tc('acris-gpsr-note.detail.fieldOptionHeadlineAlignmentRight') }}</option>
+                                    </sw-select-field>
+                                {% endblock %}
+
+                                {% block acris_gpsr_note_detail_layout_card_headline_color %}
+                                    <sw-colorpicker :label="$tc('acris-gpsr-note.detail.fieldTitleHeadlineColor')"
+                                                    :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderColor')"
+                                                    v-model:value="item.headlineColor"
+                                                    colorOutput="hex" :zIndex="1100" :alpha="false">
+                                    </sw-colorpicker>
+                                {% endblock %}
+
+                                {% block acris_gpsr_note_detail_layout_card_background_color %}
+                                    <sw-colorpicker :label="$tc('acris-gpsr-note.detail.fieldTitleBackgroundColor')"
+                                                    :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderColor')"
+                                                    v-model:value="item.backgroundColor"
+                                                    colorOutput="hex" :zIndex="1100" :alpha="false">
+                                    </sw-colorpicker>
+                                {% endblock %}
+
+                                {% block acris_gpsr_note_detail_layout_card_border_color %}
+                                    <sw-colorpicker :label="$tc('acris-gpsr-note.detail.fieldTitleBorderColor')"
+                                                    :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderColor')"
+                                                    v-model:value="item.borderColor"
+                                                    colorOutput="hex" :zIndex="1100" :alpha="false">
+                                    </sw-colorpicker>
+                                {% endblock %}
+                            </sw-container>
+
+                            {% block acris_gpsr_note_detail_layout_card_media %}
+                                {% block acris_gpsr_note_detail_layout_card_media_upload %}
+                                    <sw-upload-listener
+                                            :upload-tag="uploadTag"
+                                            auto-upload
+                                            @media-upload-finish="setMediaItem"
+                                    />
+                                    <sw-media-upload-v2
+                                            variant="regular"
+                                            class="acris-gpsr-note-detail__item_media_upload"
+                                            :upload-tag="uploadTag"
+                                            :source="item.mediaId"
+                                            :allow-multi-select="false"
+                                            :label="$tc('acris-gpsr-note.detail.fieldTitleUploadMedia')"
+                                            :default-folder="gpsrNoteRepository.entityName"
+                                            :sourceContext="item"
+                                            @sw-media-upload-v2-media-upload-success="setMediaItem"
+                                            @media-drop="onDropMedia"
+                                            @media-upload-sidebar-open="openMediaSidebar"
+                                            @media-upload-remove-image="onUnlinkAvatar"
+                                    />
+                                {% endblock %}
+                            {% endblock %}
+
+                            <sw-container columns="1fr 1fr" gap="0px 30px" align="start">
+                                {% block acris_gpsr_note_detail_layout_card_img_size %}
+                                    <sw-number-field v-model:value="item.mediaSize"
+                                                     numberType="int"
+                                                     class="acris-gpsr-note-detail__item_media_size"
+                                                     :label="$tc('acris-gpsr-note.detail.fieldTitleImgSize')"
+                                                     :help-text="$tc('acris-gpsr-note.detail.fieldTitleHelpTextImgSize')"
+                                                     :placeholder="$tc('acris-gpsr-note.detail.fieldTitlePlaceholderImgSize')">
+                                    </sw-number-field>
+                                {% endblock %}
+
+                                {% block acris_gpsr_note_detail_layout_card_img_align %}
+                                    <sw-select-field :label="$tc('acris-gpsr-note.detail.fieldTitlePosition')"
+                                                     v-model:value="item.mediaPosition">
+                                        <option value="left">{{ $tc('acris-gpsr-note.detail.fieldOptionPositionLeft') }}</option>
+                                        <option value="right">{{ $tc('acris-gpsr-note.detail.fieldOptionPositionRight') }}</option>
+                                    </sw-select-field>
+                                {% endblock %}
+
+
+                                {% block acris_gpsr_note_detail_layout_card_img_mobile_visible %}
+                                    <sw-select-field :label="$tc('acris-gpsr-note.detail.fieldTitleHintMobileVisible')"
+                                                     v-model:value="item.mobileVisibility">
+                                        <option value="show">{{ $tc('acris-gpsr-note.detail.fieldOptionDisplay') }}</option>
+                                        <option value="hide">{{ $tc('acris-gpsr-note.detail.fieldOptionHide') }}</option>
+                                    </sw-select-field>
+                                {% endblock %}
+                            </sw-container>
+
+                        </sw-card>
+                    {% endblock %}
+
+                </sw-card-view>
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_note_detail_index_sidebar %}
+            <template #sidebar>
+                <sw-sidebar v-if="acl.can('media.editor')" :propagate-width="true">
+                    <sw-sidebar-media-item ref="mediaSidebarItem"
+                                           :isParentLoading="isLoading">
+
+                        <template #context-menu-items="media">
+                            <sw-context-menu-item @click="setMediaFromSidebar(media.mediaItem)">
+                                {{ $tc('acris-gpsr-note.detail.fieldTitleMedia') }}
+                            </sw-context-menu-item>
+                        </template>
+                    </sw-sidebar-media-item>
+                </sw-sidebar>
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

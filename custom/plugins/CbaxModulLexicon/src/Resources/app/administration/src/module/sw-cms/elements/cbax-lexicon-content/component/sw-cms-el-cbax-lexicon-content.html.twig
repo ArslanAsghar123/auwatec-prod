@@ -1,0 +1,23 @@
+{% block sw_cms_element_cbax_lexicon_content %}
+    <div class="cbax-lexicon-cms-slot-wrapper">
+        <div v-if="isCbaxLexiconCmsPage" class="sw-cms-el-cbax-lexicon-content">
+            <div class="lexicon-entries">
+                <p class="lexicon-entries-letter">A </p><p class="lexicon-entries-header">{{ $tc('elements.cbax-lexicon-content.component.letterHeader') }}</p>
+                <div class="lexicon-entries-box">accusama      aliquyam</div>
+            </div>
+
+            <div class="lexicon-entries">
+                <p class="lexicon-entries-letter">C </p><p class="lexicon-entries-header">{{ $tc('elements.cbax-lexicon-content.component.letterHeader') }}</p>
+                <div class="lexicon-entries-box">clita      consetetur</div>
+            </div>
+
+            <div class="lexicon-entries">
+                <p class="lexicon-entries-letter">L </p><p class="lexicon-entries-header">{{ $tc('elements.cbax-lexicon-content.component.letterHeader') }}</p>
+                <div class="lexicon-entries-box">lorem      labore</div>
+            </div>
+        </div>
+        <sw-alert v-if="!isCbaxLexiconCmsPage" appearance="notification" :showIcon="true" :closable="false">
+            {{ $tc('elements.wrong-page-type-alert') }}
+        </sw-alert>
+    </div>
+{% endblock %}

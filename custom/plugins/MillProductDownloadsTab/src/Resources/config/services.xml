@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="Mill\ProductDownloadsTab\Subscriber\PageSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="Mill\ProductDownloadsTab\Service\ProductDownloadsService" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="Mill\ProductDownloadsTab\Service\ProductDownloadsService">
+            <argument type="service" id="media.repository"/>
+            <argument type="service" id="custom_field.repository"/>
+        </service>
+
+    </services>
+
+</container>

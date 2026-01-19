@@ -1,0 +1,27 @@
+{% block block_doofinder_search %}
+    {% set element = block.slots.getSlot('doofinderRecommendation') %}
+
+    <div class="col-12" data-cms-element-id="{{ element.id }}">
+        {% if element.config.title.value %}
+            <h2>{{ element.config.title.value }}</h2>
+        {% endif %}
+        <script src="//cdn.doofinder.com/recommendations/js/doofinderRecommendation.min.js"></script>
+        {% if  config('IntediaDoofinderSW6.config.doofinderRecommendationTemplate') is empty %}
+            <df-recommendations
+                    hashid="{{ page.footer.extensions.doofinder.hashId }}"
+                    total-products="{{ element.config.totalProducts.value }}"
+            ></df-recommendations>
+        {% else %}
+            <df-recommendations
+                    id="{{ element.id }}"
+                    hashid="{{ page.footer.extensions.doofinder.hashId }}"
+                    total-products="{{ element.config.totalProducts.value }}"
+            >
+                <script type="text/x-mustache-template" id="dfwidget-template-carousel-{{ element.id }}">
+                    {{ config('IntediaDoofinderSW6.config.doofinderRecommendationTemplate')|raw }}
+                </script>
+                <div class="dfwidget-host" id="dfwidget-carousel-{{ element.id }}"></div>
+            </df-recommendations>
+        {% endif %}
+    </div>
+{% endblock %}

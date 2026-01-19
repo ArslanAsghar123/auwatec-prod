@@ -1,0 +1,39 @@
+.icon{
+  color: inherit;
+}
+
+.container-main{
+  padding-bottom: 0;
+}
+
+.styled-ul{
+  list-style: none;
+  padding: 0;
+  li{
+    padding-left: 20px;
+    position: relative;
+    &:before{
+      content: "\25A0";
+      color: $sw-color-brand-primary;
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 12px;
+    }
+  }
+}
+
+.scroll-up-container{
+  display: none;
+}
+
+//hides all customer-type-selects
+/*.contact-type{
+  display: none !important;
+}*/
+
+//TODO: check if acris discount is possible with doofinder
+//hide doofinder prices (acris-discount cannot be displayed correctly)
+.dfd-card-pricing{
+  display: none !important;
+}

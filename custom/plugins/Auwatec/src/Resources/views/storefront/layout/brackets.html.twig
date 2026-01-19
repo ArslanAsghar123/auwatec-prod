@@ -1,0 +1,31 @@
+<div class="bracket bracket-1 is-expandable">
+    <div class="bracket-button">
+        {% sw_icon 'phone-a' style { 'namespace': 'Auwatec' } %}
+    </div>
+    <div class="bracket-content">
+        <p class="bracket-headline">
+            {{ "general.bracketContactHeadline"|trans|sw_sanitize }}
+        </p>
+        <div class="bracket-contact">
+            {% sw_icon 'phone-a' style { 'namespace': 'Auwatec' } %}
+            <a href="tel:{{ "general.phoneNumber"|trans|sw_sanitize }}">
+                {{ "general.phoneNumber"|trans|sw_sanitize }}
+            </a>
+        </div>
+        <div class="bracket-contact">
+            {% sw_icon 'mail-a' style { 'namespace': 'Auwatec' } %}
+            <a href="mailto:{{ "general.email"|trans|sw_sanitize }}">
+                {{ "general.email"|trans|sw_sanitize }}
+            </a>
+        </div>
+        <div class="bracket-contact">
+            {% sw_icon 'mail-a' style { 'namespace': 'Auwatec' } %}
+            <a href="{{ "general.feedbackFormUrl"|trans|sw_sanitize }}">
+                {{ "general.bracketContactFeedbackForm"|trans|sw_sanitize }}
+            </a>
+        </div>
+        <p>
+            {{ 'general.openingHours'|trans|sw_sanitize }}
+        </p>
+    </div>
+</div>

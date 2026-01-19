@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-shoppingcart-a">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="shoppingcart-a" clip-path="url(#clip-shoppingcart-a)">
+    <path id="shoppingcart-a-2" data-name="shoppingcart-a" d="M-269-42.333a5.334,5.334,0,0,1,5.335-5.333,5.333,5.333,0,0,1,5.333,5.333A5.332,5.332,0,0,1-263.665-37,5.332,5.332,0,0,1-269-42.333Zm-26.667,0a5.333,5.333,0,0,1,5.333-5.333A5.334,5.334,0,0,1-285-42.333,5.333,5.333,0,0,1-290.334-37,5.332,5.332,0,0,1-295.667-42.333ZM-289.754-53a8.876,8.876,0,0,1-8.813-7.843l-4-31.359a.883.883,0,0,0-.869-.8H-309v-8h5.566a8.874,8.874,0,0,1,8.811,7.834l.7,5.5h48.853L-254.6-53Zm-.869-8.8a.876.876,0,0,0,.869.8H-260.7l5.134-18.665H-292.9Z" transform="translate(309 101)"/>
+  </g>
+</svg>

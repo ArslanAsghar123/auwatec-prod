@@ -1,0 +1,24 @@
+<sw-button size="small" variant="primary" @click="importEntries(0)" class="cbax-w100" :isLoading="isLoading">
+    {{ $tc('cbax-lexicon.config.button.importLexiconEntries') }}
+</sw-button>
+
+<sw-data-grid
+    v-if="showImportResult"
+    class="cbax-lexicon-config-gpsr-results"
+    :dataSource="importResult"
+    :columns="resultColumns"
+    :showSelection="false"
+    :showSettings="false"
+    :allow-inline-edit="false"
+    :showActions="false"
+    :allowDelete="false"
+>
+    <template #column-label="{ item }">
+        <div v-if="item.name == 'header'">
+            <strong>{{ item.label }}</strong>
+        </div>
+        <div v-else>
+            {{ item.label }}
+        </div>
+    </template>
+</sw-data-grid>

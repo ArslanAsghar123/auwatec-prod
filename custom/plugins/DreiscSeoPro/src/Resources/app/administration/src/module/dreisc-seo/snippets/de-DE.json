@@ -1,0 +1,46 @@
+{
+    "dreiscSeo": {
+        "general": {
+            "navigation": {
+                "label": "SEO Professional"
+            }
+        },
+        "seoFilterPromotion": {
+            "navigationLabel": "\uD83C\uDD95 Filter SEO Url und SEO Filter Landingpages",
+            "bannerLink": "http://dashboard.dreischild.com/files/seo-filter-promotion_de.jpg",
+            "storeLink": "https://store.shopware.com/de/dreis19332340010m/filter-seo-url-und-seo-filter-landingpages.html",
+            "smartBar": {
+                "header": "Jetzt verfügbar: Filter SEO Url und SEO Filter Landingpages"
+            }
+        },
+        "doku": {
+            "general": {
+                "buttonText": "Dokumentation zu dieser Einstellung in einem neuen Fenster öffnen"
+            },
+            "links": {
+                "modulesRedirect": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/redirect",
+                "modulesBulkGenerators": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/bulk-generators",
+                "seoSettings": "https:\/\/de.dreischild.com\/docs\/seo-professional\/seo-settings",
+                "modulesRedirectImportExport": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/redirect\/redirect-import-export",
+                "settings": {
+                    "bulkGenerators": "https://de.dreischild.com/docs/seo-professional/modules/settings/seo-settings#bulk-generatoren",
+                    "seoSettingsMetaTags": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/settings\/seo-settings#meta-tags",
+                    "seoSettingsSerpPreview": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/settings\/seo-settings#serp-vorschau",
+                    "seoSettingsSeoUrl": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/settings\/seo-settings#canonical-urls",
+                    "seoSettingsSocialMedia": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/settings\/seo-settings#social-media",
+                    "robotsTxt": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/settings\/seo-settings#robotstxt",
+                    "ai": "https://de.dreischild.com/docs/seo-professional/modules/settings/seo-settings#kuenstliche-intelligenz---openai",
+                    "canonical": "https://de.dreischild.com/docs/seo-professional/modules/settings/seo-settings#canonical-urls",
+                    "sitemap": "https://de.dreischild.com/docs/seo-professional/modules/settings/seo-settings#sitemap"
+                },
+                "richSnippets": {
+                    "general": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/rich-snippets-json-ld",
+                    "product": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/rich-snippets-json-ld\/products",
+                    "breadcrumb": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/rich-snippets-json-ld\/breadcrumb",
+                    "logo": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/rich-snippets-json-ld\/organization#logo",
+                    "business": "https:\/\/de.dreischild.com\/docs\/seo-professional\/modules\/rich-snippets-json-ld\/organization#lokales-unternehmen"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.form-check-input{
+  border-color: $sw-text-color;
+  &,
+  &[type="checkbox"]{
+    border-radius: 0;
+  }
+}
+
+.form-label{
+  @extend .h5;
+}
+
+//general.required : <span class="form-label-required">(Pflichtfeld)</span>
+.form-label-required{
+  font-size: 14px;
+  color: $gray-text-color;
+  margin-left: 5px;
+  font-weight: $font-weight-normal;
+  font-family: $font-family-base;
+}
+
+.cms-element-form{
+  .card-title{
+    @extend .h1;
+    border: none;
+  }
+}

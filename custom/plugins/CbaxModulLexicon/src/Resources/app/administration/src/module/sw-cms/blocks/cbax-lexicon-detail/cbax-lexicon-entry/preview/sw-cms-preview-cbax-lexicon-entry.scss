@@ -1,0 +1,15 @@
+.sw-cms-preview-entry {
+    padding: 12px;
+    //background-color: #eeeeee;
+    width: 100%;
+    position: relative;
+
+    .sw-cms-preview-cbax-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        height: 20px;
+        width: 20px;
+    }
+}

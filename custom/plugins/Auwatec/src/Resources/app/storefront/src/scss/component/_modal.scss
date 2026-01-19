@@ -1,0 +1,33 @@
+.modal{
+  --bs-modal-width: 640px;
+  .modal-header.only-close{
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    z-index: 1;
+    & + .modal-body{
+      padding-top: 30px;
+      h1:first-child,
+      h2:first-child{
+        padding-right: 25px;
+      }
+    }
+  }
+}
+
+.modal-body{
+  padding-left: 0;
+  padding-right: 0;
+  .cms-section-sidebar-sidebar-content{
+    display: none;
+  }
+  .cms-section-sidebar-main-content{
+    @extend .col-lg-12;
+    @extend .col-xl-12;
+  }
+  .cms-primary-bg,
+  .cms-gray-100-bg,
+  .cms-white-bg{
+    padding: 0;
+  }
+}

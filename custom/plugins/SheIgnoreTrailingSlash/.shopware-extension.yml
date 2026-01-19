@@ -1,0 +1,82 @@
+store:
+    availabilities:
+        - German
+        - International
+    default_locale: de_DE
+    localizations:
+        - de_DE
+        - en_GB
+    categories:
+        - Sonderfunktionen
+    type: extension
+    icon: src/Resources/store/icon.png
+    automatic_bugfix_version_compatibility: true
+    description:
+        de: <p>Durch diese App wird bei einer falsch eingegebene SEO-URL, trotzdem die richtige Seite angezeigt. Aktuell sind das die Artikel&nbsp;und Kategorie-URLs. Der Benutzer kann die Seite mit oder ohne nachgestellten Schrägstrich (/) aufrufen. Außerdem kann er die URL auch zu kurz angeben und bekommt trotzdem die Seite angezeigt. Damit bei Google kein "Duplicate Content" entsteht, wird ein Canonical-Header gesetzt.&nbsp;</p><p>Original Beispiel:</p><p></p><ul><li>/Katalog-1/Freizeit-Elektro/</li></ul><p></p><p>Funktionierende Alternativen:</p><p></p><ul><li>/Katalog-1/Freizeit-Elektro///</li><li>/Katalog-1/Freizeit-Elektro</li><li>/Katalog-1/Freizeit</li></ul>
+        en: <p>This app will still display the correct page if you enter the wrong SEO URL. Currently these are the products and category URLs. The user can call the page with or without trailing slash (/). In addition, he can also specify the URL too short and still gets the page displayed. So that no "Duplicate Content" arises at Google, a Canonical header is set.&nbsp;</p><p>Original example:</p><ul><li>/Katalog-1/Freizeit-Elektro/</li></ul>Working alternatives:<br><ul><li>/Katalog-1/Freizeit-Elektro///</li><li>/Katalog-1/Freizeit-Elektro</li><li>/Katalog-1/Freizeit</li></ul>
+    installation_manual:
+        de: ""
+        en: ""
+    tags:
+        de:
+            - Trailing slash
+            - atricle URL
+            - SEO/SEA
+            - ' SEO'
+            - SEO-URLs
+        en: []
+    videos:
+        de: []
+        en: []
+    highlights:
+        de:
+            - ""
+        en:
+            - ""
+    features:
+        de:
+            - Unterstützt alle SEO-Urls in der Storefront
+            - Anzeige auch, wenn die URL zu kurz angegeben wurde
+            - Unterstützt von (mit&amp;ohne) nachgestellten Schrägstrich (/)
+            - Es muss kein Index erstellt werden
+        en:
+            - ""
+    faq:
+        de: []
+        en: []
+    images:
+        - file: src/Resources/store/img-0.png
+          activate:
+            de: true
+            en: true
+          preview:
+            de: true
+            en: true
+          priority: 0
+        - file: src/Resources/store/img-1.png
+          activate:
+            de: true
+            en: true
+          preview:
+            de: false
+            en: false
+          priority: 0
+build:
+    extraBundles: []
+    shopwareVersionConstraint: ""
+    zip:
+        composer:
+            enabled: false
+            before_hooks: []
+            after_hooks: []
+            excluded_packages: []
+        assets:
+            enabled: false
+            before_hooks: []
+            after_hooks: []
+            enable_es_build_for_admin: false
+            enable_es_build_for_storefront: false
+        pack:
+            excludes:
+                paths: []
+            before_hooks: []

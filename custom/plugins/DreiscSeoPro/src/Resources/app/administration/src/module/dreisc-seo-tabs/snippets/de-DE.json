@@ -1,0 +1,170 @@
+{
+    "dreiscSeoDataSeoTab": {
+        "cards": {
+            "meta": "Meta-Tags",
+            "serp": "SERP Vorschau"
+        },
+        "general": {
+            "navigation": {
+                "label": "SEO Professional Tabs"
+            }
+        },
+        "seoForm": {
+            "chars": "Zeichen",
+            "pixel": "Pixel",
+            "fields": {
+                "label": {
+                    "robotsTag": "Robots-Tag",
+                    "disableParentCanonicalInheritance": "Bei diesem Produkt für die Varianten NICHT die Canonical URL des Eltern Produkts ausgeben",
+                    "enableParentCanonicalInheritance": "Bei diesem Produkt für die Varianten die Canonical URL des Eltern Produkts ausgeben"
+                },
+                "helpText": {
+                    "robotsTag": "An dieser Stelle kann der Robots-Tag definiert werden, der auf der Seite ausgegeben wird.<br><br>Wird \"Standardwert übertragen\" ausgewählt, so wird der Robots-Tag Wert übergeben, den du unter SEO Professional » Weitere Einstellungen » SEO Einstellungen » Meta-Tags » Robots-Tag konfiguriert hast.",
+                    "disableParentCanonicalInheritance": "Da die Option <i>\"Bei Varianten generell die Canonical URL des Eltern Produkts ausgeben\"</i> in den SEO Professional Einstellungen (SEO Professional » Weitere Einstellungen » Canonical URLs) aktiviert ist, wird die Canonical URL des Eltern Produkts verwendet.<br><br>Ist diese Option aktiv, so schaltest du diese Einstellung für dieses Produkt ab und kannst eigene Canonical URLs für die Varianten definieren.",
+                    "enableParentCanonicalInheritance": "Wenn diese Option aktiv ist, werden für alle Varianten dieses Produkts die Canonical URL des Eltern Produkts ausgegeben.<br><br>Also die Canonical URL, die du in dem aktuellen Tab unter <i>SEO-URLs » Canonical Link</i> hinterlegen kannst.<br><br><b>Hinweis:</b><br>Diese Einstellung kann auch global für alle Varianten gesetzt werden (siehe: SEO Professional » Weitere Einstellungen » Canonical URLs)"
+                }
+            },
+            "robotsTags": {
+                "useDefault": "Standardwert übertragen (SEO Professional » Weitere Einstellungen » SEO Einstellungen » Meta-Tags » Robots-Tag)",
+                "indexFollow": "index,follow (Seite indexieren, Links verfolgen)",
+                "noindexFollow": "noindex,follow (Seite nicht indexieren, Links verfolgen)",
+                "indexNoFollow": "index,nofollow (Seite indexieren, Links nicht verfolgen)",
+                "noindexNoFollow": "noindex,nofollow (Seite nicht indexieren, Links nicht verfolgen)"
+            }
+        },
+        "seoFormBulkInfo": {
+            "bulkConfigurationLoadingText": "Bulk Informationen werden geladen ...",
+            "activeBulkTemplateText": "Aktives Bulk Template:",
+            "bulkConfigurationText": "Bulk Konfiguration:",
+            "noBulkConfigurationAvailableText": "Für diese SEO-Einstellung wurde kein Bulk Template konfiguriert",
+            "overwriteWarnText": "Änderungen an dieser SEO Einstellung werden beim Speichern wieder überschrieben, da die Bulk Einstellung \"Immer ausführen\" aktiv ist."
+        },
+        "serp": {
+            "tabs": {
+                "labels": {
+                    "desktop": "Desktop",
+                    "mobile": "Mobile"
+                }
+            },
+            "placeholder": {
+                "noMetaTitleDefined": "[Kein Meta Titel definiert]",
+                "noMetaDescriptionDefined": "[Keine Meta-Beschreibung definiert]"
+            },
+            "notValidSalesChannel": {
+                "defaultText": "Wähle bitte einen Storefront-Verkaufskanal aus, um die SERP Vorschau anzuzeigen.",
+                "noDomainMatchedText": "Der ausgewählte Storefront-Verkaufskanal, weist keine Domain für die aktive Sprache auf."
+            }
+        },
+        "seoUrl": {
+            "notModifiedText": "Die aktuelle URL wurde durch den Shopware Standard generiert. Diese wird beim nächsten Bulk Prozess überschrieben.",
+            "disableVariantCanonicalFunctionsNotice": {
+                "title": "Ausgabe der Canonical URL des Eltern Produkts ist aktiv",
+                "text": "Da die Option <i>\"Bei Varianten generell die Canonical URL des Eltern Produkts ausgeben\"</i> in den SEO Professional Einstellungen (SEO Professional » Weitere Einstellungen » Canonical URLs) aktiviert ist, wird die Canonical URL des Eltern Produkts verwendet.<br><br>Wenn du eigene Canonical URLs für Varianten dieses Produkts definieren möchtest, musst du die Option <i>\"Bei diesem Produkt für die Varianten NICHT die Canonical URL des Eltern Produkts ausgeben\"</i> aktivieren. Diese findest du in dem Eltern Produkt unter <i>\"SEO » Meta-Tags\"</i>.",
+                "textIndividual": "Da die Option <i>\"Bei diesem Produkt für die Varianten die Canonical URL des Eltern Produkts ausgeben\"</i> in dem Eltern Produkt aktiv ist, wird die Canonical URL des Eltern Produkts verwendet."
+            },
+            "fields": {
+                "label": {
+                    "canonicalLinkType": "Canonical Link",
+                    "canonicalLinkExternalUrl": "Externe URL (Canonical Link)",
+                    "canonicalLinkProductUrl": "Produkt (Canonical Link)",
+                    "canonicalLinkCategoryUrl": "Kategorie (Canonical Link)"
+                },
+                "helpText": {
+                    "canonicalLinkType": "Standardmäßig wird der definierte SEO Pfad auch als Canonical Link ausgeben. Über diese Option können Sie alternative Quellen für den Canonical Link definieren.<br><br>So kann bspw. auf einen Nachfolge-Artikel oder aber auf eine bestimmte Variante verwiesen werden, um doppelten Kontent zu vermeiden."
+                }
+            },
+            "canonicalLinkTypes": {
+                "InheritValue": "Einstellung des Hauptprodukts erben",
+                "UseSeoPath": "Den SEO Pfad als Canonical Link ausgeben",
+                "ExternalUrl": "Externe URL als Canonical Link ausgeben",
+                "ProductUrl": "URL eines Produkts als Canonical Link ausgeben",
+                "CategoryUrl": "URL einer Kategorie als Canonical Link ausgeben"
+            }
+        },
+        "seoRichSnippets": {
+            "cards": {
+                "default": "Rich Snippets"
+            },
+            "fields": {
+                "label": {
+                    "itemCondition": "Abweichender Produktzustand",
+                    "availability": "Abweichende Produktverfügbarkeit",
+                    "customSku": "Abweichende händlerspezifische Kennung (sku)",
+                    "customMpn": "Abweichende Herstellerteile-Nummer (mpn)",
+                    "priceValidUntilDate": "Abweichendes \"Preis gültig bis\"-Datum (priceValidUntil)"
+                },
+                "placeholder": {
+                    "customSku": "Standardwert übertragen (SEO Professional » Rich Snippets (JSON-LD) » Produkte)",
+                    "customMpn": "Standardwert übertragen (SEO Professional » Rich Snippets (JSON-LD) » Produkte)"
+                },
+                "helpText": {
+                    "itemCondition": "Wird hier kein abweichender Produktzustand definiert, so greift der Standardwert.<br><br>Dieser lässt sich unter \"SEO Professional » Rich Snippets (JSON-LD) » Produkte\" definieren",
+                    "availability": "Wird hier keine abweichende Produktverfügbarkeit definiert, so greift der Standardwert.<br><br>Dieser lässt sich unter \"SEO Professional » Rich Snippets (JSON-LD) » Produkte\" definieren",
+                    "customSku": "Wird hier keine abweichende händlerspezifische Kennung definiert, so greift der Standardwert.<br><br>Dieser lässt sich unter \"SEO Professional » Rich Snippets (JSON-LD) » Produkte\" definieren",
+                    "customMpn": "Wird hier keine abweichende Herstellerteile-Nummer definiert, so greift der Standardwert.<br><br>Dieser lässt sich unter \"SEO Professional » Rich Snippets (JSON-LD) » Produkte\" definieren",
+                    "priceValidUntilDate": "Wird hier kein abweichendes \"Preis gültig bis\"-Datum definiert, so greift der Standardwert.<br><br>Dieser lässt sich unter \"SEO Professional » Rich Snippets (JSON-LD) » Produkte\" definieren"
+                }
+            }
+        },
+        "socialMedia": {
+            "cards": {
+                "default": "Social Media",
+                "facebook": "Facebook",
+                "twitter": "Twitter"
+            },
+            "fields": {
+                "label": {
+                    "facebookTitle": "Facebook Titel",
+                    "twitterTitle": "Twitter Titel",
+                    "facebookDescription": "Facebook Beschreibung",
+                    "twitterDescription": "Twitter Beschreibung",
+                    "facebookImage": "Facebook Bild",
+                    "twitterImage": "Twitter Bild"
+                },
+                "helpText": {
+                    "facebookTitle": "Der hier definierte Titel wird beim Teilen der Seite auf Facebook ausgegeben.",
+                    "twitterTitle": "Der hier definierte Titel wird beim Teilen der Seite auf Twitter ausgegeben.",
+                    "facebookDescription": "Der hier definierte Beschreibungstext wird beim Teilen der Seite auf Facebook ausgegeben.",
+                    "twitterDescription": "Der hier definierte Beschreibungstext wird beim Teilen der Seite auf Twitter ausgegeben."
+                }
+            }
+        },
+        "extension": {
+            "swProductDetail": {
+                "tabs": {
+                    "dreiscSeo": "SEO"
+                }
+            },
+            "swCategoryView": {
+                "tabs": {
+                    "dreiscSeo": "SEO"
+                }
+            }
+        }
+    },
+    "dreiscSeoDataSitemapTab": {
+        "cards": {
+            "meta": "Sitemap"
+        },
+        "seoForm": {
+            "fields": {
+                "label": {
+                    "productSitemapInactive": "Produkt NICHT in Sitemap anzeigen",
+                    "productSitemapPriority": "Priorität in der Sitemap",
+                    "categorySitemapInactive": "Kategorie NICHT in Sitemap anzeigen",
+                    "categorySitemapPriority": "Priorität in der Sitemap",
+                    "landingPageSitemapInactive": "Landingpage NICHT in Sitemap anzeigen",
+                    "landingPageSitemapPriority": "Priorität in der Sitemap"
+                },
+                "helpText": {
+                    "productSitemapInactive": "Wird diese Option aktiviert, so wird das Produkt NICHT in der Sitemap ausgegeben.",
+                    "productSitemapPriority": "Die Priorität gibt an, wie wichtig die URL im Vergleich zu anderen URLs auf der Website ist. Der Wert kann zwischen 0.0 und 1.0 liegen. Standardmäßig ist der Wert 0.5.",
+                    "categorySitemapInactive": "Wird diese Option aktiviert, so wird das Kategorie NICHT in der Sitemap ausgegeben.",
+                    "categorySitemapPriority": "Die Priorität gibt an, wie wichtig die URL im Vergleich zu anderen URLs auf der Website ist. Der Wert kann zwischen 0.0 und 1.0 liegen. Standardmäßig ist der Wert 0.5.",
+                    "landingPageSitemapInactive": "Wird diese Option aktiviert, so wird die Landingpage NICHT in der Sitemap ausgegeben.",
+                    "landingPageSitemapPriority": "Die Priorität gibt an, wie wichtig die URL im Vergleich zu anderen URLs auf der Website ist. Der Wert kann zwischen 0.0 und 1.0 liegen. Standardmäßig ist der Wert 0.5."
+                }
+            }
+        }
+    }
+}

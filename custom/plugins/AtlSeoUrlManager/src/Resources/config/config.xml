@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Tip</title>
+        <title lang="de-DE">Tipp</title>
+
+        <component name="sw-highlight-text">
+            <name>tip</name>
+            <text><![CDATA[<div role="alert" class="sw-alert sw-media-quickinfo-usage__info-not-used sw-alert--info sw-alert--default sw-alert--icon" style="margin-bottom: 0;"><span aria-hidden="true" class="sw-alert__icon sw-icon icon--default-badge-info sw-icon--fill" style="width: 20px; height: 20px;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#758CA3" fill-rule="evenodd" d="M12,7 C12.5522847,7 13,7.44771525 13,8 C13,8.55228475 12.5522847,9 12,9 C11.4477153,9 11,8.55228475 11,8 C11,7.44771525 11.4477153,7 12,7 Z M13,16 C13,16.5522847 12.5522847,17 12,17 C11.4477153,17 11,16.5522847 11,16 L11,11 C11,10.4477153 11.4477153,10 12,10 C12.5522847,10 13,10.4477153 13,11 L13,16 Z M24,12 C24,18.627417 18.627417,24 12,24 C5.372583,24 6.14069502e-15,18.627417 5.32907052e-15,12 C-8.11624501e-16,5.372583 5.372583,4.77015075e-15 12,3.55271368e-15 C18.627417,5.58919772e-16 24,5.372583 24,12 Z M12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 Z"></path></svg></span> <div class="sw-alert__body sw-alert__body--icon"><div class="sw-alert__title"> Du möchtest mehr organischen Traffic? </div> <div class="sw-alert__message"> Dann schau auf jeden Fall in unserem <a href="https://atloss.de/ratgeber/shopware-6-seo/" target="_blank">SEO-Ratgeber</a> vorbei! In diesem Beitrag findest du alle wichtigen Shopware 6 SEO Maßnahmen für deinen Shop.</div></div></div>]]></text>
+        </component>
+    </card>
+
+    <card>
+        <title>Product boxes</title>
+        <title lang="de-DE">Produkt Boxen</title>
+
+        <input-field type="bool">
+            <name>linkToParent</name>
+            <label>Link globally to parent product from all product boxes</label>
+            <label lang="de-DE">Global aus allen Produkt Boxen auf den Parent Artikel verlinken</label>
+            <helpText><![CDATA[Usually, from all product boxes (category listing, product slider, etc.) you always want to link to the parent product and not to a specific variant. This setting saves you the work of defining this for each product individually under "[Product] > Variants > Storefront presentation > Product listings > Display single product > Main product". In individual cases, however, it may make sense to link to the specific variant. If you are unsure about this, please feel free to contact us at "hello@atloss.de". Note If you activate this global option, you can still make a different setting on the product level under "[Product] > Specifications > Custom fields > Product (SEO URL Manager) > Unlink global product box to parent setting".]]></helpText>
+            <helpText lang="de-DE"><![CDATA[In der Regel möchte man aus allen Produkt Boxen (Kategorie-Listing, Produkt-Slider, etc.) immer auf den Parent eines Artikels verlinken und nicht auf eine konkrete Variante. Diese Einstellung nimmt dir die Arbeit ab, dies für jedes Produkt einzeln unter "[Produkt] > Varianten > Storefront-Darstellung > Produktliste > Einzelprodukt anzeigen > Hauptprodukt" zu definieren. <br><br> In Einzelfällen kann es jedoch durchaus Sinn machen auf die konkrete Variante zu verlinken. Solltest du dir hier unsicher sein, kannst du unser gerne unter "hello@atloss.de" kontaktieren. <br><br> <b>Hinweis</b><br> Wenn du diese globale Option aktivierst, kannst du trotzdem noch auf Produktebene eine abweichende Einstellung unter "[Produkt] > Spezifikationen > Zusatzfelder > Produkt (SEO URL Manager) > Globale Produkt-Box-Verlinkung auf Parent Einstellung aufheben" vornehmen.]]></helpText>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Product detail pages</title>
+        <title lang="de-DE">Produktdetail Seiten</title>
+
+        <input-field type="bool">
+            <name>parentCanonicalUrls</name>
+            <label>Parent canonical URL for variants</label>
+            <label lang="de-DE">Parent Canonical-URL bei Varianten</label>
+            <helpText><![CDATA[If you enable this option, the imaginary parent will be used as canonical tag for variant products on <b>every</b> product detail page. <br><br> <b>Attention!</b><br> The manual definition of the canonical via the administration will be globally overwritten.]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Aktivierst du diese Option wird der imaginäre Parent bei Variantenartikeln auf <b>jeder</b> Produkt Detailseite als Canonical Tag verwendet. <br><br> <b>Achtung!</b><br> Die manuelle Definition des Canonicals über die Administration wird hierbei global überschrieben.]]></helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>metaTagName</name>
+            <label>Add meta tag "name"</label>
+            <label lang="de-DE">Meta Tag "name" hinzufügen</label>
+            <helpText><![CDATA[By default Shopware 6 does <b>not</b> include the tag: <br><br> &lt;meta itemprop=&quot;name&quot; content=&quot;Product name&quot; /&gt; <br><br> on your product detail pages. This causes the Google Search Console to throw the error &quot;Field name is missing&quot;, as this is an important component for <a href="https://developers.google.com/search/docs/advanced/structured-data/product" target="_blank">structured product data</a>.]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Standardmäßig bindet Shopware 6 <b>nicht</b> den Tag: <br><br> &lt;meta itemprop=&quot;name&quot; content=&quot;Produkt Name&quot; /&gt; <br><br> auf deinen Produkt Detailseiten ein. Dies führt dazu, dass die Google Search Console den Fehler &quot;Feld name fehlt&quot; wirft, da dies ein wichtiger Bestandteil für <a href="https://developers.google.com/search/docs/advanced/structured-data/product" target="_blank">strukturierte Produktdaten</a> ist.]]></helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>metaTagsReview</name>
+            <label>Add meta tags "review", "reviewRating" and "reviewCount"</label>
+            <label lang="de-DE">Meta Tags "review", "reviewRating" und "reviewCount" hinzufügen</label>
+            <helpText><![CDATA[By default, Shopware 6 does <b>not</b> include the tags: <br><br> &quot;review&quot;, &quot;reviewRating&quot; and &quot;reviewCount&quot; <br><br> on your product detail pages. This causes the Google Search Console to throw the error &quot;Field &quot;review&quot;, &quot;reviewRating&quot; and &quot;reviewCount&quot; are missing&quot; as this is an important component for <a href="https://developers.google.com/search/docs/advanced/structured-data/product" target="_blank">structured product data</a>.]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Standardmäßig bindet Shopware 6 <b>nicht</b> die Tags: <br><br> &quot;review&quot;, &quot;reviewRating&quot; und &quot;reviewCount&quot; <br><br> auf deinen Produkt Detailseiten ein. Dies führt dazu, dass die Google Search Console den Fehler &quot;Feld &quot;review&quot;, &quot;reviewRating&quot; und &quot;reviewCount&quot; fehlen&quot; wirft, da dies ein wichtiger Bestandteil für <a href="https://developers.google.com/search/docs/advanced/structured-data/product" target="_blank">strukturierte Produktdaten</a> ist.]]></helpText>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Sitemap</title>
+        <title lang="de-DE">Sitemap</title>
+
+        <input-field type="bool">
+            <name>parentSitemapUrls</name>
+            <label>Include only product parent URLs in the sitemap</label>
+            <label lang="de-DE">Nur Produkt Parent URLs mit in die Sitemap aufnehmen</label>
+            <helpText><![CDATA[With this option, only the parent URLs of your variant products are included in the sitemap. This makes your sitemap much more concrete for the Google crawler, since it is no longer flooded with lots of variant URLs.]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Mit dieser Option werden nur noch die Parent URLs deiner Variantenartikel mit in die Sitemap aufgenommen. Dadurch wird deine Sitemap für den Google Crawler deutlich konkreter, da diese nicht mehr mit jeder Menge Varianten URLs überflutet wird.]]></helpText>
+        </input-field>
+    </card>
+</config>

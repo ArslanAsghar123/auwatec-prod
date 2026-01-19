@@ -1,0 +1,12 @@
+{% set product = hook.page.product %}
+
+{% if product.parentId %}
+    {% set criteria = {
+        'ids': [ product.parentId ],
+        'associations': {
+            'children': {}
+        }
+    } %}
+    {% set parentProduct = services.repository.search('product', criteria).first %}
+    {% do hook.page.addExtension('tsParentProduct', parentProduct) %}
+{% endif %}

@@ -1,0 +1,16 @@
+{% block sw_search_bar_results_list_column_header %}
+    <template v-if="entity.entity === 'cbax_lexicon_entry'">
+        {% parent %}
+        {# Header für Ergebnisliste einfügen #}
+        <span>
+            {#
+            - {{ translatedLexicon.cbax-lexicon-sw.search.columnKeyword }}
+            #}
+            {{ translatedLexicon['cbax-lexicon-sw'].search.columnTitle }}
+            {#{ translatedLexicon }#}
+        </span>
+    </template>
+    <template v-else>
+        {% parent %}
+    </template>
+{% endblock %}

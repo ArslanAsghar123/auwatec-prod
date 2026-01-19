@@ -1,0 +1,30 @@
+{% sw_extends '@Storefront/storefront/component/product/description.html.twig' %}
+
+{% block component_product_description_content_text %}
+    {% if page.product.extensions.acrisGpsr %}
+        {% set gpsrCollection = page.product.extensions.acrisGpsr.getByDisplayDescriptionPosition('beforeDescription') %}
+        {% for gpsrInfo in gpsrCollection %}
+            {# here we always set isLastGpsrEntry to false because afterwards comes always the product description #}
+            {% sw_include '@Storefront/storefront/component/gpsr/acris-gpsr.html.twig' with {
+                'id': 'gpsr-'~gpsrInfo.id,
+                'isGpsrTab': false,
+                'contentType': gpsrInfo.contentType,
+                'isLastGpsrEntry': false
+            } %}
+        {% endfor %}
+    {% endif %}
+
+    {{ parent() }}
+
+    {% if page.product.extensions.acrisGpsr %}
+        {% set gpsrCollection = page.product.extensions.acrisGpsr.getByDisplayDescriptionPosition('afterDescription') %}
+        {% for gpsrInfo in gpsrCollection %}
+            {% sw_include '@Storefront/storefront/component/gpsr/acris-gpsr.html.twig' with {
+                'id': 'gpsr-'~gpsrInfo.id,
+                'isGpsrTab': false,
+                'contentType': gpsrInfo.contentType,
+                'isLastGpsrEntry': loop.last
+            } %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

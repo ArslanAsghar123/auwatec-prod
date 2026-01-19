@@ -1,0 +1,24 @@
+{% block intedia_doofinder_config_block_slider %}
+  <div class="sw-cms-el-config-solid-ase-content-slider">
+
+
+        {# general #}
+        {% block intedia_doofinder_config_block %}
+            <sw-container columns="1fr" gap="20px">
+                <sw-text-field
+                        :label="$tc('sw-cms.elements.intedia-doofinder-element.config.title')"
+                        v-model:value="title"
+                        class="mb-0">
+
+                </sw-text-field>
+
+                <sw-text-field
+                        required
+                        :label="$tc('sw-cms.elements.intedia-doofinder-element.config.total-products')"
+                        v-model:value="totalProducts"
+                        class="mb-0">
+                </sw-text-field>
+            </sw-container>
+        {% endblock %}
+  </div>
+{% endblock %}

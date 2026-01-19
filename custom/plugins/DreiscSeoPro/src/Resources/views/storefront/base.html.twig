@@ -1,0 +1,10 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_breadcrumb %}
+    {# Make sure that we also loda the product variable #}
+    {% sw_include '@Storefront/storefront/layout/breadcrumb.html.twig' with {
+        context: context,
+        category: page.product.seoCategory,
+        product: page.product
+    } only %}
+{% endblock %}

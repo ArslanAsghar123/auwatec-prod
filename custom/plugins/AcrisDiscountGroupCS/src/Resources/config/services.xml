@@ -1,0 +1,176 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Entities -->
+        <service id="Acris\DiscountGroup\Custom\DiscountGroupDefinition">
+            <tag name="shopware.entity.definition" entity="acris_discount_group" />
+        </service>
+        <service id="Acris\DiscountGroup\Custom\Aggregate\DiscountGroupRule\DiscountGroupRuleDefinition">
+            <tag name="shopware.entity.definition" entity="acris_discount_group_rule" />
+        </service>
+        <service id="Acris\DiscountGroup\Custom\Aggregate\DiscountGroupProductStream\DiscountGroupProductStreamDefinition">
+            <tag name="shopware.entity.definition" entity="acris_discount_dynamic_groups" />
+        </service>
+        <service id="Acris\DiscountGroup\Custom\Aggregate\DiscountGroupTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="acris_discount_group_translation" />
+        </service>
+
+        <!-- Extensions -->
+        <service id="Acris\DiscountGroup\Custom\RuleExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\DiscountGroup\Custom\ProductStreamExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\DiscountGroup\Custom\ProductExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\DiscountGroup\Custom\CustomerExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator" decorates="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator" decoration-priority="5000">
+            <argument type="service" id="Acris\DiscountGroup\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator.inner"/>
+            <argument type="service" id="Acris\DiscountGroup\Components\DiscountGroupService"/>
+            <argument type="service" id="Acris\DiscountGroup\Components\ListPriceService"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Components\DiscountGroupGateway">
+            <argument type="service" id="acris_discount_group.repository"/>
+            <argument type="service" id="product_stream_mapping.repository"/>
+            <argument type="service" id="event_dispatcher"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Components\DiscountGroupService">
+            <argument type="service" id="Acris\DiscountGroup\Components\DiscountGroupGateway"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\AbsolutePriceCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\PercentagePriceCalculator"/>
+            <argument type="service" id="unit.repository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Tax\TaxDetector"/>
+            <argument type="service" id="sales_channel.product.repository"/>
+
+            <tag name="kernel.reset" method="reset"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Components\ListPriceService">
+            <argument type="service" id="Acris\DiscountGroup\Components\PriceRoundingService" />
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+        </service>
+
+        <service id="Acris\DiscountGroup\Components\PriceRoundingService">
+        </service>
+
+        <!-- Subscriber -->
+        <service id="Acris\DiscountGroup\Storefront\Subscriber\DiscountGroupSubscriber">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="Acris\DiscountGroup\Components\DiscountGroupGateway"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Storefront\Subscriber\CartConvertedSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Storefront\Subscriber\ChangeDecimalPlacesSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Storefront\Subscriber\DiscountGroupCacheInvalidationSubscriber">
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidator"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Storefront\Subscriber\AccountPageSubscriber">
+            <argument type="service" id="Acris\DiscountGroup\Components\DiscountGroupGateway"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator"
+                 decorates="Shopware\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator"
+                 public="true">
+            <argument type="service" id="Acris\DiscountGroup\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator.inner"/>
+            <argument type="service" id="Acris\DiscountGroup\Components\Cache\DiscountGroupCacheService" />
+        </service>
+
+        <service id="Acris\DiscountGroup\Storefront\Subscriber\DiscountGroupCacheSubscriber">
+            <argument type="service" id="Acris\DiscountGroup\Components\Cache\DiscountGroupCacheService" />
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Cart Collector -->
+        <service id="Acris\DiscountGroup\Core\Content\Product\Cart\DiscountInfoCartProcessor">
+            <argument type="service" id="Acris\DiscountGroup\Components\ScaleDiscountService"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <tag name="shopware.cart.collector" priority="5000"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Components\ScaleDiscountService">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Core\Checkout\Promotion\Cart\PromotionItemBuilder" decorates="Shopware\Core\Checkout\Promotion\Cart\PromotionItemBuilder">
+            <argument type="service" id="Acris\DiscountGroup\Core\Checkout\Promotion\Cart\PromotionItemBuilder.inner" />
+        </service>
+
+        <service id="Acris\DiscountGroup\Core\Checkout\Promotion\Cart\PromotionCollector" decorates="Shopware\Core\Checkout\Promotion\Cart\PromotionCollector">
+            <argument type="service" id="Acris\DiscountGroup\Core\Checkout\Promotion\Cart\PromotionCollector.inner"/>
+            <tag name="shopware.cart.collector" priority="4900"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Core\Content\Product\Cart\ProductCartProcessor" decorates="Shopware\Core\Content\Product\Cart\ProductCartProcessor">
+            <argument type="service" id="Acris\DiscountGroup\Core\Content\Product\Cart\ProductCartProcessor.inner"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator"/>
+            <argument type="service" id="Acris\DiscountGroup\Components\ScaleDiscountService"/>
+            <tag name="shopware.cart.processor" priority="5000"/>
+            <tag name="shopware.cart.collector" priority="5000"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Core\Framework\Adapter\Twig\Filter\CurrencyFilter"
+                 decorates="Shopware\Core\Framework\Adapter\Twig\Filter\CurrencyFilter"
+                 public="true">
+            <argument type="service" id="Shopware\Core\System\Currency\CurrencyFormatter"/>
+            <argument type="service" id="Acris\DiscountGroup\Core\Framework\Adapter\Twig\Filter\CurrencyFilter.inner"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Core\Checkout\Cart\Price\NetPriceCalculator" decorates="Shopware\Core\Checkout\Cart\Price\NetPriceCalculator">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Tax\TaxCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>
+            <argument type="service" id="Acris\DiscountGroup\Core\Checkout\Cart\Price\NetPriceCalculator.inner"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Core\Checkout\Cart\Price\GrossPriceCalculator" decorates="Shopware\Core\Checkout\Cart\Price\GrossPriceCalculator">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Tax\TaxCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>
+            <argument type="service" id="Acris\DiscountGroup\Core\Checkout\Cart\Price\GrossPriceCalculator.inner"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Core\Checkout\Promotion\Cart\PromotionProcessor" decorates="Shopware\Core\Checkout\Promotion\Cart\PromotionProcessor" decoration-priority="200">
+            <argument type="service" id="Acris\DiscountGroup\Core\Checkout\Promotion\Cart\PromotionProcessor.inner"/>
+            <tag name="shopware.cart.processor" priority="4900"/>
+        </service>
+
+        <service id="Acris\DiscountGroup\Components\Cache\DiscountGroupCacheService">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="cache.object"/>
+        </service>
+
+        <!-- Decorated CustomizedProductsCartProcessor service -->
+        <service id="Acris\DiscountGroup\Core\Checkout\Decorated\CustomizedProductsCartProcessor" decorates="Swag\CustomizedProducts\Core\Checkout\CustomizedProductsCartProcessor" decoration-priority="200" decoration-on-invalid="ignore">
+            <argument type="service" id="Acris\DiscountGroup\Core\Checkout\Decorated\CustomizedProductsCartProcessor.inner"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\PercentagePriceCalculator"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\CashRounding"/>
+            <tag name="shopware.cart.processor" priority="4950"/>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,94 @@
+{
+    "dreiscSeoBulkCategory": {
+        "general": {
+            "navigation": {
+                "label": "Category Bulk Generator"
+            }
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Category Bulk Generator"
+            }
+        },
+        "detailBase": {
+            "fields": {
+                "labels": {
+                }
+            }
+        },
+        "payload": {
+            "templateVariablesDescription": {
+                "categoryId": "Id of the category",
+                "categoryTranslatedName": "Category name",
+                "categoryTranslatedDescription": "Description of the category",
+                "categoryTranslatedBreadcrumb": "<b> Category Breadcrumb </b> (category.translated.breadcrumb)",
+                "categorySeoMetaTitle": "Meta title of the category",
+                "categorySeoMetaDescription": "Meta description of the category",
+                "categorySeoUrl": "Url of the category",
+                "categorySeoIsInheritedMetaTitle": "<b> Meta title of the category was inherited [if example] </b> (categorySeo.isInheritedMetaTitle)",
+                "categorySeoIsInheritedMetaDescription": "<b> Meta description of the category was inherited [if example] </b> (categorySeo.isInheritedMetaDescription)",
+                "categorySeoIsInheritedUrl": "<b> URL of the category was inherited [if example] </b> (categorySeo.isInheritedUrl)",
+                "categoryParent": "<b> Parent category data [if example] </b> (category.parent[↯])",
+                "categoryParentSeoMetaTitle": "Meta title of the category",
+                "categoryParentSeoMetaDescription": "Meta description of the category",
+                "categoryParentSeoUrl": "Url of the category",
+                "categoryParentSeoIsInheritedMetaTitle": "<b> Meta title of the category was inherited [if example] </b> (categoryParentSeo.isInheritedMetaTitle)",
+                "categoryParentSeoIsInheritedMetaDescription": "<b> Meta description of the category was inherited [if example] </b> (categoryParentSeo.isInheritedMetaDescription)",
+                "categoryParentSeoIsInheritedUrl": "<b> URL of the category was inherited [if example] </b> (categoryParentSeo.isInheritedUrl)",
+                "parentCategories": "<b> All parent categories [for example] </b> (parentCategories[↯])",
+                "childCategories": "<b> All direct child categories [for example] </b> (childCategories[↯])"
+            }
+        },
+        "defaultTemplates": {
+            "metaTitle": {
+                "categoryName": "Category name",
+                "categoryNameAndShopName": "Category name + shop name [Live-Template]",
+                "categoryNameAndShippingFreeText": "Category name + \"free shipping\"",
+                "customFieldIfExistOtherwiseCategoryName": "Own additional field if available, otherwise category name",
+                "starsCategoryNameAndCustomText": "⭐⭐⭐⭐⭐ + category name + top brands ✓ large selection ✓",
+                "openAiExampleGerman": "OpenAI Example (Prompt in German)",
+                "openAiExampleEnglish": "OpenAI Example (Prompt in English)"
+            },
+            "metaDescription": {
+                "categoryNameAndShopName": "Category name + shop name [live template]",
+                "categoryNameAndShippingFreeText": "Category name + \"free shipping\"",
+                "customFieldIfExistOtherwiseCategoryName": "Own additional field if available, otherwise category name",
+                "trimmedCategoryDescription": "Category description shortened to 130 characters",
+                "introTextAndChildCategoryNames": "\"Everything from a single source:\" + names of the child categories, otherwise category name as fallback",
+                "openAiExampleGerman": "OpenAI Example (Prompt in German)",
+                "openAiExampleEnglish": "OpenAI Example (Prompt in English)"
+            },
+            "url": {
+                "categoryName": "Category name",
+                "parentCategoryUrlAndCategoryName": "SEO url of the parent category + category name",
+                "metaTitleIfAvailableOrCategoryName": "Meta title if available, otherwise category name",
+                "customFieldIfExistOtherwiseCategoryName": "Own additional field if available, otherwise category name",
+                "openAiExampleGerman": "OpenAI Example (Prompt in German)",
+                "openAiExampleEnglish": "OpenAI Example (Prompt in English)"
+            },
+            "robotsTag": {
+                "indexFollow": "index,follow (index page and track links)",
+                "indexNofollow": "index,nofollow (index page and do not track links)",
+                "noindexFollow": "noindex,follow (do not index page and follow links)",
+                "noindexNofollow": "noindex,nofollow (do not index page and do not follow links)"
+            },
+            "facebookTitle": {
+                "metaTitleOrCategoryName": "Meta title if available, otherwise category name",
+                "customFieldOrCategoryNameAsFallback": "Own additional field if available, otherwise category name"
+            },
+            "facebookDescription": {
+                "metaDescriptionOrCategoryName": "Meta description if available, otherwise product description shortened to 65 characters",
+                "customFieldOrCategoryNameAsFallback": "Own additional field if available, otherwise category name"
+            },
+            "twitterTitle": {
+                "metaTitleOrCategoryName": "Meta title if available, otherwise category name",
+                "customFieldOrCategoryNameAsFallback": "Own additional field if available, otherwise category name"
+            },
+            "twitterDescription": {
+                "metaDescriptionOrCategoryName": "Meta description if available, otherwise product description shortened to 110 characters",
+                "customFieldOrCategoryNameAsFallback": "Own additional field if available, otherwise category name"
+            }
+        }
+    }
+}
+

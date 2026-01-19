@@ -1,0 +1,28 @@
+<sw-card>
+    <sw-container v-if="isExpandable">
+        <sw-collapse>
+            <template #header="{ expanded }">
+                <div>
+                    <h4> {{ $tc('sw-product.detailBase.acrisGpsr.cardTitle') }} &nbsp;
+
+                        <sw-icon v-if="expanded"
+                                 name="regular-chevron-up"
+                                 size="16">
+                        </sw-icon>
+                        <sw-icon v-else
+                                 name="regular-chevron-down"
+                                 size="16">
+                        </sw-icon>
+                    </h4>
+                </div>
+            </template>
+            <template #content>
+                <acris-gpsr-product-detail :isLoadingGpsr="isLoadingGpsr"></acris-gpsr-product-detail>
+            </template>
+        </sw-collapse>
+    </sw-container>
+    <sw-container v-if="!isExpandable">
+        <acris-gpsr-product-detail :isLoadingGpsr="isLoadingGpsr" :gpsrTitle="$tc('sw-product.detailBase.acrisGpsr.cardTitle')"></acris-gpsr-product-detail>
+    </sw-container>
+</sw-card>
+

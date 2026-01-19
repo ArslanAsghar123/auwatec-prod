@@ -1,0 +1,45 @@
+{% block acris_discount_group_cart_quantity %}
+    {% set discountGroupName = null %}
+    {% set discountGroupQuantity = null %}
+    {% set cartQuantityInfoQuantityZero = config('AcrisDiscountGroupCS.config.cartQuantityInfoQuantityZero') %}
+    {% set displayGroupsToShowGroupTitle = (cartQuantityInfoQuantityZero === 'discountGroupAndInfo') or (cartQuantityInfoQuantityZero === 'discountGroup')  %}
+    {% set exitsProductWithSameGroupInCart = page.product.extensions.acrisDiscountGroupLineItemData and page.product.extensions.acrisDiscountGroupLineItemData.discountGroupQuantity %}
+
+    {% if page.product.extensions.acrisDiscountGroupLineItemData.discountGroupName %}
+        {% set discountGroupName = page.product.extensions.acrisDiscountGroupLineItemData.discountGroupName %}
+    {% endif %}
+
+    {% if page.product.extensions.acrisDiscountGroupLineItemData.discountGroupQuantity %}
+        {% set discountGroupQuantity = page.product.extensions.acrisDiscountGroupLineItemData.discountGroupQuantity %}
+    {% endif %}
+
+    {% if exitsProductWithSameGroupInCart === false %}
+        {% set discountGroup = page.product.extensions.acrisDiscountGroupLineItemDiscount.discountGroups|first %}
+        {% set discountGroupName = discountGroup ? discountGroup.displayName : null %}
+    {% endif %}
+
+    {% if exitsProductWithSameGroupInCart or (exitsProductWithSameGroupInCart === false and displayGroupsToShowGroupTitle) %}
+        <div class="acris-discount-group-cart-status d-flex flex-column mb-3">
+            <span class="acris-discount-group-cart-status-title card-title h3">
+                {% if (discountGroupName and exitsProductWithSameGroupInCart) or (exitsProductWithSameGroupInCart === false and displayGroupsToShowGroupTitle and discountGroupName )%}
+                    {{ "acris-discount-group.checkout.discountGroupTitle"|trans({'%discountGroupName%': discountGroupName })|sw_sanitize }}
+                {% else %}
+                    {% if exitsProductWithSameGroupInCart or (exitsProductWithSameGroupInCart === false and displayGroupsToShowGroupTitle) %}
+                        {{ "acris-discount-group.checkout.discountGroupTitleNoName"|trans|sw_sanitize }}
+                    {% endif %}
+                {% endif %}
+            </span>
+            {% if exitsProductWithSameGroupInCart %}
+                <span class="acris-discount-group-cart-status-quantity">
+                    {{ "acris-discount-group.checkout.discountGroupQuantity"|trans({'%discountGroupQuantity%': discountGroupQuantity })|sw_sanitize }}
+                </span>
+            {% endif %}
+
+            {% if exitsProductWithSameGroupInCart === false and cartQuantityInfoQuantityZero === 'discountGroupAndInfo' %}
+                <span class="acris-discount-group-cart-status-quantity">
+                    {{ "acris-discount-group.checkout.discountGroupQuantityEmpty"|trans|sw_sanitize }}
+                </span>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

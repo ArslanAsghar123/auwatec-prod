@@ -1,0 +1,239 @@
+{% block sw_cms_el_aku_cms_factory_config_fieldgroup %}
+<div class="sw-cms-el-aku-cms-factory-config-fieldgroup">
+
+            
+
+    <div v-for="field in fields">
+
+        <aku-cms-factory-text-field 
+            v-if="'text' == field.type"
+            :label="field.label" 
+            small
+            v-model:value="configValues[field.name]"
+            :maxlength="getFieldMaxlength(field)"
+            @update:value="save"
+            >
+        </aku-cms-factory-text-field>
+
+        <aku-cms-factory-textarea-field
+            v-if="'textarea' == field.type"
+            :label="field.label"
+            v-model:value="configValues[field.name]"
+            small
+            :maxlength="getFieldMaxlength(field)"
+            @update:value="save"
+            >
+        </aku-cms-factory-textarea-field>
+
+        <sw-text-editor
+            v-if="'text-editor' == field.type"
+            :label="field.label"
+            v-model:value="configValues[field.name]"
+            @update:value="save"
+            >
+        </sw-text-editor>
+
+        <sw-entity-single-select
+            v-if="'category' == field.type"
+            :label="field.label"
+            entity="category"
+            class="sw-cms-el-aku-cms-factory-config__category-select"
+            @update:value="(evt) => saveSingleId(evt, field.name)"
+            v-model:value="configValues[field.name]">
+            <template #selection-label-property="{ item }">
+                <sw-product-variant-info
+                    :variations="item.variation">
+                    <span v-if="item.breadcrumb" v-html="item.breadcrumb.join('/')"></span>
+                    <span v-if="!item.breadcrumb" v-html="item.translated.name || item.name"></span>
+                    <span v-if="item.productNumber"> ({{ item.productNumber}})</span>
+                </sw-product-variant-info>
+            </template>
+            <template #result-item="{ item, index }">
+                <li is="sw-select-result" v-bind="{ item, index }">
+
+                    {% block sw_entity_single_select_base_results_list_result_label %}
+                        <span class="sw-select-result__result-item-text">
+                            <sw-product-variant-info :variations="item.variation">
+                                <span v-if="item.breadcrumb" v-html="item.breadcrumb.join('/')"></span>
+                                <span v-if="!item.breadcrumb" v-html="item.translated.name || item.name"></span>
+                                <span v-if="item.productNumber"> ({{ item.productNumber}})</span>
+                            </sw-product-variant-info>
+                        </span>
+                    {% endblock %}
+
+                </li>
+            </template>
+        </sw-entity-single-select>
+
+        <sw-colorpicker
+            v-if="'color' == field.type"
+            v-model:value="configValues[field.name]"
+            :alpha="true"
+            colorOutput="hex"
+            :zIndex="1000"
+            @update:value="save"
+        >
+        </sw-colorpicker>
+
+        <sw-single-select
+            v-if="'choice' == field.type"
+            :label="field.label"
+            :options="field.select_options"
+            v-model:value="configValues[field.name]"
+            @update:value="save">
+        </sw-single-select>
+
+        <sw-checkbox-field
+            v-if="'checkbox' == field.type"
+            :label="field.label"
+            v-model:value="configValues[field.name]"
+            @update:value="save">
+        </sw-checkbox-field>
+
+        <aku-cms-factory-gallery-field
+            v-if="'gallery' == field.type"
+            v-model="configValues[field.name]"
+            :label="field.label"
+            @change="save"
+        >
+        </aku-cms-factory-gallery-field>
+
+
+        <sw-entity-single-select
+            v-if="'product' == field.type"
+            :label="field.label"
+            entity="product"
+            :criteria="productCriteria"
+            :context="productSelectContext"
+            class="sw-cms-el-aku-cms-factory-config__product-select"
+            @update:value="(evt) => saveSingleId(evt, field.name)"
+            v-model:value="configValues[field.name]">
+            <template #selection-label-property="{ item }">
+                <sw-product-variant-info
+                    :variations="item.variation">
+                    <span v-if="item.breadcrumb" v-html="item.breadcrumb.join('/')"></span>
+                    <span v-if="!item.breadcrumb" v-html="item.translated.name || item.name"></span>
+                    <span v-if="item.productNumber"> ({{ item.productNumber}})</span>
+                </sw-product-variant-info>
+            </template>
+            <template #result-item="{ item, index }">
+                <li is="sw-select-result" v-bind="{ item, index }">
+
+                    {% block sw_entity_single_select_base_results_list_result_label %}
+                        <span class="sw-select-result__result-item-text">
+                            <sw-product-variant-info :variations="item.variation">
+                                <span v-if="item.breadcrumb" v-html="item.breadcrumb.join('/')"></span>
+                                <span v-if="!item.breadcrumb" v-html="item.translated.name || item.name"></span>
+                                <span v-if="item.productNumber"> ({{ item.productNumber}})</span>
+                            </sw-product-variant-info>
+                        </span>
+                    {% endblock %}
+
+                </li>
+            </template>
+            
+        </sw-entity-single-select>
+        <template v-if="'stream' == field.type" >
+            <sw-entity-single-select
+                :label="field.label"
+                entity="product_stream"
+                class="sw-cms-el-aku-cms-factory-config__product-select"
+                @update:value="(evt) => saveSingleId(evt, field.name)"
+                v-model:value="configValues[field.name]">
+            </sw-entity-single-select>
+            <div style="display:flex;justify-content:space-between;">
+                
+                <sw-single-select @update:value="(evt) => saveSingleId(evt, field.name+'_sorting')"  v-model:value="configValues[field.name + '_sorting']"
+                    :label="$tc('sw-cms.element.akuCmsFactory.config.streamSortingLabel')"
+                    :options="sorting_choices"
+                    style="margin-right:5px;">
+                    
+                </sw-single-select>
+
+                <sw-number-field 
+                    class="mr-1"
+                    numberType="int" 
+                    :step="1" 
+                    :min="1" 
+                    :max="null"
+                    :digits="0"
+                    :label="$tc('sw-cms.element.akuCmsFactory.config.streamLimitLabel')"
+                    v-model:value="configValues[field.name + '_limit']"
+                    :allowEmpty="false"
+                    @update:value="save"
+                    >
+                </sw-number-field>
+            </div>
+        </template>
+        
+        <sw-entity-multi-id-select
+            v-if="'manufacturer' == field.type"
+            :label="field.label"
+            :repository="manufacturerRepository"
+            :criteria="manufacturerCriteria"
+            :context="productSelectContext"
+            @update:value="(evt) => saveMultiId(evt, field.name)"
+            v-model:value="configValues[field.name]">
+        </sw-entity-multi-id-select>
+
+        <sw-entity-multi-id-select
+                v-if="'custom-entity' == field.type"
+                :label="field.label"
+                :repository="customEntityRepository(field.entity)"
+                :criteria="manufacturerCriteria"
+                :context="productSelectContext"
+                :labelProperty="field.entityLabelProperty"
+                @update:value="(evt) => saveMultiId(evt, field.name)"
+                v-model:value="configValues[field.name]">
+        </sw-entity-multi-id-select>
+
+        <!-- sw-media-field scheint keine Events zu haben -->
+        <div v-if="'media' == field.type" class="media-row" >   
+            <div class="label">
+                {{field.label}}
+            </div>
+            <div class="preview">
+                <sw-button v-if="!configValues[field.name]" @click="openMediaModal(field)">
+                    Select
+                </sw-button>
+                <sw-cms-el-media-preview-aku-cms-factory 
+                    v-if="configValues[field.name]"
+                    :media_id="configValues[field.name]"
+                    >
+                </sw-cms-el-media-preview-aku-cms-factory>
+            </div>
+            <div class="actions">
+                <sw-icon small 
+                    class="button"
+                    :disabled="!configValues[field.name]"
+                    @click="removeMediaFromField(field)"
+                    name="regular-times-square">
+                </sw-icon>
+            </div>
+           
+        </div>
+
+        
+        <sw-cms-el-aku-cms-factory-config-repeater 
+            v-if="'repeater' == field.type"
+            :label="field.label"
+            :fields="field.children"
+            @change="save"
+            v-model="configValues[field.name]" >
+        </sw-cms-el-aku-cms-factory-config-repeater>
+        
+    </div>
+
+    <sw-media-modal-v2
+        variant="full"
+        allow-multi-select="false"
+        v-if="mediaModalIsOpen"
+        :initial-folder-id="defaultMediaFolderId"
+        :entity-context="entityName"
+        @media-upload-remove-image="onImageRemove"
+        @media-modal-selection-change="onSelectionChanges"
+        @modal-close="mediaModalIsOpen = false"
+        >
+    </sw-media-modal-v2>
+</div>
+{% endblock %}

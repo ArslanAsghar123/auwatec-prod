@@ -1,0 +1,26 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+
+{% block layout_main_navigation_menu_item %}
+    {% if category.type == 'folder' %}
+        {{ parent() }}
+    {% else %}
+        {% set pluginConfigurations = context.context.extensions.loyxx_configrations.configs %}
+        {% if (category.id == pluginConfigurations.loyxx_category_id) %}
+            {% if  (pluginConfigurations.loyxx_cookie_enabled) and
+                (pluginConfigurations.loyxx_cookie_button_pos == 'category') %}
+                <a class="nav-link main-navigation-link{% if category.id == page.header.navigation.active.id or category.id in activePath %} active{% endif %}"
+                   href="{{ path('frontend.cookie.offcanvas') }}"
+                   itemprop="url"
+                   {% if treeItem.children|length > 0 %}data-flyout-menu-trigger="{{ category.id }}"{% endif %}
+                    {% if category_linknewtab(category) %}target="_blank"{% endif %}
+                   title="{{ name }}">
+                    <div class="main-navigation-link-text">
+                        <span itemprop="name">{{ name }}</span>
+                    </div>
+                </a>
+            {% endif %}
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% endif %}
+{% endblock %}

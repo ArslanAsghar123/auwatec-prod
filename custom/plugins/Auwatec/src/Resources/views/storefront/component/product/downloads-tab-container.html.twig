@@ -1,0 +1,12 @@
+{% sw_extends '@Storefront/storefront/component/product/downloads-tab-container.html.twig' %}
+
+{% block component_product_downloads_content %}
+    <div class="download-tab-list">
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block component_product_downloads_content_name %}
+    {% sw_icon 'download-a' style { 'namespace': 'Auwatec' } %}
+    {% if config('MillProductDownloadsTab.config.showDownloadTitlePrefix') %}{{ "millProductDownloadsTab.detail.prefix"|trans }}{% endif %}{{ mediaFile.title }}
+{% endblock %}

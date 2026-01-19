@@ -1,0 +1,49 @@
+{% sw_extends '@Storefront/storefront/component/buy-widget/buy-widget.html.twig' %}
+
+{% block buy_widget_data %}
+
+    {{ parent() }}
+
+    {# top additional table #}
+
+    {% block mill_product_downloads_buy_widget_top %}
+
+        {% if config('MillProductDownloadsTab.config.showAdditionalTable') and page.MillProductDownloadsTab.files %}
+
+            {% if config('MillProductDownloadsTab.config.additionalTablePosition') == 'top' %}
+
+                {% sw_include '@Storefront/storefront/component/product/additional-downloads-table.twig' with {
+                    productDownloads: page.MillProductDownloadsTab.files
+                } %}
+
+            {% endif %}
+
+        {% endif %}
+
+    {% endblock %}
+
+{% endblock %}
+
+{% block buy_widget %}
+
+    {{ parent() }}
+
+    {# bottom additional table #}
+
+    {% block mill_product_downloads_buy_widget_bottom %}
+
+        {% if config('MillProductDownloadsTab.config.showAdditionalTable') and page.MillProductDownloadsTab.files %}
+
+            {% if config('MillProductDownloadsTab.config.additionalTablePosition') == 'bottom' %}
+
+                {% sw_include '@Storefront/storefront/component/product/additional-downloads-table.twig' with {
+                    productDownloads: page.MillProductDownloadsTab.files
+                } %}
+
+            {% endif %}
+
+        {% endif %}
+
+    {% endblock %}
+
+{% endblock %}

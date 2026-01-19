@@ -1,0 +1,167 @@
+{
+    "dreiscSeoRichSnippet": {
+        "general": {
+            "navigation": {
+                "label": "Rich Snippets (JSON-LD)"
+            }
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Rich Snippets",
+                "saveButtonText": "Speichern"
+            },
+            "tabs": {
+                "general": "General",
+                "product": "Products",
+                "breadcrumb": "Breadcrumb",
+                "business": "Business"
+            },
+            "cards": {
+                "titles": {
+                    "salesChannel": "Sales Channel",
+                    "general": "General",
+                    "productAvailability": "Product availability",
+                    "productItemCondition": "Product condition",
+                    "skuCompilation": "Dealer-specific identifier",
+                    "mpnCompilation": "Manufacturer Part Number",
+                    "priceValidUntilInterval": "Price valid until date",
+                    "review": "Reviews",
+                    "additionalProductSettings": "More product settings",
+                    "detailPage": "Product detail page",
+                    "startPage": "Home page",
+                    "logo": "Company logo",
+                    "localBusiness": "Local Business",
+                    "localBusinessAddress": "Address",
+                    "localBusinessOpeningHours": "Opening hours"
+                }
+            },
+            "alert": {
+                "jsonLdInfo": {
+                    "title": "Replace microdata with JSON-LD",
+                    "content": "In the Shopware standard, the rich snippets are transferred using so-called microdata in the source code. If the following option is active, this microdata is removed from the source code and replaced by the JSON-LD rich snippets recommended by Google."
+                }
+            },
+            "button": {
+                "text": {
+                    "authorSnippet": "Open the text module configuration in a new window",
+                    "homeTextSnippet": "Open the text module configuration for the start page description in a new window"
+                }
+            },
+            "fields": {
+                "labels": {
+                    "active": "Enable rich snippets via JSON-LD",
+                    "activeBreadcrumb": "Transfer breadcrumb via JSON-LD",
+                    "activeLocalBusiness": "Transfer local business via JSON-LD",
+                    "defaultItemCondition": "Default value for the condition of the products",
+                    "defaultAvailability": "Default value for the availability of normal products",
+                    "defaultAvailabilityOutOfStock": "Standard value for the availability of normal products without stock",
+                    "defaultAvailabilityClearanceSale": "Default value for the availability of clearance sales products",
+                    "defaultAvailabilityClearanceSaleOutOfStock": "Standard value for the availability of clearance sales products without stock",
+                    "skuCompilation": "Standard value for the Dealer-specific identifier (sku)",
+                    "mpnCompilation": "Standard value for the Manufacturer Part Number (mpn)",
+                    "priceValidUntilInterval": "Default value for the field \"Price valid until date\" (priceValidUntil)",
+                    "priceValidUntilCustomDays": "Number of days",
+                    "authorCompilation": "Author of the review",
+                    "sellerName": "Name of the seller",
+                    "productShowInBreadcrumbMode": "Product page as a separate breadcrumb element",
+                    "homeShowInBreadcrumbMode": "Home as a separate breadcrumb element",
+                    "activeLogo": "Transfer logo via JSON-LD",
+                    "logoImage": "Logo",
+                    "logoUrl": "URL of the logo",
+                    "localBusinessName": "Company Name",
+                    "localBusinessUrl": "Company location URL",
+                    "localBusinessTelephone": "Phone number",
+                    "streetAddress": "Street and house number",
+                    "addressLocality": "City",
+                    "postalCode": "Postcode",
+                    "addressCountry": "Country"
+                },
+                "helpText": {
+                    "defaultAvailability": "Normal products are all main articles and variants that are not marked for clearance sale. <br> <br> The value defined here is only output if no different availability has been defined in the details of the respective product.",
+                    "defaultItemCondition": "The value defined here is only output if no deviating product condition has been defined in the details of the respective product.",
+                    "skuCompilation": "The value defined here is only output if no different SKU number has been defined in the details of the respective product.",
+                    "mpnCompilation": "The value defined here is only output if no different MPN number has been defined in the details of the respective product.",
+                    "priceValidUntilInterval": "The value defined here is only output if no different date has been defined in the details of the respective product.",
+                    "authorCompilation": "Google recommends transferring the name of the author when evaluating. At this point you can configure which value is transferred as the author.",
+                    "sellerName": "Appears under: @type:Product » @type:Offer » seller » @type Organization",
+                    "productShowInBreadcrumbMode": "By default, only the categories are output as a breadcrumb on the detail page. <br> <br> If this option is activated, a separate element is added to the breadcrumb for the detail page.",
+                    "homeShowInBreadcrumbMode": "By default, only the categories are output as a breadcrumb. <br> <br> If this option is activated, the first element is added to the breadcrumb for the start page."
+                }
+            },
+            "availabilities": {
+                "UseDefault": "Transfer default value (SEO Professional »Rich Snippets (JSON-LD)» Products)",
+                "InStock": "In stock",
+                "LimitedAvailability": "Limited availability",
+                "InStoreOnly": "In store only",
+                "OnlineOnly": "Online only",
+                "Discontinued": "Discontinued",
+                "OutOfStock": "Out of stock",
+                "PreOrder": "Pre order",
+                "PreSale": "Pre sale",
+                "SoldOut": "Sold out"
+            },
+            "itemConditions": {
+                "UseDefault": "Use default value (SEO Professional » Rich Snippets (JSON-LD) » Products)",
+                "NewCondition": "New",
+                "UsedCondition": "Used condition",
+                "RefurbishedCondition": "Refurbished condition",
+                "DamagedCondition": "Damaged condition"
+            },
+            "skuCompilations": {
+                "UseDefault": "Use default value (SEO Professional » Rich Snippets (JSON-LD) » Products)",
+                "productNumber": "Product number (recommended)",
+                "manufacturerNumberOtherwiseProductNumber": "Manufacturer number if available, otherwise product number"
+            },
+            "mpnCompilations": {
+                "UseDefault": "Use default value (SEO Professional » Rich Snippets (JSON-LD) » Products)",
+                "productNumber": "Product number",
+                "manufacturerNumberOtherwiseProductNumber": "Manufacturer number if available, otherwise product number (recommended)"
+            },
+            "priceValidUntilIntervals": {
+                "UseDefault": "Use default value (SEO Professional » Rich Snippets (JSON-LD) » Products)",
+                "notDisplay": "Do not display this field by default",
+                "today": "Current date",
+                "1day": "Current date + 1 day",
+                "1week": "Current date + 1 week",
+                "2week": "Current date + 2 weeks",
+                "1month": "Current date + 1 month",
+                "customDays": "Current date + own number of days"
+            },
+            "reviewAuthorCompilations": {
+                "UseDefault": "Use default value (SEO Professional » Rich Snippets (JSON-LD) » Products)",
+                "notDisplay": "Do not display this field by default",
+                "staticSnippet": "Pass static value (snippet)",
+                "firstName": "Pass the customer's first name",
+                "firstNameAndFirstLetterOfLastName": "First name + initial letter of the customer's last name (recommended)",
+                "firstNameAndLastName": "Pass the customer's first name and surname (customer consent required!)"
+            },
+            "showInBreadcrumbModes": {
+                "product": {
+                    "notDisplay": "Not display",
+                    "onlyShop": "Show only in the shop",
+                    "onlyJsonLd": "Broadcast only via rich snippet",
+                    "shopAndJsonLd": "Show in shop and transfer via rich snippet"
+                }
+            }
+        },
+        "openingHoursGrid": {
+            "columns": {
+                "active": "Active",
+                "dayOfWeekString": "Weekday",
+                "opens": "opens at",
+                "closes": "closes"
+            },
+            "dataSource": {
+                "dayOfWeek": {
+                    "monday": "Monday",
+                    "tuesday": "Tuesday",
+                    "wednesday": "Wednesday",
+                    "thursday": "Thursday",
+                    "friday": "Friday",
+                    "saturday": "Saturday",
+                    "sunday": "Sunday"
+                }
+            }
+        }
+    }
+}

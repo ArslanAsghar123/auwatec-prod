@@ -1,0 +1,115 @@
+{# Repeater #}
+<div class="row">
+    {% if data.rep_left_col is defined and data.rep_left_col is iterable %}
+        {% if data.text_headline_left is defined and data.text%}
+            <div class="col-12 col-md-6">
+                <div class="two-col-sub-teaser-header-headline h2">
+
+                    {{ data.text_headline_left }}
+
+                </div>
+                <div class="row 2-col-sub-teaser-row">
+                    {% for sub0 in data.rep_left_col %}
+                        <div class="col-12 col-md-6 sub-teaser-col">
+                            <div class="sub-teaser{% if sub0.text_left_link !== '' and sub0.text_left_button_text !== '' %} has-button{% endif %}">
+                                <div class="sub-teaser-image">
+                                    {% if sub0.text_left_headline !== '' %}
+                                    <div class="sub-teaser-headline h4">
+                                        {{ sub0.text_left_headline }}
+                                        </p>
+                                        {% endif %}
+
+                                        {% if sub0.text_left_link !== '' %}
+                                        <a href="{{ sub0.text_left_link }}">
+                                            {% endif %}
+                                            {% if sub0.med_left_image is defined and sub0.med_left_image is not null %}
+                                                <img src="{{ sub0.med_left_image.url }}"
+                                                     alt="{{ sub0.med_left_image.alt }}">
+                                            {% endif %}
+                                            {% if sub0.text_left_link !== '' %}
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if sub0.text_left_text !== '' %}
+                                    <p class="sub-teaser-headline">
+                                        {{ sub0.text_left_text }}
+                                    </p>
+                                {% endif %}
+
+                                {% if sub0.text_left_link !== '' and sub0.text_left_button_text !== '' %}
+                                    <a href="{{ sub0.text_left_link }}"
+                                       class="btn btn-outline-primary sub-teaser-button">
+                                        {{ sub0.text_button_left_text }}
+                                        {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+    {# Repeater #}
+    {% if data.rep_right_col is defined and data.rep_right_col is iterable %}
+        {% if data.text_headline_right is defined %}
+            <div class="col-12 col-md-6">
+                <div class="two-col-sub-teaser-header-headline h2">
+
+                    {{ data.text_headline_right }}
+
+                </div>
+                <div class="row 2-col-sub-teaser-row">
+                    {% for sub0 in data.rep_left_col %}
+                        <div class="col-12 col-md-6 sub-teaser-col">
+                            <div class="sub-teaser{% if sub0.text_right_link !== '' and sub0.text_right_button_text !== '' %} has-button{% endif %}">
+                                <div class="sub-teaser-image">
+                                    {% if sub0.text_right_headline !== '' %}
+                                    <div class="sub-teaser-headline h4">
+                                        {{ sub0.text_right_headline }}
+                                        </p>
+                                        {% endif %}
+
+                                        {% if sub0.text_right_link !== '' %}
+                                        <a href="{{ sub0.text_right_link }}">
+                                            {% endif %}
+                                            {% if sub0.med_right_image is defined and sub0.med_right_image is not null %}
+                                                <img src="{{ sub0.med_right_image.url }}"
+                                                     alt="{{ sub0.med_right_image.alt }}">
+                                            {% endif %}
+                                            {% if sub0.text_right_link !== '' %}
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% if sub0.text_right_text !== '' %}
+                                    <p class="sub-teaser-headline">
+                                        {{ sub0.text_right_text }}
+                                    </p>
+                                {% endif %}
+
+                                {% if sub0.text_right_link !== '' and sub0.text_right_button_text !== '' %}
+                                    <a href="{{ sub0.text_right_link }}"
+                                       class="btn btn-outline-primary sub-teaser-button">
+                                        {{ sub0.text_right_button_text }}
+                                        {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+</div>
+{# Text #}
+{% if data.text_bottom_link is defined %}
+    <p>{{ data.text_bottom_link }}</p>
+{% endif %}
+{# Text #}
+{% if data.text_link_bottom_text is defined %}
+    <p>{{ data.text_link_bottom_text }}</p>
+{% endif %}

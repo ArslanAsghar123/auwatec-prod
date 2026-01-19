@@ -1,0 +1,16 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-slider.html.twig' %}
+
+{% block element_product_slider_slider %}
+
+    {% set productSliderOptions = productSliderOptions|merge({
+        slider: {
+            gutter: 10,
+            autoplayButtonOutput: false,
+            nav: sliderConfig.navigation.value ? true : false,
+            mouseDrag: sliderConfig.navigation.value ? false : true,
+            controls: sliderConfig.navigation.value ? true : false,
+            autoplay: sliderConfig.rotate.value ? true : false
+        }
+    }) %}
+    {{ parent() }}
+{% endblock %}

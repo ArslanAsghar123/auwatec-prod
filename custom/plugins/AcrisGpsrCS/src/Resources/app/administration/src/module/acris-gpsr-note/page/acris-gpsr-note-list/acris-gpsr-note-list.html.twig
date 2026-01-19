@@ -1,0 +1,137 @@
+{% block acris_gpsr_note_list %}
+
+    <sw-page class="acris-gpsr-note-list">
+        {% block acris_gpsr_note_list_search_bar %}
+            <template #search-bar>
+                <sw-search-bar initialSearchType="GPSR"
+                               :placeholder="$tc('acris-gpsr-note.general.placeholderSearchBar')"
+                               :initialSearch="term"
+                               @search="onSearch">
+                </sw-search-bar>
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_note_list_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block acris_gpsr_note_list_smart_bar_header_title %}
+                    <h2>
+                        {% block acris_gpsr_note_list_smart_bar_header_title_text %}
+                            {{ $tc('acris-gpsr-note.list.textHeadline') }}
+                        {% endblock %}
+
+                        {% block acris_gpsr_note_list_smart_bar_header_amount %}
+                            <span v-if="!isLoading" class="sw-page__smart-bar-amount">
+                        ({{ total }})
+                        </span>
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_note_list_smart_bar_language %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_note_list_smart_bar_actions %}
+            <template #smart-bar-actions>
+                {% block acris_gpsr_note_list_smart_bar_actions_add %}
+                    <sw-button variant="primary" :routerLink="{ name: 'acris.gpsr.note.create' }">
+                        {{ $tc('acris-gpsr-note.list.buttonAdd') }}
+                    </sw-button>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_note_list_cardview %}
+            <template #content>
+                <div class="acris-gpsr-note-list__content">
+                    {% block acris_gpsr_note_list_content %}
+                        <sw-entity-listing class="acris-gpsr-note-list-grid"
+                                           v-if="items && total > 0"
+                                           :items="items"
+                                           :repository="entityRepository"
+                                           detailRoute="acris.gpsr.note.detail"
+                                           :showSeleciton="true"
+                                           :isLoading="isLoading"
+                                           :columns="columns">
+
+                            {% block acris_gpsr_note_list_grid_columns_hint_type %}
+                                <template #column-noteType="{ item, isInlineEdit }">
+                                    {% block acris_gpsr_note_list_grid_columns_hint_type_content %}
+                                        <template v-if="!isInlineEdit">
+                                            <router-link :title="$tc('acris-gpsr-note.list.contextMenuEdit')"
+                                                         :to="{ name: 'acris.gpsr.note.detail', params: { id: item.id } }">
+                                                {% block acris_gpsr_note_list_columns_status_link %}
+                                                    <template
+                                                        v-if="item.noteType == 'warning'">{{ $tc('acris-gpsr-note.list.fieldSelectTypeWarning') }}</template>
+                                                    <template
+                                                        v-if="item.noteType == 'security'">{{ $tc('acris-gpsr-note.list.fieldSelectTypeSecurity') }}</template>
+                                                    <template
+                                                        v-if="item.noteType == 'information'">{{ $tc('acris-gpsr-note.list.fieldSelectTypeInformation') }}</template>
+                                                {% endblock %}
+                                            </router-link>
+                                        </template>
+                                    {% endblock %}
+                                </template>
+                            {% endblock %}
+
+                            {% block acris_gpsr_note_list_grid_columns_active %}
+                                <template #column-active="{ item, isInlineEdit }">
+                                    {% block acris_gpsr_note_list_grid_columns_active_inline_edit %}
+                                        <template v-if="isInlineEdit">
+                                            <sw-checkbox-field v-model:value="item.active"></sw-checkbox-field>
+                                        </template>
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_note_list_grid_columns_active_content %}
+                                        <template v-else>
+                                            <sw-icon v-if="item.active" name="regular-checkmark-xs" small
+                                                     class="is--active"></sw-icon>
+                                            <sw-icon v-else name="regular-times-s" small class="is--inactive"></sw-icon>
+                                        </template>
+                                    {% endblock %}
+                                </template>
+                            {% endblock %}
+
+                            <template #pagination>
+                                {% block sw_order_list_grid_pagination %}
+                                    <sw-pagination :page="page"
+                                                   :limit="limit"
+                                                   :total="total"
+                                                   :total-visible="7"
+                                                   @page-change="onPageChange">
+                                    </sw-pagination>
+                                {% endblock %}
+                            </template>
+
+                        </sw-entity-listing>
+                    {% endblock %}
+
+                    {% block acris_gpsr_note_list_empty_state %}
+                        <sw-empty-state v-if="!isLoading && total <= 0"
+                                        :title="$tc('acris-gpsr-note.list.contentEmpty')"></sw-empty-state>
+                    {% endblock %}
+
+                </div>
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_note_list_sidebar %}
+            <template #sidebar>
+                <sw-sidebar class="acris-gpsr-note-list__sidebar">
+                    {% block acris_gpsr_note_list_sidebar_item %}
+                        <sw-sidebar-item
+                            icon="regular-undo"
+                            :title="$tc('acris-gpsr-note.list.titleSidebarItemRefresh')"
+                            @click="onRefresh">
+                        </sw-sidebar-item>
+                    {% endblock %}
+                </sw-sidebar>
+            </template>
+        {% endblock %}
+
+    </sw-page>
+{% endblock %}

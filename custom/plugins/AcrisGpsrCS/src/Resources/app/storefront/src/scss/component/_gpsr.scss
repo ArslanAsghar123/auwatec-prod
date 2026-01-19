@@ -1,0 +1,7 @@
+.acris-gpsr {
+  @include media-breakpoint-down(md) {
+    &.hide-for-mobile {
+      display: none;
+    }
+  }
+}

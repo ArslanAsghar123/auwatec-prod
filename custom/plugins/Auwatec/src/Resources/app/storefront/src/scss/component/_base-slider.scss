@@ -1,0 +1,90 @@
+.base-slider{
+  &.has-nav{
+    padding-bottom: 70px;
+  }
+  .tns-nav,
+  .base-slider-dots{
+    display: none;
+
+    .base-slider-dot,
+    button{
+      padding: 7px;
+      border: 1px solid $sw-color-brand-primary;
+      background: $white;
+      &.tns-nav-active{
+        background: $sw-color-brand-primary;
+      }
+    }
+  }
+}
+
+
+.base-slider-controls-prev,
+.base-slider-controls-next{
+  border: none;
+  top: auto;
+  bottom: 0;
+  transform: none;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  background: $sw-color-brand-primary;
+  color: $white;
+  opacity: 1;
+  .icon{
+    height: 16px;
+    & > svg {
+      top: 2px;
+    }
+  }
+  &:hover{
+    color: $white;
+  }
+}
+
+.product-slider-controls-prev{
+  right: 45px;
+  left: auto;
+}
+.product-slider-controls-next{
+  right: 0;
+}
+
+.cms-primary-bg {
+  .base-slider{
+    .tns-nav,
+    .base-slider-dots{
+      .base-slider-dot,
+      button{
+        border-color: $white;
+        background: $sw-color-brand-primary;
+        &.tns-nav-active{
+          background: $white;
+        }
+      }
+    }
+  }
+
+  .base-slider-controls-prev,
+  .base-slider-controls-next{
+    background: $white;
+    color: $sw-color-brand-primary;
+    &:hover{
+      color: $sw-color-brand-primary;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl){
+  .base-slider{
+    .tns-nav,
+    .base-slider-dots{
+      display: block;
+
+      .base-slider-dot,
+      button{
+        margin: 0 7px;
+      }
+    }
+  }
+}

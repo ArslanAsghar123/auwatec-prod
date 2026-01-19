@@ -1,0 +1,53 @@
+.main-navigation{
+  background: $sw-color-brand-secondary;
+}
+@include media-breakpoint-up(md){
+  .main-navigation-link{
+    color: $white;
+    font-size: 17px;
+    font-weight: $font-weight-bold;
+    border-bottom: 6px solid transparent;
+    margin-right: 30px;
+    padding-right: 0;
+    &:focus,
+    &:hover{
+      color: $white;
+    }
+    &.active{
+      &,
+      &:hover{
+        color: $sw-color-brand-primary;
+      }
+    }
+    &.is-open{
+      color: $white;
+      border-color: $sw-color-brand-primary;
+    }
+    .main-navigation-link-text{
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg){
+  .main-navigation{
+    display: none;
+  }
+}
+
+@include media-breakpoint-up(xl){
+  .nav-main{
+    position: sticky;
+    top: 110px;
+    z-index: $main-navigation-z;
+  }
+  .main-navigation{
+    display: inherit;
+  }
+}
+@include media-breakpoint-up(xxl){
+  .nav-main{
+    top: 96px;
+  }
+}

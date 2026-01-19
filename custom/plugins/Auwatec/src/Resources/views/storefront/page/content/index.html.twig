@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
+
+{% block cms_breadcrumb %}
+    <div class="breadcrumb-type-{{ page.header.navigation.active.translated.customFields.custom_category_appearance_breadcrumb }}">
+        {{ parent() }}
+    </div>
+{% endblock %}

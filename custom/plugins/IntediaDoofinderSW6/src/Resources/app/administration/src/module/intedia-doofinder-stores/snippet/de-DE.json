@@ -1,0 +1,66 @@
+{
+    "intedia-doofinder-stores": {
+        "general": {
+            "mainMenuItemGeneral": "DooFinder Stores"
+        },
+        "index": {
+            "textHeadline": "DooFinder Stores"
+        },
+        "actions": {
+            "createStore": "DooFinder Store erstellen",
+            "viewStore": "Store bei DooFinder betrachten",
+            "editStore": "Store bearbeiten",
+            "deleteStore": "Store löschen"
+        },
+        "table": {
+            "store": "Store",
+            "storeId": "Store ID",
+            "standardSearchEngine": "Standard Search Engine"
+        },
+        "modals": {
+            "delete": {
+                "title": "DooFinder Store löschen",
+                "cancel": "Abbrechen",
+                "submit": "Löschen",
+                "text": "Möchten Sie diesen DooFinder Store wirklich löschen? Es wird nicht nur der Store sondern auch der Produkt Export, die Verknüpfung sowie die SearchEngine selbst bei DooFinder gelöscht."
+            },
+            "create": {
+                "title": "DooFinder Store erstellen",
+                "cancel": "Abbrechen",
+                "submit": "Erstellen",
+                "fields": {
+                    "title": "DooFinder Store Name",
+                    "trigger": "Search input CSS selector",
+                    "hashId": "Standard Storefront Domain",
+                    "pleaseChoose": "Bitte wählen"
+                }
+            },
+            "edit": {
+                "title": "DooFinder Store bearbeiten",
+                "cancel": "Abbrechen",
+                "submit": "Speichern",
+                "fields": {
+                    "title": "DooFinder Store Name",
+                    "trigger": "Search input CSS selector",
+                    "hashId": "Standard DooFinder Search Engine",
+                    "domainId": "Standard Storefront Domain",
+                    "pleaseChoose": "Bitte wählen"
+                }
+            }
+        },
+        "notification": {
+            "success": {
+                "title": "Erfolgreich",
+                "editStore": "Der Store wurde erfolgreich geändert.",
+                "createStore": "Der Store wurde erfolgreich erstellt.",
+                "deleteStore": "Der Store wurde erfolgreich gelöscht."
+            },
+            "error": {
+                "title": "Fehlermeldung",
+                "existsAlready": "Diese Search Engine ist bereits in einem anderen Store in Verwendung.",
+                "languageAndCurrencyAlreadyInUse" : "Diese Search Engine kann nicht verwendet werden da bereits eine andere mit der selben Sprache und Währung in Verwendung ist.",
+                "emptyDomainId": "Bitte wählen sie eine Storefront Domain aus."
+            }
+        }
+    }
+}

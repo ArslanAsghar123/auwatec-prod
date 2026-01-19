@@ -1,0 +1,140 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% block layout_footer_navigation_hotline_content %}
+    <div id="collapseFooterHotline"
+         class="footer-column-content collapse js-footer-column-content footer-contact"
+         aria-labelledby="collapseFooterHotlineTitle">
+        <div class="footer-column-content-inner">
+            <p class="footer-contact-hotline">
+                {{ 'footer.serviceHotline'|trans|sw_sanitize }}
+            </p>
+            <p class="footer-contact-hotline-number">
+                {% sw_icon 'phone-a' style { 'namespace': 'Auwatec' } %}
+                <a href="tel:{{ "general.phoneNumber"|trans|striptags }}">
+                    {{ "general.phoneNumber"|trans|striptags }}
+                </a>
+            </p>
+            <p class="footer-contact-hotline-openinghours">
+                {{ 'general.openingHours'|trans|sw_sanitize }}
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-column-headline footer-headline js-collapse-footer-column-trigger" role="listitem" style="padding-top: 0">
+        {{ 'footer.paymentHeadline'|trans|sw_sanitize }}
+    </div>
+    <div class="footer-column-content">
+        <div class="footer-column-content-inner">
+            <div class="footer-payment-methods">
+                    <div class="footer-payment-method">
+                        <div class="footer-payment-method">
+                            <img src="{{ asset('bundles/auwatec/logo/paypal-white.svg', 'asset') }}" alt="PayPal" class="img-fluid footer-payment-logo" loading="lazy">
+                        </div>
+                        <div class="footer-payment-method">
+                            <img src="{{ asset('bundles/auwatec/logo/rechnung-white.svg', 'asset') }}" alt="Rechnung" class="img-fluid footer-payment-logo" loading="lazy">
+                        </div>
+                        <div class="footer-payment-method">
+                            <img src="{{ asset('bundles/auwatec/logo/vorkasse-white.svg', 'asset') }}" alt="Vorkasse" class="img-fluid footer-payment-logo" loading="lazy">
+                        </div>
+                        <div class="footer-payment-method">
+                            <img src="{{ asset('bundles/auwatec/logo/lastschrift-white.svg', 'asset') }}" alt="Lastschrift" class="img-fluid footer-payment-logo" loading="lazy">
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block layout_footer_navigation_information_content %}
+    {{ parent() }}
+    {% if loop.first %}
+        <div class="footer-column-headline footer-headline js-collapse-footer-column-trigger" role="listitem" style="padding-top: 13px;">
+            {{ 'footer.dispatchHeadline'|trans|sw_sanitize }}
+        </div>
+     <div class="footer-column-content">
+            <div class="footer-column-content-inner">
+                <div class="footer-logo is-shipping">
+					<img src="{{ asset('bundles/auwatec/logo/ups-white.svg', 'asset') }}" alt="UPS" class="img-fluid footer-logo-image" loading="lazy"> <img src="{{ asset('bundles/auwatec/logo/DHL.svg', 'asset') }}" alt="DHL" class="img-fluid footer-logo-image" loading="lazy">
+				    <img src="{{ asset('bundles/auwatec/logo/gls.svg', 'asset') }}" alt="GLS" class="img-fluid footer-logo-image" loading="lazy">
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+{% block layout_footer_navigation_information_links %}
+    {{ parent() }}
+    {% if loop.index == 2 %}
+        <ul class="list-unstyled">
+            <li class="footer-link-item">
+                <div class="js-cookie-configuration-button">
+                    <button type="submit" class="footer-link footer-cookie-configuration-button">
+                        {{ 'footer.cookieConfigurationButton'|trans }}
+                    </button>
+                </div>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block layout_footer_navigation_columns %}
+    {{ parent() }}
+    <div class="col-md-4 footer-column js-footer-column">
+        <div class="footer-column-headline footer-headline js-collapse-footer-column-trigger" role="listitem">
+            {{ 'footer.newsletterHeadline'|trans|sw_sanitize }}
+        </div>
+        <div class="footer-column-content">
+            <div class="footer-column-content-inner">
+                <p>
+                    {{ 'footer.newsletterText'|trans|sw_sanitize }}
+                </p>
+                <p>
+                    <a href="{{ 'footer.newsletterLink'|trans|sw_sanitize }}" class="btn btn-primary btn-block footer-newsletter-button">
+                        {% sw_icon 'newsletter-a' style { 'namespace': 'Auwatec' } %}
+                        {{ 'footer.newsletterButton'|trans|sw_sanitize }}
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{# moved to layout_footer_navigation_hotline_content #}
+{% block layout_footer_payment_shipping_logos %}{% endblock %}
+
+{% block layout_footer_bottom %}
+    <div class="footer-bottom">
+        {% block layout_footer_service_menu %}{% endblock %}
+        {#moved to layout_footer_navigation_columns#}
+        {% block layout_footer_vat %}{% endblock %}
+
+        {% block layout_footer_copyright %}
+            <div class="container">
+                <div class="footer-bottom-inner">
+                    <div class="footer-logo">
+                        <img src="{{ asset('bundles/auwatec/logo/auwatec-logo.png', 'asset') }}" alt="Auwatec" loading="lazy">
+
+<div class="footer-copyright">
+                            {{ "footer.copyrightInfo"|trans|sw_sanitize }}
+                        </div>
+                    </div>
+                    <div class="footer-bottom-vat">
+                        {% if context.taxState == "gross" %}
+                            <p>
+                                {{ "footer.includeVatText"|trans({
+                                    '%url%': path('frontend.cms.page',{ id: config('core.basicInformation.shippingPaymentInfoPage') })
+                                })|raw }}
+                            </p>
+                        {% else %}
+                            <p>
+                                {{ "footer.excludeVatText"|trans({
+                                    '%url%': path('frontend.cms.page',{ id: config('core.basicInformation.shippingPaymentInfoPage') })
+                                })|raw }}
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

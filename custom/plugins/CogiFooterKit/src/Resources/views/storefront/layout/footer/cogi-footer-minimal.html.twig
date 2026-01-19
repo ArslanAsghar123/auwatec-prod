@@ -1,0 +1,99 @@
+{% block footer_kit_footer_minimal %}
+    {% set extensionFooterKit = page.footer.extensions['CogiFooterKit'] %}
+    {% set footerKit = extensionFooterKit.get('footerKit')|first %}
+    {% set extensionMedia = page.footer.extensions['Media'] %}
+    {% set media = extensionMedia.get('media') %}
+    {% set mediaUrl = "" %}
+
+    {% if footerKit.bottomConfig.basicSettings.active %}
+        <div class="col-12 p-0" style="background: {{ footerKit.bottomConfig.basicSettings.backgroundColor }};">
+            {% block social_media_block %}
+                {% if footerKit.bottomConfig.socialMediaSettings.active %}
+                    <div class="col-12" style="padding: {{ footerKit.bottomConfig.socialMediaSettings.verticalSpacing ? footerKit.bottomConfig.socialMediaSettings.verticalSpacing : "25px" }} {{ footerKit.bottomConfig.socialMediaSettings.horizontalSpacing ? footerKit.bottomConfig.socialMediaSettings.horizontalSpacing : "25px" }};">
+                        <div class="d-flex justify-content-center col-12 p-0">
+                            <h1 style="font-weight: 600; font-size: 1.2rem; color: {{ footerKit.bottomConfig.socialMediaSettings.fontColor }};">{{ footerKit.socialMediaString|trans }}</h1>
+                        </div>
+                        <ul class="nav col-12 p-0" style="display: flex; flex-flow: row wrap; justify-content: center;">
+                            {% for socialMedia in footerKit.bottomConfig.socialMedia %}
+                                {% if socialMedia.active %}
+                                    <li class="m-1 d-flex justify-content-center align-center">
+                                        {% for itemMedia in media %}
+                                            {% if socialMedia.media == itemMedia.id %}
+                                                {% set mediaUrl = itemMedia.url %}
+                                                <a
+                                                        href="{{ socialMedia.url }}"
+                                                        {% if footerKit.bottomConfig.socialMediaSettings.tab %}
+                                                            target="_blank"
+                                                        {% endif %}
+                                                >
+                                                    <img style="height: {{ footerKit.bottomConfig.socialMediaSettings.iconSize ? footerKit.bottomConfig.socialMediaSettings.iconSize : "30px" }}"
+                                                         src="{{ mediaUrl }}"
+                                                         alt="socialMedia1">
+                                                </a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+
+            {% block layout_footer_company_logo %}
+                {% if footerKit.bottomConfig.companyLogoSettings.active %}
+                    <div class="d-flex justify-content-center col-12"
+                         style="padding: {{ footerKit.bottomConfig.companyLogoSettings.verticalSpacing ? footerKit.bottomConfig.companyLogoSettings.verticalSpacing : "25px" }} {{ footerKit.bottomConfig.companyLogoSettings.horizontalSpacing ? footerKit.bottomConfig.companyLogoSettings.horizontalSpacing : "25px" }};">
+                        {% for itemMedia in media %}
+                            {% if footerKit.bottomConfig.companyLogoSettings.media == itemMedia.id %}
+                                {% set mediaUrl = itemMedia.url %}
+                                <img style="height: {{ footerKit.bottomConfig.companyLogoSettings.size ? footerKit.bottomConfig.companyLogoSettings.size : "50px" }}" src="{{ mediaUrl }}" alt="logo">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+            {% block layout_footer_custom_link %}
+                {% if footerKit.bottomConfig.customLinkSettings.active %}
+                    <ul class="nav d-flex justify-content-center col-12 p-1 customLink" style="padding: {{ footerKit.bottomConfig.customLinkSettings.verticalSpacing ? footerKit.bottomConfig.customLinkSettings.verticalSpacing : "0px" }} {{ footerKit.bottomConfig.customLinkSettings.horizontalSpacing ? footerKit.bottomConfig.customLinkSettings.horizontalSpacing : "0px" }} !important;">
+                        {% for customLink in footerKit.customLink %}
+                            {% if customLink.active %}
+                                <li class="nav-item">
+                                    <a class="nav-link"
+                                            {% if footerKit.bottomConfig.customLinkSettings.fontColor or footerKit.bottomConfig.customLinkSettings.fontColorHover %}
+                                                onMouseOver="this.style.color='{{ footerKit.bottomConfig.customLinkSettings.fontColorHover }}'"
+                                                onMouseOut="this.style.color='{{ footerKit.bottomConfig.customLinkSettings.fontColor }}'"
+                                            {% endif %}
+                                       style="color: {{ footerKit.bottomConfig.customLinkSettings.fontColor }}; transition: all {{ footerKit.bottomConfig.customLinkSettings.transitionTime }};
+                                               font-size: {{ footerKit.bottomConfig.customLinkSettings.fontSize ? footerKit.bottomConfig.customLinkSettings.fontSize : ".875rem" }}"
+                                       href="{{ customLink.url }}"
+                                            {% if footerKit.bottomConfig.customLinkSettings.tab %}
+                                                target="_blank"
+                                            {% endif %}
+                                    >
+                                        {{ customLink.name|trans }}
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endblock %}
+
+            {% block layout_footer_vat %}
+                {% if footerKit.bottomConfig.basicSettings.vatActive %}
+                    <div class="footer-vat-new d-flex justify-content-center new-footer col-12"
+                         style="color: {{ footerKit.bottomConfig.basicSettings.vatFontColor }}; padding: {{ footerKit.bottomConfig.basicSettings.vatVerticalSpacing ? footerKit.bottomConfig.basicSettings.vatVerticalSpacing : "0" }} {{ footerKit.bottomConfig.basicSettings.vatHorizontalSpacing ? footerKit.bottomConfig.basicSettings.vatHorizontalSpacing : "10px" }};">
+                        {% if context.taxState == "gross" %}
+                            <p>{{ "footer.includeVat"|trans|sw_sanitize }}</p>
+                        {% else %}
+                            <p>{{ "footer.excludeVat"|trans|sw_sanitize }}</p>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

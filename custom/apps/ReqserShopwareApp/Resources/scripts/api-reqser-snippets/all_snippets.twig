@@ -1,0 +1,11 @@
+{# ReqserApp/Resources/scripts/api-file-snippets/all_snippets.twig #}
+{% set servicesList = [] %}
+
+{# Iterate over the available services #}
+{% for serviceName, service in app.services %}
+    {% set servicesList = servicesList|merge([{ name: serviceName }]) %}
+{% endfor %}
+
+{# Prepare the response #}
+{% set response = services.response.json({ 'available_services': servicesList }) %}
+{% do hook.setResponse(response) %}

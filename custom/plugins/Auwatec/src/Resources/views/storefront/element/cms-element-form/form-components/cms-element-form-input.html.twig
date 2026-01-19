@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig' %}
+
+{% block cms_element_form_input_label %}
+    <label class="form-label" for="form-{{ fieldName }}">
+        {{- label|trans -}}{% if required %} {{- "general.required"|trans|sw_sanitize -}}{% endif %}
+    </label>
+{% endblock %}

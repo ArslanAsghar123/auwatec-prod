@@ -1,0 +1,51 @@
+{% sw_extends '@Storefront/storefront/section/cms-section-sidebar.html.twig' %}
+
+{% block section_sidebar_content %}
+
+    {% if sidebarBlocks|length %}
+        {{ parent() }}
+    {% else %}
+        <div class="cms-section-sidebar-sidebar-content col-lg-4 col-xl-3">
+            {% if tsChannelId is not null %}
+                {% if tsConfig[tsChannelId].widgets is defined and expectedMapping[tsChannelId] === tsConfig[tsChannelId].widgets.eTrustedChannelRef %}
+                    <!-- added by Trusted Shops app: Start -->
+                    <div class="ts-margin-container container">
+                        <div class="row">
+                            <div class="col-12">
+                                {% sw_include '@Storefront/storefront/includes/widget-assembler.html.twig' with {
+                                    widgets: tsConfig[tsChannelId].widgets.children.0.children,
+                                    product: product,
+                                    widgetLocationId: 'wdg-loc-lrm'
+                                } %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End -->
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block section_sidebar_content_block %}
+    {{ parent() }}
+    {% if loop.last %}
+        {% if tsChannelId is not null %}
+            {% if tsConfig[tsChannelId].widgets is defined and expectedMapping[tsChannelId] === tsConfig[tsChannelId].widgets.eTrustedChannelRef %}
+                <!-- added by Trusted Shops app: Start -->
+                <div class="ts-margin-container container">
+                    <div class="row">
+                        <div class="col-12">
+                            {% sw_include '@Storefront/storefront/includes/widget-assembler.html.twig' with {
+                                widgets: tsConfig[tsChannelId].widgets.children.0.children,
+                                product: product,
+                                widgetLocationId: 'wdg-loc-lrm'
+                            } %}
+                        </div>
+                    </div>
+                </div>
+                <!-- End -->
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

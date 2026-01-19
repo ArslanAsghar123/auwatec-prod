@@ -1,0 +1,34 @@
+{
+  "name": "atl/seo-url-manager",
+  "description": "SEO URL Manager",
+  "type": "shopware-platform-plugin",
+  "version": "3.0.1",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Atloss GmbH",
+      "role": "Agency"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Atl\\SeoUrlManager\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Atl\\SeoUrlManager\\AtlSeoUrlManager",
+    "plugin-icon": "src/Resources/config/plugin.png",
+    "copyright": "(c) by Atloss",
+    "label": {
+      "de-DE": "SEO URL Manager",
+      "en-GB": "SEO URL Manager"
+    },
+    "description": {
+      "de-DE": "Verbessere deine SEO URL Basis in wenigen Klicks.",
+      "en-GB": "Improve your SEO URL basis in a few clicks."
+    }
+  }
+}

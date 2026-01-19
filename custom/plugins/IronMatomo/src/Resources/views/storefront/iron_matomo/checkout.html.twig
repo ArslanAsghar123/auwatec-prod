@@ -1,0 +1,26 @@
+{#{{ dump(page.cart.lineItems) }}#}
+{#{{ dump(page.extensions }}#}
+{#{{ dump(page.extensions.ironMatomoExt.seoCategory) }}#}
+
+{# All Checkout pages#}
+{% if controllerAction|lower == "cartpage" or controllerAction|lower == "confirmpage" %}
+    {% for item in page.cart.lineItems.elements %}
+        {% if item.type == "product" %}
+            window._paq.push(['addEcommerceItem',"{{ item.payload.productNumber }}","{{ item.label }}","{{ page.extensions.ironMatomoExt.seoCategory[item.payload.productNumber] }}",{{ item.price.unitPrice|number_format(2, '.', '') }},{{ item.quantity|number_format(0, '.', '') }}]);
+        {% endif %}
+    {% endfor %}
+    window._paq.push(['trackEcommerceCartUpdate',{{ page.cart.price.totalPrice|number_format(2, '.', '') }}]);
+{% endif %}
+{#Finish checkout#}
+{% if controllerAction|lower == "finishpage" %}
+    {% set matomoPromotionRabatt = 0 %}
+    {% for item in page.order.lineItems.elements %}
+        {% if item.type == "product" %}
+            window._paq.push(['addEcommerceItem',"{{ item.payload.productNumber }}","{{ item.label }}","{{ page.extensions.ironMatomoExt.seoCategory[item.payload.productNumber] }}",{{ item.price.unitPrice|number_format(2, '.', '') }},{{ item.quantity|number_format(0, '.', '') }}]);
+        {% endif %}
+        {% if item.type == "promotion" %}
+            {% set matomoPromotionRabatt = matomoPromotionRabatt + item.totalPrice %}
+        {% endif %}
+    {% endfor %}
+    window._paq.push(['trackEcommerceOrder',"{{ page.order.orderNumber }}",{{ page.order.amountTotal|number_format(2, '.', '') }},{{ page.order.positionPrice|number_format(2, '.', '') }},{{ (page.order.amountTotal - page.order.amountNet)|number_format(2, '.', '') }},{{ page.order.shippingTotal|number_format(2, '.', '') }},{{ matomoPromotionRabatt|number_format(2, '.', '') }}]);
+{% endif %}

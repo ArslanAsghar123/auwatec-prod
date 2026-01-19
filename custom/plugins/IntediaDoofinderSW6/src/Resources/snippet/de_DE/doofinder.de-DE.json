@@ -1,0 +1,12 @@
+{
+  "intedia-doofinder": {
+    "cookie": {
+      "name": "Shop Suche",
+      "description": "Notwendig um die korrekte Funktionsweise unserer Suche zu gewährleisten."
+    },
+    "table": {
+      "searchenginecreated": "Search Engine existiert",
+      "searchengine": "Serach Engine existiert nicht."
+    }
+  }
+}

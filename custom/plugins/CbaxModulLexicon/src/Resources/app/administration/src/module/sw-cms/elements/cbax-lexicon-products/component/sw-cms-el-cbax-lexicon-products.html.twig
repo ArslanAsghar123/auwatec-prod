@@ -1,0 +1,16 @@
+{% block sw_cms_element_cbax_lexicon_products %}
+    <div class="cbax-lexicon-cms-slot-wrapper">
+        <div v-if="isCbaxLexiconCmsPage" class="sw-cms-el-products">
+            <div class="sw-cms-el-cbax-lexicon-listing__content">
+                <sw-cms-el-product-box
+                    :element="demoProductElement"
+                    v-for="index in 3"
+                    :key="index">
+                </sw-cms-el-product-box>
+            </div>
+        </div>
+        <sw-alert v-if="!isCbaxLexiconCmsPage" appearance="notification" :showIcon="true" :closable="false">
+            {{ $tc('elements.wrong-page-type-alert') }}
+        </sw-alert>
+    </div>
+{% endblock %}

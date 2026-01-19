@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>General</title>
+        <title lang="de-DE">Allgemein</title>
+
+        <input-field type="bool">
+            <name>saveCustomer</name>
+            <label>Save history for logged in customers</label>
+            <label lang="de-DE">Verlauf bei eingeloggten Kunden speichern</label>
+            <helpText>If this setting is activated, last viewed products will be saved for logged in customers. If the customer returns and logs in, the products they last viewed will be displayed again.</helpText>
+            <helpText lang="de-DE">Wenn diese Einstellung aktiviert ist, werden die Zuletzt gesehenen Produkte bei eingeloggten Kunden gespeichert. Kehrt der Kunde zurück und loggt sich ein, werden ihm die Produkte, die er zuletzt gesehen hat, wieder angezeigt.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>onlyCms</name>
+            <label>Use only as CMS-Element</label>
+            <label lang="de-DE">Nur als CMS-Element nutzen</label>
+            <helpText>If this setting is activated, the slider is only set by the experience worlds. Otherwise, the slider will be displayed on every product detail page.</helpText>
+            <helpText lang="de-DE">Wenn diese Einstellung aktiviert ist, wird der Slider nur durch die Erlebniswelten gesetzt. Andernfalls wird der Slider auf jeder Produktdetailseite angezeigt.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>useAsTab</name>
+            <label>Use as tab in product site</label>
+            <label lang="de-DE">Als weiteren Tab auf der Produktseite anzeigen</label>
+            <helpText>With this setting you can specify whether the slider should be displayed as an additional tab in the product description.</helpText>
+            <helpText lang="de-DE">Mit dieser Einstellung können Sie festlegen, ob der Slider als weiterer Tab in der Produktbeschreibung angezeigt werden soll.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field>
+            <name>limit</name>
+            <label>Set the product limit</label>
+            <label lang="de-DE">Setzt ein Limit der angezeigten Produkte</label>
+            <helpText>This value sets the product limit in the slider. Maximum 12 products!</helpText>
+            <helpText lang="de-DE">Dieser Wert setzt das Produktlimit im Slider. Maximal 12 Produkte!</helpText>
+            <defaultValue>12</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>variants</name>
+            <label>Do not show variants from the same produkt</label>
+            <label lang="de-DE">Keine Varianten des gleichen Produkts anzeigen</label>
+            <helpText>If this setting is activated, only one variant of a product will be displayed in the slider.</helpText>
+            <helpText lang="de-DE">Wenn diese Einstellung aktiviert ist, wird nur eine Variante eines Produkts im Slider angezeigt.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>abverkauf</name>
+            <label>Show only Products with stock</label>
+            <label lang="de-DE">Nur Produkte mit Bestand anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>inactive</name>
+            <label>Show only active Products</label>
+            <label lang="de-DE">Nur aktive Produkte anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <component name="sw-entity-multi-id-select">
+            <name>categories</name>
+            <label>Specify here which categories should be taken into account (Empty for all)</label>
+            <label lang="de-DE">Legen Sie hier fest welche Kategorien berücksichtigt werden sollen (Leer lassen für alle)</label>
+            <entity>category</entity>
+            <title>Choose categories for the plugin configuration</title>
+            <title lang="de-DE">Wählen Sie Kategorien für die Plugin-Konfiguration</title>
+            <helpText>With this setting you can explicitly set which categories are released for display. If you want to use all of them, just leave the field blank.</helpText>
+            <helpText lang="de-DE">Mit dieser Einstellung können Sie explizit einstellen, welche Kategorien für die Anzeige freigegeben sind. Sollen alle genutzt werden, lassen Sie das Feld einfach frei.</helpText>
+        </component>
+
+        <component name="sw-entity-multi-id-select">
+            <name>disabledCategories</name>
+            <label>Specify here which categories should not be taken into account (Empty for nothing)</label>
+            <label lang="de-DE">Legen Sie hier fest welche Kategorien nicht berücksichtigt werden sollen (Leer lassen für keine)</label>
+            <entity>category</entity>
+            <title>Choose categories for the plugin configuration</title>
+            <title lang="de-DE">Wählen Sie Kategorien für die Plugin-Konfiguration</title>
+            <helpText>With this setting you can explicitly set which categories are not released for display. If you want to use nothing of them, just leave the field blank.</helpText>
+            <helpText lang="de-DE">Mit dieser Einstellung können Sie explizit einstellen, welche Kategorien für die Anzeige nicht freigegeben sind. Sollen keine genutzt werden, lassen Sie das Feld einfach frei.</helpText>
+        </component>
+    </card>
+
+    <card>
+        <title>Slider settings, Settings not for CMS-Elements</title>
+        <title lang="de-DE">Slidereinstellungen, Einstellung nicht für CMS-Element</title>
+
+        <input-field type="single-select">
+            <name>sliderDisplayMode</name>
+            <label>Display mode</label>
+            <label lang="de-DE">Anzeigemodus</label>
+            <options>
+                <option>
+                    <id>standard</id>
+                    <name>Standard</name>
+                </option>
+                <option>
+                    <id>cover</id>
+                    <name>Cover</name>
+                    <name lang="de-DE">Füllen</name>
+                </option>
+                <option>
+                    <id>contain</id>
+                    <name>Contain</name>
+                    <name lang="de-DE">Beinhalten</name>
+                </option>
+            </options>
+            <defaultValue>standard</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>sliderDisplayLayoutType</name>
+            <label>Layout type</label>
+            <label lang="de-DE">Layout-Typ</label>
+            <options>
+                <option>
+                    <id>standard</id>
+                    <name>Standard</name>
+                </option>
+                <option>
+                    <id>image</id>
+                    <name>Big Image</name>
+                    <name lang="de-DE">Großes Bild</name>
+                </option>
+                <option>
+                    <id>minimal</id>
+                    <name>Minimal content</name>
+                    <name lang="de-DE">Minimaler Inhalt</name>
+                </option>
+            </options>
+            <defaultValue>standard</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>sliderNavigation</name>
+            <label>Navigation</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>sliderRotate</name>
+            <label>Automatic sliding</label>
+            <label lang="de-DE">Automatischer Wechsel</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>sliderBorder</name>
+            <label>Border</label>
+            <label lang="de-DE">Rahmen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="text">
+            <name>sliderMinWidth</name>
+            <label>Minimal width</label>
+            <label lang="de-DE">Minimale Breite</label>
+            <defaultValue>300px</defaultValue>
+        </input-field>
+    </card>
+</config>

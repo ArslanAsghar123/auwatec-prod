@@ -1,0 +1,6 @@
+- DreiscSeoPro\Core\Content\DreiscSeoBulk\Aggregate\DreiscSeoBulkTemplate\DreiscSeoBulkTemplateDefinition
+- DreiscSeoPro\Core\Content\DreiscSeoBulk\DreiscSeoBulkDefinition
+- DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectDefinition
+- DreiscSeoPro\Core\Content\DreiscSeoSetting\DreiscSeoSettingDefinition
+- DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportLog\DreiscSeoRedirectImportExportLogDefinition
+- DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\DreiscSeoRedirectImportExportFileDefinition

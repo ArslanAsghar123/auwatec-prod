@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/cbax-lexicon/page/box-keyword.html.twig' %}
+
+
+{% block cbax_lexicon_page_box_keyword_more %}
+    {# More #}
+    <div class="keyword-action">
+        <a href="{{ seoUrl('frontend.cbax.lexicon.detail', { id: entry.id }) }}"
+           class="btn btn-outline-primary"
+           title="{{ entry.translated.title }}">
+            {{ "cbaxLexicon.page.boxKeyword.moreRead"|trans }}
+            {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+        </a>
+    </div>
+{% endblock %}

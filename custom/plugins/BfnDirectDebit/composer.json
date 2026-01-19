@@ -1,0 +1,43 @@
+{
+    "name": "bfn/direct-debit",
+    "description": "BFN - Direct Debit",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "version": "1.10.0",
+    "authors": [
+        {
+            "name": "BFN Informationstechnik GmbH",
+            "homepage": "https://bfn-it.de"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.6",
+        "shopware/storefront": ">=6.6",
+        "shopware/administration": ">=6.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Bfn\\DirectDebit\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "Bfn\\DirectDebit\\BfnDirectDebit",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "label": {
+            "de-DE": "BFN - SEPA-Zahlung",
+            "en-GB": "BFN - Direct Debit"
+        },
+        "description": {
+            "de-DE": "Nehmen Sie Zahlungen mit der Zahlungsmethode Lastschrift an. Erfassen Sie den Bankkontoinhaber, die IBAN und den Swift/BIC-Code und speichern Sie diese Daten im Auftrag und am Kunden.",
+            "en-GB": "Accept payments using the direct debit payment method. Collect the bank account holder, IBAN, and Swift/BIC code and save it to the order and the customer."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://bfn-it.de",
+            "en-GB": "https://bfn-it.de"
+        },
+        "supportLink": {
+            "de-DE": "https://bfn-it.de",
+            "en-GB": "https://bfn-it.de"
+        }
+    }
+}

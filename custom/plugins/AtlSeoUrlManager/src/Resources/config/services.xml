@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Atl\SeoUrlManager\Storefront\Framework\Seo\SeoUrlRoute\ProductPageSeoUrlRouteDecorator"
+                 decorates="Shopware\Storefront\Framework\Seo\SeoUrlRoute\ProductPageSeoUrlRoute">
+            <argument type="service" id="Atl\SeoUrlManager\Storefront\Framework\Seo\SeoUrlRoute\ProductPageSeoUrlRouteDecorator.inner" />
+        </service>
+
+        <service id="Atl\SeoUrlManager\Core\Content\Sitemap\Provider\ProductUrlProvider"
+                 decorates="Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider"
+                 decoration-priority="1000">
+            <argument type="service" id="Atl\SeoUrlManager\Core\Content\Sitemap\Provider\ProductUrlProvider.inner" />
+            <argument type="service" id="Shopware\Core\Content\Sitemap\Service\ConfigHandler"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Content\Product\ProductDefinition"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+        </service>
+
+        <service id="Atl\SeoUrlManager\Subscriber\StorefrontRenderSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="Shopware\Core\Content\Seo\HreflangLoaderInterface"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>

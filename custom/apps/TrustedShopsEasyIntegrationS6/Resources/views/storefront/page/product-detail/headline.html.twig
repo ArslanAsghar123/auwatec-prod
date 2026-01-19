@@ -1,0 +1,48 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/headline.html.twig' %}
+
+{% set tsConfig = config('trustedShopsApp.config') %}
+{% set tsChannelId = context.salesChannel.id ?? null %}
+{% set activeLanguageIsoCode = page.header.activeLanguage.translationCode.code ?? null %}
+{% set tsChannelRef = tsChannelId ~ '.' ~ activeLanguageIsoCode %}
+{% set product = page.product %}
+
+{% if page.product.parentId %}
+    {% if page.extensions.tsParentProduct is defined and not null %}
+        {% set product = page.extensions.tsParentProduct %}
+    {% endif %}
+{% endif %}
+
+{% block page_product_detail_manufacturer %}
+    {{ parent() }}
+
+    {% if tsConfig[tsChannelId][activeLanguageIsoCode].widgets is defined and expectedMapping[tsChannelRef] === tsConfig[tsChannelId][activeLanguageIsoCode].widgets.eTrustedChannelRef %}
+        <div class="col-12">
+            {% if tsChannelId is not null %}
+                <!-- added by Trusted Shops app: Start -->
+                <div class="row">
+                    <div class="col-12">
+                        {% for widget in tsConfig[tsChannelId][activeLanguageIsoCode].widgets.children.0.children %}
+                            {% if widget.extensions|length > 0 %}
+                                {% for extension in widget.extensions %}
+                                    {% if extension.tag is not null and extension.tag is not empty %}
+                                        {% sw_include '@Storefront/storefront/includes/extension-assembler.html.twig' with {
+                                            extension: extension,
+                                            product: product
+                                        } %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% sw_include '@Storefront/storefront/includes/widget-assembler.html.twig' with {
+                            widgets: tsConfig[tsChannelId][activeLanguageIsoCode].widgets.children.0.children,
+                            product: product,
+                            widgetLocationId: 'wdg-loc-pn'
+                        } %}
+                    </div>
+                </div>
+                <!-- End -->
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,59 @@
+{#{{ dump(page.cart.lineItems) }}#}
+<script type="text/javascript">
+    {% if page.extensions.ironMatomoData.active %}
+    var _paq = window._paq || [];
+    var ironMatomoDataLayer = {
+        'matomoUrl': "{{ page.extensions.ironMatomoData.matomoUrl }}",
+        'matomoScript': "{{ page.extensions.ironMatomoData.matomoScript }}",
+        'siteId': "{{ page.extensions.ironMatomoData.siteId }}",
+        'cookieDomain': "{{ page.extensions.ironMatomoData.cookieDomain }}",
+        'startTracking': "{{ page.extensions.ironMatomoData.startTracking }}",
+        'cookieName': "{{ page.extensions.ironMatomoData.cookieName }}",
+        'cookieValue': "{{ page.extensions.ironMatomoData.cookieValue }}",
+        'cookieValueAsRegex': "{{ page.extensions.ironMatomoData.cookieValueAsRegex }}",
+        'requireCookieConsent': "{{ page.extensions.ironMatomoData.requireCookieConsent }}",
+        'conversionFirstReferrer': "{{ page.extensions.ironMatomoData.conversionFirstReferrer }}",
+        'useOwnMatomoScript': "{{ page.extensions.ironMatomoData.useOwnMatomoScript }}",
+        'track': [],
+        'trackLast': [],
+    };
+    {% if page.extensions.ironMatomoData.conversionFirstReferrer %}
+        window._paq.push(['setConversionAttributionFirstReferrer', true]);
+    {% endif %}
+    {% if page.extensions.ironMatomoData.requireCookieConsent %}
+        window._paq.push(['requireCookieConsent']);
+    {% endif %}
+    {% if page.extensions.ironMatomoData.cookieDomain %}
+    window._paq.push(['setCookieDomain', "{{ page.extensions.ironMatomoData.cookieDomain }}"]);
+    {% endif %}
+    {% if page.extensions.ironMatomoData.groupByDomain %}
+    window._paq.push(['setDocumentTitle', document.domain + "/" + document.title]);
+    {% endif %}
+    {% if page.extensions.ironMatomoData.disableCookies %}
+    window._paq.push(['disableCookies']);
+    {% endif %}
+    {% if page.extensions.ironMatomoData.userTrack %}
+    window._paq.push(['setUserId', "{{ page.extensions.ironMatomoData.userTrack }}"]);
+    {% endif %}
+    {% if controllerName|lower == "search" %}
+    window._paq.push(["trackSiteSearch", "{{ page.searchTerm }}", false, {{ page.searchResult.total }}]);
+    {% endif %}
+    {% if controllerName|lower == "product" %}
+    {% sw_include '@Storefront/storefront/iron_matomo/product.html.twig' %}
+    {% endif %}
+    {% if controllerName|lower == "checkout" %}
+    {% sw_include '@Storefront/storefront/iron_matomo/checkout.html.twig' %}
+    {% endif %}
+    window._paq.push(['trackPageView']);
+    window._paq.push(['enableLinkTracking']);
+    window._paq.push(['setTrackerUrl', ironMatomoDataLayer.matomoUrl + '{{ page.extensions.ironMatomoData.matomoFile }}']);
+    window._paq.push(['setSiteId', ironMatomoDataLayer.siteId]);
+    {% else %}
+    console.log('Matomo deaktiviert');
+    {% endif %}
+</script>
+{% if page.extensions.ironMatomoData.active %}
+    {% if page.extensions.ironMatomoData.useOwnMatomoScript %}
+        {{ page.extensions.ironMatomoData.useOwnMatomoScriptCode | raw }}
+    {% endif %}
+{% endif %}

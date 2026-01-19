@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-chevron-double-a-down">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="chevron-double-a-down" clip-path="url(#clip-chevron-double-a-down)">
+    <path id="chevron-double-a-down-2" data-name="chevron-double-a-down" d="M-805.994-371.418-777.409-400l6.409,6.409-22.173,22.173L-771-349.242l-6.409,6.409Zm-29.006,0L-806.415-400l6.409,6.409-22.173,22.173,22.173,22.176-6.409,6.409Z" transform="translate(403 -771) rotate(-90)"/>
+  </g>
+</svg>

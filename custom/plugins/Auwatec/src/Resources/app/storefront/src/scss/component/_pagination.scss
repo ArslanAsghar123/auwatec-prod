@@ -1,0 +1,43 @@
+.pagination {
+  .page-item{
+    margin: 0 5px;
+  }
+  .icon {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+.page-link{
+  font-weight: $font-weight-bold;
+  border: 1px solid $sw-color-brand-primary;
+  background: transparent;
+  color: $sw-color-brand-primary;
+}
+
+.page-item{
+  &.page-first,
+  &.page-prev,
+  &.page-next,
+  &.page-last{
+    .page-link{
+      padding-left: 3px;
+      padding-right: 3px;
+      border-color: transparent;
+      min-width: 0;
+      background: transparent;
+    }
+  }
+  &.disabled{
+    display: none;
+  }
+  &.active{
+    .page-link{
+      background: $sw-color-brand-primary;
+      color: $white;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm){
+}

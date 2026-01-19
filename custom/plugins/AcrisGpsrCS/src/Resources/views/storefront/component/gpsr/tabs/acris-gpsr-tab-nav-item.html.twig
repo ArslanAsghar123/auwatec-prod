@@ -1,0 +1,29 @@
+{% block acris_gpsr_tab_nav_item_list_item %}
+    <li class="nav-item">
+        <a class="nav-link product-detail-tab-navigation-link{% if setFirstSelected %} active{% endif %}"
+           id="{{ id }}-tab"
+           data-bs-toggle="tab"
+           data-off-canvas-tabs="true"
+           href="#{{ id }}-pane"
+           role="tab"
+           aria-controls="gpsr-{{ id }}-pane"
+           aria-selected="{% if setFirstSelected %}true{% else %}false{% endif %}">
+            <span>
+                {% if isGpsrTab %}
+                    {{ 'acrisGpsr.gpsrTab'|trans|sw_sanitize }}
+                {% elseif contentType == 'manufacturer' %}
+                    {{ 'acrisGpsr.gpsrTabManufacturer'|trans|sw_sanitize }}
+                {% elseif contentType == 'contact' %}
+                    {{ 'acrisGpsr.gpsrTabContact'|trans|sw_sanitize }}
+                {% elseif contentType == 'note' %}
+                    {{ 'acrisGpsr.gpsrTabNote'|trans|sw_sanitize }}
+                {% else %}
+                    {{ 'acrisGpsr.gpsrTabType'|trans|sw_sanitize }}
+                {% endif %}
+            </span>
+            <span class="product-detail-tab-navigation-icon">
+                {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+            </span>
+        </a>
+    </li>
+{% endblock %}

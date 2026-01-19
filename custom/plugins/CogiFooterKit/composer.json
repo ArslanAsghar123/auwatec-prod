@@ -1,0 +1,42 @@
+{
+  "name": "cogi/footer-kit",
+  "description": "Mit dem Footerbaukasten Plugin kannst du deinen Footer individuell gestalten.",
+  "version": "3.0.2",
+  "type": "shopware-platform-plugin",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "codegiganten GmbH",
+      "homepage": "https://www.codegiganten.de",
+      "email": "support@codegiganten.de"
+    }
+  ],
+  "require": {
+    "shopware/core": "6.6.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cogi\\CogiFooterKit\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Cogi\\CogiFooterKit\\CogiFooterKit",
+    "copyright": "(c) by codegiganten GmbH",
+    "label": {
+      "de-DE": "Footerbaukasten",
+      "en-GB": "Footer kit"
+    },
+    "description": {
+      "de-DE": "Mit dem Footerbaukasten Plugin kannst du deinen Footer individuell gestalten.",
+      "en-GB": "With the footer kit plugin you can customize your footer."
+    },
+    "manufacturerLink": {
+      "de-DE": "https://codegiganten.de",
+      "en-GB": "https://codegiganten.de"
+    },
+    "supportLink": {
+      "de-DE": "info@codegiganten.de",
+      "en-GB": "info@codegiganten.de"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "js/scop-platform-redirecter.js",
+    "name": "scop-platform-redirecter",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "css/scop-platform-redirecter.css"
+    ]
+  }
+}

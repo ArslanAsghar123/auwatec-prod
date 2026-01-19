@@ -1,0 +1,44 @@
+{
+    "name": "phpschmied/lastseenproducts",
+    "description": "Shows the last seen products on product detail site",
+    "version": "v1.2.7",
+    "license": "proprietary",
+    "type": "shopware-platform-plugin",
+    "authors": [
+        {
+            "name": "PHP-Schmiede",
+            "role": "Manufacturer",
+            "homepage": "https://www.php-schmiede.com"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.6.0",
+        "shopware/storefront": ">=6.6.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "phpSchmied\\LastSeenProducts\\phpSchmiedLastSeenProducts",
+        "label": {
+            "de-DE": "Zuletzt gesehene Produkte",
+            "en-GB": "Last seen products"
+        },
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "description": {
+            "de-DE": "Dieses Plugin zeigt die zuletzt gesehenden Produkte auf der PDS.",
+            "en-GB": "This plugin shows the last viewed products on the PDS."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/php-schmiede.html",
+            "en-GB": "https://store.shopware.com/en/php-schmiede.html"
+        },
+        "supportLink": {
+            "de-DE": "https://www.php-schmide.com",
+            "en-GB": "https://www.php-schmide.com"
+        },
+        "copyright": "(c) PHP-Schmiede"
+    },
+    "autoload": {
+        "psr-4": {
+            "phpSchmied\\LastSeenProducts\\": "src/"
+        }
+    }
+}

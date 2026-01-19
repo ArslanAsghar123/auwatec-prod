@@ -1,0 +1,808 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+		<service id="DreiscSeoPro\Administration\Controller\DreiscSeoBulkController" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoBulk\DreiscSeoBulkRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoBulk\Aggregate\DreiscSeoBulkTemplate\DreiscSeoBulkTemplateRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\CategoryTemplateGenerator"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\ProductTemplateGenerator"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Language\LanguageRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\Message\BulkGeneratorMessageService"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\AiTemplateGenerator"/>
+        </service>
+
+		<service id="DreiscSeoPro\Administration\Controller\DreiscSeoCustomConfigController" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SalesChannel\SalesChannelRepository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+		<service id="DreiscSeoPro\Administration\Controller\DreiscSeoRedirectController" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheClearer"/>
+            <argument type="service" id="Shopware\Core\Framework\Validation\DataValidator"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\DreiscSeoRedirectImportExportFileService"/>
+            <argument type="service" id="shopware.filesystem.private"/>
+            <argument type="service" id="import_export_file.repository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportLog\DreiscSeoRedirectImportExportLogRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectRepository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+		<service id="DreiscSeoPro\Command\BulkGenerator\CategoryCommand" public="true">
+            <tag name="console.command"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\Message\BulkGeneratorMessageService"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\CategoryGenerator"/>
+        </service>
+
+		<service id="DreiscSeoPro\Command\BulkGenerator\ProductCommand" public="true">
+			<tag name="console.command"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\Message\BulkGeneratorMessageService"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\ProductGenerator"/>
+        </service>
+
+		<service id="DreiscSeoPro\Controller\RobotsTxtController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Breadcrumb\PlainBreadcrumbCalculator" public="true">
+            <argument type="service" id="Shopware\Core\Content\Category\Service\CategoryBreadcrumbBuilder"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\AiTemplateGenerator" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoUrlSlugify"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\CategoryGenerator" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\Language\LanguageRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SalesChannel\SalesChannelRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoBulk\DreiscSeoBulkRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\CategoryTemplateGenerator"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Dbl\BulkUpdater\BulkUpdater"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\TemplateGenerator\TemplateGeneratorHelper"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\AiTemplateGenerator"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\CategoryTemplateGenerator" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\TemplateGenerator\TemplateGeneratorHelper"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\TemplateVariablesFetcher\CategoryTemplateVariablesFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoUrlSlugify"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\Message\BulkGeneratorMessageHandler" public="true">
+            <tag name="messenger.message_handler"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Dal\Iterator\IteratorFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\CategoryGenerator"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\ProductGenerator"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\Message\BulkGeneratorMessageService"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\Message\BulkGeneratorMessageService" public="true">
+            <argument type="service" id="messenger.bus.shopware"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Language\LanguageRepository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoBulk\DreiscSeoBulkRepository"/>
+            <argument type="service" id="messenger.receiver_locator"/>
+            <argument type="service" id="shopware.increment.gateway.registry"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\Message\SingleBulkGeneratorMessageHandler" public="true">
+            <tag name="messenger.message_handler"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\ProductGenerator"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\CategoryGenerator"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\ProductGenerator" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\Language\LanguageRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SalesChannel\SalesChannelRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoBulk\DreiscSeoBulkRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\ProductTemplateGenerator"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Dbl\BulkUpdater\BulkUpdater"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\TemplateGenerator\TemplateGeneratorHelper"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\AiTemplateGenerator"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\ProductTemplateGenerator" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\TemplateGenerator\TemplateGeneratorHelper"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\TemplateVariablesFetcher\ProductTemplateVariablesFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoUrlSlugify"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\TemplateGenerator\TemplateGeneratorHelper" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\ContextFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Twig\TemplateRendererFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\TemplateVariablesFetcher\CategoryTemplateVariablesFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\TemplateVariablesFetcher\CommonTemplateVariablesFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\TemplateVariablesFetcher\CommonTemplateVariablesFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\Language\LanguageRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\BulkGenerator\TemplateVariablesFetcher\ProductTemplateVariablesFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\MainCategory\MainCategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\TemplateVariablesFetcher\CommonTemplateVariablesFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Cache\MessageBusCacheInvalidator" public="true">
+            <argument type="service" id="shopware.filesystem.private"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Canonical\CanonicalFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Seo\SeoUrlAssembler"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\LandingpageSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\Category\CategoryExtension">
+			<tag name="shopware.entity.extension"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\Category\CategoryIndexer" public="true">
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\CategoryGenerator"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+            <tag name="shopware.entity_indexer" priority="500"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\Message\BulkGeneratorMessageService"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\Category\CategoryRepository" public="true">
+			<argument type="service" id="category.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\Country\CountryRepository" public="true">
+			<argument type="service" id="country.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\Currency\CurrencyRepository" public="true">
+			<argument type="service" id="currency.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\CustomField\Aggregate\CustomFieldSet\CustomFieldSetRepository" public="true">
+			<argument type="service" id="custom_field_set.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\CustomField\CustomFieldRepository" public="true">
+			<argument type="service" id="custom_field.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\Customer\CustomerRepository" public="true">
+			<argument type="service" id="customer.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoBulk\Aggregate\DreiscSeoBulkTemplate\DreiscSeoBulkTemplateDefinition">
+			<tag name="shopware.entity.definition" entity="dreisc_seo_bulk_template"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoBulk\Aggregate\DreiscSeoBulkTemplate\DreiscSeoBulkTemplateRepository" public="true">
+			<argument type="service" id="dreisc_seo_bulk_template.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoBulk\Aggregate\DreiscSeoBulkTemplate\DreiscSeoBulkTemplateValidator">
+			<tag name="kernel.event_subscriber"/>
+			<argument type="service" id="Doctrine\DBAL\Connection"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoBulk\DreiscSeoBulkDefinition">
+			<tag name="shopware.entity.definition" entity="dreisc_seo_bulk"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoBulk\DreiscSeoBulkRepository" public="true" parent="DreiscSeoPro\Core\Foundation\Dal\EntityRepository">
+            <argument type="service" id="dreisc_seo_bulk.repository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Cache\MessageBusCacheInvalidator"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoBulk\DreiscSeoBulkValidator">
+			<tag name="kernel.event_subscriber"/>
+			<argument type="service" id="Doctrine\DBAL\Connection"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\DreiscSeoRedirectImportExportFileDefinition">
+			<tag name="shopware.entity.definition" entity="dreisc_seo_redirect_import_export_file"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\DreiscSeoRedirectImportExportFileRepository" public="true">
+			<argument type="service" id="dreisc_seo_redirect_import_export_file.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\DreiscSeoRedirectImportExportFileService" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\DreiscSeoRedirectImportExportFileRepository"/>
+            <argument type="service" id="shopware.filesystem.private"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\Import\RowImporter"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportLog\DreiscSeoRedirectImportExportLogRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\Import\RowExporter"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\Import\RowExporter" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SalesChannel\Aggregate\SalesChannelDomain\SalesChannelDomainRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportFile\Import\RowImporter" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportLog\DreiscSeoRedirectImportExportLogRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Seo\SeoUrlParser"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SalesChannel\Aggregate\SalesChannelDomain\SalesChannelDomainRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportLog\DreiscSeoRedirectImportExportLogDefinition">
+			<tag name="shopware.entity.definition" entity="dreisc_seo_redirect_import_export_log"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\Aggregate\DreiscSeoRedirectImportExportLog\DreiscSeoRedirectImportExportLogRepository" public="true">
+			<argument type="service" id="dreisc_seo_redirect_import_export_log.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheClearer"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectDefinition">
+			<tag name="shopware.entity.definition" entity="dreisc_seo_redirect"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectRepository" public="true">
+			<argument type="service" id="dreisc_seo_redirect.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheClearer"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectValidator" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoSetting\DreiscSeoSettingDefinition">
+			<tag name="shopware.entity.definition" entity="dreisc_seo_setting"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\DreiscSeoSetting\DreiscSeoSettingRepository" public="true">
+			<argument type="service" id="dreisc_seo_setting.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\LandingPage\LandingPageRepository" public="true">
+			<argument type="service" id="landing_page.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\Language\LanguageExtension" public="true">
+			<tag name="shopware.entity.extension"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\Language\LanguageRepository" public="true">
+			<argument type="service" id="language.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\MainCategory\MainCategoryRepository" public="true">
+            <argument type="service" id="main_category.repository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SalesChannel\SalesChannelRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\ContextFactory"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\Media\MediaRepository" public="true">
+			<argument type="service" id="media.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\Product\ProductExtension">
+			<tag name="shopware.entity.extension"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\Product\ProductIndexer" public="true">
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+            <tag name="shopware.entity_indexer" priority="500"/>
+            <argument type="service" id="DreiscSeoPro\Core\BulkGenerator\Message\BulkGeneratorMessageService"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\Product\ProductRepository" public="true">
+			<argument type="service" id="product.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\SalesChannel\Aggregate\SalesChannelDomain\SalesChannelDomainExtension">
+			<tag name="shopware.entity.extension"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\SalesChannel\Aggregate\SalesChannelDomain\SalesChannelDomainRepository" public="true">
+			<argument type="service" id="sales_channel_domain.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\SalesChannel\SalesChannelExtension">
+			<tag name="shopware.entity.extension"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\SalesChannel\SalesChannelRepository" public="true">
+			<argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SalesChannel\Aggregate\SalesChannelDomain\SalesChannelDomainRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\SeoUrlTemplate\SeoUrlTemplateRepository" public="true">
+			<argument type="service" id="seo_url_template.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\Content\SeoUrl\SeoUrlRepository" public="true">
+			<argument type="service" id="seo_url.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Cache\EntityCacheKeyGenerator"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheClearer"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Content\SystemConfig\SystemConfigRepository" public="true">
+			<argument type="service" id="system_config.repository"/>
+		</service>
+
+		<service id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoSetting\DreiscSeoSettingRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\CustomSettingEntity\CustomSettingEntityService"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\CustomSetting\CustomSettingSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoSetting\DreiscSeoSettingRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\CustomSettingEntity\CustomSettingEntityService"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Dbl\BulkUpdater\BulkUpdater" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Dbl\PlainSqlUpdate\Product"/>
+            <argument type="service" id="DreiscSeoPro\Core\Dbl\PlainSqlUpdate\Category"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Dbl\PlainSqlUpdate\Category" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Dbl\PlainSqlUpdate\Common"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Dbl\PlainSqlUpdate\Common" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheClearer"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Dbl\PlainSqlUpdate\Product" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Dbl\PlainSqlUpdate\Common"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Foundation\Context\ContextFactory" public="true"/>
+
+		<service id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Foundation\CustomSettingEntity\CustomSettingEntityService" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Cache\MessageBusCacheInvalidator"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Foundation\Dal\EntityRepository" abstract="true" public="true"/>
+
+		<service id="DreiscSeoPro\Core\Foundation\Dal\Iterator\IteratorFactory" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\DefinitionInstanceRegistry"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Foundation\Dal\Validator" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Foundation\DemoData\DemoDataIds" public="true"/>
+
+		<service id="DreiscSeoPro\Core\Foundation\DemoData\DemoDataRepository" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Foundation\Seo\SeoUrlAssembler" public="true">
+            <argument type="service" id="seo_url.repository"/>
+            <argument type="service" id="sales_channel_domain.repository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Foundation\Seo\SeoUrlParser" public="true">
+            <argument type="service" id="sales_channel_domain.repository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\String\StringAnalyzer"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Foundation\String\StringAnalyzer" public="true"/>
+
+		<service id="DreiscSeoPro\Core\Foundation\Translation\EntityInheritanceFieldReader" public="true"/>
+
+		<service id="DreiscSeoPro\Core\Foundation\Twig\TemplateRendererFactory" public="true"/>
+
+		<service id="DreiscSeoPro\Core\RichSnippet\Breadcrumb\BreadcrumbRichSnippetLdBuilder" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Seo\SeoUrlAssembler"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Translation\Translator"/>
+            <argument type="service" id="router"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\RichSnippet\LocalBusiness\LocalBusinessRichSnippetLdBuilder" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\Country\CountryRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\RichSnippet\Logo\LogoRichSnippetLdBuilder" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\Media\MediaRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\RichSnippet\Logo\LogoRichSnippetLdBuilderInterface" public="true"/>
+
+		<service id="DreiscSeoPro\Core\RichSnippet\Product\ProductRichSnippetLdBuilder" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Seo\SeoUrlAssembler"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Translation\Translator"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Customer\CustomerRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\RobotsTag\NoIndexParameterSearcher" public="true"/>
+
+		<service id="DreiscSeoPro\Core\RobotsTag\RobotsTagFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\RobotsTag\NoIndexParameterSearcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\LandingpageSeoDataFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Routing\Category\CategoryRedirectSearcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Routing\RedirectExecutor"/>
+            <argument type="service" id="DreiscSeoPro\Core\Routing\SourceSalesChannelDomainRestrictionChecker"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Routing\Product\ProductRedirectSearcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Routing\RedirectExecutor"/>
+            <argument type="service" id="DreiscSeoPro\Core\Routing\SourceSalesChannelDomainRestrictionChecker"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Routing\RedirectExecutor" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\SalesChannel\SalesChannelRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SalesChannel\Aggregate\SalesChannelDomain\SalesChannelDomainRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Seo\SeoUrlAssembler"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Routing\RedirectFinder" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Routing\RequestTransformer" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\DreiscSeoRedirect\DreiscSeoRedirectRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Routing\RedirectExecutor"/>
+            <argument type="service" id="DreiscSeoPro\Core\Routing\Product\ProductRedirectSearcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Routing\Category\CategoryRedirectSearcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Routing\RedirectFinder"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Routing\SourceSalesChannelDomainRestrictionChecker" public="true"/>
+
+		<service id="DreiscSeoPro\Core\Seo\LiveTemplate\LiveTemplateConverter" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Core\System\Currency\CurrencyFormatter"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Currency\CurrencyRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\ContextFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SeoUrl\SeoUrlRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\Common\DataFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataFetcher\Common\DataFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\ContextFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SeoUrl\SeoUrlRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Media\MediaRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataFetcher\LandingpageSeoDataFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\ContextFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\LandingPage\LandingPageRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SeoUrl\SeoUrlRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\Common\DataFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\ContextFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\SeoUrl\SeoUrlRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\Common\DataFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\CategorySeoDataSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\ProductSeoDataSaver"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\CategorySeoDataSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\MetaTitleSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\MetaDescriptionSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\UrlSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\RobotsTagSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\FacebookTitleSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\FacebookDescriptionSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\TwitterTitleSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\TwitterDescriptionSaver"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\ProductSeoDataSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\MetaTitleSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\MetaDescriptionSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\UrlSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\RobotsTagSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\FacebookTitleSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\FacebookDescriptionSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\TwitterTitleSaver"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\TwitterDescriptionSaver"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\FacebookDescriptionSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\FacebookTitleSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\MetaDescriptionSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\MetaTitleSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\RobotsTagSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\TwitterDescriptionSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\TwitterTitleSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Category\CategoryRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Category\UrlSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoUrl\SeoUrlSaver"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\FacebookDescriptionSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\FacebookTitleSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\MetaDescriptionSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\MetaTitleSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\RobotsTagSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\TwitterDescriptionSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\TwitterTitleSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Content\Product\ProductRepository"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoDataSaver\Saver\Product\UrlSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoUrl\SeoUrlSaver"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoUrlSlugify" public="true">
+            <argument type="service" id="slugify"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Seo\SeoUrl\SeoUrlSaver" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Content\SeoUrl\SeoUrlRepository"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoUrlSlugify"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Sitemap\CategoryFetcher" public="true">
+            <argument type="service" id="Shopware\Core\Content\Sitemap\Service\ConfigHandler"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+            <argument type="service" id="Shopware\Core\Content\Category\CategoryDefinition"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Sitemap\LandigpageFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
+            <argument type="service" id="Shopware\Core\Content\LandingPage\SalesChannel\SalesChannelLandingPageDefinition"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\Sitemap\ProductFetcher" public="true">
+            <argument type="service" id="Shopware\Core\Content\Sitemap\Service\ConfigHandler"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Content\Product\ProductDefinition"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+        </service>
+
+		<service id="DreiscSeoPro\Core\SocialMedia\SocialMediaFetcher" public="true">
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\ProductSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\CategorySeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\SeoDataFetcher\LandingpageSeoDataFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\LiveTemplate\LiveTemplateConverter"/>
+        </service>
+
+		<service id="DreiscSeoPro\Decorator\Core\Content\Seo\SeoUrlPlaceholderHandlerDecorator" public="true" decorates="Shopware\Core\Content\Seo\SeoUrlPlaceholderHandlerInterface">
+            <argument type="service" id="DreiscSeoPro\Decorator\Core\Content\Seo\SeoUrlPlaceholderHandlerDecorator.inner"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+        </service>
+
+		<service id="DreiscSeoPro\Decorator\Core\Content\Sitemap\Provider\CategoryUrlProvider" public="true" decorates="Shopware\Core\Content\Sitemap\Provider\CategoryUrlProvider">
+            <argument type="service" id="DreiscSeoPro\Decorator\Core\Content\Sitemap\Provider\CategoryUrlProvider.inner"/>
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+
+            <argument type="service" id="Shopware\Core\Content\Sitemap\Service\ConfigHandler"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Content\Category\CategoryDefinition"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="DreiscSeoPro\Core\Sitemap\CategoryFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Decorator\Core\Content\Sitemap\Provider\LandingpageUrlProvider" public="true" decorates="Shopware\Core\Content\Sitemap\Provider\LandingPageUrlProvider">
+            <argument type="service" id="DreiscSeoPro\Core\Foundation\Context\LanguageChainFactory"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory"/>
+            <argument type="service" id="Shopware\Storefront\Framework\Routing\Router"/>
+
+            <tag name="shopware.sitemap_url_provider"/>
+            <argument type="service" id="Shopware\Core\Content\LandingPage\SalesChannel\SalesChannelLandingPageDefinition"/>
+            <argument type="service" id="DreiscSeoPro\Core\Sitemap\LandigpageFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Decorator\Core\Content\Sitemap\Provider\ProductUrlProvider" public="true" decorates="Shopware\Core\Content\Sitemap\Provider\ProductUrlProvider">
+            <argument type="service" id="DreiscSeoPro\Decorator\Core\Content\Sitemap\Provider\ProductUrlProvider.inner"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="DreiscSeoPro\Core\Sitemap\ProductFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Decorator\Shopware\Storefront\Routing\RequestTransformerDecorator" public="true" decorates="Shopware\Storefront\Framework\Routing\RequestTransformer">
+            <argument type="service" id="DreiscSeoPro\Decorator\Shopware\Storefront\Routing\RequestTransformerDecorator.inner"/>
+            <argument type="service" id="DreiscSeoPro\Core\Routing\RequestTransformer"/>
+        </service>
+
+		<service id="DreiscSeoPro\Decorator\Storefront\Framework\Twig\TemplateDataExtensionDecorator" decorates="Shopware\Storefront\Framework\Twig\TemplateDataExtension" public="true">
+            <argument type="service" id="DreiscSeoPro\Decorator\Storefront\Framework\Twig\TemplateDataExtensionDecorator.inner"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+        </service>
+
+		<service id="DreiscSeoPro\Resources\snippets\de_DE\SnippetFile_de_DE">
+            <tag name="shopware.snippet.file"/>
+        </service>
+
+		<service id="DreiscSeoPro\Resources\snippets\en_GB\SnippetFile_en_GB">
+            <tag name="shopware.snippet.file"/>
+        </service>
+
+		<service id="DreiscSeoPro\Subscriber\CategoryEvents\CategoryLoadedSubscriber" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\LiveTemplate\LiveTemplateConverter"/>
+        </service>
+
+		<service id="DreiscSeoPro\Subscriber\CategoryEvents\CategoryWrittenSubscriber" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="DreiscSeoPro\Core\Cache\MessageBusCacheInvalidator"/>
+        </service>
+
+		<service id="DreiscSeoPro\Subscriber\Installment\BaseInformation\BaseInformationSubscriber" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\LiveTemplate\LiveTemplateConverter"/>
+        </service>
+
+		<service id="DreiscSeoPro\Subscriber\Installment\Canonical\CanonicalSubscriber" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="DreiscSeoPro\Core\Canonical\CanonicalFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Subscriber\Installment\RichSnippet\RichSnippetSubscriber" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="DreiscSeoPro\Core\RichSnippet\Product\ProductRichSnippetLdBuilder"/>
+            <argument type="service" id="DreiscSeoPro\Core\RichSnippet\Breadcrumb\BreadcrumbRichSnippetLdBuilder"/>
+            <argument type="service" id="DreiscSeoPro\Core\RichSnippet\Logo\LogoRichSnippetLdBuilder"/>
+            <argument type="service" id="DreiscSeoPro\Core\Breadcrumb\PlainBreadcrumbCalculator"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+            <argument type="service" id="DreiscSeoPro\Core\RichSnippet\LocalBusiness\LocalBusinessRichSnippetLdBuilder"/>
+            <argument type="service" id="Shopware\Storefront\Page\Product\Review\ProductReviewLoader"/>
+        </service>
+
+		<service id="DreiscSeoPro\Subscriber\Installment\RobotsTag\RobotsTagSubscriber" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="DreiscSeoPro\Core\RobotsTag\RobotsTagFetcher"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+        </service>
+
+		<service id="DreiscSeoPro\Subscriber\Installment\SocialMedia\SocialMediaSubscriber" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="DreiscSeoPro\Core\CustomSetting\CustomSettingLoader"/>
+            <argument type="service" id="DreiscSeoPro\Core\SocialMedia\SocialMediaFetcher"/>
+        </service>
+
+		<service id="DreiscSeoPro\Subscriber\ProductEvents\ProductLoadedSubscriber" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="DreiscSeoPro\Core\Seo\LiveTemplate\LiveTemplateConverter"/>
+        </service>
+
+		<service id="DreiscSeoPro\Test\Core\Seo\SeoDataSaver\TestHelper" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+	</services>
+</container>

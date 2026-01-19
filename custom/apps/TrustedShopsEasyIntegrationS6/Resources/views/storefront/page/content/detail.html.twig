@@ -1,0 +1,39 @@
+{% sw_extends '@Storefront/storefront/page/content/detail.html.twig' %}
+
+{% set tsConfig = config('trustedShopsApp.config') %}
+{% set tsChannelId = context.salesChannel.id ?? null %}
+{% set activeLanguageIsoCode = page.header.activeLanguage.translationCode.code ?? null %}
+{% set tsChannelRef = tsChannelId ~ '.' ~ activeLanguageIsoCode %}
+
+{% block page_content_section %}
+    {{ parent() }}
+
+    {% if tsConfig[tsChannelId][activeLanguageIsoCode].widgets is defined and expectedMapping[tsChannelRef] === tsConfig[tsChannelId][activeLanguageIsoCode].widgets.eTrustedChannelRef %}
+        {% if tsChannelId is not null and controllerAction === "home" %}
+            {% if loop.index === 1 or loop.length === 1 %}
+
+                {% set tsWidgetsOutput %}
+                    {% sw_include '@Storefront/storefront/includes/widget-assembler.html.twig' with {
+                        widgets: tsConfig[tsChannelId][activeLanguageIsoCode].widgets.children.0.children,
+                        product: product,
+                        widgetLocationId: 'wdg-loc-hp'
+                    } %}
+                {% endset %}
+
+                {% if tsWidgetsOutput|trim != '' %}
+                    <!-- added by Trusted Shops app: Start -->
+                    <div class="cms-section">
+                        <div class="cms-section-default boxed">
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ tsWidgetsOutput|raw }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End -->
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

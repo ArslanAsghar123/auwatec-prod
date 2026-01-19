@@ -1,0 +1,38 @@
+.account-menu-dropdown {
+  min-width: 270px;
+}
+.account-menu-header{
+  border-bottom: none;
+  padding-bottom: 0;
+  font-family: $font-family-roboto;
+  font-size: 19px;
+}
+.header-account-menu{
+  padding: 10px 0;
+}
+
+.account-aside-item{
+  font-size: 16px;
+}
+
+.account-aside-btn{
+  color: $sw-text-color;
+  .icon {
+    color: $sw-color-brand-primary;
+  }
+}
+
+.account-menu-offcanvas,
+.account-menu-dropdown{
+  .card > .list-group + .account-aside-footer{
+    border-top: 1px solid $border-color;
+  }
+  .account-aside-footer{
+    .account-aside-btn{
+      font-size: 16px;
+      .icon{
+        margin-left: 0;
+      }
+    }
+  }
+}

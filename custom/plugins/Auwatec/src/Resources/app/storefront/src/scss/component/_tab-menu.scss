@@ -1,0 +1,52 @@
+.card-tabs{
+  .nav-item {
+    margin-bottom: 30px;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  .nav-link{
+    font-family: $font-family-roboto;
+    font-weight: $font-weight-bold;
+    font-size: 23px;
+    line-height: 28px;
+
+    &.active{
+      background: $white;
+    }
+    &:hover{
+      background: transparent;
+    }
+  }
+}
+
+@include media-breakpoint-up(sm){
+  .card-tabs{
+    .nav-item{
+      margin-right: 30px;
+      margin-bottom: 0;
+    }
+    .nav-link{
+      font-size: 26px;
+      line-height: 32px;
+      border-bottom: 4px solid transparent;
+      color: $gray-text-color;
+
+      &.active{
+        border-color: $sw-color-brand-primary;
+        color: $sw-text-color;
+        background: transparent;
+      }
+    }
+  }
+  .tab-pane-container{
+    background: $white;
+    padding: 30px 20px;
+  }
+}
+
+@include media-breakpoint-up(xl){
+  .tab-pane-container{
+    padding: 30px 30px;
+  }
+}

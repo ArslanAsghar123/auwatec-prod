@@ -1,0 +1,73 @@
+{
+    "intedia-doofinder-layers": {
+        "general": {
+            "mainMenuItemGeneral": "Search Engines"
+        },
+        "index": {
+            "textHeadline": "DooFinder Search Engines"
+        },
+        "actions": {
+            "createSearchEngine": "Search Engine erstellen",
+            "viewSalesChannel": "Sales Channel anzeigen",
+            "deleteSalesChannel": "Search Engine und Produktexport löschen",
+            "viewDoofinderSearchEngine": "Search Engine anzeigen",
+            "enableDoofinderRecommendations": "Recommendations aktivieren",
+            "linkSearchEngine": "Search Engine Verknüpfen",
+            "onProcessIndex": "Index erneut verarbeiten",
+            "deleteLink": "Shopware - DooFinder Verlinkung aufheben"
+        },
+        "table": {
+            "storefront": "Storefront",
+            "language": "Sprache",
+            "domain": "Domain",
+            "searchengine": "Verbunden",
+            "storeName": "DooFinder Store",
+            "doofinderSearchEngine": "Search Engine",
+            "doofinderHashId": "Engine HashId",
+            "doofinderStatus": "Index Status"
+        },
+        "modals": {
+            "delete": {
+                "title": "Search Engine löschen",
+                "cancel": "Abbrechen",
+                "submit": "Löschen",
+                "text": "Möchten Sie diese Search Engine wirklich löschen? Es werden die Verknüpfung sowie die Search Engine selbst bei DooFinder gelöscht"
+            },
+            "create": {
+                "title": "Search Engine erstellen",
+                "cancel": "Abbrechen",
+                "submit": "Erstellen",
+                "text": "Erstellen Sie für den von Ihnen ausgewählten Store eine Search Engine. Die Search Engine kann später nicht in einen anderen Store verschoben werden."
+            },
+            "link": {
+                "title": "Search Engine verlinken",
+                "cancel": "Abbrechen",
+                "submit": "Verlinken",
+                "fields": {
+                    "doofinderStore": "DooFinder Store",
+                    "doofinderSearchEngineHashId": "DooFinder Search Engine HashId",
+                    "pleaseChoose": "Bitte wählen"
+                }
+            }
+        },
+        "notification": {
+            "success": {
+                "title": "Erfolgreich",
+                "indexProcess": "Der Index wird erneut verarbeitet.",
+                "deleteLink": "Die Verlinkung zwischen Shopware und DooFinder wurde erfolgreich getrennt.",
+                "createSearchEngine": "Die Search Engine wurde erfolgreich erstellt.",
+                "linkSearchEngine": "Die Search Engine wurde erfolgreich verlinkt.",
+                "deleteSearchEngine": "Die Search Engine wurde erfolgreich gelöscht."
+            },
+            "error": {
+                "title": "Fehlermeldung",
+                "languageAndCurrencyAlreadyInUse": "Diese Search Engine kann nicht verwendet werden da bereits eine andere mit der selben Sprache und Währung in Verwendung ist.",
+                "searchEngineAlreadyInUse": "Diese Search Engine wird bereits verwendet. Bitte löschen sie die Verbindung bevor sie versuchen die Search Engine mit einem anderen Produkt Export zu verbinden.",
+                "pleaseSelect": "Bitte wählen sie Werte aus."
+            }
+        }
+    },
+    "intedia-doofinder-recommendation-button": {
+        "button": "DooFinder Recommendation im Panel aktivieren"
+    }
+}

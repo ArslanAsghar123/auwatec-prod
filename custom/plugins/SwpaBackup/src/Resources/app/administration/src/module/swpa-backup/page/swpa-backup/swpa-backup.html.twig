@@ -1,0 +1,40 @@
+{% block swpa_backup %}
+    <sw-page>
+        {% block swpa_backup_header %}
+            <template #smart-bar-header>
+                <h2>
+                    {{ $tc('sw-settings.index.title') }}
+                    <sw-icon name="small-arrow-medium-right" small></sw-icon>
+                    {{ $tc('swpa-backup.header') }}
+                </h2>
+            </template>
+        {% endblock %}
+
+        {% block swpa_backup_content %}
+            <template #content>
+                {% block swpa_backup_content_tabs %}
+                    <sw-tabs class="">
+                        {% block swpa_backup_content_tab_settings %}
+                            <sw-tabs-item class="swpa-backup__tab-settings"
+                                          :route="{ name: 'swpa.backup.index.settings'}"
+                                          :title="$tc('swpa-backup.tab.settings')">
+                                {{ $tc('swpa-backup.tab.settings') }}
+                            </sw-tabs-item>
+                        {% endblock %}
+                        {% block swpa_backup_content_tab_log %}
+                            <sw-tabs-item class="swpa-backup__tab-log"
+                                          :route="{ name: 'swpa.backup.index.log'}"
+                                          :title="$tc('swpa-backup.tab.log')">
+                                {{ $tc('swpa-backup.tab.log') }}
+                            </sw-tabs-item>
+                        {% endblock %}
+                    </sw-tabs>
+                {% endblock %}
+
+                {% block swpa_backup_content_view %}
+                    <router-view></router-view>
+                {% endblock %}
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

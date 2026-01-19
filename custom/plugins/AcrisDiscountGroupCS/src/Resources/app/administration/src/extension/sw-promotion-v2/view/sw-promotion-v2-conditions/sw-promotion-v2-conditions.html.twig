@@ -1,0 +1,13 @@
+{% block sw_promotion_v2_conditions_pre_conditions_exclusions %}
+    {% parent %}
+
+    {% block acris_discount_group_pre_conditions_prevent_combination_with_discont_group %}
+        <sw-switch-field
+            v-model:value="preventCombinationDiscountGroup"
+            class="acris-discount-group-conditions__prevent-combination"
+            @update:value="onPreventCombinationChange"
+            :label="$tc('acris-discount-group.promotion.preventCombinationFieldLabel')"
+            :helpText="$tc('acris-discount-group.promotion.preventCombinationFieldHelpText')"
+        />
+    {% endblock %}
+{% endblock %}

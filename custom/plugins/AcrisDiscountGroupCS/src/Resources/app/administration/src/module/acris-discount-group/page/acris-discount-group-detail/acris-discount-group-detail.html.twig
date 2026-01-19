@@ -1,0 +1,477 @@
+{% block acris_discount_group_detail %}
+<sw-page class="acris-discount-group-detail" v-if="item">
+
+
+    {% block acris_discount_group_detail_smart_bar_header %}
+    <template #smart-bar-header>
+        {% block acris_discount_group_detail_smart_bar_header_title %}
+        <h2>{{ $tc('acris-discount-group.detail.textHeadline') }}</h2>
+        {% endblock %}
+    </template>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_smart_bar_language %}
+        <template #language-switch>
+            <sw-language-switch @on-change="onChangeLanguage"
+                                :disabled="$route.params.newItem || item.unknown"></sw-language-switch>
+        </template>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_smart_bar_actions %}
+    <template #smart-bar-actions>
+        {% block acris_discount_group_detail_smart_bar_actions_cancel %}
+        <sw-button :disabled="item.isLoading" :routerLink="{ name: 'acris.discount.group.index' }">
+            {{ $tc('acris-discount-group.detail.buttonCancel') }}
+        </sw-button>
+        {% endblock %}
+
+        {% block acris_discount_group_detail_smart_bar_actions_save %}
+        <sw-button-process
+            class="acris-discount-group-detail__save-action"
+            :isLoading="isLoading"
+            :processSuccess="processSuccess"
+            variant="primary"
+            :disabled="isDisabled"
+            @update:processSuccess="saveFinish"
+            @click="onClickSave">
+            {{ $tc('acris-discount-group.detail.buttonSave') }}
+        </sw-button-process>
+        {% endblock %}
+    </template>
+    {% endblock %}
+
+
+    {% block acris_discount_group_detail_content %}
+        <template #content>
+            <sw-card-view>
+                {% block acris_discount_group_detail_content_card %}
+                    <sw-card :isLoading="isLoading" v-if="item"
+                             :title="$tc('acris-discount-group.detail.cardGeneral')">
+
+                        {% block acris_discount_group_detail_content_internal_name %}
+                            <sw-text-field v-model:value="item.internalName"
+                                           class="acris-discount-group-detail__item_internalName"
+                                           :label="$tc('acris-discount-group.detail.fieldTitleLabelInternalName')"
+                                           :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextInternalName')"
+                                           :placeholder="$tc('acris-discount-group.detail.fieldTitlePlaceholderInternalName')">
+                            </sw-text-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_internal_id %}
+                            <sw-text-field v-model:value="item.internalId"
+                                           class="acris-discount-group-detail__item_internalId"
+                                           :label="$tc('acris-discount-group.detail.fieldTitleLabelInternalId')"
+                                           :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextInternalId')"
+                                           :placeholder="$tc('acris-discount-group.detail.fieldTitlePlaceholderInternalId')">
+                            </sw-text-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_display_name %}
+                            <sw-text-field v-model:value="item.displayName"
+                                           class="acris-discount-group-detail__item_display_name"
+                                           :label="$tc('acris-discount-group.detail.fieldTitleLabelDisplayName')"
+                                           :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextDisplayName')"
+                                           :placeholder="$tc('acris-discount-group.detail.fieldTitlePlaceholderDisplayName')">
+                            </sw-text-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_active %}
+                            <sw-switch-field v-model:value="item.active"
+                                      class="acris-discount-group-detail__item_active"
+                                      :label="$tc('acris-discount-group.detail.fieldTitleLabelActive')"
+                                      :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextActive')">
+                            </sw-switch-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_base_active_container %}
+                            <sw-container
+                                    columns="1fr 1fr"
+                                    gap="0 32px"
+                            >
+
+                                {% block acris_discount_group_detail_active_from %}
+                                    <sw-datepicker
+                                            v-model:value="item.activeFrom"
+                                            class="acris-discount-group-detail-base__field-active-from"
+                                            date-type="datetime-local"
+                                            :label="$tc('acris-discount-group.detail.fieldTitleLabelActiveFrom')"
+                                            :placeholder-text="$tc('acris-discount-group.detail.fieldTitlePlaceholderActiveFrom')"
+                                    />
+                                {% endblock %}
+
+                                {% block acris_discount_group_detail_active_until %}
+                                    <sw-datepicker
+                                            v-model:value="item.activeUntil"
+                                            class="acris-discount-group-detail-base__field-active-until"
+                                            date-type="datetime-local"
+                                            :label="$tc('acris-discount-group.detail.fieldTitleLabelActiveUntil')"
+                                            :placeholder-text="$tc('acris-discount-group.detail.fieldTitlePlaceholderActiveUntil')"
+                                    />
+                                {% endblock %}
+
+                            </sw-container>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_priority %}
+                            <sw-number-field numberType="int"
+                                             v-model:value="item.priority"
+                                             :min="0"
+                                             class="acris-discount-group-detail__item_priority"
+                                             :label="$tc('acris-discount-group.detail.fieldTitleLabelPriority')"
+                                             :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextPriority')"
+                                             :placeholder="$tc('acris-discount-group.detail.fieldTitlePlaceholderPriority')">
+                            </sw-number-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_excluded %}
+                            <sw-switch-field v-model:value="item.excluded"
+                                      class="acris-discount-group-detail__item_excluded"
+                                      :label="$tc('acris-discount-group.detail.fieldTitleLabelExcluded')"
+                                      :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextExcluded')">
+                            </sw-switch-field>
+                        {% endblock %}
+                    </sw-card>
+                {% endblock %}
+
+                {% block acris_discount_group_detail_card_customer %}
+                    <sw-card :isLoading="isLoading" v-if="item"
+                             :title="$tc('acris-discount-group.detail.cardCustomer')">
+
+                        {% block acris_discount_group_detail_content_customer_assignment_type %}
+                            <sw-select-field
+                                    v-model:value="item.customerAssignmentType"
+                                    required
+                                    class="acris-discount-group-detail__item_customer_assignment_type"
+                                    :label="$tc('acris-discount-group.detail.fieldTitleLabelCustomerAssignmentType')"
+                                    :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextCustomerAssignmentType')">
+                                <option v-for="option in customerAssignmentTypes"
+                                        :key="option.value"
+                                        :value="option.value">
+                                    {{ option.label }}
+                                </option>
+                            </sw-select-field>
+                        {% endblock %}
+
+                        {% if item.customerAssignmentType != 'everyCustomer' %}
+
+                            {% block acris_discount_group_detail_customer_select %}
+                                <sw-entity-single-select
+                                        v-model:value="item.customerId"
+                                        entity="customer"
+                                        v-if="item.customerAssignmentType === 'customer'"
+                                        required
+                                        :label="$tc('acris-discount-group.detail.fieldTitleLabelCustomer')"
+                                        :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextCustomer')"
+                                        :placeholder="$tc('acris-discount-group.detail.fieldTitlePlaceholderCustomer')">
+
+                                    {% block acris_discount_group_detail_customer_variant_label %}
+                                        <template #selection-label-property="{ item }">
+                                            {{ item.firstName }} {{ item.lastName }}
+                                        </template>
+                                    {% endblock %}
+
+                                    {% block acris_discount_group_detail_customer_select_result_item %}
+                                        <template #result-item="{ item, index }">
+                                            <li is="sw-select-result" v-bind="{ item, index }">
+                                                {% block acris_discount_group_detail_single_select_customer_base_results_list_result_label %}
+                                                    <span class="sw-select-result__result-item-text">
+                                            {{ item.firstName }} {{ item.lastName }}
+                                        </span>
+                                                {% endblock %}
+                                            </li>
+                                        </template>
+                                    {% endblock %}
+                                </sw-entity-single-select>
+                            {% endblock %}
+
+                            {% block acris_discount_group_detail_content_discount_group %}
+                                <sw-text-field v-model:value="item.discountGroup"
+                                               required
+                                               v-if="item.customerAssignmentType === 'materialGroup'"
+                                               class="acris-discount-group-detail__item_materialGroup"
+                                               :label="$tc('acris-discount-group.detail.fieldTitleLabelMaterialGroupCustomer')"
+                                               :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextMaterialGroupCustomer')"
+                                               :placeholder="$tc('acris-discount-group.detail.fieldTitlePlaceholderMaterialGroupCustomer')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_discount_group_detail_content_rules %}
+                                <sw-entity-many-to-many-select
+                                        v-if="item && item.rules && item.customerAssignmentType === 'rules'"
+                                        :localMode="true"
+                                        required
+                                        class="acris-discount-group-detail__rules"
+                                        :label="$tc('acris-discount-group.detail.rulesSelectFieldLabel')"
+                                        :helpText="$tc('acris-discount-group.detail.rulesSelectFieldHelpText')"
+                                        :placeholder="$tc('acris-discount-group.detail.rulesSelectFieldPlaceholder')"
+                                        v-model:entityCollection="item.rules">
+                                </sw-entity-many-to-many-select>
+                            {% endblock %}
+
+                        {% endif %}
+
+                    </sw-card>
+                {% endblock %}
+
+                {% block acris_discount_group_detail_content_card_product %}
+                    <sw-card :isLoading="isLoading" v-if="item"
+                             :title="$tc('acris-discount-group.detail.cardProduct')">
+
+                        {% block acris_discount_group_detail_content_product_assignment_type %}
+                            <sw-select-field
+                                    v-model:value="item.productAssignmentType"
+                                    required
+                                    class="acris-discount-group-detail__item_product_assignment_type"
+                                    :label="$tc('acris-discount-group.detail.fieldTitleLabelProductAssignmentType')"
+                                    :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextProductAssignmentType')">
+                                <option v-for="option in productAssignmentTypes"
+                                        :key="option.value"
+                                        :value="option.value">
+                                    {{ option.label }}
+                                </option>
+                            </sw-select-field>
+                        {% endblock %}
+
+                        {% if item.productAssignmentType != 'everyProduct' %}
+
+                            {% block acris_discount_group_detail_product_select %}
+                                <sw-entity-single-select
+                                        v-model:value="item.productId"
+                                        v-if="item.productAssignmentType === 'product'"
+                                        entity="product"
+                                        :label="$tc('acris-discount-group.detail.fieldTitleLabelProduct')"
+                                        :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextProduct')"
+                                        :placeholder="$tc('acris-discount-group.detail.fieldTitlePlaceholderProduct')"
+                                        required
+                                        :criteria="productCriteria"
+                                        :context="productSelectContext">
+
+                                    {% block acris_discount_group_detail_product_variant_label %}
+                                        <template #selection-label-property="{ item }">
+                                            <sw-product-variant-info :variations="item.variation">
+                                                {{ item.translated.name || item.name }}
+                                            </sw-product-variant-info>
+                                        </template>
+                                    {% endblock %}
+
+                                    {% block acris_discount_group_detail_product_select_result_item %}
+                                        <template #result-item="{ item, index }">
+                                            <li is="sw-select-result" v-bind="{ item, index }">
+                                                {% block acris_discount_group_detail_single_select_base_results_list_result_label %}
+                                                    <span class="sw-select-result__result-item-text">
+                                            <sw-product-variant-info :variations="item.variation">
+                                                {{ item.translated.name || item.name }}
+                                            </sw-product-variant-info>
+                                         </span>
+                                                {% endblock %}
+
+                                            </li>
+                                        </template>
+                                    {% endblock %}
+                                </sw-entity-single-select>
+                            {% endblock %}
+
+                            {% block acris_discount_group_detail_content_material_group %}
+                                <sw-text-field v-model:value="item.materialGroup"
+                                               required
+                                               v-if="item.productAssignmentType === 'materialGroup'"
+                                               class="acris-discount-group-detail__item_materialGroup"
+                                               :label="$tc('acris-discount-group.detail.fieldTitleLabelMaterialGroupProduct')"
+                                               :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextMaterialGroupProduct')"
+                                               :placeholder="$tc('acris-discount-group.detail.fieldTitlePlaceholderMaterialGroupProduct')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_discount_group_form_content_product_streams %}
+                                <sw-entity-many-to-many-select
+                                        v-if="item && item.productStreams && item.productAssignmentType === 'dynamicProductGroup'"
+                                        :localMode="true"
+                                        required
+                                        class="acris-discount-group-detail__product_streams"
+                                        :label="$tc('acris-discount-group.detail.productStreamsSelectFieldLabel')"
+                                        :helpText="$tc('acris-discount-group.detail.productStreamsSelectFieldHelpText')"
+                                        :placeholder="$tc('acris-discount-group.detail.productStreamsSelectFieldPlaceholder')"
+                                        v-model:entityCollection="item.productStreams">
+                                </sw-entity-many-to-many-select>
+                            {% endblock %}
+
+                        {% endif %}
+
+                    </sw-card>
+                {% endblock %}
+
+                {% block acris_discount_group_detail_content_card_discount %}
+                    <sw-card :isLoading="isLoading" v-if="item"
+                             :title="$tc('acris-discount-group.detail.cardDiscount')">
+
+                        {% block acris_discount_group_detail_content_discount_container %}
+                            <sw-container columns="1fr 1fr" gap="0px 30px">
+                                {% block acris_discount_group_detail_content_discount_type %}
+                                    <sw-select-field
+                                            v-model:value="item.discountType"
+                                            class="acris-discount-group-detail__item_discount_type"
+                                            :label="$tc('acris-discount-group.detail.fieldTitleLabelDiscountType')">
+                                        <option v-for="option in discountTypes"
+                                                :key="option.value"
+                                                :value="option.value">
+                                            {{ option.label }}
+                                        </option>
+                                    </sw-select-field>
+                                {% endblock %}
+
+                                {% block acris_discount_group_detail_content_discount %}
+                                <sw-number-field
+                                            v-model:value="item.discount"
+                                            required
+                                            :min="0"
+                                            class="acris-discount-group-detail__item_discount"
+                                            :label="$tc('acris-discount-group.detail.fieldTitleLabelDiscount')"
+                                            :placeholder="$tc('acris-discount-group.detail.fieldTitlePlaceholderDiscount')">
+                                        <template #suffix>
+                                            {{ discountSuffix }}
+                                        </template>
+                                    </sw-number-field>
+                                {% endblock %}
+                            </sw-container>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_calcualtion_type %}
+                            <sw-select-field
+                                    v-model:value="item.calculationType"
+                                    class="acris-discount-group-detail__item_calculation_type"
+                                    :label="$tc('acris-discount-group.detail.fieldTitleLabelCalculationType')">
+                                <option v-for="option in calculationTypes"
+                                        :key="option.value"
+                                        :value="option.value">
+                                    {{ option.label }}
+                                </option>
+                            </sw-select-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_calculation_base %}
+                            <sw-select-field
+                                    v-model:value="item.calculationBase"
+                                    required
+                                    class="acris-discount-group-detail__item_calculation_base"
+                                    :label="$tc('acris-discount-group.detail.fieldTitleLabelCalculationBase')"
+                                    :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextLabelCalculationBase')">
+                                <option v-for="option in calculationBaseOptions"
+                                        :key="option.value"
+                                        :value="option.value">
+                                    {{ option.label }}
+                                </option>
+                            </sw-select-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_rrp_tax %}
+                            <sw-select-field
+                                    v-if="item.calculationBase === 'rrp'"
+                                    v-model:value="item.rrpTax"
+                                    required
+                                    class="acris-discount-group-detail__item_rrp_tax"
+                                    :label="$tc('acris-discount-group.detail.fieldTitleLabelRrpTax')">
+                                <option v-for="option in rrpTaxOptions"
+                                        :key="option.value"
+                                        :value="option.value">
+                                    {{ option.label }}
+                                </option>
+                            </sw-select-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_list_price_type %}
+                            <sw-select-field
+                                    v-model:value="item.listPriceType"
+                                    v-if="item.calculationType === 'discount'"
+                                    required
+                                    class="acris-discount-group-detail__item_list_price_type"
+                                    :label="$tc('acris-discount-group.detail.fieldTitleLabelListPriceType')">
+                                <option v-for="option in listPriceTypes"
+                                        :key="option.value"
+                                        :value="option.value">
+                                    {{ option.label }}
+                                </option>
+                            </sw-select-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_rrp_tax_display %}
+                            <sw-select-field
+                                    v-if="item.listPriceType === 'rrp' || item.listPriceType === 'setRrp'"
+                                    v-model:value="item.rrpTaxDisplay"
+                                    required
+                                    class="acris-discount-group-detail__item_rrp_tax_display"
+                                    :label="$tc('acris-discount-group.detail.fieldTitleLabelRrpTaxDisplay')">
+                                <option v-for="option in rrpTaxDisplayOptions"
+                                        :key="option.value"
+                                        :value="option.value">
+                                    {{ option.label }}
+                                </option>
+                            </sw-select-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_rrp_alert %}
+                            <sw-alert variant="info" v-if="item.calculationBase === 'rrp' || item.listPriceType === 'rrp' || item.listPriceType === 'setRrp'">
+                                {{ $tc('acris-discount-group.detail.acrisRrpPluginAlert') }}
+                            </sw-alert>
+                        {% endblock %}
+                    </sw-card>
+                {% endblock %}
+
+                {% block acris_discount_group_detail_content_card_scale_discount %}
+                    <sw-card :isLoading="isLoading" v-if="item"
+                             :title="$tc('acris-discount-group.detail.cardScalePrice')">
+
+                        {% block acris_discount_group_detail_content_min_quantity %}
+                            <sw-number-field
+                                    v-model:value="item.minQuantity"
+                                    required
+                                    class="acris-discount-group-detail__item_min_quantity"
+                                    numberType="int"
+                                    :min="1"
+                                    :label="$tc('acris-discount-group.detail.fieldTitleLabelMinQuantity')">
+                            </sw-number-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_content_max_quantity %}
+                            <sw-number-field
+                                    v-model:value="item.maxQuantity"
+                                    class="acris-discount-group-detail__item_max_quantity"
+                                    numberType="int"
+                                    :min="1"
+                                    :allowEmpty="true"
+                                    :label="$tc('acris-discount-group.detail.fieldTitleLabelMaxQuantity')"
+                                    :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextMaxQuantity')">
+                            </sw-number-field>
+                        {% endblock %}
+                    </sw-card>
+                {% endblock %}
+
+                {% block acris_discount_group_detail_card_account_display %}
+                    <sw-card :isLoading="isLoading" v-if="item"
+                             :title="$tc('acris-discount-group.detail.cardAccountDisplay')">
+
+                        {% block acris_discount_group_detail_card_account_display_account_display %}
+                            <sw-switch-field v-model:value="item.accountDisplay"
+                                      class="acris-discount-group-detail__item_account_display"
+                                      :label="$tc('acris-discount-group.detail.fieldTitleLabelAccountDisplay')"
+                                      :helpText="$tc('acris-discount-group.detail.fieldTitleHelpTextAccountDisplay')">
+                            </sw-switch-field>
+                        {% endblock %}
+
+                        {% block acris_discount_group_detail_card_account_display_text %}
+                            <sw-text-editor required
+                                            v-model:value="item.displayText"
+                                            v-if="item.accountDisplay"
+                                            class="acris-discount-group-detail__item_account_display_text"
+                                            :label="$tc('acris-discount-group.detail.fieldTitleLabelAccountDisplayText')"
+                                            :placeholder="placeholder(item, 'displayText', $tc('acris-discount-group.detail.fieldTitlePlaceholderAccountDisplayText'))">
+                            </sw-text-editor>
+                        {% endblock %}
+                    </sw-card>
+                {% endblock %}
+
+            </sw-card-view>
+        </template>
+    {% endblock %}
+
+</sw-page>
+{% endblock %}

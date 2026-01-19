@@ -1,0 +1,33 @@
+services:
+
+  # Storage
+  swpa.backup.filesystems.awss3_filesystem:
+    class: Swpa\SwpaBackup\Filesystems\AwsS3Filesystem
+    public: false
+    tags: [ "swpa.backup.filesystems" ]
+
+  swpa.backup.filesystems.ftp_filesystem:
+    class: Swpa\SwpaBackup\Filesystems\FtpFilesystem
+    public: false
+    tags: [ "swpa.backup.filesystems" ]
+
+  swpa.backup.filesystems.local_filesystem:
+    class: Swpa\SwpaBackup\Filesystems\LocalFilesystem
+    public: false
+    tags: [ "swpa.backup.filesystems" ]
+
+  swpa.backup.filesystems.public_filesystem:
+    class: Swpa\SwpaBackup\Filesystems\PublicFilesystem
+    public: false
+    tags: [ "swpa.backup.filesystems" ]
+
+  swpa.backup.filesystems.sftp_filesystem:
+    class: Swpa\SwpaBackup\Filesystems\SftpFilesystem
+    public: false
+    tags: [ "swpa.backup.filesystems" ]
+
+  swpa.backup.filesystems:
+    class: Swpa\SwpaBackup\Filesystems\FilesystemProvider
+    public: false
+    arguments: [ "@swpa.backup.config" ]
+

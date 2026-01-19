@@ -1,0 +1,19 @@
+{
+    "acris-discount-group": {
+        "account": {
+            "orderItemColumnDiscount": "Rabatt"
+        },
+        "checkout": {
+            "offCanvasDiscountLabel": "Rabatt:",
+            "listPricePercentage": "(-%price%%)",
+            "listPriceDiscountPercentage": "-%price%%",
+            "discountGroupTitle": "Preisstaffel (%discountGroupName%)",
+            "discountGroupTitleNoName": "Preisstaffel",
+            "discountGroupQuantityEmpty": "Aktuell befinden sich keine Produkte aus dieser Rabattgruppe im Warenkorb.",
+            "discountGroupQuantity": "Sie haben bereits %discountGroupQuantity% Produkte aus dieser Rabattgruppe im Warenkorb."
+        }
+    },
+    "account" : {
+        "acrisDiscountsTitle": "Ihre Rabatte"
+    }
+}

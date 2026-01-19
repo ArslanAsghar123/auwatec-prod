@@ -1,0 +1,115 @@
+{% block swpa_backup_content_card_channel_config_sftp %}
+    <sw-card class="sw-card--grid"
+             v-if="actualConfigData && actualConfigData['SwpaBackup.settings.generalDestinationFilesystem'] === 'sftp'"
+             :title="$tc('swpa-backup.settingForm.sftp.cardTitle')">
+        {% block swpa_backup_content_card_channel_config_sftp_card_container %}
+            <sw-container>
+                {% block swpa_backup_content_card_channel_config_sftp_card_container_settings %}
+                    <div class="swpa-backup-settings-general-fields">
+                        {% block  swpa_backup_content_card_channel_config_sftp_card_container_settings_host %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemSftpHost']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemSftpHost']"
+                                                :customInheritationCheckFunction="checkTextFieldInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemSftpHost"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.sftp.filesystemSftpHost.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.sftp.filesystemSftpHost.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_sftp_card_container_settings_username %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemSftpUsername']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemSftpUsername']"
+                                                :customInheritationCheckFunction="checkTextFieldInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemSftpUsername"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.sftp.filesystemSftpUsername.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.sftp.filesystemSftpUsername.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_sftp_card_container_settings_password %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemSftpPassword']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemSftpPassword']"
+                                                :customInheritationCheckFunction="checkTextFieldInheritance">
+                                <template #content="props">
+                                    <sw-password-field name="SwpaBackup.settings.filesystemSftpPassword"
+                                                       :mapInheritance="props"
+                                                       :label="$tc('swpa-backup.settingForm.sftp.filesystemSftpPassword.label')"
+                                                       :helpText="$tc('swpa-backup.settingForm.sftp.filesystemSftpPassword.tooltipText')"
+                                                       :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                       :value="props.currentValue"
+                                                       @update:value="props.updateCurrentValue">
+                                    </sw-password-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_sftp_card_container_settings_port %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemSftpPort']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemSftpPort']"
+                                                :customInheritationCheckFunction="checkTextFieldInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemSftpPort"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.sftp.filesystemSftpPort.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.sftp.filesystemSftpPort.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_sftp_card_container_settings_timeout %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemSftpTimeout']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemSftpTimeout']"
+                                                :customInheritationCheckFunction="checkTextFieldInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemSftpTimeout"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.sftp.filesystemSftpTimeout.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.sftp.filesystemSftpTimeout.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_sftp_card_container_settings_root %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemSftpRoot']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemSftpRoot']"
+                                                :customInheritationCheckFunction="checkTextFieldInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemSftpRoot"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.sftp.filesystemSftpRoot.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.sftp.filesystemSftpRoot.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </sw-container>
+        {% endblock %}
+    </sw-card>
+{% endblock %}

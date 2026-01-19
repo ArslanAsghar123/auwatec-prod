@@ -1,0 +1,28 @@
+{% block cbax_lexicon_layout_header_lexicon_suggest %}
+
+    <div class="cbax-lexicon-search-suggest-lexicon-container">
+        <div class="cbax-lexicon-search-suggest-headline">{{ "cbaxLexiconSearch.lexicon"|trans }}</div>
+
+        <div class="cbax-lexicon-search-suggest-lexicon d-flex flex-column">
+            {% for entry in page.cbaxLexiconSuggestions %}
+                <div class="cbax-search-suggest-lexicon search-suggest-product-link">
+                    <a href="{{ seoUrl('frontend.cbax.lexicon.detail', { id: entry.id}) }}"
+                       title="{{ entry.translated.title }}"
+                       class="cbax-search-suggest-lexicon-title">
+                        {{ entry.translated.title }}
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="js-result search-suggest-total">
+            <div class="row align-items-center g-0 justify-content-end">
+                <div class="col-auto search-suggest-total-count">
+                    {{ "header.searchResults"|trans({
+                        '%count%': page.cbaxLexiconSuggestionsTotal,
+                    })|sw_sanitize }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

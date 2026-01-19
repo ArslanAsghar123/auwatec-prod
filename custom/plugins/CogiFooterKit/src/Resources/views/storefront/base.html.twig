@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_footer %}
+    <footer class="col-12 p-0 m-0" >
+        {% block base_footer_inner %}
+            {{ parent() }}
+        {% endblock %}
+    </footer>
+{% endblock %}

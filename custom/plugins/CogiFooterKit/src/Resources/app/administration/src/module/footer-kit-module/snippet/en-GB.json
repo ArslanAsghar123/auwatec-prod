@@ -1,0 +1,144 @@
+{
+    "footer-kit": {
+        "general": {
+            "footerKitSettingsLabel": "Footer Kit"
+        },
+        "tabs":{
+            "mainLabel": "Generally",
+            "navigationLabel": "Navigation Footer",
+            "informationLabel": "Information Footer ",
+            "paymentShippingLabel": "Payment/Shipping Logos",
+            "bottomLabel": "Bottom Footer"
+        },
+        "button":{
+            "saveLabel": "Save"
+        },
+        "save":{
+            "messageSaveSuccess": "Settings successfully saved."
+        },
+        "message": {
+            "addFail": "The block limit has been reached."
+        },
+        "helpText": {
+            "navigation": "You can find a tutorial to create the navigation here: https://docs.shopware.com/en/shopware-6-en/tutorials-and-faq/basic-setup",
+            "serviceHotline": "Shows the default service-hotline",
+            "shipping": "Shows the logos of the shop's active shipping methods",
+            "payment": "Shows the logos of the shop's active payment methods"
+        },
+        "placeholder": {
+            "spacingCustomLinks": "Value in pixels (0px)",
+            "spacing" : "Value in pixels (10px)",
+            "size": "Value in pixels (25px)",
+            "socialMediaString": "follow us on...",
+            "linkName": "Enter your link name...",
+            "logoSize": "Value in pixels (50px)",
+            "payment": "Payment methods",
+            "shipping": "Shipping methods",
+            "transitionTime": "300ms",
+            "productSelect": "Choose your products...",
+            "numberOfNewProduct": "6",
+            "salesChannel": "Choose your storefront...",
+            "fontSize": "Value in pixels (15px)",
+            "productTitle": "Enter a title..."
+        },
+        "label": {
+            "mainLabel": "Generally",
+            "fontSize": "Font size",
+            "vertical": "Vertical spacing",
+            "horizontal": "Horizontal spacing",
+            "background": "Navigation background",
+            "backgroundType": "Background type",
+            "backgroundColor": "Background color",
+            "color": "Color",
+            "image": "Image",
+            "fontColor": "Font color",
+            "fontColorHover": "Font color hover",
+            "fontColorLink": "Link color",
+            "fontColorLinkHover": "Link color hover",
+            "headingColor": "Heading color",
+            "backgroundImage": "Background image",
+            "transitionTime": "Transition",
+            "active": "Active",
+            "tab": "Open in a new tab",
+            "center": "Blocks center",
+            "columnSize": "Column size",
+            "paymentActive": "Payment logos active",
+            "shippingActive": "Shipping logos active",
+            "navigationLabel": "Navigation basic settings",
+            "serviceHotlineLabel": "Service-Hotline",
+            "informationLabel": "Information footer basic settings",
+            "informationBlocksLabel": "Information blocks",
+            "informationBlockLabel": "Block",
+            "paymentShippingLabel": "Payment/Shipping logos basic settings",
+            "paymentStringLabel": "Payment string",
+            "shippingStringLabel": "Shipping string",
+            "bottomFooterLabel": "Bottom footer basic settings",
+            "socialMediaLabel": "Social media basic settings",
+            "socialMediaString": "Social media string",
+            "iconSizeLabel": "Icon size",
+            "socialMediaBlocksLabel": "Social media blocks",
+            "socialMediaBlockLabel": "Social media block",
+            "iconLabel": "Icon",
+            "customLinksLabel": "Custom links basic settings",
+            "customLinksBlocksLabel": "Custom links blocks",
+            "customLinkBlockLabel": "Custom link",
+            "urlLabel": "URL",
+            "linkNameLabel": "Link name",
+            "companyLogoLabel": "Company logo settings",
+            "logoSizeLabel": "Logo size",
+            "logo": "Logo",
+            "vatLabel": "VAT text settings",
+            "informationDynamicLabel": "Show products",
+            "switchInformationType": "Information type",
+            "productType": "Produkttyp Anzeige",
+            "numberOfNewProduct": "Number of new products",
+            "salesChannel": "Sales channel",
+            "productTitle": "Title",
+            "titleColor": "Title color"
+        },
+        "background": {
+            "positionLabel": "Background image position",
+            "positionCenter": "Center",
+            "positionTop": "Top",
+            "positionRight": "Right",
+            "positionBottom": "Bottom",
+            "positionLeft": "Left"
+        },
+        "fit": {
+            "label": "Background image fit",
+            "cover": "Cover",
+            "contain": "Contain",
+            "auto": "Auto"
+        },
+        "repeatValue": {
+            "label": "Repeat options",
+            "repeat": "Repeat",
+            "no-repeat": "No repeat",
+            "repeat-x": "Repeat x-axis",
+            "repeat-y": "Repeat y-axis"
+        },
+        "information": {
+            "dynamic": "Products",
+            "custom": "Custom",
+            "productSelect": "Product select",
+            "productNew": "New products"
+        },
+        "list": {
+            "header": "Footerkit list",
+            "addButton": "Add",
+            "noNameLabel": "No name given!",
+            "noSalesChannelLabel": "No sales channel selected!"
+        },
+        "table": {
+            "name": "Name",
+            "salesChannel": "Sales channel"
+        },
+        "create": {
+            "createButton": "Create",
+            "backButton": "Back",
+            "name": "Name",
+            "salesChannel": "Sales channel",
+            "messageCreateSuccess": "The item was created successfully!"
+        }
+    }
+}

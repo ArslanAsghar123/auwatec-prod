@@ -1,0 +1,18 @@
+{% block sw_cms_element_cbax_lexicon_navigation %}
+    <div class="cbax-lexicon-cms-slot-wrapper">
+        <div v-if="isCbaxLexiconCmsPage" class="sw-cms-el-navigation">
+            <button class="btn disabled">A</button>
+            <button class="btn btn-secondary">B</button>
+            <button class="btn btn-secondary">C</button>
+            <button class="btn btn-secondary">D</button>
+            <button class="btn disabled">E</button>
+            <button class="btn disabled">F</button>
+            <button class="btn disabled">G</button>
+            ...
+            <button class="btn btn-secondary">Z</button>
+        </div>
+        <sw-alert v-if="!isCbaxLexiconCmsPage" appearance="notification" :showIcon="true" :closable="false">
+            {{ $tc('elements.wrong-page-type-alert') }}
+        </sw-alert>
+    </div>
+{% endblock %}

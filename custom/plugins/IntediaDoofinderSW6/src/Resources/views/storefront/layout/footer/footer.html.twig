@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% block layout_footer_inner_container %}
+
+    {{ parent() }}
+
+    {% if config('IntediaDoofinderSW6.config.doofinderEnabled') and config('IntediaDoofinderSW6.config.doofinderInjectionBlock') == 1 %}
+        {% block intedia_doofinder_include %}
+            <template data-intedia-doofinder data-intedia-doofinder-options='{ "layerType": "{{ config('IntediaDoofinderSW6.config.doofinderLayer') }}", "engineHash": "{{ page.footer.extensions.doofinder.hashId }}", "installationId": "{{ page.footer.extensions.doofinder.storeId }}", "doofinderRecommendation": {% if config('IntediaDoofinderSW6.config.doofinderRecommendation') %}1{% else %}0{% endif %}, "addToCartUrl": "{{ path('frontend.checkout.product.add-by-number') }}", "offCanvasUrl": "{{ path('frontend.cart.offcanvas') }}" }'></template>
+        {% endblock %}
+    {% endif %}
+
+{% endblock %}

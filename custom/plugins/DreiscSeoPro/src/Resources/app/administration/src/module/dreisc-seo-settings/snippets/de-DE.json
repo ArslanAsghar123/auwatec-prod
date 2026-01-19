@@ -1,0 +1,115 @@
+{
+    "dreiscSeoSettings": {
+        "general": {
+            "navigation": {
+                "label": "Weitere Einstellungen"
+            },
+            "textSnippets": {
+                "yes": "Ja",
+                "no": "Nein"
+            },
+            "fieldErrors": {
+                "shouldBeGreaterThenZero": "Dieser Wert muss größer 0 sein"
+            },
+            "inheritanceWarningName": "This setting"
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Weitere Einstellungen",
+                "editButtonText": "Bearbeiten",
+                "cancelButtonText": "Abbrechen",
+                "saveButtonText": "Speichern"
+            },
+            "tabs": {
+                "bulkGenerator": "Bulk Generatoren",
+                "canonical": "Canonical URLs",
+                "sitemap": "Sitemap",
+                "metaTags": "Meta-Tags",
+                "socialMedia": "Social Media",
+                "robotsTxt": "Robots.txt",
+                "seoSettings": "Sonstiges"
+            }
+        },
+        "detailSeoSettings": {
+            "fields": {
+                "labels": {
+                    "startGeneratorInTheStorageProcess": "Bulk Generatoren beim Speicherprozess starten",
+                    "parentCanonicalInheritance": "Bei Varianten generell die Canonical URL des Eltern Produkts ausgeben",
+                    "parentUrlInSitemapIfParentCanonicalInheritanceIsEnabled": "URL des Eltern Produkts statt der Varianten URLs in Sitemap ausgeben, wenn die Vererbung der Eltern Canonical Url aktiv ist (empfohlen)",
+                    "hideInSitemapIfSeoUrlNotEqualCanonical": "URL nicht in Sitemap ausgeben, wenn SEO-URL != Canonical URL (empfohlen)",
+                    "hideInSitemapIfRobotsTagNoindex": "URL nicht in Sitemap ausgeben, wenn Robots Tag = noindex (empfohlen)",
+                    "aiOpenAiApiKey": "OpenAI API Key",
+                    "aiOpenAiModel": "OpenAI Model",
+                    "defaultRobotsTagProduct": "Standard Robots-Tag für Produkte",
+                    "defaultRobotsTagCategory": "Standard Robots-Tag für Kategorien",
+                    "noIndexRequestParameterConfig": "Noindex Request Parameter Query",
+                    "seoUrlDefaultSalesChannelId": "Verkaufskanal Vorauswahl",
+                    "serpDefaultSalesChannelId": "Verkaufskanal Vorauswahl",
+                    "robotsTxtContent": "Inhalt der robots.txt",
+                    "robotsTxtAddSiteMap": "Sitemap-Link in robots.txt hinzufügen (empfohlen)"
+                },
+                "helpText": {
+                    "startGeneratorInTheStorageProcess": "Ist diese Option aktiv, so wird beim Speichern einer Kategorie bzw. eines Produkts automatisch der Bulk Generator für die jeweilige Entity gestartet. Es muss somit nicht extra der Bulk Generator gestartet werden, um die SEO Daten zu generieren.<br><br>Aus Performance-Gründen kann es unter Umständen Sinn machen diese Option zu deaktivieren, wenn bspw. eine große Menge an Daten per ERP abgeglichen wird.",
+                    "parentCanonicalInheritance": "Ist diese Option aktiv, so wird bei Varianten automatisch die Canonical URL des Eltern Produkts ausgegeben.<br><br>Somit kann vermieden werden, dass Suchmaschinen die Varianten als eigenständige Produkte indexieren und es zu Duplicate Content Problemen kommt.<br><br>Wenn aktiv, kann diese Option für einzelne Produkte in den Produktdetails des jeweiligen Eltern Produkts unter 'SEO » Meta Tags' deaktiviert werden, um zu ermöglichen das ausgewählte Varianten eine eigene Canonical URL bekommen und somit indexiert werden.<br><br>Eine ausführliche Beschreibung findest du in der Dokumentation.",
+                    "parentUrlInSitemapIfParentCanonicalInheritanceIsEnabled": "Ist diese Option aktiv, so wird in der Sitemap die URL des Eltern Produkts ausgegeben, wenn die Ausgabe der Canonical URL des Eltern Produkts bei Varianten aktiviert ist.<br><br>Diese Ausgabe kann entweder über die Option <i><span style='color:#189eff'>Bei Varianten generell die Canonical URL des Eltern Produkts ausgeben</span></i> unter <i>Weitere Einstellungen » Canonical URLs</i> oder über die Option <i><span style='color:#189eff'>Bei diesem Produkt für die Varianten die Canonical URL des Eltern Produkts ausgeben</span></i> unter <i>SEO » Meta Tags</i> des Eltern Produkts aktiviert werden.",
+                    "hideInSitemapIfSeoUrlNotEqualCanonical": "Ist diese Option aktiv, so werden URLs die als SEO-URL eine andere URL als die Canonical URL definiert haben, nicht in der Sitemap ausgegeben.",
+                    "hideInSitemapIfRobotsTagNoindex": "Ist diese Option aktiv, so werden URLs die als Robots-Tag \"noindex\" definiert haben, nicht in der Sitemap ausgegeben.",
+                    "aiOpenAiApiKey": "Der OpenAI API Key ist erforderlich, um die AI Templates des Bulk Generators abarbeiten zu können.<br><br>Einen API Key kannst du dir auf der Seite von OpenAI erstellen lassen.",
+                    "aiOpenAiModel": "Bestimmt, welches Model für die Erstellung genutzt wird.<br><br>Hinweis: An dieser Stelle werden alle Modele gelistet. Nicht alle Modelle sind für die Erstellung von SEO Texten geeignet. Es wird empfohlen das Model \"gpt-3.5-turbo\" zu verwenden.",
+                    "defaultRobotsTagProduct": "Der hier definierte Robots-Tag wird für standardmäßig für jedes Produkt verwendet, für das in den Produkt-Einstellungen kein abweichender Robots-Tag hinterlegt wurde.",
+                    "defaultRobotsTagCategory": "Der hier definierte Robots-Tag wird für standardmäßig für jede Kategorie verwendet, für das in den Kategorie-Einstellungen kein abweichender Robots-Tag hinterlegt wurde.",
+                    "noIndexRequestParameterConfig": "Über dieses Feld kannst du Request Parameter Bedingungen definieren, die dafür sorgen, dass als Robot Tag \"noindex\" ausgegeben wird.<br><br>Eine ausführliche Erklätung hierzu findest du in der Dokumentation.",
+                    "seoUrlDefaultSalesChannelId": "Standardmäßig muss in der Konfiguration der Canonical Urls eines Produkts bzw. Kategorie zunächst der Verkaufskanal ausgewählt werden, für den Anpassung durchgeführt werden soll. Wird hier ein Verkaufskanal ausgewählt, so wird dieser bei den Produkten und Kategorien automatisch vorausgewählt.",
+                    "serpDefaultSalesChannelId": "Standardmäßig muss zur Anzeige der SERP Vorschau eines Produkts bzw. Kategorie zunächst der Verkaufskanal ausgewählt werden, für den die Vorschau angezeigt werden soll. Wird hier ein Verkaufskanal ausgewählt, so wird dieser bei den Produkten und Kategorien automatisch vorausgewählt.",
+                    "robotsTxtContent": "Über dieses Feld kannst du den Inhalt der robots.txt definieren, die unter [Shop URL]\/robots.txt erreichbar ist. Hier kannst du bspw. Suchmaschinen-Bots den Zugriff auf bestimmte Bereiche deines Shops verbieten.<br><br>Beachte bitte, dass die robots.txt nur von Suchmaschinen-Bots berücksichtigt wird, die sich an die robots.txt-Richtlinien halten. Es gibt jedoch auch Bots, die sich nicht an die robots.txt halten und somit auch Bereiche deines Shops crawlen, die du eigentlich sperren möchtest.<br><br>Hast du bereits eine robots.txt in dem Dateisystem deines Shops hinterlegt, so wird diese bevorzugt. Die hier hinterlegte robots.txt wird nur verwendet, wenn keine robots.txt im Dateisystem hinterlegt ist.",
+                    "robotsTxtAddSiteMap": "Ist diese Option aktiv, so wird in der robots.txt automatisch ein Link zur Sitemap hinzugefügt"
+                },
+                "placeholder": {
+                    "seoUrlDefaultSalesChannelId": "Keine Vorauswahl hinterlegt",
+                    "serpDefaultSalesChannelId": "Keine Vorauswahl hinterlegt"
+                }
+            },
+            "cards": {
+                "metaTags": "Meta-Tags",
+                "bulkGenerators": "Bulk Generatoren",
+                "canonical": "Canonical URLs",
+                "sitemap": "Sitemap",
+                "ai": "Künstliche Intelligenz - OpenAI",
+                "serpPreview": "SERP Vorschau",
+                "seoUrl": "Canonical Urls",
+                "socialMedia": "Social Media",
+                "robotsTxt": "Robots.txt",
+                "titles": {
+                    "metaTitleLengthConfig": "Konfiguration der Meta Titel Pixellänge",
+                    "metaDescriptionLengthConfig": "Konfiguration der Meta Beschreibung Zeichenlänge",
+                    "keywordsLengthConfig": "Konfiguration der Keyword Zeichenlänge",
+                    "robotsTag": "Robots-Tag",
+                    "facebookTitleLengthConfig": "Konfiguration der Facebook Titel Zeichenlänge",
+                    "facebookDescriptionLengthConfig": "Konfiguration der Facebook Beschreibung Zeichenlänge",
+                    "twitterTitleLengthConfig": "Konfiguration der Twitter Titel Zeichenlänge",
+                    "twitterDescriptionLengthConfig": "Konfiguration der Twitter Beschreibung Zeichenlänge"
+                }
+            },
+            "notification": {
+                "titleSaveError": "Beim Speichern ist ein Fehler aufgetreten",
+                "messageSaveError": "Kontrolliere bitte die Einstellungen in dem Tab \"SEO Einstellungen\". Hier sind eine oder mehrere Einstellungen nicht valide."
+            }
+        },
+        "lengthConfigForm": {
+            "fields": {
+                "labels": {
+                    "chars": {
+                        "recommendedLengthStart": "Empfohlene Zeichenlänge von",
+                        "recommendedLengthEnd": "bis",
+                        "maxLength": "Maximale Zeichenlänge"
+                    },
+                    "pixel": {
+                        "recommendedLengthStart": "Empfohlene Pixellänge von",
+                        "recommendedLengthEnd": "bis",
+                        "maxLength": "Maximale Pixellänge"
+                    }
+                }
+            }
+        }
+    }
+}

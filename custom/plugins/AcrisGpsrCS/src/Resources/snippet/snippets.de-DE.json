@@ -1,0 +1,26 @@
+{
+    "acrisGpsr": {
+        "gpsrHeadline": "Details zur Produktsicherheit:",
+        "gpsrModalInfoText": "Siehe Details für dieses Produkt",
+        "gpsrModalLinkText": "(Warn-/Sicherheitshinweis)",
+        "gpsrHeadlineManufacturer": "Angaben zum Hersteller (Informationspflichten zur GPSR Produktsicherheitsverordnung)",
+        "gpsrModalInfoTextManufacturer": "Siehe Details für dieses Produkt",
+        "gpsrModalLinkTextManufacturer": "(Produktsicherheit: Hersteller)",
+        "gpsrHeadlineContact": "Angaben zur verantwortlichen Person (Informationspflichten zur GPSR Produktsicherheitsverordnung)",
+        "gpsrModalInfoTextContact": "Siehe Details für dieses Produkt",
+        "gpsrModalLinkTextContact": "(Produktsicherheit: verantwortliche Person)",
+        "gpsrProductType": "Produktart",
+        "gpsrTabType": "Produktart",
+        "gpsrTabManufacturer": "Hersteller",
+        "gpsrTabContact": "Verantwortliche Person",
+        "gpsrTabNote": "Warn-/Sicherheitshinweise",
+        "gpsrTab": "Informationen zur Produktsicherheit",
+        "gpsrDocumentTitleWarning": "Warnende Dokumente",
+        "gpsrDocumentTitleSafety": "Sicherheitsdokumente",
+        "gpsrDocumentTitleImportant": "Wichtige Informationsunterlagen",
+        "gpsrHeadlineProductWarning": "",
+        "gpsrHeadlineProductType": "",
+        "gpsrHeadlineProductSafetyNote": "",
+        "gpsrHeadlineProductImportantInformation": ""
+    }
+}

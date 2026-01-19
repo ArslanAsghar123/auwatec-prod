@@ -1,0 +1,412 @@
+{% block cbax_lexicon_detail %}
+    <sw-page class="cbax-lexicon-detail" >
+
+        {% block cbax_lexicon_detail_header %}
+            <template #smart-bar-header v-if="entry">
+                <h2>{{ placeholder(entry, 'title', $tc('cbax-lexicon.detail.placeholderNewEntry')) }}</h2>
+            </template>
+        {% endblock %}
+
+        {% block cbax_lexicon_detail_actions %}
+            <template #smart-bar-actions>
+
+                {% block cbax_lexicon_detail_actions_abort %}
+                    <sw-button :disabled="lexiconIsLoading" v-tooltip.bottom="tooltipCancel" @click="onCancel">
+                        {{ $tc('cbax-lexicon.detail.labelButtonCancel') }}
+                    </sw-button>
+                {% endblock %}
+
+                {% block cbax_lexicon_detail_actions_save %}
+                	<sw-button-process
+                        class="cbax-lexicon-detail__save-action"
+                        :isLoading="lexiconIsLoading"
+                        v-model:value="isSaveSuccessful"
+                        :disabled="lexiconIsLoading"
+                        :processSuccess="isSaveSuccessful"
+                        @update:process-success="saveFinish"
+                        variant="primary"
+                        v-tooltip.bottom="tooltipSave"
+                        @click.prevent="onSave">
+                        {{ $tc('cbax-lexicon.detail.labelButtonSave') }}
+                	</sw-button-process>
+                {% endblock %}
+
+            </template>
+        {% endblock %}
+
+        {% block cbax_lexicon_detail_language_switch %}
+            <template #language-switch>
+                <sw-language-switch
+                    :disabled="lexiconEntryId == null"
+                    :saveChangesFunction="saveOnLanguageChange"
+                    :abortChangeFunction="abortOnLanguageChange"
+                    @on-change="onChangeLanguage">
+                </sw-language-switch>
+            </template>
+        {% endblock %}
+
+        {% block cbax_lexicon_detail_content %}
+        <template #content>
+            <sw-card-view>
+
+                {% block cbax_lexicon_detail_content_language_info %}
+                    <sw-language-info :entityDescription="entityDescription"  v-if="entry"></sw-language-info>
+                {% endblock %}
+
+                <sw-tabs defaultItem="general">
+
+                    <template #default="{ active }">
+                        <sw-tabs-item name="general" :activeTab="active">
+                            {{ $tc('cbax-lexicon.detail.labelTabGeneral') }}
+                        </sw-tabs-item>
+
+                        <sw-tabs-item name="advanced" :activeTab="active" :disabled="lexiconEntryId === null">
+                            {{ $tc('cbax-lexicon.detail.labelTabAdvanced') }}
+                        </sw-tabs-item>
+
+                        <sw-tabs-item name="custom" :activeTab="active" :disabled="lexiconEntryId === null">
+                            {{ $tc('cbax-lexicon.detail.labelTabCustom') }}
+                        </sw-tabs-item>
+                    </template>
+
+                	<template #content="{ active }">
+                        <div v-if="active === 'general'">
+                            {% block cbax_lexicon_detail_card_base %}
+                                <sw-card :title="$tc('cbax-lexicon.detail.labelCardMainData')" :isLoading="lexiconIsLoading">
+
+                                    <template #toolbar :isLoading="lexiconIsLoading">
+                                        <cbax-lexicon-entity-visibility
+                                            v-if="saleschanneslIsLoaded"
+                                            :label="$tc('cbax-lexicon.detail.labelFieldVisibility')"
+                                            @update:entity-collection="updateSalesChannels"
+                                            :placeholder="$tc('cbax-lexicon.detail.placeholderFieldVisibility')"
+                                            :disabled="lexiconIsLoading"
+                                            :criteria="salesChannelCriteria"
+                                            :entityCollection="entry.saleschannels"
+                                        >
+                                        </cbax-lexicon-entity-visibility>
+                                    </template>
+
+                                    <sw-text-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldTitle')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldTitle')"
+                                        required
+                                        validation="required"
+                                        :error="entryTitleError"
+                                        v-model:value="entry.title">
+                                    </sw-text-field>
+
+                                    <sw-text-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldKeyword')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldKeyword')"
+                                        required
+                                        validation="required"
+                                        :error="entryKeywordError"
+                                        v-model:value="entry.keyword">
+                                    </sw-text-field>
+
+                                    <sw-alert appearance="notification" :showIcon="true" :closable="false">
+                                        {{ $tc('cbax-lexicon.detail.helpTextKeyword') }}
+                                    </sw-alert>
+
+                                    <sw-datepicker
+                                        :label="$tc('cbax-lexicon.detail.labelFieldDatePosted')"
+                                        dateType="date"
+                                        dateFormat="d.m.y"
+                                        size="default"
+                                        required
+                                        validation="required"
+                                        :error="entryDateError"
+                                        v-model:value="entry.date">
+                                    </sw-datepicker>
+
+                                    <sw-text-editor
+                                        :label="$tc('cbax-lexicon.detail.labelFieldShortDescription')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldShortDescription')"
+                                        required
+                                        validation="required"
+                                        v-model:value="entry.description">
+                                    </sw-text-editor>
+
+                                    <sw-text-editor
+                                        :label="$tc('cbax-lexicon.detail.labelFieldLongDescription')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldLongDescription')"
+                                        v-model:value="entry.descriptionLong">
+                                    </sw-text-editor>
+
+                                </sw-card>
+                    		{% endblock %}
+
+                            {% block cbax_lexicon_detail_card_seo %}
+                                <sw-card :title="$tc('cbax-lexicon.detail.labelCardSeo')" :isLoading="lexiconIsLoading">
+
+                                    <sw-text-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldMetaTitle')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldMetaTitle')"
+                                        v-model:value="entry.metaTitle">
+                                    </sw-text-field>
+
+                                    <sw-textarea-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldMetaDescription')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldMetaDescription')"
+                                        v-model:value="entry.metaDescription">
+                                    </sw-textarea-field>
+
+                                    <sw-text-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldMetaKeywords')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldMetaKeywords')"
+                                        v-model:value="entry.metaKeywords">
+                                    </sw-text-field>
+
+                                </sw-card>
+                            {% endblock %}
+
+                        </div>
+
+                        <div v-if="active === 'advanced'">
+
+                            {% block cbax_lexicon_detail_card_product %}
+                            <div>
+                                <sw-card :title="$tc('cbax-lexicon.detail.labelCardProducts')" :isLoading="lexiconIsLoading">
+
+                                    <sw-select-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldListingType')"
+                                        v-model:value="entry.listingType"
+                                        required>
+                                        <option value="selected_article">{{ $tc('cbax-lexicon.detail.labelOptionListingTypeSelectedArticle') }}</option>
+                                        <option value="product_stream">{{ $tc('cbax-lexicon.detail.labelOptionListingTypeProductStream') }}</option>
+                                    </sw-select-field>
+
+                                    <sw-text-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldHeadline')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldHeadline')"
+                                        v-model:value="entry.headline">
+                                    </sw-text-field>
+
+                                    <sw-select-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldProductLayout')"
+                                        v-model:value="entry.productLayout"
+                                        required
+                                    >
+                                        <option value="standard">{{ $tc('cbax-lexicon.detail.labelOptionProductLayoutStandard') }}</option>
+                                        <option value="image">{{ $tc('cbax-lexicon.detail.labelOptionProductLayoutImage') }}</option>
+                                        <option value="minimal">{{ $tc('cbax-lexicon.detail.labelOptionProductLayoutMinimal') }}</option>
+                                    </sw-select-field>
+
+                                    <sw-select-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldProductTemplate')"
+                                        v-model:value="entry.productTemplate"
+                                        required>
+                                        <option value="listing_1col">{{ $tc('cbax-lexicon.detail.labelOptionProductTemplateListing_1col') }}</option>
+                                        <option value="listing_2col">{{ $tc('cbax-lexicon.detail.labelOptionProductTemplateListing_2col') }}</option>
+                                        <option value="listing_3col">{{ $tc('cbax-lexicon.detail.labelOptionProductTemplateListing_3col') }}</option>
+                                        <option value="slider">{{ $tc('cbax-lexicon.detail.labelOptionProductTemplateSlider') }}</option>
+                                    </sw-select-field>
+
+                                    <sw-text-field
+                                    	v-if="entry.productTemplate == 'slider'"
+                                        :label="$tc('cbax-lexicon.detail.labelFieldProductSliderWidth')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldProductSliderWidth')"
+                                        v-model:value="entry.productSliderWidth">
+                                    </sw-text-field>
+
+                                    <sw-container columns="repeat(auto-fit, minmax(250px, 1fr))" gap="0px 30px">
+                                        <sw-select-field
+                                            :label="$tc('cbax-lexicon.detail.labelFieldProductSorting')"
+                                            v-model:value="entry.productSorting" required>
+                                            <option value="name_asc">{{ $tc('cbax-lexicon.detail.labelOptionNameAsc') }}</option>
+                                            <option value="name_desc">{{ $tc('cbax-lexicon.detail.labelOptionNameDesc') }}</option>
+                                            <option value="date_asc">{{ $tc('cbax-lexicon.detail.labelOptionDateAsc') }}</option>
+                                            <option value="date_desc">{{ $tc('cbax-lexicon.detail.labelOptionDateDesc') }}</option>
+                                            <option value="price_asc">{{ $tc('cbax-lexicon.detail.labelOptionPriceAsc') }}</option>
+                                            <option value="price_desc">{{ $tc('cbax-lexicon.detail.labelOptionPriceDesc') }}</option>
+                                        </sw-select-field>
+
+                                        <sw-number-field
+                                            :label="$tc('cbax-lexicon.detail.labelFieldProductLimit')"
+                                            :placeholder="$tc('cbax-lexicon.detail.placeholderFieldLinkDescription')"
+                                            numberType="int"
+                                            min="0"
+                                            v-model:value="entry.productLimit"
+                                            required>
+                                        </sw-number-field>
+                                    </sw-container>
+
+                                    <cbax-lexicon-many-to-many-assignment-card
+                                        v-if="entry.listingType == 'selected_article'"
+                                        class="sw-category-detail-base__products"
+                                        :title="$tc('cbax-lexicon.detail.labelFieldProductAssignmentTitle')"
+                                        :entityCollection="entry.products"
+                                        :columns="productColumns"
+                                        :isLoading="isLoading"
+                                        :criteria="productCriteria"
+                                        @cbax-lexicon-grid-term-change="onChangeGridTerm"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldProductAssignmentTitle')"
+                                        :searchableFields="['product.name', 'product.productNumber', 'product.manufacturer.name']">
+
+                                        <template #manufacturerColumn="{ item, column }">
+                                            <router-link
+                                                v-if="item.manufacturerId"
+                                                :to="{ name: column.routerLink, params: { id: item.manufacturerId } }">
+                                                {{ item.manufacturer.name || item.manufacturer.translated.name }}
+                                            </router-link>
+                                            <span v-else></span>
+                                        </template>
+
+                                        <template #empty-state>
+                                            <img :src="assetFilter('/administration/static/img/empty-states/products-empty-state.svg')">
+
+                                            <p>{{ $tc('cbax-lexicon.detail.placeholderFieldProductAssignmentEmptyState') }}</p>
+                                        </template>
+                                    </cbax-lexicon-many-to-many-assignment-card>
+
+                                    <sw-entity-single-select
+                                        v-if="entry.listingType == 'product_stream'"
+                                        :label="$tc('cbax-lexicon.detail.labelFieldProductStream')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldProductStream')"
+                                        labelProperty="name"
+                                        valueProperty="id"
+                                        required
+                                        entity="product_stream"
+                                        v-model:value="entry.productStreamId">
+                                    </sw-entity-single-select>
+
+                                </sw-card>
+                            </div>
+                            {% endblock %}
+
+                            {% block cbax_lexicon_detail_card_modal %}
+                                <sw-card :title="$tc('cbax-lexicon.detail.labelCardModalBox')" :isLoading="lexiconIsLoading">
+
+                                    <sw-text-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldLinkDescription')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldLinkDescription')"
+                                        v-model:value="entry.linkDescription">
+                                    </sw-text-field>
+
+                                    <sw-url-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldLink')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldLink')"
+                                        v-model:value="entry.link">
+                                    </sw-url-field>
+
+                                    <sw-select-field
+                                        :label="$tc('cbax-lexicon.detail.labelFieldLinkTarget')"
+                                        :placeholder="$tc('cbax-lexicon.detail.placeholderFieldLinkTarget')"
+                                        :helpText="$tc('cbax-lexicon.detail.helpTextFieldLinkTarget')"
+                                        v-model:value="entry.linkTarget">
+                                        <option value="_parent">Shopware</option>
+                                        <option value="_blank">Extern</option>
+                                    </sw-select-field>
+                                </sw-card>
+                            {% endblock %}
+                        </div>
+
+                        <div v-if="active === 'custom'">
+                            {% block cbax_lexicon_detail_card_custom_field %}
+                                <div>
+                                    <sw-card :title="$tc('cbax-lexicon.detail.labelCardCustom')" :isLoading="lexiconIsLoading">
+                                        <sw-text-editor
+                                            :label="$tc('cbax-lexicon.detail.labelFieldAttribute1')"
+                                            :placeholder="$tc('cbax-lexicon.detail.placeholderFieldAttribute1')"
+                                            v-model:value="entry.attribute1">
+                                        </sw-text-editor>
+
+                                        <div>
+                                            <sw-upload-listener
+                                                :uploadTag="mediaUploadTag + '-' + $tc('cbax-lexicon.detail.labelFieldAttribute2')"
+                                                autoUpload
+                                                @media-upload-finish="setMediaItem($event, 'media2Id')"
+                                                >
+                                            </sw-upload-listener>
+                                            <sw-media-upload-v2
+                                                class="cbax-lexicon-detail__attribute2-upload"
+                                                :source="entry.media2Id"
+                                                :allowMultiSelect="false"
+                                                variant="regular"
+                                                :uploadTag="mediaUploadTag + '-' + $tc('cbax-lexicon.detail.labelFieldAttribute2')"
+                                                :label="$tc('cbax-lexicon.detail.labelFieldAttribute2')"
+                                                :defaultFolder="'cms_page'"
+                                                :helpText="$tc('cbax-lexicon.detail.labelFieldAttribute2')"
+                                                @media-drop="onDropMedia($event, 'media2Id')"
+                                                @media-upload-remove-image="onUnlinkMedia('media2Id')"
+                                                >
+                                            </sw-media-upload-v2>
+                                            <sw-upload-listener
+                                                :uploadTag="mediaUploadTag + '-' + $tc('cbax-lexicon.detail.labelFieldAttribute3')"
+                                                autoUpload
+                                                @media-upload-finish="setMediaItem($event, 'media3Id')"
+                                            >
+                                            </sw-upload-listener>
+                                            <sw-media-upload-v2
+                                                class="cbax-lexicon-detail__attribute2-upload"
+                                                :source="entry.media3Id"
+                                                :allowMultiSelect="false"
+                                                variant="regular"
+                                                :uploadTag="mediaUploadTag + '-' + $tc('cbax-lexicon.detail.labelFieldAttribute3')"
+                                                :label="$tc('cbax-lexicon.detail.labelFieldAttribute3')"
+                                                :defaultFolder="'cms_page'"
+                                                :helpText="$tc('cbax-lexicon.detail.labelFieldAttribute3')"
+                                                @media-drop="onDropMedia($event, 'media3Id')"
+                                                @media-upload-remove-image="onUnlinkMedia('media3Id')"
+                                            >
+                                            </sw-media-upload-v2>
+                                        </div>
+
+                                        <sw-text-field
+                                            :label="$tc('cbax-lexicon.detail.labelFieldAttribute4')"
+                                            :placeholder="$tc('cbax-lexicon.detail.placeholderFieldAttribute4')"
+                                            v-model:value="entry.attribute4">
+                                        </sw-text-field>
+
+                                        <sw-text-field
+                                            :label="$tc('cbax-lexicon.detail.labelFieldAttribute5')"
+                                            :placeholder="$tc('cbax-lexicon.detail.placeholderFieldAttribute5')"
+                                            v-model:value="entry.attribute5">
+                                        </sw-text-field>
+
+                                        <sw-text-field
+                                            :label="$tc('cbax-lexicon.detail.labelFieldAttribute6')"
+                                            :placeholder="$tc('cbax-lexicon.detail.placeholderFieldAttribute6')"
+                                            v-model:value="entry.attribute6">
+                                        </sw-text-field>
+
+                                    </sw-card>
+                                </div>
+                            {% endblock %}
+
+                        </div>
+                    </template>
+
+                </sw-tabs>
+
+            </sw-card-view>
+        </template>
+        {% endblock %}
+
+        {% block cbax_lexicon_detail_sidebar %}
+
+        <template #sidebar>
+
+            <sw-sidebar :propagateWidth="true">
+                <sw-sidebar-media-item :initialFolderId="defaultMediaFolderId" v-if="defaultMediaFolderId">
+
+                    <template #context-menu-items="media">
+                        <sw-context-menu-item @click="setMediaItem({targetId: media.mediaItem.id}, 'attribute2')">
+                            {{ $tc('cbax-lexicon.detail.placeholderSidebarContextItemAttribute2') }}
+                        </sw-context-menu-item>
+
+                        <sw-context-menu-item @click="setMediaItem({targetId: media.mediaItem.id}, 'attribute3')">
+                            {{ $tc('cbax-lexicon.detail.placeholderSidebarContextItemAttribute3') }}
+                        </sw-context-menu-item>
+                    </template>
+
+                </sw-sidebar-media-item>
+            </sw-sidebar>
+
+        </template>
+
+        {% endblock %}
+
+    </sw-page>
+{% endblock %}

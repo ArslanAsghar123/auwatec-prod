@@ -1,0 +1,23 @@
+{% block sw_cms_block_doofinder_search %}
+<div class="sw-cms-el-doofinder-recommendations">
+  <div class="sw-cms-el-doofinder-recommendations__content">
+    <div class="sw-cms-el-doofinder-recommendations__navigation">
+      <sw-icon class="sw-cms-el-doofinder-recommendations__navigation-button" name="regular-double-chevron-left-s" size="24">
+      </sw-icon>
+    </div>
+
+    <div class="sw-cms-el-doofinder-recommendations__product-holder">
+      <sw-cms-el-product-box
+              v-for="index in sliderBoxLimit"
+              :key="index"
+              :element="demoProductElement"
+      />
+    </div>
+
+    <div class="sw-cms-el-doofinder-recommendations__navigation">
+      <sw-icon class="sw-cms-el-doofinder-recommendations__navigation-button" name="regular-double-chevron-right-s" size="24">
+      </sw-icon>
+    </div>
+  </div>
+</div>
+{% endblock %}

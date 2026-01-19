@@ -1,0 +1,63 @@
+{% sw_extends '@Storefront/storefront/layout/cookie/cookie-configuration.html.twig' %}
+
+{% block utilities_offcanvas_close %}{% endblock %}
+
+{% block utilities_offcanvas_content_container %}
+	<div class="offcanvas-content-container offcanvas-cookie-parent p-3">
+		<div class="offcanvas-cookie" data-loyxx-modal-cookie="true">
+			<div class="offcanvas-cookie-description">
+				<p class="text-center">
+					{{ "loyxx.cookie.message.para1"|trans()|raw }}
+				</p>
+				<p class="text-center">
+					{{ "loyxx.cookie.message.para2"|trans()|raw }}
+				</p>
+				<p class="text-center">
+					{{ "loyxx.cookie.message.para3"|trans({
+                        '%url%': path('frontend.cms.page', { id: config('core.basicInformation.privacyPage') })
+                    })|raw }}
+				</p>
+			</div>
+
+			<div class="offcanvas-cookie-list">
+				{% for cookieGroup in cookieGroups %}
+					{% sw_include '@Storefront/storefront/layout/cookie/cookie-configuration-group.html.twig' with {
+                        cookieGroup: cookieGroup
+                    } only %}
+				{% endfor %}
+			</div>
+
+			<div class="open-cookie-settings-container m-2">
+				<span class="open-cookie-settings">{{ "loyxx.cookie.open_settings"|trans()|raw }}</span>
+			</div>
+
+			<div class="loyxx-cookie-buttons row col col-lg-6 col-sm-12 offset-lg-6 offset-sm-0 pad0R">
+				{% block layout_cookie_configuration_button %}
+					<div class="col-6 pad0R btn-bigger-font ">
+
+						<button type="submit" class="btn btn-{% if config('LoyxxCookiePopupWithFooterIntegration.config.loyxxCookieAcceptSelectedButtonColor') is empty %}primary{% else %}{{ config('LoyxxCookiePopupWithFooterIntegration.config.loyxxCookieAcceptSelectedButtonColor') }}{% endif %} col-12 js-offcanvas-cookie-submit">
+							{{ "loyxx.cookie.save"|trans|sw_sanitize }}
+						</button>
+
+						<span class="cookie-permission-button js-cookie-permission-button pad0R">
+							<button type="submit" class="btn btn-{% if config('LoyxxCookiePopupWithFooterIntegration.config.loyxxCookieDeclineAllButtonColor') is empty %}primary{% else %}{{ config('LoyxxCookiePopupWithFooterIntegration.config.loyxxCookieDeclineAllButtonColor') }}{% endif %} col-12" title="{{ "loyxx.cookie.save_technical_title"|trans|sw_sanitize }}">
+								{{ "loyxx.cookie.save_technical"|trans|sw_sanitize }}
+							</button>
+						</span>
+					</div>
+				{% endblock %}
+
+				{% block layout_cookie_configuration_allow_all_button %}
+					<div class="col-6 pad0R btn-bigger-font">
+						{# <div class="open-cookie-settings-container text-center"> #}
+						{# <span class="open-cookie-settings">{{ "loyxx.cookie.open_settings"|trans()|raw }}</span> #}
+						{# </div> #}
+
+						<button type="submit" title="{{ "loyxx.cookie.acceptAll_title"|trans|sw_sanitize }}" class="btn btn-{% if config('LoyxxCookiePopupWithFooterIntegration.config.loyxxCookieAcceptAllButtonColor') is empty%}primary{% else %}{{ config('LoyxxCookiePopupWithFooterIntegration.config.loyxxCookieAcceptAllButtonColor') }}{% endif %} col-12 js-offcanvas-cookie-accept-all">
+							{{ "loyxx.cookie.acceptAll"|trans|sw_sanitize }}
+						</button>
+					</div>
+				{% endblock %}
+			</div>
+		</div>
+	{% endblock %}

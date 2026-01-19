@@ -1,0 +1,242 @@
+{% block sw_manufacturer_detail_base_info_field_name %}
+    <sw-text-field
+            v-model:value="manufacturer.name"
+            :label="$tc('sw-manufacturer.detail.general.fieldTitleName')"
+            :placeholder="placeholder(manufacturer, 'name', $tc('sw-manufacturer.detail.general.fieldPlaceholderName'))"
+            name="name"
+            validation="required"
+            required
+            :error="manufacturerNameError"
+            :disabled="!acl.can('product_manufacturer.editor')"
+    />
+{% endblock %}
+
+{% block sw_manufacturer_detail_base_info_field_link %}
+    <sw-text-field
+            v-model:value="manufacturer.link"
+            :label="$tc('sw-manufacturer.detail.labelLink')"
+            :placeholder="$tc('sw-manufacturer.detail.placeholderLink')"
+            :help-text="$tc('sw-manufacturer.detail.general.fieldHelpTextWebsite')"
+            name="link"
+            :disabled="!acl.can('product_manufacturer.editor')"
+    />
+{% endblock %}
+
+{% block sw_manufacturer_detail_base_info_field_description %}
+    <sw-select-field
+            v-model:value="acris_gpsr_manufacturer_shopware_link"
+            @update:value="onChangeManufacturer"
+            :label="$tc('sw-manufacturer.detail.general.fieldTitleLinkBehavior')"
+            :help-text="$tc('sw-manufacturer.detail.general.fieldHelpTextLinkBehavior')">
+        <option value="standard">{{ $tc('sw-manufacturer.detail.general.fieldTitleLinkOptionStandard') }}</option>
+        <option value="modal">{{ $tc('sw-manufacturer.detail.general.fieldTitleLinkOptionModal') }}</option>
+    </sw-select-field>
+
+    {% parent %}
+{% endblock %}
+
+ {% block sw_manufacturer_detail_base_basic_info_card %}
+     {% parent %}
+
+     {% block acris_gpsr_manufacturer %}
+         <sw-card
+                 class="sw-manufacturer-detail__gpsr-manufacturer"
+                 position-identifier="sw-manufacturer-detail-gpsr-manufacturer"
+                 :title="$tc('sw-manufacturer.detail.acrisGpsr.cardManufacturerTitle')"
+                 :is-loading="manufacturerIsLoading"
+         >
+             {% block acris_gpsr_manufacturer_hint %}
+                 <sw-alert
+                         class="sw-manufacturer-detail__gpsr-hint"
+                         variant="info">
+                     {{ $tc('sw-manufacturer.detail.acrisGpsr.manufacturerHint') }}
+                 </sw-alert>
+             {% endblock %}
+
+             {% block acris_gpsr_manufacturer_name %}
+                 <sw-text-field
+                         v-model:value="acris_gpsr_manufacturer_name"
+                         @update:value="onChangeManufacturer"
+                         class="sw-manufacturer-detail__gpsr-name"
+                         :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleMfName')"
+                         :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderName')"
+                 />
+             {% endblock %}
+
+             {% block acris_gpsr_manufacturer_address %}
+                 <sw-container columns="1fr 1fr" gap="0px 30px" align="start">
+                     {% block acris_gpsr_manufacturer_street %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_manufacturer_street"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-street"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleStreet')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderStreet')"
+                         />
+                     {% endblock %}
+
+                     {% block acris_gpsr_manufacturer_number %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_manufacturer_house_number"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-number"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleNumber')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderNumber')"
+                         />
+                     {% endblock %}
+
+                     {% block acris_gpsr_manufacturer_zipcode %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_manufacturer_zipcode"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-number"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleZipcode')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderZipcode')"
+                         />
+                     {% endblock %}
+
+                     {% block acris_gpsr_manufacturer_city %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_manufacturer_city"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-city"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleCity')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderCity')"
+                         />
+                     {% endblock %}
+
+                     {% block acris_gpsr_manufacturer_country %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_manufacturer_country"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-country"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleCountry')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderCountry')"
+                         />
+                     {% endblock %}
+                 </sw-container>
+             {% endblock %}
+
+             {% block acris_gpsr_manufacturer_phone %}
+                 <sw-text-field
+                         v-model:value="acris_gpsr_manufacturer_phone_number"
+                         @update:value="onChangeManufacturer"
+                         class="sw-manufacturer-detail__gpsr-phone"
+                         :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePhone')"
+                         :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderPhone')"
+                 />
+             {% endblock %}
+
+             {% block acris_gpsr_manufacturer_electronical_address %}
+                 <sw-text-field
+                         v-model:value="acris_gpsr_manufacturer_address"
+                         @update:value="onChangeManufacturer"
+                         class="sw-manufacturer-detail__gpsr-address"
+                         :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleAddress')"
+                         :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderAddress')"
+                 />
+             {% endblock %}
+         </sw-card>
+     {% endblock %}
+
+     {% block acris_gpsr_contact %}
+         <sw-card
+                 class="sw-manufacturer-detail__gpsr-contact"
+                 position-identifier="sw-manufacturer-detail-gpsr-contact"
+                 :title="$tc('sw-manufacturer.detail.acrisGpsr.cardContactTitle')"
+                 :is-loading="manufacturerIsLoading"
+         >
+             {% block acris_gpsr_contact_hint %}
+                 <sw-alert
+                         class="sw-manufacturer-detail__gpsr-hint"
+                         variant="info">
+                     {{ $tc('sw-manufacturer.detail.acrisGpsr.contactHint') }}
+                 </sw-alert>
+             {% endblock %}
+
+             {% block acris_gpsr_contact_name %}
+                 <sw-text-field
+                         v-model:value="acris_gpsr_contact_name"
+                         @update:value="onChangeManufacturer"
+                         class="sw-manufacturer-detail__gpsr-name"
+                         :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleContactName')"
+                         :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderName')"
+                 />
+             {% endblock %}
+
+             {% block acris_gpsr_contact_address %}
+                 <sw-container columns="1fr 1fr" gap="0px 30px" align="start">
+                     {% block acris_gpsr_contact_street %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_contact_street"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-street"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleStreet')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderStreet')"
+                         />
+                     {% endblock %}
+
+                     {% block acris_gpsr_contact_number %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_contact_house_number"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-number"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleNumber')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderNumber')"
+                         />
+                     {% endblock %}
+
+                     {% block acris_gpsr_contact_zipcode %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_contact_zipcode"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-number"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleZipcode')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderZipcode')"
+                         />
+                     {% endblock %}
+
+                     {% block acris_gpsr_contact_city %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_contact_city"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-city"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleCity')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderCity')"
+                         />
+                     {% endblock %}
+
+                     {% block acris_gpsr_contact_country %}
+                         <sw-text-field
+                                 v-model:value="acris_gpsr_contact_country"
+                                 @update:value="onChangeManufacturer"
+                                 class="sw-manufacturer-detail__gpsr-country"
+                                 :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleCountry')"
+                                 :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderCountry')"
+                         />
+                     {% endblock %}
+                 </sw-container>
+             {% endblock %}
+
+             {% block acris_gpsr_contact_phone %}
+                 <sw-text-field
+                         v-model:value="acris_gpsr_contact_phone_number"
+                         @update:value="onChangeManufacturer"
+                         class="sw-manufacturer-detail__gpsr-phone"
+                         :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePhone')"
+                         :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderPhone')"
+                 />
+             {% endblock %}
+
+             {% block acris_gpsr_contact_electronical_address %}
+                 <sw-text-field
+                         v-model:value="acris_gpsr_contact_address"
+                         @update:value="onChangeManufacturer"
+                         class="sw-manufacturer-detail__gpsr-address"
+                         :label="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitleAddress')"
+                         :placeholder="$tc('sw-manufacturer.detail.acrisGpsr.fieldTitlePlaceholderAddress')"
+                 />
+             {% endblock %}
+         </sw-card>
+     {% endblock %}
+ {% endblock %}

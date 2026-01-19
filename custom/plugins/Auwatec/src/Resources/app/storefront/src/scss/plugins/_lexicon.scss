@@ -1,0 +1,258 @@
+.is-lexicon {
+  .lexicon-sidebar-filter {
+    padding: 20px 20px 0 20px;
+
+    .cms-block-container {
+      padding: 0 !important;
+    }
+
+    .btn.filter-panel-wrapper-toggle {
+      @extend .btn-outline-primary;
+      border: 1px solid $sw-color-brand-primary;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row-reverse;
+      align-items: center;
+
+      .icon {
+        margin-top: -12px;
+      }
+    }
+  }
+
+  .lexicon-newest-entries,
+  .lexicon-most-read-entries,
+  .lexicon-listing-entries,
+  .lexicon-text-detail {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background: $white;
+  }
+
+  .lexicon-text-detail + .cms-block-product-slider {
+    margin-top: 50px;
+  }
+
+  .lexicon-headline {
+    display: none;
+  }
+
+  .lexicon-navigation {
+    & > .cms-block-container {
+      padding: 0 !important;
+    }
+
+    .lexicon-navigation-panel {
+      padding: 0;
+      border: none;
+      background: $body-bg;
+
+      .btn {
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        padding: 0;
+        margin: 5px 4px;
+        font-size: 24px;
+        font-weight: $font-weight-bold;
+        border: none;
+
+        .icon {
+          transform: translateY(-5px);
+        }
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        &.btn-secondary {
+          background: #99D6FF;
+
+          &:hover {
+            background: $sw-color-brand-primary;
+          }
+        }
+
+        &.is--active {
+          background: $sw-color-brand-primary;
+        }
+
+        &.disabled {
+          background: $gray-300;
+          color: $white;
+        }
+      }
+    }
+
+    .lexicon-link-panel {
+      display: none;
+    }
+  }
+
+  .lexicon-listing-entries,
+  .lexicon-newest-entries,
+  .lexicon-most-read-entries {
+    .cms-listing-col {
+      @extend .col-sm-12;
+      @extend .col-lg-6;
+      @extend .col-xl-6;
+    }
+
+    h2 {
+      font-size: 36px;
+      font-weight: $font-weight-bold;
+      margin-bottom: 45px;
+    }
+  }
+
+  .keyword-box {
+    min-height: 0;
+    border: none;
+    margin-bottom: 50px;
+
+    .card-body {
+      padding: 0;
+    }
+
+    .keyword-name a {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    .keyword-description {
+      margin-bottom: 80px;
+    }
+
+    .keyword-action .btn {
+      min-width: 155px;
+      border-color: inherit;
+    }
+  }
+
+  .lexicon-text-detail {
+    .cms-element-text {
+      max-width: 1000px;
+    }
+  }
+
+  .lexicon-detail-title h1 {
+    font-size: 36px;
+    line-height: 40px;
+  }
+
+  .lexicon-detail-description {
+    ul {
+      padding-left: 17px;
+    }
+  }
+
+  .lexicon-pagination {
+    display: none;
+  }
+
+  .lexicon-detail-product-listing {
+    padding-top: 50px;
+
+    .cms-listing-col {
+      @extend .col-xl-4;
+    }
+  }
+}
+
+.lexicon-dv-back-button-wrapper {
+  display: flex;
+  justify-content: end;
+
+  .lexicon-dv-back-button {
+    margin-right: 20px;
+    margin-top: -10px;
+    display: flex;
+    align-content: center;
+
+    .icon-arrow-a-right {
+      transform: rotate(180deg) translate(0, -5px);
+      margin-right: 5px;
+    }
+  }
+}
+
+//useful typo
+.cms-breadcrump {
+  padding: 0 20px;
+}
+
+.lexicon-filter-panel-items-container {
+  .btn {
+    margin-bottom: 15px;
+  }
+}
+
+.modal-body .ajax-keyword-box .ajax-keyword-box-action .btn {
+  border-color: inherit;
+}
+
+@include media-breakpoint-down(md) {
+  .cms-breadcrump { //useful typo
+    display: none;
+  }
+  .is-lexicon {
+    margin-top: -20px;
+
+    .cms-section-default.boxed {
+      padding: 0;
+      background: $white;
+
+      .lexicon-detail-product-listing {
+        background: $body-bg;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .is-lexicon {
+    .lexicon-sidebar-filter {
+      padding: 30px 0 0 0;
+    }
+
+    .lexicon-newest-entries,
+    .lexicon-most-read-entries,
+    .lexicon-listing-entries,
+    .lexicon-text-detail {
+      margin-top: 50px;
+    }
+
+    .lexicon-text-detail + .cms-block-product-slider {
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+
+    .lexicon-listing-entries,
+    .lexicon-newest-entries,
+    .lexicon-most-read-entries {
+      h2 {
+        text-align: center;
+      }
+    }
+
+    .lexicon-detail-product-listing {
+      & > .cms-block-container {
+        padding: 0 !important;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .is-lexicon {
+    .lexicon-headline {
+      display: block;
+      text-align: center;
+      padding: 40px 0 20px 0;
+    }
+  }
+}

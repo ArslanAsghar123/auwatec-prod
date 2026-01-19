@@ -1,0 +1,41 @@
+{% block swpa_backup_content_card %}
+    <div class="sw-product-detail-base">
+        <div class="sw-product-list__content">
+            <sw-entity-listing ref="swProductGrid"
+                               class="sw-product-list-grid"
+                               :items="logs"
+                               :columns="columns"
+                               :repository="repository"
+                               detailRoute="sw.product.detail"
+                               :showSelection="false"
+                               :showSettings="false"
+                               :allowInlineEdit="false"
+                               :allowColumnEdit="false"
+                               :showActions="false"
+                               :isLoading="isLoading">
+                {% block swpa_backup_grid_columns %}
+
+
+                    {% block swpa_backup_grid_columns_status %}
+                        <template #column-status="{ item, isInlineEdit }">
+                            {% block swpa_backup_grid_columns_status_content %}
+                                <template>
+                                    <sw-icon v-if="item.status && item.deleted==0"
+                                             name="small-default-checkmark-line-medium" small
+                                             class="is--active"></sw-icon>
+                                    <sw-icon v-if="!item.status && item.deleted==0" name="small-default-x-line-medium"
+                                             small class="is--inactive"></sw-icon>
+                                    <span style="color:#BDBDBD"
+                                          v-if="item.deleted==1">{{ $tc('swpa-backup.list.column.deleted.options.deleted') }}</span>
+                                    <span style="color:#F5A9A9"
+                                          v-if="item.deleted==2">{{ $tc('swpa-backup.list.column.deleted.options.notFound') }}</span>
+                                </template>
+                            {% endblock %}
+                        </template>
+                    {% endblock %}
+
+                {% endblock %}
+            </sw-entity-listing>
+        </div>
+    </div>
+{% endblock %}

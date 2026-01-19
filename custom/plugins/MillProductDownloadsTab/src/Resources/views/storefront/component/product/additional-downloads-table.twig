@@ -1,0 +1,52 @@
+{% block mill_product_downloads_additional_table_container %}
+
+    {% if productDownloads %}
+
+        <div class="mill-product-downloads-additional-table card {% if isBottom %}is-bottom{% endif %}">
+
+            <div class="card-body">
+
+                <ul class="list-group">
+
+                    {% block mill_product_downloads_additional_table_container_headline %}
+
+                        {% if config('MillProductDownloadsTab.config.showAdditionalTableTitle') %}
+
+                            <li class="mill-product-downloads-additional-table-headline list-group-item bg-light text-dark">
+                                {{ "millProductDownloadsTab.additionalTable.headline"|trans }}
+                            </li>
+
+                        {% endif %}
+
+                    {% endblock %}
+
+                    {% block mill_product_downloads_additional_table_container_items %}
+
+                        {% for mediaFile in productDownloads %}
+
+                            <li class="mill-product-downloads-additional-table-item list-group-item align-items-center">
+
+                                <a href="{{ mediaFile.url }}" target="_blank"
+                                   title="{% if config('MillProductDownloadsTab.config.showDownloadTitlePrefix') %}{{ "millProductDownloadsTab.detail.prefix"|trans }}{% endif %}{{ mediaFile.title }}"
+                                   {% if not config('MillProductDownloadsTab.config.searchEngineIndexing') %}rel="nofollow"{% endif %}
+                                   {% if config('MillProductDownloadsTab.config.forceLinkDownload') %}download{% endif %}>
+
+                                    {% if config('MillProductDownloadsTab.config.showAdditionalTableDownloadIcon') %}{% sw_include "@Storefront/storefront/utilities/icon.html.twig" with { 'name': 'circle-download', 'size': 'sm'} %}{% endif %}{% if config('MillProductDownloadsTab.config.showDownloadTitlePrefix') %}{{ "millProductDownloadsTab.detail.prefix"|trans }}{% endif %}{{ mediaFile.title }}
+
+                                </a>
+
+                            </li>
+
+                        {% endfor %}
+
+                    {% endblock %}
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/component/delivery-information.html.twig' %}
+
+{% block component_delivery_information_default %}
+    <link itemprop="availability" href="http://schema.org/OutOfStock"/>
+    <p class="delivery-information delivery-soldout">
+        <span class="delivery-status-indicator bg-danger"></span>
+        {{ "detail.soldOut"|trans|sw_sanitize }}
+<div class="footer-logo is-shipping mt-2">
+            <img src="{{ asset('bundles/auwatec/logo/ups.svg', 'asset') }}" alt="UPS" class="img-fluid footer-logo-image" loading="lazy">
+            <img src="{{ asset('bundles/auwatec/logo/DHL.svg', 'asset') }}" alt="DHL" class="img-fluid footer-logo-image" loading="lazy">
+           <img src="{{ asset('bundles/auwatec/logo/gls.svg', 'asset') }}" alt="GLS" class="img-fluid footer-logo-image" style="height: 24px;" loading="lazy">
+        </div>
+    </div>
+    </p>
+{% endblock %}

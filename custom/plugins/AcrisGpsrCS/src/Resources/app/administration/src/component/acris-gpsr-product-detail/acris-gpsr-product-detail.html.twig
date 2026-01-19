@@ -1,0 +1,160 @@
+{% block sw_product_detail_base_price_card %}
+
+    <sw-card
+            class="sw-product-detail-base__gpsr"
+            position-identifier="sw-product-detail-base-gpsr"
+            :title="gpsrTitle"
+            :is-loading="isLoadingGpsr"
+            v-if="product.customFields"
+    >
+
+        {% block acris_gpsr_hint %}
+            <sw-alert
+                    class="sw-product-detail-base__gpsr-hint"
+                    variant="info"
+            >
+                {{ $tc('sw-product.detailBase.acrisGpsr.hint') }}
+            </sw-alert>
+        {% endblock %}
+
+        {% block acris_gpsr_product_type %}
+            <sw-inherit-wrapper
+                    v-model:value="product.customFields.acris_gpsr_product_type"
+                    :label="$tc('sw-product.detailBase.acrisGpsr.fieldTitleProductType')"
+                    :has-parent="!!parentProduct.id"
+                    :inheritedValue="getInheritValue('acris_gpsr_product_type')">
+                <template #content="props">
+                    <sw-text-field
+                            :disabled="props.isInherited"
+                            :value="props.currentValue"
+                            @update:value="props.updateCurrentValue"
+                            class="sw-product-detail-base__gpsr-product-type"
+                            :placeholder="$tc('sw-product.detailBase.acrisGpsr.fieldTitlePlaceholderProductType')"
+                    />
+                </template>
+            </sw-inherit-wrapper>
+        {% endblock %}
+
+        {% block acris_gpsr_product_manufacturer %}
+            <sw-inherit-wrapper
+                    v-model:value="product.customFields.acris_gpsr_product_manufacturer"
+                    :label="$tc('sw-product.detailBase.acrisGpsr.fieldTitleProductManufacturer')"
+                    :has-parent="!!parentProduct.id"
+                    :inheritedValue="getInheritValue('acris_gpsr_product_manufacturer')">
+                <template #content="props">
+                    <sw-text-field
+                            :disabled="props.isInherited"
+                            :value="props.currentValue"
+                            @update:value="props.updateCurrentValue"
+                            class="sw-product-detail-base__gpsr-manufacturer"
+                            :placeholder="$tc('sw-product.detailBase.acrisGpsr.fieldTitlePlaceholderProductManufacturer')"
+                    />
+                </template>
+            </sw-inherit-wrapper>
+        {% endblock %}
+
+        {% block acris_gpsr_product_contact %}
+            <sw-inherit-wrapper
+                    v-model:value="product.customFields.acris_gpsr_product_contact"
+                    :label="$tc('sw-product.detailBase.acrisGpsr.fieldTitleProductContact')"
+                    :has-parent="!!parentProduct.id"
+                    :inheritedValue="getInheritValue('acris_gpsr_product_contact')">
+                <template #content="props">
+                    <sw-text-field
+                            :disabled="props.isInherited"
+                            :value="props.currentValue"
+                            @update:value="props.updateCurrentValue"
+                            class="sw-product-detail-base__gpsr-contact"
+                            :placeholder="$tc('sw-product.detailBase.acrisGpsr.fieldTitlePlaceholderProductManufacturer')"
+                    />
+                </template>
+            </sw-inherit-wrapper>
+        {% endblock %}
+        <sw-card :title="$tc('sw-product.detailBase.acrisGpsr.fieldTitleProductWarningHint')">
+
+            {% block acris_gpsr_product_warning_hint %}
+                <sw-inherit-wrapper
+                        v-model:value="product.customFields.acris_gpsr_product_hint_warning"
+                        :label="$tc('sw-product.detailBase.acrisGpsr.fieldTitlePlaceholderProductWarningHint')"
+                        :has-parent="!!parentProduct.id"
+                        :inheritedValue="getInheritValue('acris_gpsr_product_hint_warning')">
+                    <template #content="{ currentValue, updateCurrentValue, isInherited }">
+                        <sw-text-editor
+                                :disabled="isInherited"
+                                :value="currentValue"
+                                @update:value="updateCurrentValue"
+                                class="sw-product-detail-base__gpsr-warning-hint"
+                                :placeholder="$tc('sw-product.detailBase.acrisGpsr.fieldTitlePlaceholderProductWarningHint')"
+                        />
+                    </template>
+                </sw-inherit-wrapper>
+            {% endblock %}
+            {% block acris_gpsr_product_warning_hint_file %}
+                <acris-gpsr-product-download-form v-if="mediaFormVisible"
+                                                  :productId="product.id"
+                                                  gpsrType ="warning_note"
+                                                  acrisUploadTag="acrisProductDownloadsUploadTagWaringNote"
+                                                  @media-open="onOpenDownloadModal">
+                </acris-gpsr-product-download-form>
+            {% endblock %}
+        </sw-card>
+
+        <sw-card :title="$tc('sw-product.detailBase.acrisGpsr.fieldTitleProductSecurityHint')">
+
+            {% block acris_gpsr_product_security_hint %}
+                <sw-inherit-wrapper
+                        v-model:value="product.customFields.acris_gpsr_product_hint_safety"
+                        :label="$tc('sw-product.detailBase.acrisGpsr.fieldTitlePlaceholderProductSecurityHint')"
+                        :has-parent="!!parentProduct.id"
+                        :inheritedValue="getInheritValue('acris_gpsr_product_hint_safety')">
+                    <template #content="{ currentValue, updateCurrentValue, isInherited }">
+                        <sw-text-editor
+                                :disabled="isInherited"
+                                :value="currentValue"
+                                @update:value="updateCurrentValue"
+                                class="sw-product-detail-base__gpsr-warning-hint"
+                                :placeholder="$tc('sw-product.detailBase.acrisGpsr.fieldTitlePlaceholderProductSecurityHint')"
+                        />
+                    </template>
+                </sw-inherit-wrapper>
+                {% block acris_gpsr_product_security_hint_file %}
+                    <acris-gpsr-product-download-form v-if="mediaFormVisible"
+                                                      :productId="product.id"
+                                                      gpsrType ="security_note"
+                                                      acrisUploadTag="acrisProductDownloadsUploadTagSecurityNote"
+                                                      @media-open="onOpenDownloadModal">
+                    </acris-gpsr-product-download-form>
+                {% endblock %}
+            {% endblock %}
+        </sw-card>
+        <sw-card :title="$tc('sw-product.detailBase.acrisGpsr.fieldTitleProductInformationHint')">
+            {% block acris_gpsr_product_info_hint %}
+                <sw-inherit-wrapper
+                        v-model:value="product.customFields.acris_gpsr_product_hint_information"
+                        :label="$tc('sw-product.detailBase.acrisGpsr.fieldTitlePlaceholderInformationHint')"
+                        :has-parent="!!parentProduct.id"
+                        :inheritedValue="getInheritValue('acris_gpsr_product_hint_information')">
+                    <template #content="{ currentValue, updateCurrentValue, isInherited }">
+                        <sw-text-editor
+                                :disabled="isInherited"
+                                :value="currentValue"
+                                @update:value="updateCurrentValue"
+                                class="sw-product-detail-base__gpsr-warning-hint"
+                                :placeholder="$tc('sw-product.detailBase.acrisGpsr.fieldTitlePlaceholderInformationHint')"
+                        />
+                    </template>
+                </sw-inherit-wrapper>
+                {% block acris_gpsr_product_info_hint_file %}
+                    <acris-gpsr-product-download-form v-if="mediaFormVisible"
+                                                      :productId="product.id"
+                                                      gpsrType ="important_info"
+                                                      acrisUploadTag="acrisProductDownloadsUploadTagInfoHint"
+                                                      @media-open="onOpenDownloadModal">
+                    </acris-gpsr-product-download-form>
+                {% endblock %}
+            {% endblock %}
+        </sw-card>
+    </sw-card>
+
+    {% parent %}
+{% endblock %}

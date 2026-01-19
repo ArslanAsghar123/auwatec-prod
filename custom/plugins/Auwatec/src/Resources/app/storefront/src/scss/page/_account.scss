@@ -1,0 +1,191 @@
+//general
+.is-ctl-accountorder,
+.is-ctl-accountpayment,
+.is-ctl-address,
+.is-ctl-accountprofile{
+  .content-main > .container{
+    background: $white;
+    padding-bottom: 30px;
+  }
+  .seo-text{
+    margin-top: 70px;
+  }
+}
+
+.account-content{
+  div.account-content-main{
+    @extend .offset-xl-0;
+    @extend .col-xl-8;
+  }
+  .account-content-aside{
+    @extend .col-xl-3;
+  }
+
+  .account-aside-footer,
+  .account-aside-header,
+  .account-aside-item{
+    padding-left: 0;
+  }
+  .account-aside-footer.card-footer{
+    border-top: 1px solid $sw-border-color;
+    .btn .icon{
+      margin-left: 0;
+    }
+  }
+}
+
+//account: overview
+.account-welcome{
+  margin-bottom: 50px;
+}
+
+.account-overview-card{
+  .address{
+    margin-bottom: 20px;
+  }
+}
+
+.overview-shipping-address,
+.overview-billing-address,
+.account-overview-profile,
+.account-overview-payment{
+  @extend .col-md-6;
+
+  .gray-box{
+    background: $gray-100;
+    padding: 30px 20px;
+    height: calc(100% - 27px);
+    display: flex;
+    flex-direction: column;
+    .btn{
+      @extend .primary-text-btn;
+    }
+  }
+}
+
+.account-overview-newsletter .js-newsletter-wrapper{
+  background: $gray-100;
+  padding: 30px 20px;
+}
+
+.account-overview-newest-order{
+  .card-title{
+    margin-bottom: 15px;
+    border-bottom: 1px solid $sw-border-color;
+  }
+}
+
+.account-profile-change{
+  font-size: 16px;
+}
+
+
+//address-modal
+.js-address-editor{
+  padding: 0 20px;
+  .card-title{
+    padding-bottom: 20px;
+  }
+}
+
+//account: order
+.order-table{
+  margin-bottom: 70px;
+}
+
+.order-detail-content-footer{
+  margin-top: 30px;
+}
+
+.order-hide-btn{
+  color: $sw-color-brand-primary;
+}
+
+//account: profile
+.account-profile-credentials .gray-box,
+#profilePersonalForm,
+  //account: address: edit/new
+.account-address-form > .card,
+//account: payment
+.account-payment-card > .card-body > form{
+  background: $gray-100;
+  padding: 40px 20px 30px 20px;
+  .btn{
+    @extend .primary-text-btn;
+  }
+}
+
+.account-payment .payment-method-image{
+  display: none;
+}
+
+.account-profile-credentials{
+  .col-md-6:first-child{
+    @extend .col-md-12;
+    margin-bottom: 30px;
+  }
+  .col-md-3{
+    @extend .col-md-6;
+    @extend .col-xl-4;
+  }
+}
+
+
+//account: addresses
+.is-ctl-address{
+  .account-content{
+    div.account-content-main{
+      @extend .col-xl-9;
+    }
+  }
+
+  .address-list > .row,
+  .row.default-address{
+    --bs-gutter-x: 15px;
+  }
+
+  .default-address{
+    .address-card{
+      .address{
+        background: $gray-100;
+        padding: 30px 20px;
+      }
+    }
+  }
+
+  .address-list{
+    .address-card{
+      @extend .col-sm-12;
+      @extend .col-md-6;
+      @extend .col-xl-4;
+
+      .card-body{
+        background: $gray-100;
+        padding: 30px 20px;
+        .card-actions{
+          .btn{
+            @extend .primary-text-btn;
+          }
+        }
+      }
+      .address{
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-down(sm){
+  //account: order
+  .order-hide-btn{
+    @extend .btn-block;
+  }
+}
+
+@include media-breakpoint-up(xl){
+  //account: payment
+  //.account-payment-card{
+  //  width: 50%;
+  //}
+}

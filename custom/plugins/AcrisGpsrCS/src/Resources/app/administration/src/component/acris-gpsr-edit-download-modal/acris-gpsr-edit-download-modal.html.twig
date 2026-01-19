@@ -1,0 +1,32 @@
+{% block acris_edit_download_modal %}
+    <sw-modal class="acris-edit-download-modal"
+              :title="$tc('acris-gpsr-edit-download-modal.general.modalTitle')"
+              @modal-close="onCancel">
+
+        {% block acris_edit_download_modal_form %}
+            {% block acris_edit_download_modal_form_title %}
+                <sw-text-field
+                    :label="$tc('acris-gpsr-edit-download-modal.general.fileName')"
+                    :placeholder="$tc('acris-gpsr-edit-download-modal.general.titlePlaceholder')"
+                    v-model:value="downloadItem.fileName">
+                </sw-text-field>
+            {% endblock %}
+        {% endblock %}
+        {% block acris_edit_download_modal_footer %}
+            <template #modal-footer>
+
+                {% block acris_edit_download_modal_footer_button_cancel %}
+                    <sw-button size="small" @click="onCancel">
+                        {{ $tc('global.default.cancel') }}
+                    </sw-button>
+                {% endblock %}
+
+                {% block acris_edit_download_modal_footer_button_apply %}
+                    <sw-button variant="primary" size="small" @click="onApply">
+                        {{ $tc('global.default.apply') }}
+                    </sw-button>
+                {% endblock %}
+            </template>
+        {% endblock %}
+    </sw-modal>
+{% endblock %}

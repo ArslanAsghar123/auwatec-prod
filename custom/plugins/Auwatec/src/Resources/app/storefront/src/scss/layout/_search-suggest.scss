@@ -1,0 +1,18 @@
+.search-suggest-product-name{
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+.search-suggest-product-price{
+  padding-left: 10px;
+}
+.search-suggest-total-link{
+  .icon{
+    width: 10px;
+    height: 10px;
+    color: $sw-color-brand-primary;
+    &>svg{
+      top: 0;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/page/account/order/index.html.twig' %}
+
+{% block page_checkout_aside_actions_payment_method_id %}
+    {{ parent() }}
+
+    <input type="hidden" name="editDirectDebitOwner" id="editDirectDebitOwner" value="">
+    <input type="hidden" name="editDirectDebitIban" id="editDirectDebitIban" value="">
+    <input type="hidden" name="editDirectDebitBicSwift" id="editDirectDebitBicSwift" value="">
+    <input type="hidden" name="editDirectDebitMandate" id="editDirectDebitMandate" value="">
+    <input type="hidden" name="customerId" id="customerId" value="{{ page.order.orderCustomer.customer.id }}">
+    <input type="hidden" name="orderId" id="orderId" value="{{ page.order.id }}">
+{% endblock %}
+
+{% block page_checkout_confirm_form_submit %}
+    <button
+            class="btn btn-primary btn-block"
+            {% if page.paymentChangeable == false or paymentMethodInvalid == true %}
+                disabled="disabled"
+            {% endif %}
+            type="submit"
+            id="confirmFormSubmit">
+        {{ "account.editOrderUpdateButton"|trans|sw_sanitize }}
+    </button>
+{% endblock %}

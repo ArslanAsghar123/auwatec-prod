@@ -1,0 +1,279 @@
+{% block acris_discount_group_list %}
+
+<sw-page class="acris-discount-group-list">
+    {% block acris_discount_group_list_search_bar %}
+        <template #search-bar>
+            <sw-search-bar :initialSearchType="$tc('acris-discount-group.general.initialSearchType')"
+                           :placeholder="$tc('acris-discount-group.general.placeholderSearchBar')"
+                           :initialSearch="term"
+                           @search="onSearch" id="discount-group">
+            </sw-search-bar>
+        </template>
+    {% endblock %}
+
+    {% block acris_discount_group_list_smart_bar_header %}
+        <template #smart-bar-header>
+            {% block acris_discount_group_list_smart_bar_header_title %}
+                <h2>
+                    {% block acris_discount_group_list_smart_bar_header_title_text %}
+                        {{ $tc('acris-discount-group.list.textHeadline') }}
+                        {% endblock %}
+
+                        {% block acris_discount_group_list_smart_bar_header_amount %}
+                        <span v-if="!isLoading" class="sw-page__smart-bar-amount">
+                        ({{ total }})
+                        </span>
+                    {% endblock %}
+                </h2>
+            {% endblock %}
+        </template>
+    {% endblock %}
+
+    {% block acris_discount_group_list_smart_bar_actions %}
+    <template #smart-bar-actions>
+        {% block acris_discount_group_list_smart_bar_actions_add %}
+        <sw-button variant="primary" :routerLink="{ name: 'acris.discount.group.create' }">
+            {{ $tc('acris-discount-group.list.buttonAdd') }}
+        </sw-button>
+        {% endblock %}
+    </template>
+    {% endblock %}
+
+    {% block acris_discount_group_list_cardview %}
+    <template #content>
+        <div class="acris-discount-group-list__content">
+            {% block acris_discount_group_list_content %}
+            <sw-entity-listing class="acris-discount-group-list-grid"
+                               v-if="items && total > 0"
+                               :items="items"
+                               :repository="entityRepository"
+                               detailRoute="acris.discount.group.detail"
+                               :showSeleciton="true"
+                               :isLoading="isLoading"
+                               :columns="columns">
+
+                {% block acris_discount_group_list_grid_columns_active %}
+                <template #column-active="{ item, isInlineEdit }">
+                    {% block acris_discount_group_list_grid_columns_active_inline_edit %}
+                    <template v-if="isInlineEdit">
+                        <sw-checkbox-field v-model:value="item.active"></sw-checkbox-field>
+                    </template>
+                    {% endblock %}
+
+                    {% block acris_discount_group_list_grid_columns_active_content %}
+                    <template v-else>
+                        <sw-icon v-if="item.active" name="regular-checkmark-xs" small
+                                 class="is--active"></sw-icon>
+                        <sw-icon v-else name="regular-times-s" small class="is--inactive"></sw-icon>
+                    </template>
+                    {% endblock %}
+                </template>
+                {% endblock %}
+
+                {% block acris_discount_group_list_grid_columns_excluded %}
+                <template #column-excluded="{ item, isInlineEdit }">
+                    {% block acris_discount_group_list_grid_columns_excluded_inline_edit %}
+                    <template v-if="isInlineEdit">
+                        <sw-checkbox-field v-model:value="item.excluded"></sw-checkbox-field>
+                    </template>
+                    {% endblock %}
+
+                    {% block acris_discount_group_list_grid_columns_excluded_content %}
+                    <template v-else>
+                        <sw-icon v-if="item.excluded" name="regular-checkmark-xs" small
+                                 class="is--active"></sw-icon>
+                        <sw-icon v-else name="regular-times-s" small class="is--inactive"></sw-icon>
+                    </template>
+                    {% endblock %}
+                </template>
+                {% endblock %}
+
+                {% block acris_discount_group_list_grid_columns_discount_type %}
+                <template #column-discountType="{ item, isInlineEdit }">
+                    {% block acris_discount_group_list_grid_columns_discount_type_link %}
+                    <template v-if="item.discountType == 'percentage'">
+                        <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.detail.percentageOption') }}</a>
+                    </template>
+                    <template v-else>
+                        <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.detail.absoluteOption') }}</a>
+                    </template>
+                    {% endblock %}
+                </template>
+                {% endblock %}
+
+                {% block acris_discount_group_list_grid_columns_customer_assignment_type %}
+                <template #column-customerAssignmentType="{ item, isInlineEdit }">
+                    {% block acris_discount_group_list_grid_columns_customer_assignment_type_link %}
+                    <template v-if="item.customerAssignmentType == 'customer'">
+                        <a v-if="item.customer && item.customer.firstName && item.customer.lastName" @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.list.customerAssignmentOptionCustomer') }} {{ item.customer.firstName }} {{ item.customer.lastName }}</a>
+                    </template>
+                    <template v-if="item.customerAssignmentType == 'materialGroup'">
+                        <a v-if="item.discountGroup" @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.list.customerAssignmentOptionMaterialGroup') }} {{ item.discountGroup }}</a>
+                    </template>
+                    <template v-else-if="item.customerAssignmentType == 'everyCustomer'">
+                        <a>{{ $tc('acris-discount-group.list.customerAssignmentOptionEveryCustomer') }}</a>
+                    </template>
+                    <template v-else-if="item.customerAssignmentType != 'materialGroup' && item.customerAssignmentType != 'customer'">
+                        <a v-if="item.rules && item.rules.length > 0" @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link acris-discount-group-edit-link-rules">{{ $tc('acris-discount-group.list.customerAssignmentOptionRules') }}</a>
+                        <a v-else @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link acris-discount-group-edit-link-rules">{{ $tc('acris-discount-group.list.customerAssignmentOptionNoRules') }}</a>
+                        <template v-if="item.rules && item.rules.length > 0">
+                            <sw-label v-for="rule in item.rules"
+                                      :disabled="isInlineEdit">
+                                {{ rule.name }}
+                            </sw-label>
+                        </template>
+                    </template>
+                    {% endblock %}
+                </template>
+                {% endblock %}
+
+                {% block acris_discount_group_list_grid_columns_product_assignment_type %}
+                <template #column-productAssignmentType="{ item, isInlineEdit }">
+                    {% block acris_discount_group_list_grid_columns_product_assignment_type_link %}
+                    <template v-if="item.productAssignmentType == 'product'">
+                        <a v-if="item.product" @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.list.productAssignmentOptionProduct') }}
+                            <sw-product-variant-info :variations="item.product.variation">
+                               {{ item.product.translated.name || item.product.name }}
+                            </sw-product-variant-info>
+                        </a>
+                    </template>
+                    <template v-else-if="item.productAssignmentType == 'materialGroup'">
+                        <a v-if="item.materialGroup" @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.list.productAssignmentOptionMaterialGroup') }} {{ item.materialGroup }}</a>
+                    </template>
+                    <template v-else-if="item.productAssignmentType == 'everyProduct'">
+                        <a>{{ $tc('acris-discount-group.list.productAssignmentOptionEveryProduct') }}</a>
+                    </template>
+                    <template v-else-if="item.productAssignmentType != 'product' && item.productAssignmentType != 'materialGroup'">
+                        <a v-if="item.productStreams && item.productStreams.length > 0" @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link acris-discount-group-edit-link-rules">{{ $tc('acris-discount-group.list.productAssignmentOptionDynamicProductGroup') }}</a>
+                        <a v-else @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link acris-discount-group-edit-link-rules">{{ $tc('acris-discount-group.list.productAssignmentOptionDynamicProductGroupEmpty') }}</a>
+                        <template v-if="item.productStreams && item.productStreams.length > 0">
+                            <sw-label v-for="productStream in item.productStreams"
+                                      :disabled="isInlineEdit">
+                                {{ productStream.name }}
+                            </sw-label>
+                        </template>
+                    </template>
+                    {% endblock %}
+                </template>
+                {% endblock %}
+
+                {% block acris_discount_group_list_grid_columns_calculation_base %}
+                    <template #column-calculationBase="{ item, isInlineEdit }">
+                        {% block acris_discount_group_list_grid_columns_calculation_base_link %}
+                            <template v-if="item.calculationBase == 'price'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.list.calculationBaseOptionPrice') }}</a>
+                            </template>
+                            <template v-else-if="item.calculationBase == 'listPrice'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.list.calculationBaseOptionListPrice') }}</a>
+                            </template>
+                            <template v-else-if="item.calculationBase == 'rrp'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.list.calculationBaseOptionRrp') }}</a>
+                            </template>
+                            <template v-else-if="item.calculationBase == 'purchasePrice'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.list.calculationBaseOptionPurchasePrice') }}</a>
+                            </template>
+                        {% endblock %}
+                    </template>
+                {% endblock %}
+
+                {% block acris_discount_group_list_grid_columns_list_price_type %}
+                    <template #column-listPriceType="{ item, isInlineEdit }">
+                        {% block acris_discount_group_list_grid_columns_list_price_type_link %}
+                            <template v-if="item.listPriceType == 'set'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.detail.listPriceOptionSet') }}</a>
+                            </template>
+                            <template v-else-if="item.listPriceType == 'setPrice'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.detail.listPriceOptionSetPrice') }}</a>
+                            </template>
+                            <template v-else-if="item.listPriceType == 'rrp'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.detail.listPriceOptionRrp') }}</a>
+                            </template>
+                            <template v-else-if="item.listPriceType == 'setRrp'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.detail.listPriceOptionSetRrp') }}</a>
+                            </template>
+                            <template v-else-if="item.listPriceType == 'purchasePrice'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.detail.listPriceOptionPurchasePrice') }}</a>
+                            </template>
+                            <template v-else-if="item.listPriceType == 'remove'">
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.detail.listPriceOptionRemove') }}</a>
+                            </template>
+                            <template v-else>
+                                <a @click="onEditDiscountGroup(item.id)" class="acris-discount-group-edit-link">{{ $tc('acris-discount-group.detail.listPriceOptionIgnore') }}</a>
+                            </template>
+                        {% endblock %}
+                    </template>
+                {% endblock %}
+
+                {% block acris_discount_group_list_grid_columns_product_streams %}
+                <template #column-productStreams="{ item, isInlineEdit }">
+                    <template v-if="item.productStreams && item.productStreams.length > 0">
+                        <sw-label v-for="productStream in item.productStreams"
+                                  :disabled="isInlineEdit">
+                            {{ productStream.name }}
+                        </sw-label>
+                    </template>
+                </template>
+                {% endblock %}
+
+                {% block acris_discount_group_list_grid_columns_rules %}
+                <template #column-rules="{ item, isInlineEdit }">
+
+                </template>
+                {% endblock %}
+
+                {% block acris_discount_group_list_grid_columns_account_display %}
+                    <template #column-account-display="{ item, isInlineEdit }">
+                        {% block acris_discount_group_list_grid_columns_account_display_inline_edit %}
+                            <template v-if="isInlineEdit">
+                                <sw-checkbox-field v-model:value="item.accountDisplay"></sw-checkbox-field>
+                            </template>
+                        {% endblock %}
+
+                        {% block acris_discount_group_list_grid_columns_account_display_content %}
+                            <template v-else>
+                                <sw-icon v-if="item.accountDisplay" name="regular-checkmark-xs" small
+                                         class="is--active"></sw-icon>
+                                <sw-icon v-else name="regular-times-s" small class="is--inactive"></sw-icon>
+                            </template>
+                        {% endblock %}
+                    </template>
+                {% endblock %}
+
+                <template #pagination>
+                    {% block sw_order_list_grid_pagination %}
+                    <sw-pagination :page="page"
+                                   :limit="limit"
+                                   :total="total"
+                                   :total-visible="7"
+                                   @page-change="onPageChange">
+                    </sw-pagination>
+                    {% endblock %}
+                </template>
+
+            </sw-entity-listing>
+            {% endblock %}
+
+            {% block acris_discount_group_list_empty_state %}
+            <sw-empty-state v-if="!isLoading && total === 0" :title="$tc('acris-discount-group.list.contentEmpty')"></sw-empty-state>
+            {% endblock %}
+
+        </div>
+    </template>
+    {% endblock %}
+
+    {% block acris_discount_group_list_sidebar %}
+    <template #sidebar>
+        <sw-sidebar class="acris-discount-group-list__sidebar">
+            {% block acris_discount_group_list_sidebar_item %}
+            <sw-sidebar-item
+                icon="regular-undo"
+                :title="$tc('acris-discount-group.list.titleSidebarItemRefresh')"
+                @click="onRefresh">
+            </sw-sidebar-item>
+            {% endblock %}
+        </sw-sidebar>
+    </template>
+    {% endblock %}
+
+</sw-page>
+{% endblock %}

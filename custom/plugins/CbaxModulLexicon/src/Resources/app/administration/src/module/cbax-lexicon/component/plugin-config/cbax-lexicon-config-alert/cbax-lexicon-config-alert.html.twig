@@ -1,0 +1,54 @@
+<div>
+    <sw-alert v-if="alertName == 'cmsConfigInfo'"
+          :appearance="appearance"
+          :showIcon="showIcon"
+          :closable="closable"
+          :variant="variant"
+          :title="title"
+          :notificationIndex="notificationIndex"
+          class="cbax-lexicon-config-info"
+    >
+        <span v-html="$tc('cbax-lexicon.cmsConfigInfo.text')"></span>
+        <div style="margin-top: 15px">
+            <router-link :to="{ name: 'sw.cms.index' }">
+                {{ $tc('cbax-lexicon.cmsConfigInfo.link') }}
+                <sw-icon name="regular-long-arrow-right" small></sw-icon>
+            </router-link>
+        </div>
+    </sw-alert>
+
+    <sw-alert v-if="alertName == 'seoConfigInfo'"
+          :appearance="appearance"
+          :showIcon="showIcon"
+          :closable="closable"
+          :variant="variant"
+          :title="title"
+          :notificationIndex="notificationIndex"
+          class="cbax-lexicon-config-info"
+    >
+        <span v-html="$tc('cbax-lexicon.seoConfigInfo.text')"></span><br><br>
+        <a href="https://coolbax.gitbook.io/coolbax-docs/handbuecher/storefront/lexikon-glossar#seo"
+           target="_blank"
+           rel="noopener"
+        >
+            {{ $tc('cbax-lexicon.seoConfigInfo.link') }}
+        </a>
+    </sw-alert>
+
+    <sw-alert v-if="alertName == 'migrationInfo'" appearance="notification" variant="info" :showIcon="true" :closable="false" class="cbax-lexicon-config-info">
+        {{ $tc('cbax-lexicon.config.alert.textSaveConfig') }} <br/><br/>
+        {{ $tc('cbax-lexicon.config.alert.textFunctionLimited') }} <br/><br/>
+        {{ $tc('cbax-lexicon.config.alert.textLogging') }} (
+        <router-link class="sw-data-grid__cell-value" :to="{ name: 'sw.settings.logging.index' }" target="_blank">
+            {{ $tc('cbax-lexicon.config.alert.toLogbook') }}
+        </router-link>
+        ) <br/><br/>
+        {{ $tc('cbax-lexicon.config.alert.textCreatedData') }} <br/><br/>
+        <strong>{{ $tc('cbax-lexicon.config.alert.textToManual') }} (
+            <a target="_blank" href="https://coolbax.gitbook.io/coolbax-docs/handbuecher/storefront/lexikon-glossar#migration-von-shopware-5-zu-shopware-6">
+                {{ $tc('cbax-lexicon.config.alert.toManual') }}
+            </a>
+            )
+        </strong>
+    </sw-alert>
+</div>

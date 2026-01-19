@@ -1,0 +1,93 @@
+{
+    "dreiscSeoBulkCategory": {
+        "general": {
+            "navigation": {
+                "label": "Kategorie Bulk Generator"
+            }
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Kategorie Bulk Generator"
+            }
+        },
+        "detailBase": {
+            "fields": {
+                "labels": {
+                }
+            }
+        },
+        "payload": {
+            "templateVariablesDescription": {
+                "categoryId": "Id der Kategorie",
+                "categoryTranslatedName": "Name der Kategorie",
+                "categoryTranslatedDescription": "Beschreibung der Kategorie",
+                "categoryTranslatedBreadcrumb": "<b>Breadcrumb der Kategorie</b> (category.translated.breadcrumb)",
+                "categorySeoMetaTitle": "Meta Titel der Kategorie",
+                "categorySeoMetaDescription": "Meta Beschreibung der Kategorie",
+                "categorySeoUrl": "Url der Kategorie",
+                "categorySeoIsInheritedMetaTitle": "<b>Meta Titel der Kategorie wurde vererbt [if-Beispiel]</b> (categorySeo.isInheritedMetaTitle)",
+                "categorySeoIsInheritedMetaDescription": "<b>Meta Beschreibung der Kategorie wurde vererbt [if-Beispiel]</b> (categorySeo.isInheritedMetaDescription)",
+                "categorySeoIsInheritedUrl": "<b>URL der Kategorie wurde vererbt [if-Beispiel]</b> (categorySeo.isInheritedUrl)",
+                "categoryParent": "<b>Daten der Eltern-Kategorie [if-Beispiel]</b> (category.parent[↯])",
+                "categoryParentSeoMetaTitle": "Meta Titel der Kategorie",
+                "categoryParentSeoMetaDescription": "Meta Beschreibung der Kategorie",
+                "categoryParentSeoUrl": "Url der Kategorie",
+                "categoryParentSeoIsInheritedMetaTitle": "<b>Meta Titel der Kategorie wurde vererbt [if-Beispiel]</b> (categoryParentSeo.isInheritedMetaTitle)",
+                "categoryParentSeoIsInheritedMetaDescription": "<b>Meta Beschreibung der Kategorie wurde vererbt [if-Beispiel]</b> (categoryParentSeo.isInheritedMetaDescription)",
+                "categoryParentSeoIsInheritedUrl": "<b>URL der Kategorie wurde vererbt [if-Beispiel]</b> (categoryParentSeo.isInheritedUrl)",
+                "parentCategories": "<b>Alle Eltern-Kategorien [for-Beispiel]</b> (parentCategories[↯])",
+                "childCategories": "<b>Alle direkten Kind-Kategorien [for-Beispiel]</b> (childCategories[↯])"
+            }
+        },
+        "defaultTemplates": {
+            "metaTitle": {
+                "categoryName": "Kategoriename",
+                "categoryNameAndShopName": "Kategoriename + Shopname [Live-Template]",
+                "categoryNameAndShippingFreeText": "Kategoriename + \"versandkostenfrei einkaufen\"",
+                "customFieldIfExistOtherwiseCategoryName": "Eigenes Zusatzfeld falls vorhanden, ansonsten Kategoriename",
+                "starsCategoryNameAndCustomText": "⭐⭐⭐⭐⭐ + Kategoriename + Top-Marken ✓ große Auswahl ✓",
+                "openAiExampleGerman": "OpenAI Beispiel (Prompt auf Deutsch)",
+                "openAiExampleEnglish": "OpenAI Beispiel (Prompt auf Englisch)"
+            },
+            "metaDescription": {
+                "categoryNameAndShopName": "Kategoriename + Shopname [Live-Template]",
+                "categoryNameAndShippingFreeText": "Kategoriename + \"versandkostenfrei einkaufen\"",
+                "customFieldIfExistOtherwiseCategoryName": "Eigenes Zusatzfeld falls vorhanden, ansonsten Kategoriename",
+                "trimmedCategoryDescription": "Kategoriebeschreibung auf 130 Zeichen gekürzt",
+                "introTextAndChildCategoryNames": "\"Alles aus einer Hand:\" + Namen der Kind-Kategorien, ansonsten Kategoriename als Fallback",
+                "openAiExampleGerman": "OpenAI Beispiel (Prompt auf Deutsch)",
+                "openAiExampleEnglish": "OpenAI Beispiel (Prompt auf Englisch)"
+            },
+            "url": {
+                "categoryName": "Kategoriename",
+                "parentCategoryUrlAndCategoryName": "SEO-Url der Eltern-Kategorie + Kategoriename",
+                "metaTitleIfAvailableOrCategoryName": "Meta-Titel falls vorhanden, ansonsten Kategoriename",
+                "customFieldIfExistOtherwiseCategoryName": "Eigenes Zusatzfeld falls vorhanden, ansonsten Kategoriename",
+                "openAiExampleGerman": "OpenAI Beispiel (Prompt auf Deutsch)",
+                "openAiExampleEnglish": "OpenAI Beispiel (Prompt auf Englisch)"
+            },
+            "robotsTag": {
+                "indexFollow": "index,follow (Seite indexieren und Links verfolgen)",
+                "indexNofollow": "index,nofollow (Seite indexieren und Links nicht verfolgen)",
+                "noindexFollow": "noindex,follow (Seite nicht indexieren und Links verfolgen)",
+                "noindexNofollow": "noindex,nofollow (Seite nicht indexieren und Links nicht verfolgen)"
+            },
+            "facebookTitle": {
+                "metaTitleOrCategoryName": "Meta Titel falls vorhanden, ansonsten Kategoriename",
+                "customFieldOrCategoryNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Kategoriename"
+            },
+            "facebookDescription": {
+                "metaDescriptionOrCategoryName": "Meta Beschreibung falls vorhanden, ansonsten Produktbeschreibung auf 65 Zeichen gekürzt",
+                "customFieldOrCategoryNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Kategoriename"
+            },
+            "twitterTitle": {
+                "metaTitleOrCategoryName": "Meta Titel falls vorhanden, ansonsten Kategoriename",
+                "customFieldOrCategoryNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Kategoriename"
+            },
+            "twitterDescription": {
+                "metaDescriptionOrCategoryName": "Meta Beschreibung falls vorhanden, ansonsten Produktbeschreibung auf 110 Zeichen gekürzt",
+                "customFieldOrCategoryNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Kategoriename"
+            }
+        }
+    }
+}

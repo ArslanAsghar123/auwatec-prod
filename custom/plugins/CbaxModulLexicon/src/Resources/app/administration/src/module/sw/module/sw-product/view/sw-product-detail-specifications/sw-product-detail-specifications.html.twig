@@ -1,0 +1,53 @@
+{% block sw_product_detail_specifications_custom_products %}
+    {% parent %}
+
+    <sw-card
+        v-show="!product.parentId"
+        class="sw-product-detail-specification__cbax-lexicon"
+        position-identifier="sw-product-detail-specifications-cbax-lexicon"
+        :title="$tc('cbax-lexicon.productDetail.lexiconEntrySelection.title')"
+    >
+        <sw-entity-multi-id-select
+                class="cbax-lexicon-display-options-sales-channels"
+                v-model:value="lexiconEntryIds"
+                :help-text="$tc('cbax-lexicon.productDetail.lexiconEntrySelection.helpText')"
+                size="medium"
+                :label="$tc('cbax-lexicon.productDetail.lexiconEntrySelection.label')"
+                :placeholder="$tc('cbax-lexicon.productDetail.lexiconEntrySelection.placeholder')"
+                :repository="lexiconEntryRepository"
+                :criteria="lexiconEntryCriteria"
+                :isLoading="isLoading || lexiconIsLoading"
+                @item-add="onLexiconEntryAdd"
+                @item-remove="onLexiconEntryRemove"
+                >
+            <template #selection-label-property="{ item }">
+                <slot
+                    name="selection-label-property"
+                    v-bind="{ item }"
+                >
+                    {{ item.translated.title }}
+                </slot>
+            </template>
+
+            <template #result-label-property="{ item, searchTerm, highlightSearchTerm }">
+                <slot
+                    name="result-label-property"
+                    v-bind="{ item, searchTerm, highlightSearchTerm }"
+                >
+                    {{ item.translated.title }}
+                </slot>
+            </template>
+
+            <template #result-description-property="{ item, searchTerm, highlightSearchTerm }">
+                <slot
+                    name="result-description-property"
+                    v-bind="{ item, searchTerm, highlightSearchTerm }"
+                >
+                    {{ item.translated.keyword }}
+                </slot>
+            </template>
+        </sw-entity-multi-id-select>
+    </sw-card>
+{% endblock %}
+
+

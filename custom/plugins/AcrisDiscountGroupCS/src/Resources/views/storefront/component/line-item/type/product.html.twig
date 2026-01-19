@@ -1,0 +1,28 @@
+{% sw_extends '@Storefront/storefront/component/line-item/type/product.html.twig' %}
+
+{% block component_line_item_type_product %}
+    {% if config("AcrisDiscountGroupCS.config.cartColumnLayout") == "custom" %}
+        {% set lineItemClasses = lineItemClasses ~ ' acris-discount-group-custom-line-item' %}
+        {% set showTaxPrice = false %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block component_line_item_type_product_col_total_price %}
+    {% if config("AcrisDiscountGroupCS.config.cartColumnLayout") == "custom" %}
+        <div class="acris-line-item-discount-price line-item-total-price line-item-price">
+            <div class="acris-line-item-discount-price-label line-item-total-price-label">
+                {{ "acris-discount-group.account.orderItemColumnDiscount"|trans|sw_sanitize }}
+            </div>
+
+            <div class="acris-line-item-discount-price-value line-item-total-price-value text-end">
+                {% if lineItem.payload.acrisListPrice.unitPercentage and lineItem.payload.acrisListPrice.unitPercentage > 0 %}
+                    <span class="acris-line-item-discount-price-value-label d-inline-block d-sm-none">{{ "acris-discount-group.checkout.offCanvasDiscountLabel"|trans }}</span> {{ "acris-discount-group.checkout.listPriceDiscountPercentage"|trans({'%price%': lineItem.payload.acrisListPrice.unitPercentage })|sw_sanitize }}
+                    {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

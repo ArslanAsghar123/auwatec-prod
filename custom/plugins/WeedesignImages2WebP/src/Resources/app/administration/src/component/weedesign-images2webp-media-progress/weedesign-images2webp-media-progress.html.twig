@@ -1,0 +1,6 @@
+<div class="weedesign-images2webp-admin-component weedesign-images2webp-admin-component-progress" v-if="finish==0">
+    <sw-progress-bar :value="webp" :maxValue="images" v-if="images>0">{{ $tc("weedesign-images2webp.media.progress.title") }}</sw-progress-bar>
+    <p v-if="images>0"><span v-html="webpString"></span> {{ $tc("weedesign-images2webp.media.progress.of") }} <span v-html="imagesString"></span> {{ $tc("weedesign-images2webp.media.progress.generated") }}</p>
+    <p v-if="images<-1">{{ $tc("weedesign-images2webp.media.progress.loading") }}</p>
+    <p class="weedesign-images2webp-admin-component-progress-alert" v-if="init==true">{{ $tc("weedesign-images2webp.media.progress.alert") }}</p>
+</div>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-download-a">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="download-a" clip-path="url(#clip-download-a)">
+    <path id="download-a-2" data-name="download-a" d="M-597-135.245v-32h6.112v25.89h51.773v-25.89H-533v32Zm16.172-28.234,4.323-4.323,8.45,8.449V-197h6.115v37.647l8.452-8.449,4.323,4.323L-565-147.651Z" transform="translate(597 198)"/>
+  </g>
+</svg>

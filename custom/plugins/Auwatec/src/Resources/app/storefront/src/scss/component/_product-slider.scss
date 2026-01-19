@@ -1,0 +1,23 @@
+.product-slider{
+  &.has-nav{
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.cms-element-product-slider {
+  .cms-element-title{
+    font-size: 28px;
+    line-height: 32px;
+    font-family: $font-family-roboto;
+    font-weight: $font-weight-bold;
+  }
+}
+
+.cms-primary-bg {
+  .cms-element-product-slider {
+    .cms-element-title{
+      color: $white;
+    }
+  }
+}

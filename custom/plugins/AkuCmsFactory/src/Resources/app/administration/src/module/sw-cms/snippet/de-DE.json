@@ -1,0 +1,39 @@
+{
+    "sw-cms": {
+      "blocks": {
+        "akuCmsFactory": {
+            "labelLabel": "CMS Factory"
+        }
+      },
+      "element": {
+        "akuCmsFactory": {
+          "labelLabel": "CMS Factory",
+          "config": {
+            "add_a_row": "Zeile hinzufügen",
+            "rowNumber": "Zeile",
+            "element_not_found": "Element nicht gefunden. Konfiguration schliessen und Element wählen.",
+            "streamLimitLabel": "Maximale Anzahl Produkte",
+            "streamSortingLabel": "Sortierung",
+            "sorting_name_asc": "Name aufsteigend",
+            "sorting_name_desc": "Name absteigend",
+            "sorting_created_at_asc": "Erstellt aufsteigend",
+            "sorting_created_at_desc": "Erstellt absteigend",
+            "sorting_price_asc": "Preis aufsteigend",
+            "sorting_price_desc": "Preis absteigend"
+          },
+          "component": {
+            "selectAnElement": "CMS Factory Element auswählen",
+            "no_elements": "Noch keine Elemente, siehe Inhalte > CMS Element Factory",
+            "labelLabel": "Bezeichnung",
+            "valueLabel": "Wert",
+            "galleryUnit": "Bilder"
+          },
+          "galleryField": {
+            "addImages": "Bilder hinzufügen"
+          }
+
+        }
+      }
+
+    }
+}

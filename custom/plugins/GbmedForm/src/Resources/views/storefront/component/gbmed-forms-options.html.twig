@@ -1,0 +1,15 @@
+{% block gbmed_form_options %}
+    {% set gbmedForm = page.extensions.gbmedForm %}
+    <div id="gRecaptcha" data-gbmed-recaptcha="true"></div>
+    <script>
+        {# add form elements #}
+        {% for route in gbmedForm.formRoutes %}
+            {% if route is not null %}
+                window.gbmedFormsOptions.forms.push(document.querySelectorAll("form[action='{{ path(route) }}']"));
+            {% endif %}
+        {% endfor %}
+        {% if gbmedForm.formRoutes.contact is defined and gbmedForm.formRoutes.contact is not null %}
+            window.gbmedFormsOptions.modalForms.push(".modal form[action='{{ path(gbmedForm.formRoutes.contact) }}']");
+        {% endif %}
+    </script>
+{% endblock %}

@@ -1,0 +1,48 @@
+<sw-page class="sw-order-list">
+
+    <template #smart-bar-header>
+        <h2>
+            {{ $tc('footer-kit.list.header') }}
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button variant="primary"
+                   :isLoading="isLoading"
+                   @click="openCreate">
+            {{ $t('footer-kit.list.addButton') }}
+        </sw-button>
+    </template>
+    <template #content>
+        <sw-entity-listing
+                :isLoading="isLoading"
+                v-if="footerKitItems"
+                :items="footerKitItems"
+                :repository="footerKitRepository"
+                :showSelection="false"
+                :columns="columns"
+                :allowInlineEdit="true"
+                detailRoute="footer.kit.module.overview">
+
+            <template #column-name="{ item }">
+                <router-link :to="{ name: 'footer.kit.module.overview', params: { id: item.id } }">
+                    <div v-if="item.name">
+                        {{ item.name }}
+                    </div>
+                    <div v-else>
+                        {{ $tc('footer-kit.list.noNameLabel') }}
+                    </div>
+                </router-link>
+            </template>
+
+            <template #column-salesChannel="{ item }">
+                <div v-if="item.salesChannelId">
+                    {{ item.salesChannel.translated.name }}
+                </div>
+                <div v-else>
+                    {{ $tc('footer-kit.list.noSalesChannelLabel') }}
+                </div>
+            </template>
+        </sw-entity-listing>
+    </template>
+</sw-page>

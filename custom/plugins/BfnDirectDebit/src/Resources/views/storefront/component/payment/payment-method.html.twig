@@ -1,0 +1,160 @@
+{% sw_extends '@Storefront/storefront/component/payment/payment-method.html.twig' %}
+
+{% block component_payment_fieldset_template %}
+    {# Set defaultPaymentMethodId #}
+    {% if activeRoute == 'frontend.checkout.confirm.page' %}
+        {% set defaultPaymentMethodId = context.paymentMethod.id %}
+    {% endif %}
+
+    {% if activeRoute == 'frontend.account.payment.page' %}
+        {% set defaultPaymentMethodId = context.customer.defaultPaymentMethodId %}
+    {% endif %}
+
+    {% set directDebitPaymentMethodId = config('BfnDirectDebit.config.directDebitPaymentMethod') %}
+
+    {% if payment.id == config('BfnDirectDebit.config.directDebitPaymentMethod') %}
+        {% if directDebitPaymentMethodId %}
+            <input type="hidden" name="directDebitPaymentMethodId" id="directDebitPaymentMethodId" value= "{{ directDebitPaymentMethodId }}">
+        {% endif %}
+
+        <div id="plugin-config"
+             data-mask-iban="{{ config('BfnDirectDebit.config.maskIban') }}">
+        </div>
+    {% endif %}
+
+    <input type="hidden" name="activeRoute" id="validate-active-route" value= "{{ activeRoute }}">
+
+
+    <template restrict-order-filter></template>
+
+    {% if payment.id == config('BfnDirectDebit.config.directDebitPaymentMethod') %}
+        {% if payment.id is same as(selectedPaymentMethodId) %}
+            <input type="hidden" name="baseUrl" id="af-base-url" value= "{{ url('frontend.home.page') }}">
+
+            <div class="payment-data" id="directDebitPaymentData">
+
+                <input {% if activeRoute == 'frontend.checkout.confirm.page' %}form="confirmOrderForm"{% endif %}
+                       name="sepa_store" value="1" type="hidden">
+
+                <div id="directDebitErrorMessage" style="display: none;">
+                    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                        type: "danger",
+                        content: "bfn-direct-debit.notValidPaymetData"|trans
+                    } %}
+                </div>
+
+                {% if activeRoute != 'frontend.account.payment.page' %}
+                    <div id="directDebitInfoMessage" style="display: none;">
+                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                            type: "info",
+                            content: "bfn-direct-debit.fillPaymetData"|trans
+                        } %}
+                    </div>
+                {% endif %}
+
+                {% if config('BfnDirectDebit.config.nameActive') %}
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <label class="form-label" for="bfn_direct_debit_owner_input">
+                                {{ "bfn-direct-debit.owner"|trans|sw_sanitize }}{% if activeRoute == 'frontend.checkout.confirm.page' %}{{ "general.star"|trans|sw_sanitize }}{% endif %}
+                            </label>
+                            <input {% if activeRoute == 'frontend.checkout.confirm.page' %}form="confirmOrderForm"{% endif %}
+                                   name="direct_debit_owner"
+                                   type="text"
+                                   class="form-control"
+                                   id="bfn_direct_debit_owner_input"
+                                   placeholder="{{ "bfn-direct-debit.ownerPlaceholder"|trans|sw_sanitize }}"
+                                   value="{{ context.customer.customFields.bfn_customer_direct_debit_owner }}"
+                                    {% if activeRoute == 'frontend.checkout.confirm.page' %}required="required"{% endif %}
+                            >
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div style="color: red;" id="iban-error"> {{ "bfn-direct-debit.iban-error"|trans|sw_sanitize }} </div>
+                <div class="form-row passwordMaskBody">
+                    <div class="form-group col-sm-12">
+                        <label class="form-label" for="bfn_direct_debit_iban_input">
+                            {{ "bfn-direct-debit.iban"|trans|sw_sanitize }}{% if activeRoute == 'frontend.checkout.confirm.page' %}{{ "general.star"|trans|sw_sanitize }}{% endif %}
+                        </label>
+                        <input {% if activeRoute == 'frontend.checkout.confirm.page' %}form="confirmOrderForm"{% endif %}
+                               name="direct_debit_iban"
+                               type="text"
+                               class="form-control"
+                               id="bfn_direct_debit_iban_input"
+                               placeholder="{{ "bfn-direct-debit.ibanPlaceholder"|trans|sw_sanitize }}"
+                                {% if config('BfnDirectDebit.config.maskIban') %}
+                                    {% if context.customer.customFields.bfn_customer_direct_debit_iban is defined and context.customer.customFields.bfn_customer_direct_debit_iban != '' %}
+                                        {% set original_variable = context.customer.customFields.bfn_customer_direct_debit_iban %}
+                                        {% set length_to_replace = original_variable|length - 4 %}
+                                        {% set replaced_variable = '' %}
+                                        {% set last_four_digits = original_variable|slice(length_to_replace) %}
+
+                                        {% for i in 1..length_to_replace %}
+                                            {% set replaced_variable = replaced_variable ~ 'X' %}
+                                        {% endfor %}
+
+                                        {% set replaced_variable = replaced_variable ~ original_variable|slice(length_to_replace) %}
+                                        value="{{ replaced_variable }}"
+                                    {% endif %}
+                                {% else %}
+                                    value="{{ context.customer.customFields.bfn_customer_direct_debit_iban }}"
+                                {% endif %}
+
+                                {% if activeRoute == 'frontend.checkout.confirm.page' %}required="required"{% endif %}
+                        >
+
+                        {% if config('BfnDirectDebit.config.maskIban') %}
+                            {% if last_four_digits is defined and last_four_digits is not empty %}
+                                <input type="hidden" name="lastFour" id="last-four" value="{{ last_four_digits }}">
+                                <input type="hidden" name="originalLength" id="original-length" value="{{ original_variable|length }}">
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% if config('BfnDirectDebit.config.swiftActive') %}
+                    <div style="color: red;" id="swift-error"> {{ "bfn-direct-debit.swift-error"|trans|sw_sanitize }} </div>
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                            <label class="form-label" for="bfn_direct_debit_bic_input">
+                                {{ "bfn-direct-debit.bic-swift"|trans|sw_sanitize }}{% if activeRoute == 'frontend.checkout.confirm.page' %}{{ "general.star"|trans|sw_sanitize }}{% endif %}
+                            </label>
+                            <input {% if activeRoute == 'frontend.checkout.confirm.page' %}form="confirmOrderForm"{% endif %}
+                                   name="direct_debit_bic_swift"
+                                   type="text"
+                                   class="form-control"
+                                   id="bfn_direct_debit_bic_input"
+                                   placeholder="{{ "bfn-direct-debit.bic-swiftPlaceholder"|trans|sw_sanitize }}"
+                                   value="{{ context.customer.customFields.bfn_customer_direct_debit_bic_swift }}"
+                                    {% if activeRoute == 'frontend.checkout.confirm.page' %}required="required"{% endif %}
+                            >
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if config('BfnDirectDebit.config.queryMandateCreation') and activeRoute != 'frontend.account.payment.page' %}
+                    <div id="mandateQuery">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <input type="checkbox"
+                                       class="checkout-confirm-mandate-checkbox custom-control-input form-check-input"
+                                       required="required"
+                                       name="direct_debit_mandate"
+                                       id="mandateCheck"
+                                       {% if context.customer.customFields.bfn_customer_direct_debit_mandate %}checked{% endif %}
+                                        {% if activeRoute == 'frontend.checkout.confirm.page' %}form="confirmOrderForm"{% endif %}
+                                >
+                                <label for="mandateCheck"
+                                       class="checkout-confirm-mandate-label custom-control-label">
+                                    {{ "bfn-direct-debit.confirmMandate"|trans()|sw_sanitize }}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,27 @@
+.text-image-element{
+  .text-image-element-image{
+    margin-bottom: 30px;
+    img{
+      max-width: 100%;
+      margin: auto;
+      display: block;
+    }
+  }
+  .text-image-element-content{
+    text-align: center;
+    li{
+      text-align: left;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl){
+  .text-image-element{
+    .text-image-element-image{
+      margin-bottom: 0;
+    }
+    .text-image-element-content{
+      text-align: left;
+    }
+  }
+}

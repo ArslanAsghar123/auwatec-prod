@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/component/checkout/cart-header.html.twig' %}
+
+
+{% block component_checkout_cart_header_element %}
+    {% if config("AcrisDiscountGroupCS.config.cartColumnLayout") == "custom" %}
+        {% set infoColumnClass = 'col-3' %}
+
+        {% if showRemoveColumn == false %}
+            {% set infoColumnClass = 'col-4' %}
+        {% endif %}
+        {% set showTaxPrice = false %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block component_checkout_cart_header_total_price %}
+    {% if config("AcrisDiscountGroupCS.config.cartColumnLayout") == "custom" %}
+        <div class="col-2 cart-header-unit-price acris-discount-group-cart-price">
+            {{ "acris-discount-group.account.orderItemColumnDiscount"|trans|sw_sanitize }}
+        </div>
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

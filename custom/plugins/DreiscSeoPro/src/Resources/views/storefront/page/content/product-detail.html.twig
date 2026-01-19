@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/page/content/product-detail.html.twig' %}
+
+{# This block is overwritten to pass the parameter product #}
+{% block cms_breadcrumb %}
+    <div class="cms-breadcrumb container">
+        {% sw_include '@Storefront/storefront/layout/breadcrumb.html.twig' with {
+            context: context,
+            themeIconConfig: themeIconConfig,
+            category: page.product.seoCategory,
+            product: page.product
+        } only %}
+    </div>
+{% endblock %}

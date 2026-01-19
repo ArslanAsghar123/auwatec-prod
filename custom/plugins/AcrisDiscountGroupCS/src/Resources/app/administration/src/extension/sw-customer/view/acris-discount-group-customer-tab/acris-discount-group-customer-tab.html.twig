@@ -1,0 +1,81 @@
+{% block acris_discount_group_detail_tabs %}
+<div class="acris-discount-group-detail-tabs" v-if="!isLoading">
+
+    {% block acris_discount_group_detail_discount_group_custom_field %}
+    <sw-card v-if="!isLoading" class="acris-discount-group-detail-tabs__discount_group_custom_field">
+        {% block acris_discount_group_detail_content_discount_group %}
+        <sw-text-field v-model:value="discountGroupValue"
+                       @update:value="discountGroupValueChange"
+                       :disabled="!customerEditMode"
+                       class="acris-discount-group-detail__acris_discount_group_discount_value"
+                       :label="$tc('acris-discount-group.customer.fieldTitleLabelDiscountGroupValue')"
+                       :helpText="$tc('acris-discount-group.customer.fieldTitleHelpTextDiscountGroupValue')"
+                       :placeholder="$tc('acris-discount-group.customer.fieldTitlePlaceholderDiscountGroupValue')">
+        </sw-text-field>
+        {% endblock %}
+    </sw-card>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_discount_group_label %}
+    <h2 class="sw-card acris-discount-group-detail-tabs__discount_group_label">{{ $tc('acris-discount-group.customer.generalDiscountGroupCard') }}</h2>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_tabs_items %}
+        <ul v-if="!isLoading && customer.extensions.acrisDiscountGroups && customer.extensions.acrisDiscountGroups.length > 0" class="acris-discount-group-detail-tabs__tabs-list">
+            <acris-discount-groups-customer-form
+                v-for="item in customer.extensions.acrisDiscountGroups"
+                :key="item.id"
+                :acrisDiscountGroup="item"
+                :allowEdit="customerEditMode"
+                :customer="customer">
+            </acris-discount-groups-customer-form>
+        </ul>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_tabs_add %}
+        <sw-card v-if="customer && customer.extensions && customer.extensions.acrisDiscountGroups && customer.extensions.acrisDiscountGroups.length > 0" hero>
+            <sw-button
+                    variant="ghost"
+                    @click="onAddDiscountGroup"
+                    :disabled="!customerEditMode"
+                    v-tooltip="{
+                        message: this.$tc('sw-privileges.tooltip.warning'),
+                        disabled: !customerEditMode,
+                        showOnDisabledElements: true
+                }">
+                {{ $tc('acris-discount-group.customer.buttonAddDiscountGroup') }}
+            </sw-button>
+        </sw-card>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_empty_state %}
+    <sw-card class="acris-discount-group-detail-tabs__empty-state" v-else>
+        <sw-loader v-if="isLoading"></sw-loader>
+        <div v-else>
+            <template>
+                <div class="acris-discount-group-detail-tabs__empty-state-inner">
+                    <img :src="assetFilter('/administration/static/img/empty-states/customer-empty-state.svg')">
+                    <div class="acris-discount-group-detail-tabs__empty-state-inner--label">
+                        <p>{{ $tc('acris-discount-group.customer.emptyStateDescription') }}</p>
+                    </div>
+
+                    {% block acris_discount_group_detail_empty_state_tabs_add %}
+                    <sw-button
+                        variant="ghost"
+                        @click="onAddDiscountGroup"
+                        :disabled="!customerEditMode"
+                        v-tooltip="{
+                                        message: this.$tc('sw-privileges.tooltip.warning'),
+                                        disabled: !customerEditMode,
+                                        showOnDisabledElements: true
+                                }">
+                        {{ $tc('acris-discount-group.customer.buttonAddDiscountGroup') }}
+                    </sw-button>
+                    {% endblock %}
+                </div>
+            </template>
+        </div>
+    </sw-card>
+    {% endblock %}
+</div>
+{% endblock %}

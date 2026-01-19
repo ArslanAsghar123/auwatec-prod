@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/block/cms-block-gallery-buybox.html.twig' %}
+{% block block_gallery_buybox %}
+    <div class="col-12 d-lg-none">
+        <div class="product-detail-name h1">
+            {{ page.product.translated.name }}
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}

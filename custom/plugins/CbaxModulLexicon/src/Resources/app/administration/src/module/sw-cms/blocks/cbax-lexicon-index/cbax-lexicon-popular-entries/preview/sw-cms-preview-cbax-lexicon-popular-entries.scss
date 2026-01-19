@@ -1,0 +1,26 @@
+.sw-cms-preview-cbax-lexicon-listing-wrap {
+    padding: 12px;
+    overflow: hidden;
+    position: relative;
+
+    .sw-cms-preview-cbax-lexicon-listing {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 12px;
+
+        .lexicon-entry-box {
+            border: 1px solid #d1d9e0;
+            padding: 5px;
+        }
+    }
+
+    .sw-cms-preview-cbax-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        height: 20px;
+        width: 20px;
+    }
+}
+

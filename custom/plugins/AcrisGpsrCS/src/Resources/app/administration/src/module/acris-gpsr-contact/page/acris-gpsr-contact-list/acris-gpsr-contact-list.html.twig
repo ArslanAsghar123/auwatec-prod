@@ -1,0 +1,117 @@
+{% block acris_gpsr_contact_list %}
+
+    <sw-page class="acris-gpsr-contact-list">
+        {% block acris_gpsr_contact_list_search_bar %}
+            <template #search-bar>
+                <sw-search-bar initialSearchType="GPSR"
+                               :placeholder="$tc('acris-gpsr-contact.general.placeholderSearchBar')"
+                               :initialSearch="term"
+                               @search="onSearch">
+                </sw-search-bar>
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_contact_list_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block acris_gpsr_contact_list_smart_bar_header_title %}
+                    <h2>
+                        {% block acris_gpsr_contact_list_smart_bar_header_title_text %}
+                            {{ $tc('acris-gpsr-contact.list.textHeadline') }}
+                        {% endblock %}
+
+                        {% block acris_gpsr_contact_list_smart_bar_header_amount %}
+                            <span v-if="!isLoading" class="sw-page__smart-bar-amount">
+                        ({{ total }})
+                        </span>
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_contact_list_smart_bar_language %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_contact_list_smart_bar_actions %}
+            <template #smart-bar-actions>
+                {% block acris_gpsr_contact_list_smart_bar_actions_add %}
+                    <sw-button variant="primary" :routerLink="{ name: 'acris.gpsr.contact.create' }">
+                        {{ $tc('acris-gpsr-contact.list.buttonAdd') }}
+                    </sw-button>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_contact_list_cardview %}
+            <template #content>
+                <div class="acris-gpsr-contact-list__content">
+                    {% block acris_gpsr_contact_list_content %}
+                        <sw-entity-listing class="acris-gpsr-contact-list-grid"
+                                           v-if="items && total > 0"
+                                           :items="items"
+                                           :repository="entityRepository"
+                                           detailRoute="acris.gpsr.contact.detail"
+                                           :showSeleciton="true"
+                                           :isLoading="isLoading"
+                                           :columns="columns">
+
+                            {% block acris_gpsr_contact_list_grid_columns_active %}
+                                <template #column-active="{ item, isInlineEdit }">
+                                    {% block acris_gpsr_contact_list_grid_columns_active_inline_edit %}
+                                        <template v-if="isInlineEdit">
+                                            <sw-checkbox-field v-model:value="item.active"></sw-checkbox-field>
+                                        </template>
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_contact_list_grid_columns_active_content %}
+                                        <template v-else>
+                                            <sw-icon v-if="item.active" name="regular-checkmark-xs" small
+                                                     class="is--active"></sw-icon>
+                                            <sw-icon v-else name="regular-times-s" small class="is--inactive"></sw-icon>
+                                        </template>
+                                    {% endblock %}
+                                </template>
+                            {% endblock %}
+
+                            <template #pagination>
+                                {% block sw_order_list_grid_pagination %}
+                                    <sw-pagination :page="page"
+                                                   :limit="limit"
+                                                   :total="total"
+                                                   :total-visible="7"
+                                                   @page-change="onPageChange">
+                                    </sw-pagination>
+                                {% endblock %}
+                            </template>
+
+                        </sw-entity-listing>
+                    {% endblock %}
+
+                    {% block acris_gpsr_contact_list_empty_state %}
+                        <sw-empty-state v-if="!isLoading && total <= 0"
+                                        :title="$tc('acris-gpsr-contact.list.contentEmpty')"></sw-empty-state>
+                    {% endblock %}
+
+                </div>
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_contact_list_sidebar %}
+            <template #sidebar>
+                <sw-sidebar class="acris-gpsr-contact-list__sidebar">
+                    {% block acris_gpsr_contact_list_sidebar_item %}
+                        <sw-sidebar-item
+                            icon="regular-undo"
+                            :title="$tc('acris-gpsr-contact.list.titleSidebarItemRefresh')"
+                            @click="onRefresh">
+                        </sw-sidebar-item>
+                    {% endblock %}
+                </sw-sidebar>
+            </template>
+        {% endblock %}
+
+    </sw-page>
+{% endblock %}

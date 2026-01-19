@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-slider.html.twig' %}
+
+{% block element_product_slider_title %}
+    {{ parent() }}
+
+    {% block element_last_seen_product_slider_text %}
+        {% if sliderConfig.text.value %}
+            <div class="cms-element-text">
+                {{ sliderConfig.text.value|raw }}
+            </div>
+        {% endif %}
+    {% endblock %}
+{% endblock %}

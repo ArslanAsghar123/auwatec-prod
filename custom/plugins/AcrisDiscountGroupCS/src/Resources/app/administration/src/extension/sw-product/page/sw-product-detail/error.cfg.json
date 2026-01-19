@@ -1,0 +1,9 @@
+{
+    "sw.product.discount.group.tab": {
+        "acris_discount_group": [
+            "discount",
+            "customerAssignmentType",
+            "productAssignmentType"
+        ]
+    }
+}

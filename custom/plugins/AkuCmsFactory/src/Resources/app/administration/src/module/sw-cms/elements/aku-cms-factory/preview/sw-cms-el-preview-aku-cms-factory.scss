@@ -1,0 +1,27 @@
+.sw-cms-el-preview-aku-cms-factory {
+
+    .upperpart {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-column-gap: 10px;
+        padding: 15px;
+        
+        .leftpart {
+            background: #aaa;
+            height: 100%;
+        }
+        
+        .multigrid {
+            background: #aaa;
+            height: 10px;
+            margin: 5px 0;
+        }
+    }
+
+    .lowerpart {
+        margin: 0 15px 15px 15px;
+        background: #aaa;
+        height: 20px;
+    }
+
+}

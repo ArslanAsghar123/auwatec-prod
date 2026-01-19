@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="phpSchmied\LastSeenProducts\Core\CrossSelling\CustomerLastSeenDefinition">
+            <tag name="shopware.entity.definition" entity="php_schmiede_cross_selling_customer_last_seen" />
+        </service>
+
+        <service id="phpSchmied\LastSeenProducts\Service\LastSeenProductService">
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="php_schmiede_cross_selling_customer_last_seen.repository"/>
+        </service>
+
+        <service id="phpSchmied\LastSeenProducts\Cms\DataResolver\LastSeenProductSliderCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+            <argument type="service" id="phpSchmied\LastSeenProducts\Service\LastSeenProductService"/>
+        </service>
+
+        <service id="phpSchmied\LastSeenProducts\Controller\LastSeenProductController" public="true">
+            <argument id="Shopware\Core\System\SystemConfig\SystemConfigService" type="service"/>
+            <argument type="service" id="phpSchmied\LastSeenProducts\Service\LastSeenProductService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+        </service>
+
+        <service id="phpSchmied\LastSeenProducts\Resources\snippet\en_GB\SnippetFile_en_GB">
+            <tag name="shopware.snippet.file" priority="100"/>
+        </service>
+
+        <service id="phpSchmied\LastSeenProducts\Resources\snippet\de_DE\SnippetFile_de_DE">
+            <tag name="shopware.snippet.file" priority="100"/>
+        </service>
+    </services>
+</container>

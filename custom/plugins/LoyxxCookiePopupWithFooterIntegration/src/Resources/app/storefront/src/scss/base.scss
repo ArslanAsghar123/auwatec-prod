@@ -1,0 +1,73 @@
+.offcanvas.offcanvas-modal-cookie {
+    width: 95%;
+    left: 2.5%;
+    bottom: auto;
+    top: 10%;
+    max-height: 87.5%;
+    overflow-y: scroll;
+
+    @include media-breakpoint-up(md) {
+        width: 70%;
+        height: auto;
+        left: 15%;
+        right: auto;
+        top: 30%;
+        max-height: 68.75%;
+        bottom: auto;
+        min-height: 100px;
+        border-radius: 8px;
+        transition: opacity 0.15s linear;
+        border: 1px solid #7f7f7f;
+    }
+}
+
+.loyxx-cookie-button {
+    position: fixed;
+    bottom: calc(24px);
+}
+
+.offcanvas .offcanvas-content-container.offcanvas-cookie-parent {
+    width: auto;
+}
+
+.offcanvas-cookie-list, .js-offcanvas-cookie-submit {
+    display: none;
+}
+
+.js-offcanvas-cookie-submit {
+    display: none;
+}
+
+.reject-all-substring {
+    font-size: x-small;
+}
+
+.open-cookie-settings {
+    cursor: pointer;
+}
+
+.pad0R {
+    padding-right: 0 !important;
+}
+
+.open-cookie-settings-container {
+    width: auto;
+    text-align: right;
+    font-size: small;
+    text-decoration: underline;
+}
+
+.btn-bigger-font {
+    font-size: 1rem;
+}
+
+.pad26T {
+    padding-top: 26px;
+}
+
+@media screen and (max-width: 574px) {
+    .loyxx-cookie-buttons{
+        width: 100%;
+        margin: 0;
+    }
+}

@@ -1,0 +1,53 @@
+.seo-text{
+  padding: 80px 0;
+  background: $white;
+  margin-top: 50px;
+
+  .seo-text-headline{
+    font-size: 28px;
+    line-height: 36px;
+    color: $blue-background-dark;
+    margin-bottom: 30px;
+  }
+  .seo-text-text{
+
+  }
+  .seo-text-expandable-button{
+    margin-top: 30px;
+    line-height: 36px;
+    cursor: pointer;
+    font-family: $font-family-roboto;
+    font-weight: $font-weight-bold;
+    font-size: 18px;
+
+    .seo-text-expandable-button-icon{
+      background: $sw-color-brand-primary;
+      color: $white;
+      height: 36px;
+      width: 36px;
+      display: inline-block;
+      text-align: center;
+      border-radius: 50%;
+      margin-right: 7px;
+
+      .icon{
+        height: 18px;
+        width: 18px;
+        font-size: 13px;
+      }
+    }
+  }
+  .seo-text-expandable-button-content-expaned,
+  .seo-text-expandable-text{
+    display: none;
+  }
+  &.is-expanded{
+    .seo-text-expandable-button-content{
+      display: none;
+    }
+    .seo-text-expandable-button-content-expaned,
+    .seo-text-expandable-text{
+      display: block;
+    }
+  }
+}

@@ -1,0 +1,2 @@
+window.PluginManager.register('IntediaDoofinder', () => import('./intedia-doofinder/intedia-doofinder'), '[data-intedia-doofinder]');
+window.PluginManager.override('SearchWidget', () => import('./intedia-doofinder/doofinder-search-widget.plugin'), '[data-search-widget]');

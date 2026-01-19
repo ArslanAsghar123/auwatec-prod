@@ -1,0 +1,35 @@
+{% block sw_cms_el_config_aku_cms_factory %}
+<div class="sw-cms-el-config-aku-cms-factory">
+
+    <!-- Loading -->
+    <sw-loader size="50px" 
+        v-if="'loading' == current_state">
+    </sw-loader>
+
+    <div class="select-cms-element-type">
+        
+        <div class="select-cms-element-type--select">
+            <sw-entity-single-select
+                entity="cms_factory_element"
+                class="sw-cms-el-aku-cms-factory-config__element-select"
+                label="Element"
+                placeholder="Element"
+                :criteria="element_list_criteria"
+                v-model:value="element.config.cms_factory_element_id.value">
+            </sw-entity-single-select>
+        </div>
+    </div>
+
+
+    <!-- Element found -->
+    <sw-cms-el-aku-cms-factory-config-fieldgroup
+        :fields="fields"
+        :defaultMediaFolderId="cmsPageState.defaultMediaFolderId"
+        :entityName="cmsPageState.entityName"
+        v-if="'element_found' == current_state"
+        :value="current_values"
+        @input="updateFieldValues"
+        ></sw-cms-el-aku-cms-factory-config-fieldgroup>
+
+</div>
+{% endblock %}

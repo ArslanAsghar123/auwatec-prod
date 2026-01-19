@@ -1,0 +1,21 @@
+{% block assembled_script %}
+    {% set script = '<' ~ scriptConfig.tag %}
+    {% for attribute in scriptConfig.attributes %}
+        {% if attribute.value is defined %}
+            {% if attribute.value === false %}
+                {% set script = script ~ ' ' ~ attribute.attributeName ~ '="false"' %}
+            {% elseif attribute.value === true %}
+                {% set script = script ~ ' ' ~ attribute.attributeName ~ '="true"' %}
+            {% else %}
+                {% set script = script ~ ' ' ~ attribute.attributeName ~ '="' ~ attribute.value ~ '"' %}
+            {% endif %}
+        {% else %}
+            {% set script = script ~ ' ' ~ attribute.attributeName %}
+        {% endif %}
+    {% endfor %}
+    {% set script = script ~ '></'~scriptConfig.tag~'>' %}
+
+    <!-- added by Trusted Shops app: Start -->
+    {{ script|raw }}
+    <!-- End -->
+{% endblock %}

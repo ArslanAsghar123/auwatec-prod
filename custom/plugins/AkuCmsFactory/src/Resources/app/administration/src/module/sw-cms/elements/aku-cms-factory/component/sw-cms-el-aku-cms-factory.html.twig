@@ -1,0 +1,115 @@
+{% block sw_cms_el_aku_cms_factory %}
+    <div class="sw-cms-el-aku-cms-factory">
+
+        <!-- Loading -->
+        <sw-loader size="50px" v-if="'loading' == current_state">
+        </sw-loader>
+
+        <!-- Not selected yet, list found -->
+        {#
+        <sw-grid :items="cmsFactoryElementList"
+            :selectable="false"
+            v-if="'element_selection' == current_state">
+            <template slot="columns" slot-scope="{ item }">
+            <sw-grid-column flex="minmax(200px, 1fr)"
+                :label="$tc('sw-cms.element.akuCmsFactory.component.selectAnElement')"
+                @click="selectCmsFactoryElement(item)"
+                style="cursor:pointer"
+                >
+                {{ item.name }}
+            </sw-grid-column>
+            </template>
+        </sw-grid>
+        #}
+
+        <!-- Not selected yet, and no element found -->
+        <sw-card v-if="'no_elements' == current_state"
+                 :large="true"
+                 :title="$tc('sw-cms.element.akuCmsFactory.component.no_elements')"
+        >
+            <sw-cms-el-preview-aku-cms-factory></sw-cms-el-preview-aku-cms-factory>
+        </sw-card>
+
+        <!-- Not selected yet, list found -->
+        <sw-card v-if="'element_selection' == current_state"
+                 :large="true"
+                 :title="$tc('sw-cms.element.akuCmsFactory.component.selectAnElement')"
+        >
+            <sw-cms-el-preview-aku-cms-factory></sw-cms-el-preview-aku-cms-factory>
+        </sw-card>
+
+        <!-- Selected and found -->
+        <sw-card
+                :title="cmsFactoryElement.name"
+                :hero="false"
+                :large="true"
+                v-if="'element_defined' == current_state"
+        >
+            <sw-grid
+                    :showActions="false"
+                    :selectable="false"
+                    :items="dataSource"
+                    :columns="columns">
+
+
+                <template #columns="{ item }">
+                    <sw-grid-column
+                            :label="$tc('sw-cms.element.akuCmsFactory.component.labelLabel')"
+                            flex="minmax(200px, 1fr)"
+                    >
+                        {{ item.label }}
+                    </sw-grid-column>
+
+                    <sw-grid-column
+                            flex="minmax(200px, 1fr)"
+                            :label="$tc('sw-cms.element.akuCmsFactory.component.valueLabel')"
+                    >
+                        <template v-if="'media' == item.type">
+                            <sw-cms-el-media-preview-aku-cms-factory
+                                    :height="40" :width="50"
+                                    v-if="item.value" :media_id="item.value"/>
+                        </template>
+                        <template v-else-if="'text-editor' == item.type"
+                        >
+                            <div v-html="item.value"></div>
+                        </template>
+                        <template v-else-if="'textarea' == item.type">
+                            {{ item.value }}
+                        </template>
+                        <template v-else-if="'category' == item.type">
+                            <sw-cms-el-category-preview-aku-cms-factory
+                                    v-if="item.value" :category_id="item.value"/>
+                        </template>
+                        <template v-else-if="'gallery' == item.type">
+                            {{ item.value.length }} {{ $tc('sw-cms.element.akuCmsFactory.component.galleryUnit') }}
+                        </template>
+                        <template v-else-if="'product' == item.type">
+                            <sw-cms-el-product-preview-aku-cms-factory
+                                    v-if="item.value" :product_id="item.value"/>
+                        </template>
+                        <template v-else-if="'manufacturer' == item.type">
+                            <sw-cms-el-manufacturer-preview-aku-cms-factory
+                                    v-if="item.value" :manufacturer_id="item.value"/>
+                        </template>
+                         <template v-else-if="'custom-entity' == item.type">
+                            <sw-cms-el-custom-entity-preview-aku-cms-factory
+                                    v-if="item.value" :entityIds="item.value" :entityName="item.entity"
+                                    :labelProperty="item.entityLabelProperty"/>
+                        </template>
+                        <template v-else-if="'stream' == item.type">
+                            <sw-cms-el-product-stream-preview-aku-cms-factory
+                                    v-if="item.value" :product_stream_id="item.value"/>
+                        </template>
+                        <template v-else>
+                            {{ item.value }}
+                        </template>
+                    </sw-grid-column>
+
+                </template>
+
+            </sw-grid>
+        </sw-card>
+
+
+    </div>
+{% endblock %}

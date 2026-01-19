@@ -1,0 +1,7 @@
+{% block sw_cms_product_preview_aku_cms_factory %}
+    <div class="sw_cms_product_preview_aku_cms_factory">
+        <sw-product-variant-info :variations="product.variation" v-if="product">
+            {{ product.translated.name || product.name }}<span v-if="product.productNumber"> ({{ product.productNumber}})</span>
+        </sw-product-variant-info>
+    </div>
+{% endblock %}

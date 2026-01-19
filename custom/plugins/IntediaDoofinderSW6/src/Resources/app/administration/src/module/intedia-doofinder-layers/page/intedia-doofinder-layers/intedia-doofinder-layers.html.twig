@@ -1,0 +1,214 @@
+{% block intedia_doofinder_layers %}
+    <sw-page class="intedia-doofinder-layers">
+        {% block intedia_doofinder_layers_smart_bar_header %}
+            <template slot="smart-bar-header">
+                {% block intedia_doofinder_layers_smart_bar_header_title %}
+                    <h2>
+                        {% block intedia_doofinder_layers_smart_bar_header_title_text %}
+                            {{ $tc('intedia-doofinder-layers.index.textHeadline') }}
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block intedia_doofinder_index_content %}
+            <template #content>
+                <sw-data-grid :dataSource="dataSource" :columns="columns">
+                    {% block intedia_doofinder_index_content_columns_actions %}
+                        <template #actions="{ item }">
+                            {% block intedia_doofinder_index_content_columns_actions_create %}
+                                <sw-context-menu-item
+                                        v-if="!item.searchengine"
+                                        @click="onCreateModal(item.id)">
+                                    {{ $tc('intedia-doofinder-layers.actions.createSearchEngine') }}
+                                </sw-context-menu-item>
+                            {% endblock %}
+                            {% block intedia_doofinder_index_content_columns_actions_link_searchengine %}
+                                <sw-context-menu-item v-if="!item.searchengine"
+                                                      @click="onLink(item.id)">
+                                    {{ $tc('intedia-doofinder-layers.actions.linkSearchEngine') }}
+                                </sw-context-menu-item>
+                            {% endblock %}
+
+                            {% block intedia_doofinder_index_content_columns_actions_view_doofinder_searchengine %}
+                                <sw-context-menu-item
+                                        v-if="item.searchengine"
+                                        @click="viewSearchEngine(item.doofinder_store_id, item.doofinder_hash_id)">
+                                    {{ $tc('intedia-doofinder-layers.actions.viewDoofinderSearchEngine') }}
+                                </sw-context-menu-item>
+                            {% endblock %}
+                            {% block intedia_doofinder_index_content_columns_actions_create_index %}
+                                <sw-context-menu-item v-if="item.searchengine"
+                                                      @click="onProcessIndex(item.id, item.doofinder_channel_id ,item.doofinder_hash_id)">
+                                    {{ $tc('intedia-doofinder-layers.actions.onProcessIndex') }}
+                                </sw-context-menu-item>
+                            {% endblock %}
+                            {% block intedia_doofinder_index_content_columns_actions_enable_recommendations %}
+                                <sw-context-menu-item v-if="item.searchengine"
+                                                      @click="enableRecommendations(item.doofinder_store_id, item.doofinder_hash_id)">
+                                    {{ $tc('intedia-doofinder-layers.actions.enableDoofinderRecommendations') }}
+                                </sw-context-menu-item>
+                            {% endblock %}
+                            {% block intedia_doofinder_index_content_columns_actions_view_channel %}
+                                <sw-context-menu-item
+                                        v-if="item.searchengine"
+                                        :routerLink="{ name: 'sw.sales.channel.detail', params: { id: item.doofinder_channel_id } }">
+                                    {{ $tc('intedia-doofinder-layers.actions.viewSalesChannel') }}
+                                </sw-context-menu-item>
+                            {% endblock %}
+                            {% block intedia_doofinder_index_content_columns_actions_delete_link %}
+                                <sw-context-menu-item variant="danger" v-if="item.searchengine"
+                                                      @click="deleteLink(item.doofinder_id)">
+                                    {{ $tc('intedia-doofinder-layers.actions.deleteLink') }}
+                                </sw-context-menu-item>
+                            {% endblock %}
+                        </template>
+                    {% endblock %}
+
+
+                    {% block intedia_doofinder_index_content_columns_actions_modals %}
+                        <template #action-modals="{ item }">
+
+                          {% block intedia_doofinder_index_content_columns_actions_create_modal %}
+                            <sw-modal v-if="showCreateModal === item.id"
+                                      @modal-close="onCloseCreateModal"
+                                      :title="$tc('intedia-doofinder-layers.modals.create.title')"
+                                      variant="small">
+                              {% block intedia_doofinder_index_content_columns_actions_create_modal_confirm_text %}
+                                <p>{{ $tc('intedia-doofinder-layers.modals.create.text') }}</p>
+                                <p><br></p>
+
+                                <div class="sw-field sw-block-field sw-contextual-field sw-field--text sw-field--default">
+                                  <div class="sw-field__label">
+                                    <label for="createDoofinderStoreId" class="">
+                                      Doofinder Store
+                                    </label>
+                                  </div>
+                                  <div class="sw-block-field__block">
+                                    <select id="createDoofinderStoreId" class="form-select" type="text">
+                                      <option v-for="(option, index) in item.stores" :value="option.id">{{option.name}}</option>
+                                    </select>
+                                  </div>
+                                </div>
+
+                              {% endblock %}
+                              {% block intedia_doofinder_index_content_columns_actions_create_modal_footer %}
+                                <template slot="modal-footer">
+                                  {% block intedia_doofinder_index_content_columns_actions_create_modal_cancel %}
+                                    <sw-button @click="onCloseCreateModal"
+                                               size="small">
+                                      {{ $tc('intedia-doofinder-layers.modals.create.cancel') }}
+                                    </sw-button>
+                                  {% endblock %}
+                                  {% block intedia_doofinder_index_content_columns_actions_create_modal_delete %}
+                                    <sw-button @click="onConfirmCreateModal(item.domain_id, item.storefront_channel_id)"
+                                               variant="primary"
+                                               size="small">
+                                      {{ $tc('intedia-doofinder-layers.modals.create.submit') }}
+                                    </sw-button>
+                                  {% endblock %}
+                                </template>
+                              {% endblock %}
+                            </sw-modal>
+                          {% endblock %}
+
+
+
+
+                            {% block intedia_doofinder_index_content_columns_actions_delete_modal %}
+                                <sw-modal v-if="showDeleteModal === item.id"
+                                          @modal-close="onCloseDeleteModal"
+                                          :title="$tc('intedia-doofinder-layers.modals.delete.title')"
+                                          variant="small">
+                                    {% block intedia_doofinder_index_content_columns_actions_modal_confirm_text %}
+                                        <p>{{ $tc('intedia-doofinder-layers.modals.delete.text') }}</p>
+                                    {% endblock %}
+                                    {% block intedia_doofinder_index_content_columns_actions_modal_footer %}
+                                        <template slot="modal-footer">
+                                            {% block intedia_doofinder_index_content_columns_actions_modal_cancel %}
+                                                <sw-button @click="onCloseDeleteModal"
+                                                           size="small">
+                                                    {{ $tc('intedia-doofinder-layers.modals.delete.cancel') }}
+                                                </sw-button>
+                                            {% endblock %}
+                                            {% block intedia_doofinder_index_content_columns_actions_modal_delete %}
+                                                <sw-button @click="onConfirmDelete(item.domain_id, item.doofinder_channel_id)"
+                                                           variant="primary"
+                                                           size="small">
+                                                    {{ $tc('intedia-doofinder-layers.modals.delete.submit') }}
+                                                </sw-button>
+                                            {% endblock %}
+                                        </template>
+                                    {% endblock %}
+                                </sw-modal>
+                            {% endblock %}
+
+
+                            {% block intedia_doofinder_index_content_columns_actions_link_modal %}
+                                <sw-modal v-if="showLinkModal === item.id"
+                                          @modal-close="onCloseLinkModal"
+                                          :title="$tc('intedia-doofinder-layers.modals.link.title')"
+                                          variant="small">
+                                    {% block intedia_doofinder_index_content_columns_actions_link_modal_confirm_text %}
+                                        <div class="loadingGif">
+                                            <div class="loader"></div>
+                                        </div>
+
+                                        <div class="sw-field sw-block-field sw-contextual-field sw-field--text sw-field--default">
+                                            <div class="sw-field__label">
+                                                <label for="linkDoofinderStoreId" class="">
+                                                    {{ $tc('intedia-doofinder-layers.modals.link.fields.doofinderStore') }}
+                                                </label>
+                                            </div>
+                                            <div class="sw-block-field__block">
+                                                <select id="linkDoofinderStoreId" class="form-select" type="text" @change="onLinkChange()">
+                                                    <option disabled="disabled" selected="selected" value="">{{ $tc('intedia-doofinder-layers.modals.link.fields.pleaseChoose') }}</option>
+                                                    <option v-for="(option, index) in item.stores" :value="option.id">{{option.name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="sw-field sw-block-field sw-contextual-field sw-field--text sw-field--default">
+                                            <div class="sw-field__label">
+                                                <label for="doofinderHashId" class="">
+                                                    {{ $tc('intedia-doofinder-layers.modals.link.fields.doofinderSearchEngineHashId') }}
+                                                </label>
+                                            </div>
+                                            <div class="sw-block-field__block">
+                                                <select id="doofinderHashId" class="form-select" type="text">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    {% endblock %}
+
+                                    {% block intedia_doofinder_index_content_columns_actions_link_modal_footer %}
+                                        <template slot="modal-footer">
+                                            {% block intedia_doofinder_index_content_columns_actions_link_modal_cancel %}
+                                                <sw-button @click="onCloseLinkModal"
+                                                           size="small">
+                                                    {{ $tc('intedia-doofinder-layers.modals.link.cancel') }}
+                                                </sw-button>
+                                            {% endblock %}
+
+                                            {% block intedia_doofinder_index_content_columns_actions_link_modal_delete %}
+                                                <sw-button
+                                                           @click="onConfirmLink(item.id, item.storefront_channel_id)"
+                                                           variant="primary"
+                                                           size="small">
+                                                    {{ $tc('intedia-doofinder-layers.modals.link.submit') }}
+                                                </sw-button>
+                                            {% endblock %}
+                                        </template>
+                                    {% endblock %}
+                                </sw-modal>
+                            {% endblock %}
+                        </template>
+                    {% endblock %}
+
+                </sw-data-grid>
+            </template>
+        {% endblock %}
+
+    </sw-page>
+{% endblock %}

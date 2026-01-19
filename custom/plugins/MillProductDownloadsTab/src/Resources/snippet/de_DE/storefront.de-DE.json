@@ -1,0 +1,11 @@
+{
+  "millProductDownloadsTab": {
+    "detail": {
+      "title": "Downloads",
+      "prefix": "Download "
+    },
+    "additionalTable": {
+      "headline": "Downloads"
+    }
+  }
+}

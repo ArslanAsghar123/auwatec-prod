@@ -1,0 +1,605 @@
+{% block footer_kit_module_overview %}
+    <sw-page class="footer-kit-module-overview">
+        <template #smart-bar-actions>
+            <sw-button-process
+                :isLoading="isLoading"
+                :processSuccess="processSuccess"
+                variant="primary"
+                @process-finish="saveFinish"
+                @click="onClickSave">
+                    {{ $tc('footer-kit.button.saveLabel') }}
+            </sw-button-process>
+
+            <sw-button variant="secondary-ghost"
+                       @click="backToRoute">
+                {{ $t('footer-kit.create.backButton') }}
+            </sw-button>
+        </template>
+        <template #language-switch>
+            <sw-language-switch
+            :saveChangesFunction="onClickSave"
+            @on-change="onChangeLanguage">
+            </sw-language-switch>
+        </template>
+        <template #content>
+            <sw-card-view>
+
+                {% block footer_kit_moduel_overview_tabs %}
+                    <sw-tabs defaultItem="main">
+                        <template #default="{ active }">
+
+                            {% block footer_kit_moduel_overview_tabs_main %}
+                                <sw-tabs-item name="main" :activeTab="active">
+                                    {{ $tc('footer-kit.tabs.mainLabel') }}
+                                </sw-tabs-item>
+                            {% endblock %}
+
+                            {% block footer_kit_moduel_overview_tabs_navigation %}
+                                <sw-tabs-item name="navigation" :activeTab="active">
+                                    {{ $tc('footer-kit.tabs.navigationLabel') }}
+                                </sw-tabs-item>
+                            {% endblock %}
+
+                            {% block footer_kit_moduel_overview_tabs_information %}
+                                <sw-tabs-item name="information"
+                                            :activeTab="active">
+                                    {{ $tc('footer-kit.tabs.informationLabel') }}
+                                </sw-tabs-item>
+                            {% endblock %}
+
+                            {% block footer_kit_moduel_overview_tabs_payment_shipping %}
+                                <sw-tabs-item name="payment_shipping"
+                                            :activeTab="active">
+                                    {{ $tc('footer-kit.tabs.paymentShippingLabel') }}
+                                </sw-tabs-item>
+                            {% endblock %}
+                            {% block footer_kit_moduel_overview_tabs_bottom %}
+                                <sw-tabs-item name="bottom"
+                                            :activeTab="active">
+                                    {{ $tc('footer-kit.tabs.bottomLabel') }}
+                                </sw-tabs-item>
+                            {% endblock %}
+                        </template>
+                        <template #content="{ active }">
+
+                            {% block footer_kit_moduel_overview_content_main %}
+                            <div v-if="active ==='main'">
+                                <sw-card :title="$tc('footer-kit.label.mainLabel')">
+                                    <sw-container columns="1fr 1fr" gap="10px">
+                                        <sw-text-field
+                                                :label="$tc('footer-kit.table.name')"
+                                                v-model:value="footerKitName">
+                                        </sw-text-field>
+
+                                        <sw-entity-single-select
+                                                :label="$tc('footer-kit.table.salesChannel')"
+                                                entity="sales_channel"
+                                                v-model:value="salesChannelId">
+                                        </sw-entity-single-select>
+                                    </sw-container>
+                                </sw-card>
+                            </div>
+                            {% endblock %}
+
+                            {% block footer_kit_moduel_overview_content_navigation %}
+                                <div v-if="active ==='navigation'">
+                                    <sw-card :title="$tc('footer-kit.label.navigationLabel')">
+                                        <sw-container columns="1fr 1fr" gap="10px">
+                                            <sw-switch-field
+                                                :helpText="$tc('footer-kit.helpText.navigation')"
+                                                :label="$tc('footer-kit.label.active')"
+                                                v-model:value="navigationConfig.active">
+                                            </sw-switch-field>
+                                            <sw-switch-field
+                                                :helpText="$tc('footer-kit.helpText.serviceHotline')"
+                                                :label="$tc('footer-kit.label.serviceHotlineLabel')"
+                                                v-model:value="navigationConfig.serviceHotline">
+                                            </sw-switch-field>
+                                            <sw-colorpicker
+                                                :label="$tc('footer-kit.label.headingColor')"
+                                                colorOutput="auto"
+                                                :alpha="true"
+                                                :disabled="false"
+                                                :colorLabels="true"
+                                                zIndex="100"
+                                                v-model:value="navigationConfig.fontColor">
+                                            </sw-colorpicker>
+                                            <sw-colorpicker
+                                                :label="$tc('footer-kit.label.fontColorLink')"
+                                                colorOutput="auto"
+                                                :alpha="true"
+                                                :disabled="false"
+                                                :colorLabels="true"
+                                                zIndex="100"
+                                                v-model:value="navigationConfig.fontColorLink">
+                                            </sw-colorpicker>
+                                            <sw-colorpicker
+                                                :label="$tc('footer-kit.label.fontColorLinkHover')"
+                                                colorOutput="auto"
+                                                :alpha="true"
+                                                :disabled="false"
+                                                :colorLabels="true"
+                                                zIndex="100"
+                                                v-model:value="navigationConfig.fontColorLinkHover">
+                                            </sw-colorpicker>
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.transitionTime')"
+                                                :label="$tc('footer-kit.label.transitionTime')"
+                                                v-model:value="navigationConfig.transitionTime">
+                                            </sw-text-field>
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                :label="$tc('footer-kit.label.vertical')"
+                                                v-model:value="navigationConfig.verticalSpacing">
+                                            </sw-text-field>
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                :label="$tc('footer-kit.label.horizontal')"
+                                                v-model:value="navigationConfig.horizontalSpacing">
+                                            </sw-text-field>
+                                        </sw-container>
+                                    </sw-card>
+                                    <sw-card :title="$tc('footer-kit.label.informationBlocksLabel')">
+                                        <div v-for="(input, index) in translated.navigationBlock" class="frame backgroundCard" style="margin-bottom: 10px;">
+                                            <sw-container columns="1fr 20px" gap="10px">
+                                                <h3>{{ $tc('footer-kit.label.informationBlockLabel') }} {{ index + 1 }}</h3>
+                                                <button @click="deleteRowNavigationBlock(index)" class="minus-button minus-button--small"></button>
+                                            </sw-container>
+                                            <sw-container columns="1fr 20px" gap="10px">
+                                                <sw-text-field placeholder="Gib einen Titel für den Block ein."
+                                                          label="Titel des Blocks"
+                                                          v-model:value="input.title">
+                                                </sw-text-field>
+                                            </sw-container>
+
+                                            <sw-text-editor style="background: white;"
+                                                            v-model:value="input.block">
+                                            </sw-text-editor>
+
+                                            <sw-container columns="100px 1fr" gap="10px">
+                                                <sw-switch-field
+                                                          :label="$tc('footer-kit.label.active')"
+                                                          v-model:value="input.active">
+                                                </sw-switch-field>
+                                                <sw-single-select
+                                                        :label="$tc('footer-kit.label.columnSize')"
+                                                        size="medium"
+                                                        :options="columnValue"
+                                                        v-model:value="input.col">
+                                                </sw-single-select>
+                                            </sw-container>
+                                        </div>
+                                        <div class="centered">
+                                            <button @click="addRowNavigationBlock(9)" class="plus-button plus-button--large"></button>
+                                        </div>
+                                    </sw-card>
+                                    <sw-card :title="$tc('footer-kit.label.background')">
+                                        <sw-single-select
+                                            style="margin-bottom: 30px;"
+                                            :label="$tc('footer-kit.label.backgroundType')"
+                                            :options="backgroundTypeValue"
+                                            v-model:value="backgroundType">
+                                        </sw-single-select>
+                                        <sw-container columns="1fr 1fr" gap="10px">
+                                            <sw-media-field
+                                                v-if="backgroundType == 'image'"
+                                                :label="$tc('footer-kit.label.backgroundImage')"
+                                                v-model:value="navigationConfig.backgroundImage">
+                                            </sw-media-field>
+                                            <sw-single-select
+                                                v-if="backgroundType == 'image'"
+                                                :label="$tc('footer-kit.background.positionLabel')"
+                                                :options="backgroundPositionValue"
+                                                v-model:value="navigationConfig.backgroundImagePosition">
+                                            </sw-single-select>
+                                            <sw-single-select
+                                                v-if="backgroundType == 'image'"
+                                                :label="$tc('footer-kit.fit.label')"
+                                                :options="backgroundFitValue"
+                                                v-model:value="navigationConfig.backgroundImageFit">
+                                            </sw-single-select>
+                                            <sw-single-select
+                                                v-if="backgroundType =='image'"
+                                                :label="$tc('footer-kit.repeatValue.label')"
+                                                :options="backgroundImageRepeatValue"
+                                                v-model:value="navigationConfig.backgroundImageRepeat">
+                                            </sw-single-select>
+                                            <sw-colorpicker
+                                                v-if="backgroundType == 'color'"
+                                                :label="$tc('footer-kit.label.backgroundColor')"
+                                                colorOutput="auto"
+                                                :alpha="true"
+                                                :disabled="false"
+                                                :colorLabels="true"
+                                                zIndex="100"
+                                                v-model:value="navigationConfig.backgroundColor">
+                                            </sw-colorpicker>
+                                        </sw-container>
+                                    </sw-card>
+                                </div>
+                            {% endblock %}
+
+                            {% block footer_kit_moduel_overview_content_information %}
+                                <div v-if="active === 'information'">
+                                    <sw-card :title="$tc('footer-kit.label.informationLabel')">
+                                        <sw-container columns="1fr 1fr" gap="10px">
+                                            <sw-switch-field
+                                                :label="$tc('footer-kit.label.active')"
+                                                v-model:value="informationConfig.basicSettings.active">
+                                            </sw-switch-field>
+                                            <sw-switch-field
+                                                v-if="informationConfig.basicSettings.informationType == 'custom'"
+                                                :label="$tc('footer-kit.label.center')"
+                                                v-model:value="informationConfig.basicSettings.center">
+                                            </sw-switch-field>
+                                        </sw-container>
+                                        <sw-container columns="1fr 1fr" gap="10px">
+                                            <sw-colorpicker
+                                                :label="$tc('footer-kit.label.backgroundColor')"
+                                                colorOutput="auto"
+                                                :alpha="true"
+                                                :disabled="false"
+                                                :colorLabels="true"
+                                                zIndex="100"
+                                                v-model:value="informationConfig.basicSettings.backgroundColor">
+                                            </sw-colorpicker>
+                                        </sw-container>
+                                        <sw-container columns="1fr 1fr" gap="10px">
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                :label="$tc('footer-kit.label.vertical')"
+                                                v-model:value="informationConfig.basicSettings.verticalSpacing">
+                                            </sw-text-field>
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                :label="$tc('footer-kit.label.horizontal')"
+                                                v-model:value="informationConfig.basicSettings.horizontalSpacing">
+                                            </sw-text-field>
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.productTitle')"
+                                                :label="$tc('footer-kit.label.productTitle')"
+                                                v-model:value="translated.productSliderTitle">
+                                            </sw-text-field>
+                                            <sw-colorpicker
+                                                :label="$tc('footer-kit.label.titleColor')"
+                                                colorOutput="auto"
+                                                :alpha="true"
+                                                :disabled="false"
+                                                :colorLabels="true"
+                                                zIndex="100"
+                                                v-model:value="informationConfig.basicSettings.titleColor">
+                                            </sw-colorpicker>
+                                            <sw-single-select
+                                                :label="$tc('footer-kit.label.switchInformationType')"
+                                                :options="informationTypValue"
+                                                v-model:value="informationConfig.basicSettings.informationType">
+                                            </sw-single-select>
+                                        </sw-container>
+                                    </sw-card>
+                                    <sw-card :title="$tc('footer-kit.label.informationBlocksLabel')" v-if="informationConfig.basicSettings.informationType == 'custom'">
+                                        <div v-for="(input, index) in translated.informationBlock" class="frame backgroundCard" style="margin-bottom: 10px;">
+                                            <sw-container columns="1fr 20px" gap="10px">
+                                                <h3>{{ $tc('footer-kit.label.informationBlockLabel') }} {{ index + 1 }}</h3>
+                                                <button @click="deleteRowInformationBlock(index)" class="minus-button minus-button--small"></button>
+                                            </sw-container>
+
+                                            <sw-text-editor style="background: white;"
+                                                v-model:value="input.block">
+                                            </sw-text-editor>
+
+                                            <sw-container columns="100px 1fr" gap="10px">
+                                                <sw-switch-field
+                                                    :label="$tc('footer-kit.label.active')"
+                                                    v-model:value="input.active">
+                                                </sw-switch-field>
+                                                <sw-single-select
+                                                    :label="$tc('footer-kit.label.columnSize')"
+                                                    size="medium"
+                                                    :options="columnValue"
+                                                    v-model:value="input.col">
+                                                </sw-single-select>
+                                            </sw-container>
+                                        </div>
+                                        <div class="centered">
+                                            <button @click="addRowInformationBlock(9)" class="plus-button plus-button--large"></button>
+                                        </div>
+                                    </sw-card>
+                                    <sw-card :title="$tc('footer-kit.label.informationDynamicLabel')" v-if="informationConfig.basicSettings.informationType == 'dynamic'">
+                                        
+                                        <sw-single-select
+                                            :label="$tc('footer-kit.label.productType')"
+                                            size="medium"
+                                            :options="productTypeValue"
+                                            v-model:value="informationConfig.basicSettings.productType"
+                                            style="padding-bottom: 20px;">
+                                        </sw-single-select>
+
+                                        <sw-container columns="1fr 1fr" gap="10px" v-if="informationConfig.basicSettings.productType == 'new'">
+                                            <sw-entity-single-select entity="sales_channel" 
+                                                :label="$tc('footer-kit.label.salesChannel')" 
+                                                :placeholder="$tc('footer-kit.placeholder.salesChannel')"
+                                                :criteria="CriteriaSalesChannel" 
+                                                v-model:value="informationConfig.basicSettings.salesChannelNew">
+                                            </sw-entity-single-select>
+                                            <sw-text-field
+                                                v-if="informationConfig.basicSettings.salesChannelNew && informationConfig.basicSettings.productType == 'new'"
+                                                :placeholder="$tc('footer-kit.placeholder.numberOfNewProduct')"
+                                                :label="$tc('footer-kit.label.numberOfNewProduct')"
+                                                v-model:value="informationConfig.basicSettings.numberOfNewProduct">
+                                            </sw-text-field>
+                                        </sw-container>
+
+                                        <sw-container columns="1fr 1fr" gap="10px" v-if="informationConfig.basicSettings.productType == 'select'">
+                                            <sw-entity-single-select entity="sales_channel"
+                                                :label="$tc('footer-kit.label.salesChannel')" 
+                                                :placeholder="$tc('footer-kit.placeholder.salesChannel')"
+                                                :criteria="CriteriaSalesChannel"
+                                                v-model:value="informationConfig.basicSettings.salesChannelCustom">
+                                            </sw-entity-single-select>
+                                        </sw-container>
+
+                                        <sw-entity-multi-select
+                                            v-if="informationConfig.basicSettings.salesChannelCustom && informationConfig.basicSettings.productType == 'select'"
+                                            :placeholder="$tc('footer-kit.placeholder.productSelect')"
+                                            size="medium"
+                                            entity="product"
+                                            :criteria="CriteriaProduct"
+                                            :entityCollection="product"
+                                            @update:entity-collection="setProductIds"
+                                            highlightSearchTerm=true>
+                                        </sw-entity-multi-select>
+                                    </sw-card>
+                                </div>
+                            {% endblock %}
+
+                            {% block footer_kit_moduel_overview_content_payment_shipping %}
+                                <div v-if="active ==='payment_shipping'">
+                                    <sw-card :title="$tc('footer-kit.label.paymentShippingLabel')">
+                                        <sw-container columns="1fr 1fr" gap="10px">
+                                            <sw-switch-field
+                                                :helpText="$tc('footer-kit.helpText.payment')"
+                                                :label="$tc('footer-kit.label.paymentActive')"
+                                                v-model:value="paymentShippingConfig.paymentActive">
+                                            </sw-switch-field>
+                                            <sw-switch-field
+                                                :helpText="$tc('footer-kit.helpText.shipping')"
+                                                :label="$tc('footer-kit.label.shippingActive')"
+                                                v-model:value="paymentShippingConfig.shippingActive">
+                                            </sw-switch-field>
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.payment')"
+                                                :label="$tc('footer-kit.label.paymentStringLabel')"
+                                                v-model:value="translated.paymentString">
+                                            </sw-text-field>
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.shipping')"
+                                                :label="$tc('footer-kit.label.shippingStringLabel')"
+                                                v-model:value="translated.shippingString">
+                                            </sw-text-field>
+                                            <sw-colorpicker
+                                                :label="$tc('footer-kit.label.backgroundColor')"
+                                                colorOutput="auto"
+                                                :alpha="true"
+                                                :disabled="false"
+                                                :colorLabels="true"
+                                                zIndex="100"
+                                                v-model:value="paymentShippingConfig.backgroundColor">
+                                            </sw-colorpicker>
+                                            <sw-colorpicker
+                                                :label="$tc('footer-kit.label.fontColor')"
+                                                colorOutput="auto"
+                                                :alpha="true"
+                                                :disabled="false"
+                                                :colorLabels="true"
+                                                zIndex="100"
+                                                v-model:value="paymentShippingConfig.fontColor">
+                                            </sw-colorpicker>
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                :label="$tc('footer-kit.label.vertical')"
+                                                v-model:value="paymentShippingConfig.verticalSpacing">
+                                            </sw-text-field>
+                                            <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                :label="$tc('footer-kit.label.horizontal')"
+                                                v-model:value="paymentShippingConfig.horizontalSpacing">
+                                            </sw-text-field>
+                                        </sw-container>
+                                    </sw-card>
+                                </div>
+                            {% endblock %}
+
+                            {% block footer_kit_moduel_overview_content_bootom_footer %}
+                                <div v-if="active ==='bottom'">
+                                    {% block bottom_footer_basic_settings %}
+                                        <sw-card :title="$tc('footer-kit.label.bottomFooterLabel')">
+                                            <sw-container columns="1fr 1fr" gap="10px">
+                                                <sw-switch-field
+                                                    :label="$tc('footer-kit.label.active')"
+                                                    v-model:value="bottomConfig.basicSettings.active">
+                                                </sw-switch-field>
+                                                <sw-colorpicker
+                                                    :label="$tc('footer-kit.label.backgroundColor')"
+                                                    colorOutput="auto"
+                                                    :alpha="true"
+                                                    :disabled="false"
+                                                    :colorLabels="true"
+                                                    zIndex="100"
+                                                    v-model:value="bottomConfig.basicSettings.backgroundColor">
+                                                </sw-colorpicker>
+                                            </sw-container>
+                                        </sw-card>
+                                        <sw-card :title="$tc('footer-kit.label.vatLabel')">
+                                            <sw-container columns="1fr 1fr" gap="10px">
+                                                <sw-switch-field
+                                                    :label="$tc('footer-kit.label.active')"
+                                                    v-model:value="bottomConfig.basicSettings.vatActive">
+                                                </sw-switch-field>
+                                                <sw-colorpicker
+                                                    label="Schriftfarbe"
+                                                    colorOutput="auto"
+                                                    :alpha="true"
+                                                    :disabled="false"
+                                                    :colorLabels="true"
+                                                    zIndex="100"
+                                                    v-model:value="bottomConfig.basicSettings.vatFontColor">
+                                                </sw-colorpicker>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacingCustomLinks')"
+                                                    :label="$tc('footer-kit.label.vertical')"
+                                                    v-model:value="bottomConfig.basicSettings.vatVerticalSpacing">
+                                                </sw-text-field>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacingCustomLinks')"
+                                                    :label="$tc('footer-kit.label.horizontal')"
+                                                    v-model:value="bottomConfig.basicSettings.vatHorizontalSpacing">
+                                                </sw-text-field>
+                                            </sw-container>
+                                        </sw-card>
+                                    {% endblock %}
+                                    {% block social_media %}
+                                        <sw-card :title="$tc('footer-kit.label.socialMediaLabel')">
+                                            <sw-container columns="1fr 1fr" gap="10px">
+                                                <sw-switch-field
+                                                    :label="$tc('footer-kit.label.active')"
+                                                    v-model:value="bottomConfig.socialMediaSettings.active">
+                                                </sw-switch-field>
+                                                <sw-switch-field
+                                                    :label="$tc('footer-kit.label.tab')"
+                                                    v-model:value="bottomConfig.socialMediaSettings.tab">
+                                                </sw-switch-field>
+                                                <sw-text-field
+                                                    :placeholder="$tc('footer-kit.placeholder.socialMediaString')"
+                                                    :label="$tc('footer-kit.label.socialMediaString')"
+                                                    v-model:value="translated.socialMediaString">
+                                                </sw-text-field>
+                                                <sw-text-field
+                                                    :placeholder="$tc('footer-kit.placeholder.size')"
+                                                    :label="$tc('footer-kit.label.iconSizeLabel')"
+                                                    v-model:value="bottomConfig.socialMediaSettings.iconSize">
+                                                </sw-text-field>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                    :label="$tc('footer-kit.label.vertical')"
+                                                    v-model:value="bottomConfig.socialMediaSettings.verticalSpacing">
+                                                </sw-text-field>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                    :label="$tc('footer-kit.label.horizontal')"
+                                                    v-model:value="bottomConfig.socialMediaSettings.horizontalSpacing">
+                                                </sw-text-field>
+                                                <sw-colorpicker
+                                                    :label="$tc('footer-kit.label.fontColor')"
+                                                    colorOutput="auto"
+                                                    :alpha="true"
+                                                    :disabled="false"
+                                                    :colorLabels="true"
+                                                    zIndex="100"
+                                                    v-model:value="bottomConfig.socialMediaSettings.fontColor">
+                                                </sw-colorpicker>
+                                            </sw-container>
+                                            <sw-card :title="$tc('footer-kit.label.socialMediaBlocksLabel')">
+                                                <sw-container columns="1fr 1fr" gap="20px">
+                                                    <div v-for="(input, index) in socialMediaInput" class="frame backgroundCard">
+                                                        <button @click="deleteRowSocialMedia(index)" class="minus-button minus-button--small"></button>
+                                                        <h4 class="socialMeidaPaddingHead">{{ $tc('footer-kit.label.socialMediaBlockLabel') }} {{ index + 1 }}</h4>
+                                                        <sw-switch-field
+                                                            :label="$tc('footer-kit.label.active')"
+                                                            v-model:value="input.active">
+                                                        </sw-switch-field>
+                                                        <sw-text-field v-model:value="input.url"></sw-text-field>
+                                                        <sw-media-field v-model:value="input.media" :label="$tc('footer-kit.label.iconLabel')"></sw-media-field>
+                                                    </div>  
+                                                </sw-container>
+                                                <div class="centered">
+                                                    <button @click="addRowSocialMedia(9)" class="plus-button plus-button--large"></button> 
+                                                </div>
+                                            </sw-card>
+                                        </sw-card>
+                                    {% endblock %}
+                                    {% block custom_links %}
+                                        <sw-card :title="$tc('footer-kit.label.customLinksLabel')">
+                                            <sw-container columns="1fr 1fr" gap="10px">
+                                                <sw-switch-field
+                                                    :label="$tc('footer-kit.label.active')"
+                                                    v-model:value="bottomConfig.customLinkSettings.active">
+                                                </sw-switch-field>
+                                                <sw-switch-field
+                                                    :label="$tc('footer-kit.label.tab')"
+                                                    v-model:value="bottomConfig.customLinkSettings.tab">
+                                                </sw-switch-field>
+                                                <sw-colorpicker
+                                                    :label="$tc('footer-kit.label.fontColor')"
+                                                    colorOutput="auto"
+                                                    :alpha="true"
+                                                    :disabled="false"
+                                                    :colorLabels="true"
+                                                    zIndex="100"
+                                                    v-model:value="bottomConfig.customLinkSettings.fontColor">
+                                                </sw-colorpicker>
+                                                <sw-colorpicker
+                                                    :label="$tc('footer-kit.label.fontColorHover')"
+                                                    colorOutput="auto"
+                                                    :alpha="true"
+                                                    :disabled="false"
+                                                    :colorLabels="true"
+                                                    zIndex="100"
+                                                    v-model:value="bottomConfig.customLinkSettings.fontColorHover">
+                                                </sw-colorpicker>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.transitionTime')"
+                                                    :label="$tc('footer-kit.label.transitionTime')"
+                                                    v-model:value="bottomConfig.customLinkSettings.transitionTime">
+                                                </sw-text-field>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacingCustomLinks')"
+                                                    :label="$tc('footer-kit.label.vertical')"
+                                                    v-model:value="bottomConfig.customLinkSettings.verticalSpacing">
+                                                </sw-text-field>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacingCustomLinks')"
+                                                    :label="$tc('footer-kit.label.horizontal')"
+                                                    v-model:value="bottomConfig.customLinkSettings.horizontalSpacing">
+                                                </sw-text-field>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.fontSize')"
+                                                    :label="$tc('footer-kit.label.fontSize')"
+                                                    v-model:value="bottomConfig.customLinkSettings.fontSize">
+                                                </sw-text-field>
+                                            </sw-container>
+                                            <sw-card :title="$tc('footer-kit.label.customLinksBlocksLabel')">
+                                                <sw-container columns="1fr 1fr" gap="20px">
+                                                    <div class="frame backgroundCard" v-for="(input, index) in translated.customLink">
+                                                        <button @click="deleteRowCustomLink(index)" class="minus-button minus-button--small"></button>
+                                                        <h4 class="socialMeidaPaddingHead">Custom Link {{ index + 1 }}</h4>
+                                                        <sw-switch-field
+                                                            :label="$tc('footer-kit.label.active')"
+                                                            v-model:value="input.active">
+                                                        </sw-switch-field>
+                                                        <sw-text-field v-model:value="input.url"></sw-text-field>
+                                                        <sw-text-field :placeholder="$tc('footer-kit.placeholder.linkName')"
+                                                            :label="$tc('footer-kit.label.linkNameLabel')"
+                                                            v-model:value= "input.name">
+                                                        </sw-text-field>
+                                                    </div>
+                                                </sw-container>
+                                                <div class="centered">
+                                                    <button @click="addRowCustomLink(9)" class="plus-button plus-button--large"></button> 
+                                                </div>
+                                            </sw-card>
+                                        </sw-card>
+                                    {% endblock %}
+                                    {% block company_logo %}
+                                        <sw-card :title="$tc('footer-kit.label.companyLogoLabel')">
+                                            <sw-container columns="1fr 1fr" gap="10px">
+                                                <sw-switch-field
+                                                    :label="$tc('footer-kit.label.active')"
+                                                    v-model:value="bottomConfig.companyLogoSettings.active">
+                                                </sw-switch-field>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.logoSize')"
+                                                    :label="$tc('footer-kit.label.logoSizeLabel')"
+                                                    v-model:value="bottomConfig.companyLogoSettings.size">
+                                                </sw-text-field>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                    :label="$tc('footer-kit.label.vertical')"
+                                                    v-model:value="bottomConfig.companyLogoSettings.verticalSpacing">
+                                                </sw-text-field>
+                                                <sw-text-field :placeholder="$tc('footer-kit.placeholder.spacing')"
+                                                    :label="$tc('footer-kit.label.horizontal')"
+                                                    v-model:value="bottomConfig.companyLogoSettings.horizontalSpacing">
+                                                </sw-text-field>
+                                                <sw-media-field :label="$tc('footer-kit.label.logo')" v-model:value="bottomConfig.companyLogoSettings.media"></sw-media-field>
+                                            </sw-container>
+                                        </sw-card>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+                        </template>
+                    </sw-tabs>
+                {% endblock %}
+            </sw-card-view>
+        </template>
+    </sw-page>
+{% endblock %}

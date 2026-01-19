@@ -1,0 +1,28 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% block component_product_box %}
+    {% if product %}
+        {% set name = product.translated.name %}
+        {% set id = product.id %}
+        {% set linkToParentInheritanceOverride = product.translated.customFields.atl_seo_url_manager_product_box_link_inheritance_override  %}
+        {% if config('AtlSeoUrlManager.config.linkToParent') and not linkToParentInheritanceOverride and product.parentId is not empty %}
+            {% set id = product.parentId %}
+        {% endif %}
+        {% set cover = product.cover.media %}
+        {% set variation = product.variation %}
+        {% set displayParent = product.variantListingConfig.displayParent and product.parentId === null %}
+
+        <div class="card product-box box-{{ layout }}">
+            {% block component_product_box_content %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block component_product_box_wishlist_action %}
+    {% sw_include '@Storefront/storefront/component/product/card/wishlist.html.twig' with {
+        appearance: 'circle',
+        productId: product.id
+    } %}
+{% endblock %}

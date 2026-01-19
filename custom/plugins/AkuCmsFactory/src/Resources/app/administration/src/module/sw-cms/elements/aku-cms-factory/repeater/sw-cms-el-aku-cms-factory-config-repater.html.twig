@@ -1,0 +1,55 @@
+{% block sw_cms_el_aku_cms_factory_config_repeater %}
+<sw-base-field class="sw-cms_el-aku-cms-factory-config-repeater"
+    :label="label">
+
+    <template #sw-field-input>
+    <div v-for="vals, idx in value">
+        <sw-card>
+             <template #title >
+                <div class="d-flex justify-content-between">
+                    <div>
+                        {{$tc('sw-cms.element.akuCmsFactory.config.rowNumber')}} {{idx+1}}
+                    </div>
+                    <div>
+                        <sw-icon name="solid-chevron-up"
+                            :disabled="0 == idx"
+                             @click="moveFieldGroup(idx, idx-1)"
+                            class="button me-1"
+                            style="margin-left:5px">
+                        </sw-icon>
+                        <sw-icon name="solid-chevron-down"
+                            :disabled="idx >= (value.length -1) "
+                            @click="moveFieldGroup(idx, idx+1)"
+                            class="button" 
+                            style="margin-left:5px">
+                        </sw-icon>
+                        <sw-icon name="regular-trash" color="#de294c" 
+                            :small="true"
+                            @click="deleteFieldGroup(idx)"
+                            class="button" 
+                            style="margin-left:5px">
+                        </sw-icon>
+                    </div>
+                </div>
+             </template>
+
+             <sw-cms-el-aku-cms-factory-config-fieldgroup
+                :value="getValue(idx)"
+                @input="(dat) => {saveFieldgroup(idx, dat)}"
+                @change="(dat) => {saveFieldgroup(idx, dat)}"
+                @update:value="(dat) => {saveFieldgroup(idx, dat)}"
+                :fields="fields">
+            </sw-cms-el-aku-cms-factory-config-fieldgroup>
+
+        </sw-card>
+    </div>
+
+    <sw-button @click="addFieldGroup">
+        <sw-icon name="regular-plus-square" ></sw-icon>
+        {{$tc('sw-cms.element.akuCmsFactory.config.add_a_row')}}
+    </sw-button>
+    </template>
+
+
+</sw-base-field>
+{% endblock %}

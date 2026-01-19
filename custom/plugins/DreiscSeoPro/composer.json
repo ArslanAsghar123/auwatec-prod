@@ -1,0 +1,39 @@
+{
+    "name": "dreisc/dreisc-seo-pro",
+    "description": "SEO Professional",
+    "version": "6.14.2",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Dreischild GmbH"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.6.8.0 <6.7.0.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "DreiscSeoPro\\DreiscSeoPro",
+        "label": {
+            "de-DE": "SEO Professional",
+            "en-GB": "SEO Professional"
+        },
+	    "manufacturerLink": {
+            "de-DE": "https://de.dreischild.com",
+            "en-GB": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com"
+        },
+        "supportLink": {
+            "de-DE": "https://de.dreischild.com",
+            "en-GB": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com"
+        },
+        "description": {
+            "de-DE": "Das Plugin \"SEO Professional\" vereint eine große Anzahl an SEO Einstellungen / Optimierung in nur einem Plugin. Hierbei setzt das Plugin da an, wo Shopware aufhört und unterstützt Sie dabei Ihr Ranging bei den Suchmaschinen zu optimieren.",
+            "en-GB": "The \"SEO Professional\" plugin combines a large number of SEO settings / optimization in just one plugin. The plugin starts where shopware ends and supports you in optimizing your search engine rankings."
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "DreiscSeoPro\\": "src/"
+        }
+    }
+}

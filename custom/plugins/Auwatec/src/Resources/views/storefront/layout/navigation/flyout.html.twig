@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/flyout.html.twig' %}
+
+{% block layout_navigation_flyout_teaser_image %}
+    {{ parent() }}
+    {% if category.translated.customFields["custom_menu_teaser_headline"] %}
+        <div class="navigation-flyout-teaser-headline">
+            {{ category.translated.customFields["custom_menu_teaser_headline"] }}
+        </div>
+    {% endif %}
+    <a class="navigation-flyout-teaser-button btn btn-outline-primary"
+       href="{{ category_url(category) }}"
+       {% if category_linknewtab(category) %}target="_blank"
+       {% if category.linkType == "external" %}rel="noopener noreferrer"{% endif %}
+            {% endif %}
+       title="{{ name }}">
+        {{ 'navigation.flyout.teaserButton'|trans }}
+        {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+    </a>
+{% endblock %}

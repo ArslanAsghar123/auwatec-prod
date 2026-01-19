@@ -1,0 +1,25 @@
+.sw-cms-el-aku-cms-factory-config-fieldgroup
+{
+    .media-row {
+        height: 45px;
+        display: flex;
+        justify-content: space-between;
+        .label {
+            width: 70%;
+        }
+        .preview {
+            width: 20%;
+        }
+        .actions {
+            width: 5%;
+            text-align: right;
+        }
+    }
+    .button {
+        cursor: pointer;
+    }
+    .button[disabled] {
+        cursor: not-allowed;
+    }
+
+}

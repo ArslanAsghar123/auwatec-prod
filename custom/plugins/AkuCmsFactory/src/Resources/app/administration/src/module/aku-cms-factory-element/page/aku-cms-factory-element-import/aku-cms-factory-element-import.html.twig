@@ -1,0 +1,49 @@
+{% block aku_cms_factory_element_import %}
+    <sw-page class="aku-cms-factory-element-import">
+
+        {% block aku_cms_factory_element_edit_smart_bar_actions %}
+        <template #smart-bar-actions>
+            <sw-button :routerLink="{name: 'aku.cms.factory.element.overview'}">
+                {{$tc('aku-cms-factory-element.edit.cancelButtonText')}}
+            </sw-button>
+
+            <sw-button-process 
+                variant="primary"
+                ::isLoading="isLoading"
+                :processSuccess="processSuccess"
+                :disabled="'' == import_content.trim()"
+                @click="onClickSave">
+                {{$tc('aku-cms-factory-element.import.importButtonText')}}
+
+            </sw-button-process>
+        </template>
+        {% endblock %}
+
+        <template #content>
+            <sw-card-view>
+                <sw-card v-if="0 < errors.length">
+                <ul>
+                    <li v-for="error in errors">{{error}}</li>
+                </ul>
+                </sw-card>
+                <sw-card >
+                    <sw-file-input
+                        ref="file_input"
+                        v-model:value="selected_file"
+                        :label="$tc('aku-cms-factory-element.import.fileFieldLabel')"
+                        :allowedMimeTypes="['application/json']"
+                        >
+                    </sw-file-input>
+
+                    <sw-textarea-field v-model:value="import_content"
+                        style="margin-top:15px"
+                        :label="$tc('aku-cms-factory-element.import.importContentLabel')"
+                        placeholder='{"name":"String", "fields":[], "twig": "HTML"}'
+                        >
+                    </sw-textarea-field>
+                </sw-card>
+                
+            </sw-card-view>
+        </template>
+    </sw-page>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/component/buy-widget/buy-widget-form.html.twig' %}
+{% block buy_widget_buy_form_inner %}
+    {{ parent() }}
+    <div class="col-12 col-md-4 col-lg-12 col-xl-4">
+        {% sw_include '@Storefront/storefront/component/product/card/wishlist.html.twig' with {
+            showText: true,
+            size: 'md',
+            productId: product.id
+        } %}
+    </div>
+{% endblock %}
+{% block buy_widget_buy_button_container %}
+    <div class="{% if showQuantitySelect %}col-8{% else %}col-12{% endif %}">
+        {% block buy_widget_buy_button %}
+            <div class="d-grid">
+                <button class="btn btn-primary btn-buy"
+                        title="{{ "detail.addProduct"|trans|striptags }}"
+                        aria-label="{{ "detail.addProduct"|trans|striptags }}">
+                    {% sw_icon 'shoppingcart-a' style { 'namespace': 'Auwatec' } %}
+                    {{ "detail.addProduct"|trans|sw_sanitize }}
+                </button>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

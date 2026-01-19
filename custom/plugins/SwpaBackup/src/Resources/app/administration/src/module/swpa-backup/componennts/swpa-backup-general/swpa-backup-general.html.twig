@@ -1,0 +1,207 @@
+{% block swpa_backup_content_card_channel_config_general %}
+    <sw-card class="sw-card--grid"
+             :title="$tc('swpa-backup.settingForm.general.cardTitle')">
+        {% block swpa_backup_content_card_channel_config_general_card_container %}
+            <sw-container>
+                {% block swpa_backup_content_card_channel_config_general_card_container_settings %}
+                    <div v-if="actualConfigData" class="swpa-backup-settings-general-fields">
+                        {% block swpa_backup_content_card_channel_config_general_card_container_settings_enable %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalBackupEnable']"
+                                                :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-switch-field name="SwpaBackup.settings.generalBackupEnable"
+                                                     :map-inheritance="props"
+                                                     :label="$tc('swpa-backup.settingForm.general.generalBackupEnable.label')"
+                                                     :help-text="$tc('swpa-backup.settingForm.general.generalBackupEnable.tooltipText')"
+                                                     :disabled="props.is-inherited"
+                                                     :bordered="true"
+                                                     :value="props.currentValue"
+                                                     @update:value="props.updateCurrentValue">
+                                    </sw-switch-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_general_card_container_settings_backup_type %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.generalBackupType']"
+                                                :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalBackupType']"
+                                                :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-single-select name="SwpaBackup.settings.generalBackupType"
+                                                      :label="$tc('swpa-backup.settingForm.general.generalBackupType.label')"
+                                                      :help-text="$tc('swpa-backup.settingForm.general.generalBackupType.tooltipText')"
+                                                      labelProperty="name"
+                                                      valueProperty="id"
+                                                      :options="typeOptions"
+                                                      :is-inherited="props.is-inherited"
+                                                      :disabled="props.is-inherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                      :value="props.currentValue"
+                                                      @update:value="props.updateCurrentValue">
+                                    </sw-single-select>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_general_card_container_settings_exclude %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.generalExcludePath']"
+                                                v-if="actualConfigData['SwpaBackup.settings.generalBackupType']==2 || actualConfigData['SwpaBackup.settings.generalBackupType']==3"
+                                                :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalExcludePath']"
+                                                :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-textarea-field name="SwpaBackup.settings.generalExcludePath"
+                                                       :map-inheritance="props"
+                                                       :label="$tc('swpa-backup.settingForm.general.generalExcludePath.label')"
+                                                       :help-text="$tc('swpa-backup.settingForm.general.generalExcludePath.tooltipText')"
+                                                       :disabled="props.is-inherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                       :value="props.currentValue"
+                                                       @update:value="props.updateCurrentValue">
+                                    </sw-textarea-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_general_card_container_settings_destination_filesystem %}
+                            <sw-inherit-wrapper
+                                    v-model:value="actualConfigData['SwpaBackup.settings.generalDestinationFilesystem']"
+                                    :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalDestinationFilesystem']"
+                                    :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-single-select name="SwpaBackup.settings.generalDestinationFilesystem"
+                                                      :label="$tc('swpa-backup.settingForm.general.generalDestinationFilesystem.label')"
+                                                      :help-text="$tc('swpa-backup.settingForm.general.generalDestinationFilesystem.tooltipText')"
+                                                      labelProperty="name"
+                                                      valueProperty="id"
+                                                      :options="destinationFilesystemOptions"
+                                                      :is-inherited="props.is-inherited"
+                                                      :disabled="props.is-inherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                      :value="props.currentValue"
+                                                      @update:value="props.updateCurrentValue">
+                                    </sw-single-select>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_general_card_container_settings_times %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.generalRunTime']"
+                                                :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalRunTime']"
+                                                :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-multi-select name="SwpaBackup.settings.generalRunTime"
+                                                     :label="$tc('swpa-backup.settingForm.general.generalRunTime.label')"
+                                                     :help-text="$tc('swpa-backup.settingForm.general.generalRunTime.tooltipText')"
+                                                     labelProperty="name"
+                                                     valueProperty="id"
+                                                     :options="timeOptions"
+                                                     :is-inherited="props.is-inherited"
+                                                     :disabled="props.is-inherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                     :value="props.currentValue"
+                                                     @update:value="props.updateCurrentValue">
+                                    </sw-multi-select>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_general_card_container_settings_frequency %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.generalRunFrequency']"
+                                                :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalRunFrequency']"
+                                                :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-single-select name="SwpaBackup.settings.generalDestinationFilesystem"
+                                                      :label="$tc('swpa-backup.settingForm.general.generalRunFrequency.label')"
+                                                      :help-text="$tc('swpa-backup.settingForm.general.generalRunFrequency.tooltipText')"
+                                                      labelProperty="name"
+                                                      valueProperty="id"
+                                                      :options="frequencyOptions"
+                                                      :is-inherited="props.is-inherited"
+                                                      :disabled="props.is-inherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                      :value="props.currentValue"
+                                                      @update:value="props.updateCurrentValue">
+                                    </sw-single-select>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+
+                        {% block swpa_backup_content_card_channel_config_general_card_container_settings_clean %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.generalCleanBackup']"
+                                                :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalCleanBackup']"
+                                                :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-switch-field name="SwpaBackup.settings.generalCleanBackup"
+                                                     :map-inheritance="props"
+                                                     :label="$tc('swpa-backup.settingForm.general.generalCleanBackup.label')"
+                                                     :help-text="$tc('swpa-backup.settingForm.general.generalCleanBackup.tooltipText')"
+                                                     :disabled="props.is-inherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                     :bordered="true"
+                                                     :value="props.currentValue"
+                                                     @update:value="props.updateCurrentValue">
+                                    </sw-switch-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_general_card_container_settings_clean_period %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.generalCleanPeriod']"
+                                                v-if="actualConfigData['SwpaBackup.settings.generalCleanBackup']"
+                                                :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalCleanPeriod']"
+                                                :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-single-select name="SwpaBackup.settings.generalCleanPeriod"
+                                                      :label="$tc('swpa-backup.settingForm.general.generalCleanPeriod.label')"
+                                                      :help-text="$tc('swpa-backup.settingForm.general.generalCleanPeriod.tooltipText')"
+                                                      labelProperty="name"
+                                                      valueProperty="id"
+                                                      :options="saveOptions"
+                                                      :is-inherited="props.is-inherited"
+                                                      :disabled="props.is-inherited || (!actualConfigData['SwpaBackup.settings.generalBackupEnable'])"
+                                                      :value="props.currentValue"
+                                                      :required="actualConfigData['SwpaBackup.settings.generalCleanBackup']"
+                                                      @update:value="props.updateCurrentValue">
+                                    </sw-single-select>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block swpa_backup_content_card_channel_config_general_card_container_settings_maintenance %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.generalMaintenanceMode']"
+                                                :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalMaintenanceMode']"
+                                                :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-switch-field name="SwpaBackup.settings.generalMaintenanceMode"
+                                                     :map-inheritance="props"
+                                                     :label="$tc('swpa-backup.settingForm.general.generalMaintenanceMode.label')"
+                                                     :help-text="$tc('swpa-backup.settingForm.general.generalMaintenanceMode.tooltipText')"
+                                                     :disabled="props.is-inherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                     :bordered="true"
+                                                     :value="props.currentValue"
+                                                     @update:value="props.updateCurrentValue">
+                                    </sw-switch-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_general_card_container_settings_maintenance_ip %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.generalMaintenanceIp']"
+                                                v-if="actualConfigData['SwpaBackup.settings.generalMaintenanceMode']"
+                                                :inherited-value="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.generalMaintenanceIp']"
+                                                :custom-inheritation-check-function="checkInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.generalMaintenanceIp"
+                                                   :map-inheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.general.generalMaintenanceIp.label')"
+                                                   :help-text="$tc('swpa-backup.settingForm.general.generalMaintenanceIp.tooltipText')"
+                                                   :disabled="props.is-inherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </sw-container>
+        {% endblock %}
+    </sw-card>
+{% endblock %}
+

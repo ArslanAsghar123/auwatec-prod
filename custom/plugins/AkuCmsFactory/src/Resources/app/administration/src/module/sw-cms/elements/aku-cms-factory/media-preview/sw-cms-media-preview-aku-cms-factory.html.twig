@@ -1,0 +1,11 @@
+{% block sw_cms_media_preview_aku_cms_factory %}
+    <!-- div braucht eine Breite, sonst wird nichts angezeigt -->
+    <!-- Anscheinend würde source=media_id auch funktionieren - aber lassen wir's mal so  -->
+    <div :style="getStyle">
+        <sw-media-preview-v2 :source="medium" 
+            v-if="medium"
+            :show-controls="false" 
+            :autoplay="false" :use-thumbnails="true">
+        </sw-media-preview-v2>
+    </div>
+{% endblock %}

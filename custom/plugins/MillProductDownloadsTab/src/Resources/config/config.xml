@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+
+        <title>General</title>
+        <title lang="de-DE">Allgemeines</title>
+
+        <input-field type="bool">
+            <name>active</name>
+            <label>Active</label>
+            <label lang="de-DE">Aktiv</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showTitle</name>
+            <label>Show tab title</label>
+            <label lang="de-DE">Tab Überschrift anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>tabTitleSnippet</name>
+            <label>Tab title</label>
+            <label lang="de-DE">Tab Überschrift</label>
+            <snippet>millProductDownloadsTab.detail.title</snippet>
+        </component>
+
+        <input-field type="bool">
+            <name>showDownloadTitlePrefix</name>
+            <label>Show download title prefix</label>
+            <label lang="de-DE">Download-Titel Präfix anzeigen</label>
+            <helpText>Show title prefix snippet, default "Download"</helpText>
+            <helpText lang="de-DE">Titel Präfix-Übersetzung anzeigen, Standard "Download"</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>downloadTitlePrefixSnippet</name>
+            <label>Prefix snippet</label>
+            <label lang="de-DE">Präfix Textbaustein</label>
+            <snippet>millProductDownloadsTab.detail.prefix</snippet>
+        </component>
+
+        <input-field type="bool">
+            <name>forceLinkDownload</name>
+            <label>Force link download</label>
+            <label lang="de-DE">Link-Download erzwingen</label>
+            <helpText>Passive mode opens only link downloads</helpText>
+            <helpText lang="de-DE">Bei passiver Einstellung wird die Datei nur geöffnet</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>searchEngineIndexing</name>
+            <label>Allow search engine indexing</label>
+            <label lang="de-DE">Suchmaschinenindexierung erlauben</label>
+            <helpText>When deactivated, rel="nofollow" tags are added to all links</helpText>
+            <helpText lang="de-DE">Bei deaktivierter Einstellung werden rel="nofollow" HTML-Tags allen Links hinzugefügt</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showTabBadge</name>
+            <label>Show badge</label>
+            <label lang="de-DE">Anzahl anzeigen</label>
+            <helpText>Show the number of files as a tab badge</helpText>
+            <helpText lang="de-DE">Anzahl an Medien-Dateien als Tab Badge anzeigen</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+    </card>
+
+    <card>
+
+        <title>Additional table</title>
+        <title lang="de-DE">Zusätzliche Tabelle am Warenkorb</title>
+
+        <input-field type="bool">
+            <name>showAdditionalTable</name>
+            <label>Display</label>
+            <label lang="de-DE">Anzeige</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>additionalTablePosition</name>
+            <options>
+                <option>
+                    <id>top</id>
+                    <name>Top</name>
+                    <name lang="de-DE">Oben</name>
+                </option>
+                <option>
+                    <id>bottom</id>
+                    <name>Bottom</name>
+                    <name lang="de-DE">Unten</name>
+                </option>
+            </options>
+            <label>Position</label>
+            <label lang="de-DE">Position</label>
+            <defaultValue>top</defaultValue>
+            <required>true</required>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showAdditionalTableTitle</name>
+            <label>Show table title</label>
+            <label lang="de-DE">Überschrift anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>additionalTableTitleSnippet</name>
+            <label>Title snippet</label>
+            <label lang="de-DE">Überschrift Textbaustein</label>
+            <snippet>millProductDownloadsTab.additionalTable.headline</snippet>
+        </component>
+
+        <input-field type="bool">
+            <name>showAdditionalTableDownloadIcon</name>
+            <label>Show icon</label>
+            <label lang="de-DE">Icon anzeigen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+    </card>
+
+</config>

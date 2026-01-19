@@ -1,0 +1,213 @@
+{
+    "dreiscSeoBulk": {
+        "general": {
+            "navigation": {
+                "label": "Seo Bulk Basic"
+            },
+            "textSnippets": {
+                "yes": "Ja",
+                "no": "Nein"
+            }
+        },
+        "detailTree": {
+            "settingScope": {
+                "labels": {
+                    "seoOption": "SEO Einstellung",
+                    "language": "Sprache",
+                    "salesChannel": "Verkaufskanal"
+                }
+            },
+            "notification": {
+                "salesChannelRequired": "Wähle bitte noch den Verkaufskanal aus, für den den die Bulk Templates bearbeitet werden sollen."
+            },
+            "templateInformation": {
+                "noTemplate": "(Kein Template definiert)",
+                "inheritText": "vererbt von:"
+            }
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Bulk Generator",
+                "createButtonText": "Bulk Template hinterlegen",
+                "deleteButtonText": "Löschen",
+                "cancelButtonText": "Abbrechen",
+                "saveButtonText": "Speichern",
+                "runGeneratorText": "Generator starten"
+            },
+            "tabs": {
+                "general": "Allgemein"
+            },
+            "notification": {
+                "titleSaveError": "Beim Speichern ist ein Fehler aufgetreten",
+                "messageSaveError": "Das Element konnte nicht gespeichert werden."
+            },
+            "deleteModal": {
+                "title": "Bulk Template Einstellung löschen",
+                "confirmText": "Bist du sicher, dass die Bulk Template Konfiguration für diese Kategorie gelöscht werden soll?",
+                "cancelButtonText": "Abbruch",
+                "deleteButtonText": "Löschen"
+            }
+        },
+        "detailBase": {
+            "cards": {
+                "titles": {
+                    "settings": "Einstellungen"
+                }
+            },
+            "fields": {
+                "labels": {
+                    "categoryId": "CategoryId",
+                    "overwrite": "Bedingung für Bulk Template Ausführung",
+                    "overwriteCustomFieldId": "Freitextfeld der Bedingung",
+                    "inherit": "Template vererben",
+                    "priority": "Priorität",
+                    "dreiscSeoBulkTemplateId": "Bulk Template"
+                },
+                "overwriteValues": {
+                    "empty": "SEO-Einstellung ist noch leer",
+                    "emptyAndCustomFieldNotSet": "SEO-Einstellung ist noch leer UND Freitextfeld ist nicht aktiv",
+                    "emptyOrCustomFieldNotSet": "SEO-Einstellung ist noch leer ODER Freitextfeld ist nicht aktiv",
+                    "always": "Immer ausführen (Wert immer überschreiben)"
+                },
+                "placeholder": {
+                    "dreiscSeoBulkTemplateId": "Wähle bitte ein Template aus"
+                },
+                "errors": {
+                    "defaultError": "Dieses Feld darf nicht leer sein"
+                },
+                "helpText": {
+                    "priority": "Ist ein Produkt mehreren Kategorien zugeordnet, die jeweils ein Bulk Template definiert haben, so wird das Bulk Template mit der höheren Priorität angewendet.",
+                    "overwrite": "Standardmäßig werden die SEO Einstellung durch den Bulk Generator nur dann hinterlegt, wenn die jeweilige SEO Einstellung leer ist. Alternativ können hier die folgenden Bedingungen definiert werden:<br><br><b>SEO-Einstellung ist noch leer UND Freitextfeld ist nicht aktiv:</b><br>Der Bulk wird nur dann ausgeführt, wenn die SEO-Einstellung noch nicht gesetzt wurde und das Freitextfeld nicht den Wert \"aktiv\" aufweist.<br><br><b>SEO-Einstellung ist noch leer ODER Freitextfeld ist nicht aktiv:</b><br>Hierbei gibt das Selbe wie oben, jedoch reicht es, wenn eine der beiden Bedingungen zutrifft.<br><br><b>Immer ausführen:</b><br>Der Bulk wird immer ausgeführt.",
+                    "overwriteCustomFieldId": "Wähle hier das Freitextfeld für die oben definierte Bedingung aus.<br><br>Nach der Generierung wird das hier ausgewählte Freitextfeld aktiv gesetzt.<br><br>Mit der SEO Professional Installation wurden bereits einige Freitextfelder angelegt. An dieser Stelle kann aber jedes beliebige Freitextfeld ausgewählt werden, das den Typ bool aufweist und dem Entity zugewiesen ist.<br><br><b>Wichtiger Hinweis:</b><br>Pro Verkaufskanal muss ein eigenes Freitextfeld definiert werden, da die Freitextfelder zwar sprachspezifisch gespeichert werden, aber nicht pro Verkaufskanal. Dies gilt für die SEO Einstellungen \"SEO-URL\"",
+                    "inherit": "Standardmäßig wird ein Template immer nur für die aktuelle Kategorie hinterlegt. Somit greift ein Template immer nur für die Kategorie bzw. bei dem Produkt Bulk Generator für alle Produkte der jeweiligen Kategorie. Ist diese Option aktiv, so wird das Template auch an die Unterkategorien weitervererbt, sodass das jeweilige Template auch für diese Kategorien greift."
+                }
+            },
+            "notification": {
+                "noTemplate": {
+                    "title": "Kein Template definiert",
+                    "message": "Es wurde noch kein Bulk Template für diese Kategorie hinterlegt. Klicke auf <b><i>Bulk Template hinterlegen<\/i><\/b>, um ein Template für diese Kategorie zu definieren."
+                },
+                "inheritTemplate": {
+                    "title": "Erbt Bulk Konfiguration von Eltern-Kategorie",
+                    "message": "Diese Kategorie erbt die Bulk Einstellungen der Kategorie <b><i>{inheritCategoryName}<\/i><\/b>. Entsprechend wird auch für diese Kategorie das Bulk Template <b><i>{templateName}<\/i><\/b> angewendet.<br><br>Klicke auf <b><i>Bulk Template hinterlegen<\/i><\/b>, um ein eigenes Template für diese Kategorie zu definieren."
+                },
+                "messageSaveError": "Das Element konnte nicht gespeichert werden."
+            }
+        },
+        "templateList": {
+            "cards": {
+                "titles": {
+                    "templates": "Verfügbare Bulk Templates für die ausgewählte SEO Einstellung"
+                }
+            },
+            "toolbar": {
+                "addButton": {
+                    "label": "Neues Bulk Template erstellen"
+                }
+            },
+            "columns": {
+                "labels": {
+                    "name": "Name des Templates"
+                }
+            },
+            "deleteModal": {
+                "singleDelete": {
+                    "title": "Bulk Template löschen",
+                    "confirmText": "Bist du sicher, dass das ausgewählte Bulk Template gelöscht werden soll?"
+                },
+                "multiDelete": {
+                    "title": "Bulk Templates löschen",
+                    "confirmText": "Bist du sicher, dass die ausgewählten {count} Bulk Templates gelöscht werden sollen?"
+                }
+            },
+            "deletingTemplateInUseModalData": {
+                "title": "Konflikt beim Löschen des Templates",
+                "message": "Das Template <b>{templateName}<\/b> ist bei {total} Kategorie(n) als Bulk Template hinterlegt",
+                "postMessage": "Wie soll vorgegangen werden?",
+                "deleteButtonText": "Lösche ebenfalls die Bulk Einstellungen der {total} Kategorie(n)",
+                "skipButtonText": "Überspringe das Löschen dieses Templates"
+            },
+            "emptyState": {
+                "title": "Noch keine Bulk Templates verfügbar",
+                "subline": "Für die aktuell ausgewählte SEO Einstellung wurde noch kein Bulk Template konfiguriert. \nKlicke auf \"Neues Bulk Template erstellen\" um ein neues zu erstellen"
+            }
+        },
+        "templateDetail": {
+            "newTitle": "Neues Bulk Template",
+            "fields": {
+                "labels": {
+                    "name": "Name",
+                    "template": "Template",
+                    "spaceless": "Leerzeichen zwischen HTML-Tags entfernen",
+                    "aiPrompt": "Als OpenAI Prompt ausführen",
+                    "previewProduct": "Vorschau-Produkt"
+                },
+                "helpText": {
+                    "aiPrompt": "Wenn diese Option aktiviert ist, wird das Template zunächst gerendert und anschließend als OpenAI Prompt ausgeführt. Dies ist nützlich, wenn du dynamische Inhalte generieren möchtest, die auf künstlicher Intelligenz basieren.<br><br>Für die Verwendung dieser Funktion ist ein API-Key von OpenAI erforderlich.<br><br>Zusätzlich muss die OpenAI Schnittstelle per Composer installiert werden.<br><br>Weitere Informationen findest du in der Dokumentation."
+                },
+                "placeholder": {
+                    "templateVariables": "Variable hinzufügen ...",
+                    "previewProduct": "Produkt aus, wenn du die Vorschau nutzen möchtest ..."
+                }
+            },
+            "templatePreview": {
+                "label": "Vorschau:",
+                "aiLabel": "Prompt-Vorschau:",
+                "isNotValidText": "Das Template ist nicht valide",
+                "isNotValidAdditionalInfoText": "Fehlermeldung anzeigen",
+                "firstSelectProduct": "<i>Wähle bitte ein <b>Vorschau-Produkt</b> aus, um die Vorschau des Template anzeigen zu lassen.<\/i>"
+            },
+            "templateAiPreview": {
+                "label": "OpenAI-Vorschau:",
+                "generationDisabled": "Wähle bitte ein <b>Vorschau-Produkt</b> aus und stelle sicher, dass das <b>Template nicht leer</b> ist, um die OpenAI-Vorschau zu nutzen.",
+                "generationButtonText": "Prompt ausführen und OpenAI Vorschau generieren"
+            },
+            "buttons": {
+                "save": "Speichern",
+                "cancel": "Abbrechen"
+            }
+        },
+        "seoOptions": {
+            "labels": {
+                "metaTitle": "Meta Titel",
+                "metaDescription": "Meta Beschreibung",
+                "url": "SEO-URL",
+                "robotsTag": "Robots-Tag",
+                "facebookTitle": "Facebook Titel",
+                "facebookDescription": "Facebook Beschreibung",
+                "twitterTitle": "Twitter Titel",
+                "twitterDescription": "Twitter Beschreibung"
+            }
+        },
+        "defaultTemplates": {
+            "labels": {
+                "articleName": "Artikelname",
+                "articleAndShopName": "Artikelname + Shopname",
+                "articleShippingFree": "Artikelname + versandkostenfrei einkaufen"
+            }
+        },
+        "generator": {
+            "prepareBulkGenerator": "Bulk Generator wird vorbereitet ...",
+            "cancelButtonText": "Fenster schließen",
+            "generateButtonText": "Generieren",
+            "generateRestartButtonText": "Generierung neu starten",
+            "closeButtonText": "Fenster schließen",
+            "product": {
+                "bulkGeneratorCanBeStarted": "Klicke auf <i>Generieren</i>, um die SEO Einstellungen für alle Produkte / Varianten zu generieren.",
+                "bulkGeneratorInProgress": "Der Bulk-Generator wurde gestartet. {generatedInPercent}% der Produkte / Varianten wurden generiert.<br><i>Du kannst das Fenster schließen und später wieder öffnen, um den Fortschritt zu überprüfen.<\/i>",
+                "bulkGeneratorFinished": "Der Generator für die Produkte / Varianten wurde erfolgreich ausgeführt."
+            },
+            "category": {
+                "bulkGeneratorCanBeStarted": "Klicke auf <i>Generieren</i>, um die SEO Einstellungen für alle Kategorien zu generieren.",
+                "bulkGeneratorInProgress": "Der Bulk-Generator wurde gestartet. {generatedInPercent}% der Kategorien wurden generiert.<br><i>Du kannst das Fenster schließen und später wieder öffnen, um den Fortschritt zu überprüfen.</i>",
+                "bulkGeneratorFinished": "Der Generator für die Kategorien wurde erfolgreich ausgeführt."
+            },
+            "rabbitMQQueueText": "Der Bulk Generator wird im Hintergrund ausgeführt. Der Fortschritt kann über die RabbitMQ Queue überwacht bzw. zurückgesetzt werden. Aktuell befinden sich <b>{queueCount} Bulk Messages</b> in der Queue.",
+            "tableHeadlines": {
+                "languages": "Sprachen",
+                "seoOptions": "SEO Einstellungen",
+                "progress": "Fortschritt"
+            }
+        }
+    }
+}

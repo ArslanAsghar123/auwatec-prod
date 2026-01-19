@@ -1,0 +1,23 @@
+{
+    "sw-cms": {
+        "detail": {
+            "label": {
+                "block-category-intedia-doofinder-world-experience": "DooFinder Elements"
+            }
+        },
+        "elements": {
+            "intedia-doofinder-element": {
+                "label": "DooFinder Recommendation Element",
+                "config": {
+                    "total-products": "Produkt Anzahl",
+                    "title": "Überschrift"
+                }
+            }
+        },
+        "blocks": {
+            "doofinder": {
+                "label": "DooFinder Recommendations"
+            }
+        }
+    }
+}

@@ -1,0 +1,68 @@
+{% block sw_cms_element_cbax_lexicon_popular_entries %}
+    <div class="sw-cms-el-lexicon-listing">
+        <div>
+            <h2 v-if="element.config.headline.value">{{ element.config.headline.value }}</h2>
+            <h2 v-else>{{ $tc('elements.cbax-lexicon-popular-entries.general.label') }}</h2>
+            <div v-if="isCbaxLexiconCmsPage" class="sw-cms-el-cbax-lexicon-listing">
+
+                {% block sw_cms_element_cbax_lexicon_popular_entries_slider %}
+
+                    <div class="sw-cms-el-cbax-lexicon-listing__slider" v-if="showSlider">
+                        <div class="sw-cms-el-cbax-lexicon-listing-slider__content">
+
+                            <div class="sw-cms-el-cbax-lexicon-listing__navigation">
+                                <sw-icon class="sw-cms-el-cbax-lexicon-listing__navigation-button"
+                                         name="regular-chevron-left"
+                                         size="24">
+                                </sw-icon>
+                            </div>
+
+                            <div class="sw-cms-el-cbax-lexicon-listing__product-holder">
+                                <div class="lexicon-box"
+                                     v-for="index in 2"
+                                     :key="index">
+                                    <div class="lexicon-entry-box">
+                                        <h2>Labore</h2>
+                                        <p>At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sw-cms-el-cbax-lexicon-listing__navigation">
+                                <sw-icon class="sw-cms-el-cbax-lexicon-listing__navigation-button"
+                                         name="regular-chevron-right"
+                                         size="24">
+                                </sw-icon>
+                            </div>
+                        </div>
+
+                    </div>
+
+                {% endblock %}
+
+                {% block sw_cms_element_cbax_lexicon_popular_entries_list %}
+
+                    <div class="sw-cms-el-cbax-lexicon-listing__content"
+                         v-if="!showSlider"
+                         :style="boxStyle">
+
+                        <div class="lexicon-box"
+                             v-for="index in demoBoxCount"
+                             :key="index">
+                            <div class="lexicon-entry-box">
+                                <h2>Labore</h2>
+                                <p>At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                {% endblock %}
+
+            </div>
+            <sw-alert v-if="!isCbaxLexiconCmsPage" appearance="notification" :showIcon="true" :closable="false">
+                {{ $tc('elements.wrong-page-type-alert') }}
+            </sw-alert>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,110 @@
+{% block aku_cms_factory_element_text %}
+    <div class="aku-cms-factory-element-text">
+
+        <sw-single-select
+                v-model:value="type"
+                :label="$tc('aku-cms-factory-element.edit.typeLabel')"
+                :options="type_choices">
+        </sw-single-select>
+
+        <sw-text-field v-model:value="label"
+                  :error="errors['label']"
+                  :label="$tc('aku-cms-factory-element.edit.labelLabel')">
+        </sw-text-field>
+
+        <sw-text-field v-model:value="name"
+                  :error="errors['name']"
+                  :label="$tc('aku-cms-factory-element.edit.nameLabel')"
+                  :placeholder="name_pattern"
+                  :helpText="$tc('aku-cms-factory-element.edit.nameHelp')">
+        </sw-text-field>
+
+        <!--
+        <sw-checkbox-field
+            v-if="allow_input_required"
+            v-model:value="inputRequired"
+            :label="$tc('aku-cms-factory-element.edit.inputRequiredLabel')"
+            >
+            </sw-checkbox-field>
+        -->
+
+        <sw-text-field v-model:value="choices" v-if="allow_choices"
+                  :error="errors['choices']"
+                  :placeholder="$tc('aku-cms-factory-element.edit.choicesPlaceholder')"
+                  :label="$tc('aku-cms-factory-element.edit.choicesLabel')">
+        </sw-text-field>
+
+        <sw-text-field v-model:value="defaultValue" v-if="allow_default_value"
+                  :label="$tc('aku-cms-factory-element.edit.defaultValueLabel')">
+        </sw-text-field>
+
+
+        <sw-radio-field
+                v-if="'checkbox' == type"
+                v-model:value="defaultValue"
+                :label="$tc('aku-cms-factory-element.edit.defaultValueLabel')"
+                :options="default_value_choices">
+        </sw-radio-field>
+
+
+        <aku-cms-factory-element-multicheckbox
+                v-if="0 < association_choices.length"
+                :label="$tc('aku-cms-factory-element.edit.associationsLabel')"
+                :helpText="$tc('aku-cms-factory-element.edit.associationsHelp')"
+                :options="association_choices"
+                v-model:value="associations">
+        </aku-cms-factory-element-multicheckbox>
+
+        <sw-text-field v-if="'custom-entity' == type"
+                  :label="$tc('aku-cms-factory-element.edit.customEntityLabel')"
+                  :helpText="$tc('aku-cms-factory-element.edit.customEntityHelp')"
+                  v-model:value="entity">
+        </sw-text-field>
+
+        <sw-text-field v-if="'custom-entity' == type"
+                  :label="$tc('aku-cms-factory-element.edit.customEntityLabelPropertyLabel')"
+                  :helpText="$tc('aku-cms-factory-element.edit.customEntityLabelPropertyHelp')"
+                  v-model:value="entityLabelProperty">
+        </sw-text-field>
+
+        <sw-text-field v-if="'custom-entity' == type"
+                  :label="$tc('aku-cms-factory-element.edit.associationsLabel')"
+                  :helpText="$tc('aku-cms-factory-element.edit.associationsHelp')"
+                  v-model:value="associations_string">
+        </sw-text-field>
+
+        <sw-number-field
+                number-type="int"
+                v-if="allow_children_depth"
+                v-model:value="childrenDepth"
+                :label="$tc('aku-cms-factory-element.edit.childrenDepthLabelLabel')"
+                :helpText="$tc('aku-cms-factory-element.edit.childrenDepthLabelHelp')"
+                :min="1"
+                :step="1"
+                type="number"></sw-number-field>
+
+        <template v-if="'text' == type || 'textarea' == type">
+            <sw-number-field
+                    numberType="int"
+                    :step="1"
+                    :min="1"
+                    :max="null"
+                    :digits="0"
+                    :label="$tc('aku-cms-factory-element.edit.fieldMaxlengthLabel')"
+                    :helpText="$tc('aku-cms-factory-element.edit.fieldMaxlengthHelp')"
+                    v-model:value="fieldMaxlength"
+                    :allowEmpty="true"
+            >
+            </sw-number-field>
+
+        </template>
+
+        <div style="display:flex;justify-content:space-between">
+            <sw-button variant="primary" @click="save">
+                {{ $tc('aku-cms-factory-element.edit.acceptLabel') }}
+            </sw-button>
+        </div>
+
+
+    </div>
+{% endblock %}

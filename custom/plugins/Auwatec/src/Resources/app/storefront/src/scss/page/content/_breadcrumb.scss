@@ -1,0 +1,44 @@
+.cms-breadcrumb{
+  margin: 0;
+  max-width: none;
+  &>nav{
+    @extend .container;
+    margin-top: 5px;
+    margin-bottom: 25px;
+  }
+  .breadcrumb-type-white &{
+    padding-top: 20px;
+    margin-top: -20px;
+    background: white;
+    &>nav{
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+.breadcrumb{
+  a{
+    font-family: $font-family-roboto;
+    font-size: 16px;
+    &.is-active{
+      font-weight: $font-weight-bold;
+    }
+  }
+  .breadcrumb-placeholder{
+    color: $sw-color-brand-primary;
+  }
+}
+
+@include media-breakpoint-down(md){
+  .cms-breadcrumb{
+    display: none;
+  }
+}
+@include media-breakpoint-down(xl){
+  .cms-breadcrumb{
+    &>nav{
+      padding: 0;
+    }
+  }
+}

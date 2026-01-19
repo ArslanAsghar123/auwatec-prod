@@ -1,0 +1,57 @@
+<div class="sw-cms-el-aku-cms-factory-gallery-field sw-field">
+    <div class="sw-field__label"><label>{{label}}</label></div>
+
+    <div  class="current_images" >
+        
+        <div v-for="med in media" class="image" draggable="true"
+            v-on:drop="onDrop(med)"
+            v-on:dragstart="onDragStart(med)">
+            <sw-media-preview-v2 :source="med" 
+                :showControls="false" 
+                :autoplay="false" :useThumbnails="true">
+            </sw-media-preview-v2>
+            
+            <div class="controls">
+                <button type="button" @click="removeImage(med)"
+                    >&times;</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="display:flex;">
+        <sw-entity-multi-select
+            :placeholder="$tc('sw-cms.element.akuCmsFactory.galleryField.addImages')"
+            :entityCollection="new_image_ids"
+            @update:entity-collection="addImageIds"
+            @change="addImageIds"
+            entity-name="media">
+            <template #selection-label-property="{ item }">
+
+                <sw-cms-el-media-preview-aku-cms-factory
+                    :height="20"
+                    :media_id="item.id"
+                    ></sw-cms-el-media-preview-aku-cms-factory>
+            </template>
+            <template #result-item="{ item, index }">
+                <div is="sw-select-result" v-bind="{ item, index }">
+
+                    {% block sw_entity_single_select_base_results_list_result_label %}
+                        <div class="sw-cms-el-aku-cms-factory-gallery-field-search-result">
+                            <sw-cms-el-media-preview-aku-cms-factory
+                                :media_id="item.id"
+                            ></sw-cms-el-media-preview-aku-cms-factory>&nbsp;
+                            {{item.fileName}}
+                        </div>
+                    {% endblock %}
+
+                </div>
+            </template>
+        </sw-entity-multi-select>
+        <div>
+            <sw-button type="button" @click="add"
+                :square="true" variant="ghost">+</sw-button>
+        </div>
+    </div>
+
+</div>

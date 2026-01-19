@@ -1,0 +1,27 @@
+services:
+
+  Swpa\SwpaBackup\ScheduledTask\Backup:
+    tags:
+      - { name: 'shopware.scheduled.task' }
+
+  Swpa\SwpaBackup\ScheduledTask\Handler\BackupHandler:
+    arguments:
+      - '@scheduled_task.repository'
+      - '@swpa.backup.logger'
+      - '@swpa.backup.backup_manager'
+      - '@swpa.backup.config'
+    tags:
+      - { name: 'messenger.message_handler' }
+
+  Swpa\SwpaBackup\ScheduledTask\Clear:
+    tags:
+      - { name: 'shopware.scheduled.task' }
+
+  Swpa\SwpaBackup\ScheduledTask\Handler\ClearHandler:
+    arguments:
+      - '@scheduled_task.repository'
+      - '@swpa.backup.logger'
+      - '@swpa.backup.backup_manager'
+      - '@swpa.backup.config'
+    tags:
+      - { name: 'messenger.message_handler' }

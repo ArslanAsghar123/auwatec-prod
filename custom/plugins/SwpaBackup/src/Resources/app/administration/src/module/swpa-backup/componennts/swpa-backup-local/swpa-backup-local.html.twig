@@ -1,0 +1,30 @@
+{% block swpa_backup_content_card_channel_config_local %}
+    <sw-card class="sw-card--grid"
+             v-if="actualConfigData && actualConfigData['SwpaBackup.settings.generalDestinationFilesystem'] === 'local'"
+             :title="$tc('swpa-backup.settingForm.local.cardTitle')">
+        {% block swpa_backup_content_card_channel_config_local_card_container %}
+            <sw-container>
+                {% block swpa_backup_content_card_channel_config_local_card_container_settings %}
+                    <div class="swpa-backup-settings-general-fields">
+                        {% block  swpa_backup_content_card_channel_config_local_card_container_settings_path %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemLocalRoot']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemLocalRoot']"
+                                                :customInheritationCheckFunction="checkInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemLocalRoot"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.local.filesystemLocalRoot.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.local.filesystemLocalRoot.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </sw-container>
+        {% endblock %}
+    </sw-card>
+{% endblock %}

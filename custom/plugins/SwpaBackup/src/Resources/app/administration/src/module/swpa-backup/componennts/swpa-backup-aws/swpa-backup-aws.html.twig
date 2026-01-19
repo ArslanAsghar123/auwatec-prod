@@ -1,0 +1,115 @@
+{% block swpa_backup_content_card_channel_config_aws %}
+    <sw-card class="sw-card--grid"
+             v-if="actualConfigData && actualConfigData['SwpaBackup.settings.generalDestinationFilesystem'] === 'aws'"
+             :title="$tc('swpa-backup.settingForm.aws.cardTitle')">
+        {% block swpa_backup_content_card_channel_config_aws_card_container %}
+            <sw-container>
+                {% block swpa_backup_content_card_channel_config_aws_card_container_settings %}
+                    <div class="swpa-backup-settings-general-fields">
+                        {% block  swpa_backup_content_card_channel_config_aws_card_container_settings_host %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemAwsKey']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemAwsKey']"
+                                                :customInheritationCheckFunction="checkInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemAwsKey"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.aws.filesystemAwsKey.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.aws.filesystemAwsKey.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_aws_card_container_settings_secret %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemAwsSecret']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemAwsSecret']"
+                                                :customInheritationCheckFunction="checkInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemAwsSecret"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.aws.filesystemAwsSecret.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.aws.filesystemAwsSecret.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_aws_card_container_settings_region %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemAwsRegion']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemAwsRegion']"
+                                                :customInheritationCheckFunction="checkInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemAwsRegion"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.aws.filesystemAwsRegion.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.aws.filesystemAwsRegion.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_aws_card_container_settings_version %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemAwsVersion']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemAwsVersion']"
+                                                :customInheritationCheckFunction="checkInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemAwsVersion"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.aws.filesystemAwsVersion.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.aws.filesystemAwsVersion.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_aws_card_container_settings_bucket %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemAwsBucket']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemAwsBucket']"
+                                                :customInheritationCheckFunction="checkInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemAwsBucket"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.aws.filesystemAwsBucket.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.aws.filesystemAwsBucket.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+
+                        {% block  swpa_backup_content_card_channel_config_aws_card_container_settings_root %}
+                            <sw-inherit-wrapper v-model:value="actualConfigData['SwpaBackup.settings.filesystemAwsRoot']"
+                                                :inheritedValue="selectedSalesChannelId === null ? null : allConfigs['null']['SwpaBackup.settings.filesystemAwsRoot']"
+                                                :customInheritationCheckFunction="checkInheritance">
+                                <template #content="props">
+                                    <sw-text-field name="SwpaBackup.settings.filesystemAwsRoot"
+                                                   :mapInheritance="props"
+                                                   :label="$tc('swpa-backup.settingForm.aws.filesystemAwsRoot.label')"
+                                                   :helpText="$tc('swpa-backup.settingForm.aws.filesystemAwsRoot.tooltipText')"
+                                                   :disabled="props.isInherited || !actualConfigData['SwpaBackup.settings.generalBackupEnable']"
+                                                   :value="props.currentValue"
+                                                   @update:value="props.updateCurrentValue">
+                                    </sw-text-field>
+                                </template>
+                            </sw-inherit-wrapper>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </sw-container>
+        {% endblock %}
+    </sw-card>
+{% endblock %}

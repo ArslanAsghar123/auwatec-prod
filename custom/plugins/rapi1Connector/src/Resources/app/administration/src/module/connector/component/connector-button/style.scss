@@ -1,0 +1,12 @@
+.rm-field {
+    align-items: center;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.rm-field .sw-field { margin-bottom: 0; }
+
+.rm-field label {
+    flex-shrink: 0;
+    width: 12rem;
+}

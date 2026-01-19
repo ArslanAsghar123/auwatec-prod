@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="Weedesign\Images2WebP\Service\GenerateMediaFiles">
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument>%shopware.filesystem.public.url%</argument>
+            <argument>%kernel.project_dir%</argument>
+        </service>
+
+        <service id="Weedesign\Images2WebP\Service\DeleteMediaFiles">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument>%kernel.project_dir%</argument>
+        </service>
+
+        <service id="Weedesign\Images2WebP\Storefront\Framework\Twig\Extension\UrlEncodingTwigFilter" public="false">
+            <tag name="twig.extension"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Weedesign\Images2WebP\Service\GenerateMediaFiles"/>
+            <argument>%kernel.project_dir%</argument>
+        </service>
+        
+        <service id="Weedesign\Images2WebP\Controller\Media\DeleteController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="Weedesign\Images2WebP\Service\DeleteMediaFiles"/>
+            <argument>%kernel.project_dir%</argument>
+        </service>
+        
+        <service id="Weedesign\Images2WebP\Controller\Media\SkipController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="Weedesign\Images2WebP\Service\GenerateMediaFiles"/>
+        </service>
+        
+        <service id="Weedesign\Images2WebP\Controller\Media\GenerateController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Weedesign\Images2WebP\Service\GenerateMediaFiles"/>
+        </service>
+        
+        <service id="Weedesign\Images2WebP\Controller\Media\UpgradeController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Weedesign\Images2WebP\Service\GenerateMediaFiles"/>
+            <argument type="service" id="Weedesign\Images2WebP\Service\DeleteMediaFiles"/>
+            <argument>%kernel.project_dir%</argument>
+        </service>
+        
+        <service id="Weedesign\Images2WebP\Controller\Media\URLController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+        
+        <service id="Weedesign\Images2WebP\Controller\Media\ProgressController" public="true">
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Weedesign\Images2WebP\Service\GenerateMediaFiles"/>
+            <argument>%kernel.project_dir%</argument>
+        </service>
+
+        <service id="Weedesign\Images2WebP\Service\ScheduledTask\GenerateMedia">
+            <tag name="shopware.scheduled.task" />
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+
+        <service id="Weedesign\Images2WebP\Service\ScheduledTask\GenerateMediaHandler">
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Weedesign\Images2WebP\Service\GenerateMediaFiles"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <tag name="messenger.message_handler" />
+        </service>
+
+    </services>
+</container>

@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block acris_gpsr_tab_nav_content %}
+        {% if gpsrInfoCollection %}
+            {% for gpsrInfo in gpsrInfoCollection %}
+                {% sw_include '@Storefront/storefront/component/gpsr/acris-gpsr.html.twig' with {
+                    'isLastGpsrEntry': loop.last
+                } %}
+            {% endfor %}
+        {% elseif gpsrInfo %}
+            {% sw_include '@Storefront/storefront/component/gpsr/acris-gpsr.html.twig' %}
+        {% endif %}
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,157 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-cross-selling.html.twig' %}
+
+{% block cms_element_cross_selling_tabs_inner %}
+
+    {% if config('phpSchmiedLastSeenProducts.config.onlyCms') == 0 %}
+        {% if config('phpSchmiedLastSeenProducts.config.useAsTab') == 0 %}
+            {{ parent() }}
+
+            <hr class="last-seen-divider">
+            <div class="product-detail-recently-viewed-product"
+                 data-last-seen-products="true"
+                 data-product-id="{{ page.product.getId() }}"
+                 data-only-cms="{{ config('phpSchmiedLastSeenProducts.config.onlyCms') == 1 ? '1' : '0' }}">
+            </div>
+        {% elseif config('phpSchmiedLastSeenProducts.config.useAsTab') == 1 %}
+            {% if not sliderConfig %}
+                {% set sliderConfig = element.fieldConfig.elements %}
+            {% endif %}
+
+            {% if element.data.crossSellings.elements is defined and element.data.crossSellings.elements|filter(item => item.total > 0)|length > 0 %}
+                <div class="product-detail-cross-selling">
+                    <div class="card card-tabs" data-cross-selling="true">
+                        {% block cms_element_cross_selling_tabs_navigation %}
+                            <div class="card-header product-detail-tab-navigation product-cross-selling-tab-navigation">
+                                {% block cms_element_cross_selling_tabs_navigation_container %}
+                                    <ul class="nav nav-tabs product-detail-tab-navigation-list"
+                                        id="product-detail-cross-selling-tabs"
+                                        role="tablist">
+                                        {% for item in element.data.crossSellings.elements|filter(item => item.total > 0 and item.crossSelling.active == true) %}
+                                            {% set crossSelling = item.crossSelling %}
+                                            {% set products = item.products %}
+                                            {% set id = crossSelling.id %}
+                                            <li class="nav-item">
+                                                <a class="nav-link product-detail-tab-navigation-link{% if loop.first %} active{% endif %}"
+                                                   id="cross-selling-tab-{{ id }}"
+                                                   data-bs-toggle="tab"
+                                                   href="#cross-selling-tab-{{ id }}-pane"
+                                                   role="tab"
+                                                   title="{{ crossSelling.translated.name }}"
+                                                   aria-controls="cross-selling-tab-{{ id }}-pane"
+                                                   aria-selected="true">
+                                                    {{ crossSelling.translated.name }}
+                                                    <span class="product-detail-tab-navigation-icon">
+                                                            {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                                                        </span>
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                        <div class="last-seen-header" data-last-seen-products-header="true"></div>
+                                    </ul>
+                                {% endblock %}
+                            </div>
+                        {% endblock %}
+
+                        {% block cms_element_cross_selling_tabs_content %}
+                            <div class="product-detail-tabs-content card-body">
+                                {% block cms_element_cross_selling_tabs_content_container %}
+                                    <div class="tab-content">
+                                        {% for item in element.data.crossSellings.elements|filter(item => item.total > 0 and item.crossSelling.active == true) %}
+                                            {% set crossSelling = item.crossSelling %}
+                                            {% set products = item.products %}
+                                            {% set id = crossSelling.id %}
+                                            <div class="tab-pane fade show{% if loop.first %} active{% endif %}"
+                                                 id="cross-selling-tab-{{ id }}-pane"
+                                                 role="tabpanel"
+                                                 aria-labelledby="cross-selling-tab-{{ id }}">
+                                                {% set config = {
+                                                    'title': {
+                                                        'value': crossSelling.name ?: crossSelling.translated.name
+                                                    },
+                                                    'border': {
+                                                        'value': false
+                                                    },
+                                                    'rotate': {
+                                                        'value': false
+                                                    },
+                                                    'products': {
+                                                        'value': products
+                                                    },
+                                                    'boxLayout': {
+                                                        'value': sliderConfig.boxLayout.value
+                                                    },
+                                                    'elMinWidth': {
+                                                        'value': sliderConfig.elMinWidth.value
+                                                    },
+                                                    'navigation': {
+                                                        'value': true
+                                                    },
+                                                    'displayMode': {
+                                                        'value': sliderConfig.displayMode.value
+                                                    },
+                                                    'verticalAlign': {
+                                                        'value': center
+                                                    }
+                                                } %}
+
+                                                {% block cms_element_cross_selling_tabs_content_container_slider %}
+                                                    {% sw_include "@Storefront/storefront/element/cms-element-product-slider.html.twig" with {
+                                                        sliderConfig: config,
+                                                        element: {
+                                                            'data': {
+                                                                'products': products
+                                                            },
+                                                            type: 'product-slider'
+                                                        }
+                                                    } %}
+                                                {% endblock %}
+
+                                            </div>
+                                        {% endfor %}
+
+                                        <div class="last-seen-tab tab-pane fade show"
+                                             id="cross-selling-last-seen-tab-pane"
+                                             role="tabpanel"
+                                             data-last-seen-products-tab="true"
+                                             aria-labelledby="cross-selling-last-seen-tab">
+                                        </div>
+                                    </div>
+                                {% endblock %}
+                            </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="product-detail-cross-selling">
+                    <div class="card card-tabs" data-cross-selling="true">
+                        <div class="card-header product-detail-tab-navigation product-cross-selling-tab-navigation">
+                            <ul class="nav nav-tabs product-detail-tab-navigation-list"
+                                id="product-detail-cross-selling-tabs"
+                                role="tablist">
+                                <div class="last-seen-header" data-last-seen-products-header="true" data-tab-active="true">
+                                    <a data-bs-toggle="tab"></a>
+                                </div>
+                            </ul>
+                        </div>
+
+                        <div class="product-detail-tabs-content card-body">
+                            <div class="tab-content">
+                                <div class="last-seen-tab tab-pane fade show active"
+                                     id="cross-selling-last-seen-tab-pane"
+                                     role="tabpanel"
+                                     data-last-seen-products-tab="true"
+                                     aria-labelledby="cross-selling-last-seen-tab">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+

@@ -1,0 +1,17 @@
+//changes the breakpoints of the cms-grid
+.cms-block-container-row{
+  .col-md-6[data-cms-element-id]{
+    @extend .col-md-12;
+    @extend .col-xl-6;
+
+    @include media-breakpoint-down(md){
+      margin-bottom: 30px;
+    }
+  }
+}
+
+//sidebar-layout has double-padding from .row and .boxed
+.cms-section-sidebar.boxed{
+  padding-left: 0;
+  padding-right: 0;
+}

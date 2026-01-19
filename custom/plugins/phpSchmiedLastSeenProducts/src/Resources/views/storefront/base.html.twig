@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_body_script %}
+    {{ parent() }}
+    {% if controllerName == 'Product' %}
+        <script>
+            window.lastSeenProductAddRoute = '{{ path('frontend.lastSeenProducts.add') }}';
+            window.lastSeenProductId = '{{ page.product.id }}';
+        </script>
+    {% endif %}
+    <script>
+        window.lastSeenProductsFetchRoute = '{{ path('frontend.lastSeenProducts.fetch') }}';
+    </script>
+{% endblock %}

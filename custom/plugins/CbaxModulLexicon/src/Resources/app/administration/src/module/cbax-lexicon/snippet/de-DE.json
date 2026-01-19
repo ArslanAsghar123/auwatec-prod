@@ -1,0 +1,220 @@
+{
+    "cbax-lexicon": {
+		"general": {
+			"name": "cbax-lexicon",
+			"title": "Lexikon",
+			"description": "Verwaltung von Lexikon-Einträgen",
+			"navigationLabel": "Lexikon",
+            "placeholderSearchBar": "Durchsuche alle Einträge ..."
+		},
+        "config": {
+            "alert": {
+                "textSaveConfig": "Konfiguration vorher speichern! Die Funktion benötigt ein aktives Lexikon-Plugin (min. Version 2.8.3) in Shopware 5.",
+                "textFunctionLimited": "Der Import von Einträgen ist auf 4000 Lexikon-Einträgen begrenzt. Sie kann je nach Datenmenge längere Zeit in Anspruch nehmen und ist in 3 Schritte aufgeteilt.",
+                "textLogging": "Fehler / Warnungen /Hinweise werden als Logbuch-Eintrag gespeichert",
+                "textCreatedData": "Bereits importierte Lexikon Einträge werden NICHT aktualisiert!",
+                "toLogbook": "zum Logbuch",
+                "textToManual": "Bitte lesen Sie die ausführliche Erklärung zur Migration in unserm Handbuch",
+                "toManual": "zum Handbuch"
+            },
+            "button": {
+                "importLexiconEntries": "Importieren von Lexikon Einträgen",
+                "success": "Erfolg",
+                "failure": "Fehler",
+                "errorRoute": "Fehler beim Aufruf der Route",
+                "successMessage": "Funktion wurde erfolgreich ausgeführt",
+                "errorMessage": "Funktion wurde nicht erfolgreich ausgeführt"
+            },
+            "resultGrid": {
+                "lexiconGeneral": "Lexikon Einträge",
+                "totalLexiconEntries": "Gefundene Einträge in Shopware 5",
+                "countExistingLexiconEntries": "-> Bereits existierende Einträge in Shopware 6",
+                "createdLexiconEntries": "-> Neu erstellte Einträge in Shopware 6",
+                "streamsGeneral": "Zuordnung: Produkt Streams (dynamische Produktgruppen)",
+                "totalSw5StreamsConnected": "Zugeordnete Produkt Streams in Shopware 5",
+                "totalSw5StreamConnections": "Lexikon-Produkt-Stream-Verknüpfungen in Shopware 5 für die Zuordnung gefunden",
+                "totalSw6MappedStreamConnections": "-> Passende Produktgruppen gefunden in Shopware 6",
+                "countSw6StreamsConnected": "-> Produktgruppen zugeordnet in Shopware 6",
+                "maxLikeEntries": "(Erklärungstext beachten)",
+                "productsGeneral": "Zuordnung: Produkte",
+                "totalSw5Products": "Zugeordnete Produkte in Shopware 5",
+                "totalSw6ProductsFound": "-> Passende Produkte gefunden in Shopware 6",
+                "totalLexiconProducts": "In Shopware 5 gefundene Lexikon-Produkt-Verknüpfungen",
+                "countAlreadyExistingAssignments": "-> Bereits verknüpfte Produkte in Shopware 6",
+                "countNotCreatable": "-> Nicht erstellbare Zuordnung in Shopware 6",
+                "createdLexiconProducts": "-> Produkte zugeordnet in Shopware 6",
+                "shopsGeneral": "Shops (Verkaufskanäle)",
+                "totalSw5Shops": "Zugeordnete Shops in Shopware 5",
+                "totalSw6ShopsFound": "Passende Verkaufskanäle in Shopware 6 gefunden",
+                "totalLexiconShops": "In Shopware 5 gefundene Lexikon-Verkaufskanal-Verknüpfungen",
+                "countAlreadyExistingShopAssignments": "In Shopware 6 bereits vorhandene Verknüpfungen",
+                "createdLexiconSalesChannel": "Lexikon-Verkaufskanal-Verknüpfungen erstellt"
+            },
+            "notification": {
+                "emptySettings": "Zur Ausführung bitte die Shopware 5 Url und den Shopware 5 Schlüssel speichern.",
+                "errorResolveHost": "Die zusammengesetze Url konnte nicht aufgerufen werden.",
+                "errorCronKey": "Zugriff verweigert - bitte den gültigen Schlüssel aus der Shopware 5 Konfiguration eintragen",
+                "errorCallResultSw5Data": "Shopware 5 Daten konnten nicht erfolgreich abgeholt werden.",
+                "errorNoSw5Entries": "Keine Shopware 5 Daten zum Import vorhanden",
+                "errorToManyEntries": "Mehr als 4000 Einträge gefunden - Import gestoppt.",
+                "errorProductAssignments": "Es ist ein Fehler beim Abholen der Produkt-Verknüpfungen aufgetreten - Migration abgebrochen",
+                "errorShopAssignments": "Es ist ein Fehler beim Abholen der Shop-Verknüpfungen aufgetreten - Migration abgebrochen",
+                "successImportData": "Erfolgreich Lexikon Einträge importiert (Schritt 1 / 3)",
+                "successImportProductAssignments": "Erfolgreich Lexikon Einträge mit Produkten verknüpft (Schritt 2 / 3)",
+                "successImportShopAssignments": "Erfolgreich Lexikon Einträge mit Verkaufskanälen verknüpft (Schritt 3 / 3)"
+            }
+        },
+        "seo": {
+            "success": "Erfolg",
+            "error": "Fehler",
+            "unknown": "Unbekannter Fehler",
+            "text": "SEO Url's für die Lexikon Seiten erzeugen",
+            "link": "Mehr Infos zu den Fehlern in den Shopware Logs",
+            "button": "Generierung Starten",
+            "deleteButton": "Löschen Starten",
+            "deleteText": "Alle SEO Url's der Lexicon Seiten löschen",
+            "deleteSuccess": "Die Lexicon Seo Urls wurden gelöscht.",
+            "deleteError": "Fehler beim Löschen der Lexicon SEO Url's!",
+            "cancelButton": "Abbrechen",
+            "confirmButton": "Löschen",
+            "deleteInfoText": "Beim Löschen aller Lexikon SEO Url's geht auch deren Historie verloren. Deshalb sollte man nur bei Problemen löschen.",
+            "deleteConfirmText": "Möchten Sie wirklich löschen?"
+        },
+        "seoConfigInfo": {
+            "text": "<b>Beispiel:</b> Lexikon (ohne Domain) > Aufruf: https://www.mein-shop.de/lexikon<br><br>Leere Textbausteine werden durch den Fallback \" Lexikon\" überschrieben. Die Aktualisierung erfolgt täglich automatisch bzw. manuell über den Button: Generierung Starten. Sollten Probleme bei der Generierung auftreten, löschen Sie vorher die alten SEO Url´s mit dem Button: Löschen Starten.<br><br><b>WICHTIG:</b> SEO Url´s müssen einmalig sein. Wenn Sie bereits eine Kategorie \"Lexikon\" haben, ist diese SEO Url vergeben und wird nicht noch einmal erzeugt.",
+            "link": "Handbuch"
+        },
+        "cmsConfigInfo": {
+            "text": "Die Einstellungen für die Elemente der Lexikon-Seiten können Sie jetzt direkt bei den entsprechenden Elementen in den Erlebniswelten machen!",
+            "link": "Zu den Erlebniswelten"
+        },
+        "detail": {
+			"placeholderNewEntry": "Neuer Eintrag",
+
+            "labelButtonCancel": "Abbrechen",
+            "labelButtonSave": "Speichern",
+
+            "labelTabGeneral": "Allgemein",
+            "labelTabAdvanced": "Erweitert",
+            "labelTabCustom": "Zusatzfelder",
+
+            "labelCardMainData": "Stammdaten",
+            "labelCardSeo": "SEO",
+            "labelCardProducts": "Produkte",
+            "labelCardModalBox": "Modal Box",
+            "labelCardCustom": "Zusatzfelder",
+
+            "labelColumnProductName": "Produktname",
+            "labelColumnProductNumber": "Produktnummer",
+            "labelColumnManufacturerName": "Herstellername",
+
+            "labelFieldVisibility": "Sichtbarkeit",
+			"labelFieldTitle": "Titel",
+            "labelFieldKeyword": "Keyword",
+            "labelFieldDatePosted": "Einstelldatum",
+            "labelFieldShortDescription": "Kurzbeschreibung",
+            "labelFieldLongDescription": "Langbeschreibung",
+            "labelFieldMetaTitle": "Meta-Titel",
+            "labelFieldMetaDescription": "Meta-Beschreibung",
+            "labelFieldMetaKeywords": "Meta-Keywords",
+            "labelFieldListingType": "Listentyp",
+            "labelFieldHeadline": "Überschrift",
+            "labelFieldProductLayout": "Layout-Typ",
+			"labelFieldProductTemplate": "Template",
+			"labelFieldProductSliderWidth": "Minimale Weite",
+			"labelFieldProductSorting": "Sortierung",
+			"labelFieldProductLimit": "Maximale Produktanzahl",
+            "labelFieldProductAssignmentTitle": "Produkt-Zuweisung",
+            "labelFieldProductStream": "Produktgruppe",
+            "labelFieldLinkDescription": "Link Bezeichnung",
+            "labelFieldLink": "Link",
+            "labelFieldLinkTarget": "Link Zieltyp",
+            "labelFieldAttribute1": "Freitextfeld 1",
+            "labelFieldAttribute2": "Freitextfeld 2",
+            "labelFieldAttribute3": "Freitextfeld 3",
+            "labelFieldAttribute4": "Freitextfeld 4",
+            "labelFieldAttribute5": "Freitextfeld 5",
+            "labelFieldAttribute6": "Freitextfeld 6",
+
+            "placeholderFieldVisibility": "Verkaufskanal wählen",
+            "placeholderFieldTitle": "Titel",
+            "placeholderFieldKeyword": "Keyword",
+            "placeholderFieldShortDescription": "Kurzbeschreibung",
+            "placeholderFieldLongDescription": "Langbeschreibung",
+            "placeholderFieldMetaTitle": "Gib einen Meta-Titel ein ...",
+            "placeholderFieldMetaDescription": "Gib eine Meta-Beschreibung ein ...",
+            "placeholderFieldMetaKeywords": "Gib Meta-Keywords ein ...",
+            "placeholderFieldHeadline": "Die Überschrift der Produkt Gruppe ...",
+			"placeholderFieldProductSliderWidth": "250px",
+            "placeholderFieldProductAssignmentTitle": "Produkt suchen",
+            "placeholderFieldProductAssignmentEmptyState": "Bisher wurden keine Produkte ausgewählt",
+            "placeholderFieldProductStream": "Produktgruppe auswählen",
+            "placeholderFieldLinkDescription": "Gib eine Link Bezeichnung ein ...",
+            "placeholderFieldLink": "Link der beim Anklicken aufgerufen wird",
+            "placeholderFieldLinkTarget": "Bitte wählen ...",
+            "placeholderFieldAttribute1": "Freitextfeld 1",
+            "placeholderFieldAttribute4": "Freitextfeld 4",
+            "placeholderFieldAttribute5": "Freitextfeld 5",
+            "placeholderFieldAttribute6": "Freitextfeld 6",
+
+            "helpTextFieldLinkTarget": "Link im selben Tab, wie Shopware öffnen oder in neuem Tab öffnen?",
+
+            "labelOptionListingTypeSelectedArticle": "Ausgewählte Produkte",
+            "labelOptionListingTypeProductStream": "Dynamische Produktgruppe",
+            "labelOptionProductLayoutStandard": "Standard",
+            "labelOptionProductLayoutImage": "Großes Bild",
+            "labelOptionProductLayoutMinimal": "Minimaler Inhalt",
+			
+			"labelOptionProductTemplateListing_1col": "Liste",
+            "labelOptionProductTemplateListing_2col": "Zweispaltig",
+            "labelOptionProductTemplateListing_3col": "Dreispaltig",
+            "labelOptionProductTemplateSlider": "Slider",
+
+			"labelOptionNameAsc": "Name aufsteigend",
+			"labelOptionNameDesc": "Name absteigend",
+			"labelOptionDateAsc": "Erscheinungsdatum aufsteigend",
+			"labelOptionDateDesc": "Erscheinungsdatum absteigend",
+			"labelOptionPriceAsc": "Preis aufsteigend",
+			"labelOptionPriceDesc": "Preis absteigend",
+
+            "placeholderSidebarContextItemAttribute2": "Datei in Freitextfeld 2 einbinden",
+            "placeholderSidebarContextItemAttribute3": "Datei in Freitextfeld 3 einbinden",
+
+			"helpTextKeyword": "Mehrere Keywords mit einem Pluszeichen trennen"
+        },
+        "list": {
+			"textHeadline": "Lexikon",
+			"titleSidebarItemRefresh": "Aktualisieren",
+            "columnTitle": "Titel",
+            "columnKeyword": "Keyword",
+            "columnActive": "Aktiv",
+            "columnCountProducts": "Produkte",
+            "columnImpressions": "Aufrufe",
+            "columnDate": "Einstelldatum",
+            "columnProductStream": "Dynamische Produktgruppe",
+            "columnSalesChannel": "Verkaufskanäle",
+            "buttonAddEntry": "Hinzufügen",
+            "placeholderListingEmptyState": "Noch keine Einträge vorhanden",
+            "buttonSidebarRefresh": "Liste aktualisieren",
+            "labelSidebarFilter": "Filter",
+            "labelSidebarFilterSaleschannel": "Verkaufskanal",
+            "buttonGenerateSeo": "Seo-Urls erzeugen"
+        },
+		"notification": {
+			"titleSaveSuccess": "Erfolg",
+			"messageSaveSuccess": "Die Daten wurden erfolgreich gespeichert.",
+			"titleSaveError": "Fehler",
+            "messageSaveError": "Die Daten wurden NICHT gespeichert!",
+            "titleGenerateSuccess": "Erfolg",
+            "titleGenerateError": "Fehler",
+            "messageGenerateSuccess": "Url's erfolgreich erstellt",
+            "messageGenerateError": "Erzeugung der Seo Urls fehlgeschlagen",
+            "messageKeywordSaveError": " wird schon als Keyword verwendet!"
+        }
+    },
+    "global": {
+        "entities": {
+            "cbax_lexicon_entry": "Lexikon | Lexikon"
+        }
+    }
+}

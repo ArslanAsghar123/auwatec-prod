@@ -1,0 +1,238 @@
+{
+    "dreiscSeoRedirect": {
+        "general": {
+            "navigation": {
+                "label": "301 and 302 URL redirects"
+            },
+            "textSnippets": {
+                "yes": "Yes",
+                "no": "No"
+            }
+        },
+        "exporter": {
+            "cards": {
+                "export": "Export forwarding as a CSV file"
+            },
+            "buttons": {
+                "download": "Download the CSV file"
+            }
+        },
+        "importer": {
+            "modalTitle": "Import and export of forwarding",
+            "notifications": {
+                "missingHeader": {
+                    "message": "The CSV file you uploaded has no heading line. These are required for the import. You can find example CSV formats in the documentation."
+                },
+                "importFailed": {
+                    "title": "The redirects could not be imported",
+                    "message": "All <b> {total} redirects </b> failed. More information can be found in the log below."
+                },
+                "importIncomplete": {
+                    "title": "Some of the redirects were imported",
+                    "message": "{Total} redirects were imported. There was an error with <b> {errors} redirects </b>. More information can be found in the log below."
+                },
+                "importSuccessful": {
+                    "title": "Import successful",
+                    "message": "<b> {total} redirects </b> have been imported."
+                }
+            },
+            "notice": {
+                "top": "<b> Note: </b> The CSV file for this import must be in a certain format. You can find a detailed description and examples in the documentation."
+            },
+            "fileInput": {
+                "label": "Select a CSV file to upload"
+            },
+            "cards": {
+                "import": "Upload CSV file",
+                "importResultList": "Log of the last import"
+            },
+            "fields": {
+                "labels": {
+                    "delimiter": "Column separator"
+                }
+            },
+            "list": {
+                "filerTabs": {
+                    "showAll": "Show all log entries",
+                    "showOnlyBugs": "Show only log entries with errors"
+                },
+                "success": "Import successful - ",
+                "alreadyExists": "Forwarding already exists - ",
+                "openInNewTab": "Open the configuration in a new tab",
+                "openDuplicateInNewTab": "Open the configuration of the existing forwarding in a new tab",
+                "failure": "Import failed - ",
+                "showError": "Show error message",
+                "detailModal": {
+                    "title": "Error message - line {rowIndex}"
+                },
+                "sourceAlreadyExists": "<b> Forwarding already exists </b> <br> In the row {rowIndex} of the CSV file you have defined a forwarding for whose forwarding source a forwarding is already configured in the system.",
+                "missingSource": "<b> Missing forwarding source </b> <br> You have not entered a field in the row {rowIndex} of the CSV file that defines the source of the forwarding. Possible fields are: sourceProductNumber, sourceInternalUrl, sourceCategoryId and sourceProductId",
+                "missingTarget": "<b> Missing forwarding destination </b> <br> You have not entered a field in the row {rowIndex} of the CSV file that defines the destination of the forwarding. Possible fields are: targetProductNumber, targetInternalUrl, targetCategoryId, targetProductId and targetExternalUrl",
+                "invalidHttpStatusCode": "<b> Invalid HTTP Status Code </b> <br> You have passed the value \"{httpStatusCode}\" in the row {rowIndex} of the CSV file in the column <i> httpStatusCode </i>. This is not a valid HTTP status code. 301 or 302 is possible.",
+                "invalidSourceProductNumber": "<b> Invalid product number </b> <br> You have passed the value \"{productNumber}\" in the row {rowIndex} of the CSV file in the column <i> sourceProductNumber </i>. This product number could not be found in the system.",
+                "invalidSourceInternalUrl": "<b> Invalide Sales Channel Domain </b> <br> In the row {rowIndex} of the CSV file you passed the value \"{url}\" in the column <i> sourceInternalUrl </i>. No or no valid sales channel domain could be determined. <br> <br> To set an internal URL you have to enter it in the CSV import including domain. Also check whether you have saved the URL with HTTP or HTTPS in the Shopware configuration. <br> <br> <b> Example: </b> <br> <i> http: //www.mein-shop. de / Meine-url </i> or <br> <i> http://www.mein-shop.de/meine-url </i>",
+                "invalidSourceInternalUrlEmptyBaseUrl": "<b> Missing URL path </b> <br> You have passed the value \"{url}\" in the row {rowIndex} of the CSV file in the column <i> sourceInternalUrl </i>. A forwarding of the start page cannot be configured in the current version of the plugin.",
+                "invalidSourceCategoryIdNotFound": "<b> Invalid category Id </b> <br> You have passed the value \"{categoryId}\" in the row {rowIndex} of the CSV file in the column <i> sourceCategoryId </i>. No category with this ID could be found in the system.",
+                "invalidSourceCategoryIdUuidFormat": "<b> Invalid category Id </b> <br> You have passed the value \"{categoryId}\" in the row {rowIndex} of the CSV file in the column <i> sourceCategoryId </i>. This is not a valid HEX ID.",
+                "invalidSourceProductIdNotFound": "<b> Invalid product id </b> <br> You have passed the value \"{productId}\" in the row {rowIndex} of the CSV file in the column <i> sourceProductId </i>. No product with this ID could be found in the system.",
+                "invalidSourceProductIdUuidFormat": "<b>Ungültige Produkt Id<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>sourceProductId<\/i> den Wert \"{productId}\" übergeben. Hierbei handelt es sich um keine valide HEX ID.",
+                "invalidTargetProductNumber": "<b> Invalid product number </b> <br> You have passed the value \"{productNumber}\" in the row {rowIndex} of the CSV file in the column <i> targetProductNumber </i>. This product number could not be found in the system.",
+                "invalidTargetInternalUrl": "<b> Invalide Sales Channel Domain </b> <br> You have passed the value \"{url}\" in the row {rowIndex} of the CSV file in the column <i> targetInternalUrl </i>. No or no valid sales channel domain could be determined. <br> <br> To set an internal URL you have to enter it in the CSV import including domain. Also check whether you have saved the URL with HTTP or HTTPS in the Shopware configuration. <br> <br> <b> Example: </b> <br> <i> http: //www.mein-shop. de / Meine-url </i> or <br> <i> http://www.mein-shop.de/meine-url </i>",
+                "invalidTargetInternalUrlEmptyBaseUrl": "<b> Missing URL path </b> <br> You have passed the value \"{url}\" in the row {rowIndex} of the CSV file in the column <i> targetInternalUrl </i>. A forwarding to the start page cannot be configured in the current version of the plugin.",
+                "invalidTargetCategoryIdNotFound": "<b> Invalid category Id </b> <br> You have passed the value \"{categoryId}\" in the row {rowIndex} of the CSV file in the column <i> targetCategoryId </i>. No category with this ID could be found in the system.",
+                "invalidTargetCategoryIdUuidFormat": "<b> Invalid category Id </b> <br> You have passed the value \"{categoryId}\" in the row {rowIndex} of the CSV file in the column <i> targetCategoryId </i>. This is not a valid HEX ID.",
+                "invalidTargetProductIdNotFound": "<b> Invalid product id </b> <br> You have passed the value \"{productId}\" in the row {rowIndex} of the CSV file in the column <i> targetProductId </i>. No product with this ID could be found in the system.",
+                "invalidTargetProductIdUuidFormat": "<b> Invalid product id </b> <br> You have passed the value \"{productId}\" in the row {rowIndex} of the CSV file in the column <i> targetProductId </i>. This is not a valid HEX ID.",
+                "invalidDeviatingDomain": "<b> Invalid different domain </b> <br> You have passed the value \"{deviatingDomain}\" in the row {rowIndex} of the CSV file in the column <i> targetDeviatingDomain </i>. No sales channel domain could be determined that matches this. <br> <br> Please note that the domain must be stored 1: 1 as it is defined in Shopware in the configuration of the sales channels. Possible sources of error are that the domain was specified with http instead of https or that a slash was forgotten or accidentally set at the end.",
+                "invalidRestrictionDomain": "<b> Invalid domain restriction </b> <br> You have passed the value \"{restrictionDomain}\" in the row {rowIndex} of the CSV file in the column <i> sourceRestrictionDomains </i>. No sales channel domain could be determined that matches this. <br> <br> Please note that the domain must be stored 1: 1 as it is defined in Shopware in the configuration of the sales channels. Possible sources of error are that the domain was specified with http instead of https or that a slash was forgotten or accidentally set at the end."
+            }
+        },
+        "list": {
+            "smartBar": {
+                "header": "301 and 302 URL redirects",
+                "addButtonText": "Create a new redirect",
+                "importExportButtonText": "CSV Import / Export"
+            },
+            "searchBar": {
+                "header": "301 and 302 URL redirects"
+            },
+            "notification": {
+                "titleSaveSuccess": "Success",
+                "messageSaveSuccess": "The item was saved successfully.",
+                "messageSaveError": "Error",
+                "titleSaveError": "The element could not be saved!"
+            },
+            "columns": {
+                "labels": {
+                    "active": "Active",
+                    "sourcePath": "Source",
+                    "redirectUrl": "Target",
+                    "redirectHttpStatusCode": "HTTP status code"
+                },
+                "types": {
+                    "product": "<i>[Product] <\/i>",
+                    "category": "<i>[Category] <\/i>"
+                }
+            },
+            "contextMenu": {
+                "show": "Show",
+                "edit": "Edit",
+                "delete": "Delete"
+            },
+            "deleteModal": {
+                "title": "Delete redirect",
+                "confirmText": "Are you sure you want to delete this redirect?",
+                "cancelButtonText": "Cancel",
+                "deleteButtonText": "Delete"
+            },
+            "messageEmpty": "No redirect yet"
+        },
+        "create": {
+            "smartBar": {
+                "header": "Create a new redirect"
+            }
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Redirect Settings",
+                "editButtonText": "Edit",
+                "deleteButtonText": "Delete",
+                "cancelButtonText": "Cancel",
+                "saveButtonText": "Save"
+            },
+            "tabs": {
+                "general": "General"
+            },
+            "notification": {
+                "titleSaveError": "When saving an error has occurred",
+                "messageSaveError": "The item could not be saved."
+            }
+        },
+        "detailBase": {
+            "cards": {
+                "titles": {
+                    "settings": "Basic settings",
+                    "source": "Source of the redirect",
+                    "target": "redirect to ..."
+                }
+            },
+            "fields": {
+                "labels": {
+                    "sourceSalesChannelDomainId": "Domain",
+                    "sourcePath": "Source URL",
+                    "redirectSalesChannelDomainId": "Domain",
+                    "redirectPath": "Target URL",
+                    "active": "Active",
+                    "parameterForwarding": "Forward parameters of the source URL to the destination URL",
+                    "redirectUrl": "URL",
+                    "redirectHttpStatusCode": "HTTP status code",
+                    "sourceProductId": "Product",
+                    "sourceCategoryId": "Category",
+                    "hasSourceSalesChannelDomainRestriction": "Limit forwarding to domain (s)",
+                    "sourceSalesChannelDomainRestrictionIds": "Only carry out this forwarding for the following domains:",
+                    "sourceType": {
+                        "url": "Internal URL",
+                        "product": "Product",
+                        "category": "Category"
+                    },
+                    "redirectProductId": "Product",
+                    "redirectCategoryId": "Category",
+                    "hasDeviatingRedirectSalesChannelDomain": "Redirect to different domain",
+                    "deviatingRedirectSalesChannelDomainId": "Different target domain",
+                    "redirectType": {
+                        "url": "Internal URL",
+                        "externalUrl": "External URL",
+                        "product": "Product",
+                        "category": "Category"
+                    }
+                },
+                "errors": {
+                    "defaultError": "This field can not be empty"
+                },
+                "placeholder": {
+                    "sourceSalesChannelDomainId": "Enter the domain of the source URL ...",
+                    "redirectSalesChannelDomainId": "Enter the domain of the destination URL ...",
+                    "sourceProductId": "Specify the product for which you want to set up forwarding ...",
+                    "sourceCategoryId": "Specify the category for which to redirect.",
+                    "sourceSalesChannelDomainRestrictionIds": "Add domain ...",
+                    "redirectProductId": "Specify the product to forward to ...",
+                    "redirectCategoryId": "Specify the category to forward to ...",
+                    "deviatingRedirectSalesChannelDomainId": "Choose domain ..."
+                },
+                "helpText": {
+                    "hasSourceSalesChannelDomainRestriction": "Activate this option to define that the forwarding is only carried out for the domains defined below.",
+                    "hasDeviatingRedirectSalesChannelDomain": "By default, the target domain corresponds to the source domain. Activate this option to define a different domain as the target domain. <br> <br> If the category or article is not available for the target domain, no forwarding takes place.",
+                    "parameterForwarding": "If this option is activated, the so-called GET parameters of the source URL are forwarded to the target URL. <br><br><b>Example:</b><br>Source URL: <i>https://www.mein-shop.de/source-url<b>?foo=bar</b></i><br><br>Target URL: <i>https://www.mein-shop.de/target-url<b>?foo=bar</b></i>"
+                }
+            }
+        },
+        "componentRedirectWidget": {
+            "cards": {
+                "titles": {
+                    "main": "Redirects"
+                }
+            },
+            "noRedirectText": {
+                "product": "There is no redirect for this product.",
+                "category": "There is no redirect for this category."
+            },
+            "createLinkText": {
+                "product": "Now create a redirect for this product",
+                "category": "Now create a redirect for this category"
+            },
+            "redirectText": {
+                "product": "A redirect has been defined for this product via SEO Professional.",
+                "category": "Forwarding was defined for this category via SEO Professional."
+            },
+            "showRedirect": "Open the configuration of the forwarding",
+            "showDetails": "View details",
+            "hideDetails": "Hide details",
+            "redirectIsForFollowingDomains": "The forwarding is carried out for the following domains:",
+            "redirectIsForAllDomains": "The forwarding is carried out for all domains.",
+            "redirectToInternalUrl": "Redirect to an internal URL",
+            "redirectToExternalUrl": "Redirect to an external URL",
+            "redirectToProduct": "Forwarding to a product",
+            "redirectToCategory": "Forwarding to a category"
+        }
+    }
+}

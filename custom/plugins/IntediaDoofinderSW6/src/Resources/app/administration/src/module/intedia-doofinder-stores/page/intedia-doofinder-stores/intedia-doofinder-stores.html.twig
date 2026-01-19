@@ -1,0 +1,230 @@
+{% block intedia_doofinder_stores %}
+    <sw-page class="intedia-doofinder-stores">
+        {% block intedia_doofinder_stores_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block intedia_doofinder_stores_smart_bar_header_title %}
+                    <h2>
+                        {% block intedia_doofinder_stores_smart_bar_header_title_text %}
+                            {{ $tc('intedia-doofinder-stores.index.textHeadline') }}
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block intedia_doofinder_list_smart_bar_actions %}
+            <template #smart-bar-actions>
+                {% block intedia_doofinder_smart_bar_actions_add %}
+                    <sw-button @click="onOpenCreateStoreModal()" variant="primary">
+                        {{ $tc('intedia-doofinder-stores.actions.createStore') }}
+                    </sw-button>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block intedia_doofinder_index_content %}
+            <template #content>
+                <sw-data-grid :dataSource="dataSource" :columns="columns">
+                    {% block intedia_doofinder_index_content_columns_actions %}
+                        <template #actions="{ item }">
+
+                            {% block intedia_doofinder_index_content_columns_actions_view_doofinder_store %}
+                                <sw-context-menu-item
+                                        @click="viewStore(item.id)">
+                                    {{ $tc('intedia-doofinder-stores.actions.viewStore') }}
+                                </sw-context-menu-item>
+                            {% endblock %}
+
+                            {% block intedia_doofinder_index_content_columns_actions_edit_doofinder_store %}
+                                <sw-context-menu-item
+                                        @click="onOpenEditStoreModal(item.id)">
+                                    {{ $tc('intedia-doofinder-stores.actions.editStore') }}
+                                </sw-context-menu-item>
+                            {% endblock %}
+
+                        </template>
+                    {% endblock %}
+
+
+                    {% block intedia_doofinder_index_content_columns_actions_modals %}
+                        <template #action-modals="{ item }">
+                            {% block intedia_doofinder_index_content_columns_actions_delete_modal %}
+                                <sw-modal v-if="showDeleteModal === item.id"
+                                          @modal-close="onCloseDeleteStoreModal"
+                                          :title="$tc('intedia-doofinder-stores.modals.delete.title')"
+                                          variant="small">
+                                    {% block intedia_doofinder_content_delete %}
+
+                                        <p>{{ $tc('intedia-doofinder-stores.modals.delete.text') }}</p>
+
+                                    {% endblock %}
+                                    {% block intedia_doofinder_index_content_columns_actions_modal_footer %}
+                                        <template #modal-footer>
+                                            {% block intedia_doofinder_index_content_columns_actions_modal_cancel %}
+                                                <sw-button @click="onCloseDeleteStoreModal"
+                                                           size="small">
+                                                    {{ $tc('intedia-doofinder-stores.modals.delete.cancel') }}
+                                                </sw-button>
+                                            {% endblock %}
+                                            {% block intedia_doofinder_index_content_columns_actions_modal_delete %}
+                                                <sw-button @click="onConfirmDeleteStoreModal(item.id)"
+                                                           variant="primary"
+                                                           size="small">
+                                                    {{ $tc('intedia-doofinder-stores.modals.delete.submit') }}
+                                                </sw-button>
+                                            {% endblock %}
+                                        </template>
+                                    {% endblock %}
+                                </sw-modal>
+                            {% endblock %}
+
+                            {% block intedia_doofinder_edit_modal %}
+                                <sw-modal v-if="showEditModal === item.id"
+                                          @modal-close="onCloseEditStoreModal"
+                                          :title="$tc('intedia-doofinder-stores.modals.edit.title')"
+                                          variant="large">
+                                    <div class="loadingGif">
+                                        <div class="loader"></div>
+                                    </div>
+
+
+                                    {% block intedia_doofinder_edit_modal_content %}
+                                        <sw-container columns="1fr 1fr" gap="20px">
+                                            <div class="mb-0 sw-field sw-block-field sw-contextual-field sw-field--text sw-field--default">
+                                                <div class="sw-field__label">
+                                                    <label for="intediaDoofinder_title" class="">
+                                                        {{ $tc('intedia-doofinder-stores.modals.edit.fields.title') }}
+                                                    </label>
+                                                </div>
+                                                <div class="sw-block-field__block">
+                                                    <input id="intediaDoofinder_title" type="text">
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-0 sw-field sw-block-field sw-contextual-field sw-field--text sw-field--default">
+                                                <div class="sw-field__label">
+                                                    <label for="intediaDoofinder_trigger" class="">
+                                                        {{ $tc('intedia-doofinder-stores.modals.edit.fields.trigger') }}
+                                                    </label>
+                                                </div>
+                                                <div class="sw-block-field__block">
+                                                    <input id="intediaDoofinder_trigger" type="text">
+                                                </div>
+                                            </div>
+                                        </sw-container>
+
+                                        <sw-container columns="1fr 1fr" gap="20px">
+                                            <div class="mb-0 sw-field sw-block-field sw-contextual-field sw-field--text sw-field--default">
+                                                <div class="sw-field__label">
+                                                    <label for="intediaDoofinder_domainId" class="">
+                                                        {{ $tc('intedia-doofinder-stores.modals.edit.fields.domainId') }}
+                                                    </label>
+                                                </div>
+                                                <div class="sw-block-field__block">
+                                                    <select :id="`intediaDoofinder_domainId_${item.id}`" class="form-select">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </sw-container>
+                                    {% endblock %}
+                                    {% block intedia_doofinder_edit_modal_footer %}
+                                        <template #modal-footer>
+                                            {% block intedia_doofinder_edit_modal_footer_cancel %}
+                                                <sw-button @click="onCloseEditStoreModal"
+                                                           size="small">
+                                                    {{ $tc('intedia-doofinder-stores.modals.edit.cancel') }}
+                                                </sw-button>
+                                            {% endblock %}
+                                            {% block intedia_doofinder_edit_modal_footer_submit %}
+                                                <sw-button @click="onSubmitEditStoreModal(item.id)"
+                                                           variant="primary"
+                                                           size="small">
+                                                    {{ $tc('intedia-doofinder-stores.modals.edit.submit') }}
+                                                </sw-button>
+                                            {% endblock %}
+                                        </template>
+                                    {% endblock %}
+                                </sw-modal>
+                            {% endblock %}
+
+
+                        </template>
+                    {% endblock %}
+
+
+                </sw-data-grid>
+
+                {% block intedia_doofinder_create_modal %}
+                    <sw-modal v-if="showCreateModal == true"
+                              @modal-close="onCloseCreateStoreModal"
+                              :title="$tc('intedia-doofinder-stores.modals.create.title')"
+                              variant="large">
+                        {% block intedia_doofinder_create_modal_content %}
+                            <div class="loadingGif">
+                                <div class="loader"></div>
+                            </div>
+
+                            <sw-container columns="1fr 1fr" gap="20px">
+                                <div class="mb-0 sw-field sw-block-field sw-contextual-field sw-field--text sw-field--default">
+                                    <div class="sw-field__label">
+                                        <label for="intediaDoofinder_title" class="">
+                                            {{ $tc('intedia-doofinder-stores.modals.create.fields.title') }}
+                                        </label>
+                                    </div>
+                                    <div class="sw-block-field__block">
+                                        <input id="intediaDoofinder_title" type="text">
+                                    </div>
+                                </div>
+
+                                <div class="mb-0 sw-field sw-block-field sw-contextual-field sw-field--text sw-field--default">
+                                    <div class="sw-field__label">
+                                        <label for="intediaDoofinder_trigger" class="">
+                                            {{ $tc('intedia-doofinder-stores.modals.create.fields.trigger') }}
+                                        </label>
+                                    </div>
+                                    <div class="sw-block-field__block">
+                                        <input id="intediaDoofinder_trigger" type="text">
+                                    </div>
+                                </div>
+                            </sw-container>
+
+                            <sw-container columns="1fr 1fr" gap="20px">
+                                <div class="mb-0 sw-field sw-block-field sw-contextual-field sw-field--text sw-field--default">
+                                    <div class="sw-field__label">
+                                        <label for="intediaDoofinder_domainId" class="">
+                                            {{ $tc('intedia-doofinder-stores.modals.create.fields.hashId') }}
+                                        </label>
+                                    </div>
+                                    <div class="sw-block-field__block">
+                                        <select id="intediaDoofinder_domainId" class="form-select" type="text">
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </sw-container>
+                        {% endblock %}
+                        {% block intedia_doofinder_create_modal_footer %}
+                            <template #modal-footer>
+                                {% block intedia_doofinder_create_modal_footer_cancel %}
+                                    <sw-button @click="onCloseCreateStoreModal"
+                                               size="small">
+                                        {{ $tc('intedia-doofinder-stores.modals.create.cancel') }}
+                                    </sw-button>
+                                {% endblock %}
+                                {% block intedia_doofinder_create_modal_footer_submit %}
+                                    <sw-button @click="onSubmitCreateStoreModal()"
+                                               variant="primary"
+                                               size="small">
+                                        {{ $tc('intedia-doofinder-stores.modals.create.submit') }}
+                                    </sw-button>
+                                {% endblock %}
+                            </template>
+                        {% endblock %}
+                    </sw-modal>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+    </sw-page>
+{% endblock %}

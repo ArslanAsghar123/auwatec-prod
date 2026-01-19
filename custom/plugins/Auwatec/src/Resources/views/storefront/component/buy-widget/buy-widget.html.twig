@@ -1,0 +1,95 @@
+{% sw_extends '@Storefront/storefront/component/buy-widget/buy-widget.html.twig' %}
+
+
+{% block buy_widget_price %}
+    <h1 class="product-detail-name d-none d-lg-block">
+        {{ product.translated.name }}
+    </h1>
+
+    {% if context.customer is not defined %}
+        <div class="detail-flashbags">
+            {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                type: 'success',
+                content: 'detail.registerMessage'|trans|sw_sanitize
+            } %}
+        </div>
+    {% endif %}
+
+    {% if product.translated.customFields.migration_Auwatec_product_feature_artikel %}
+        <div class="product-detail-advantage-list">
+            {{ product.translated.customFields.migration_Auwatec_product_feature_artikel|raw }}
+        </div>
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block buy_widget_tax %}
+    {{ parent() }}
+    {% if product.purchaseUnit %}
+        <div class="product-detail-price-unit">
+                <span class="price-unit-label">
+                {{ "detail.priceUnitName"|trans|sw_sanitize }}
+            </span>
+
+            <span class="price-unit-content">
+                {{ product.purchaseUnit }} {{ product.unit.translated.name }}
+            </span>
+
+            {% if price.referencePrice is not null %}
+                <span class="price-unit-reference-content">
+                    ({{ price.referencePrice.price|currency }}{{ "general.star"|trans|sw_sanitize }} / {{ price.referencePrice.referenceUnit }} {{ price.referencePrice.unitName }})
+                </span>
+            {% endif %}
+        </div>
+    {% endif %}
+    {% if product.productNumber %}
+        <div class="product-detail-ordernumber-container">
+            {{ "detail.productNumberLabel"|trans|sw_sanitize }}
+            <meta itemprop="productID"
+                  content="{{ product.id }}"/>
+            <span class="product-detail-ordernumber"
+                  itemprop="sku">{{ product.productNumber }}</span>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{# content moved to buy_widget_tax #}
+{% block buy_widget_ordernumber_container %}
+    <div class="product-detail-advantage-teasers">
+        <div class="product-detail-advantage-teaser">
+            <div class="product-detail-advantage-teaser-icon">
+                {% sw_icon 'delivery-a' style { 'namespace': 'Auwatec' } %}
+            </div>
+            <div class="product-detail-advantage-teaser-text">
+                {{ 'detail.advantageTeaser.1'|trans }}
+            </div>
+        </div>
+        <div class="product-detail-advantage-teaser">
+            <div class="product-detail-advantage-teaser-icon">
+                {% sw_icon 'delivery-b' style { 'namespace': 'Auwatec' } %}
+            </div>
+            <div class="product-detail-advantage-teaser-text">
+                {{ 'detail.advantageTeaser.2'|trans }}
+            </div>
+        </div>
+    </div>
+    <div class="detail-payment-methods">
+            <div class="detail-payment-method">
+                <img src="{{ asset('bundles/auwatec/logo/paypal-rgb.svg', 'asset') }}" alt="PayPal" class="img-fluid" style="margin-right: 3px;">
+            </div>
+            <div class="detail-payment-method">
+                <img src="{{ asset('bundles/auwatec/logo/rechnung-rgb.svg', 'asset') }}" alt="Rechnung" class="img-fluid" style="min-height: 16px; margin-bottom: -2px;">
+            </div>
+            <div class="detail-payment-method">
+                <img src="{{ asset('bundles/auwatec/logo/vorkasse-rgb.svg', 'asset') }}" alt="Vorkasse" class="img-fluid">
+            </div>
+            <div class="detail-payment-method">
+                <img src="{{ asset('bundles/auwatec/logo/lastschrift-rgb.svg', 'asset') }}" alt="Lastschrift" class="img-fluid">
+            </div>
+    </div>
+{% endblock %}
+
+
+{% block buy_widget_wishlist %}
+{% endblock %}

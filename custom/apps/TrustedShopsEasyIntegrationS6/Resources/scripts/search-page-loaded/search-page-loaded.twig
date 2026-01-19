@@ -1,0 +1,25 @@
+{% set listingData = hook.page.listing %}
+
+{% set parentProductIds = [] %}
+{% for product in listingData.elements %}
+    {% if product.parentId %}
+        {% set parentProductIds = parentProductIds|merge([product.parentId]) %}
+    {% endif %}
+{% endfor %}
+
+{% if parentProductIds|length > 0 %}
+    {% set criteria = {
+        'ids': parentProductIds
+    } %}
+    {% set parentProducts = services.repository.search('product', criteria) %}
+
+    {% for product in listingData.elements %}
+        {% if product.parentId %}
+            {% for parentProduct in parentProducts.elements %}
+                {% if product.parentId === parentProduct.id %}
+                    {% do product.addExtension('tsParentProduct', parentProduct) %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+{% endif %}

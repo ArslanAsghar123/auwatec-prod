@@ -1,0 +1,29 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/description.html.twig' %}
+
+{% block page_product_detail_description_content_properties %}
+    {{ parent() }}
+
+    {% if tsChannelId is not null %}
+        {% if tsConfig[tsChannelId][activeLanguageIsoCode].widgets is defined and expectedMapping[tsChannelRef] === tsConfig[tsChannelId][activeLanguageIsoCode].widgets.eTrustedChannelRef %}
+            <!-- added by Trusted Shops app: Start -->
+            <div class="row">
+                <div class="col-12">
+                    {% set product = page.product %}
+
+                    {% if page.product.parentId %}
+                        {% if page.extensions.tsParentProduct is defined and not null %}
+                            {% set product = page.extensions.tsParentProduct %}
+                        {% endif %}
+                    {% endif %}
+
+                    {% sw_include '@Storefront/storefront/includes/widget-assembler.html.twig' with {
+                        widgets: tsConfig[tsChannelId][activeLanguageIsoCode].widgets.children.0.children,
+                        product: product,
+                        widgetLocationId: 'wdg-loc-pd',
+                    } %}
+                </div>
+            </div>
+        {% endif %}
+        <!-- End -->
+    {% endif %}
+{% endblock %}

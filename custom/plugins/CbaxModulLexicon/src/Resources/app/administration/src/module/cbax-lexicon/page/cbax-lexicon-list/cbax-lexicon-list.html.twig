@@ -1,0 +1,168 @@
+{% block cbax_lexicon_list %}
+    <sw-page class="cbax-lexicon-list">
+
+        {% block cbax_lexicon_list_search_bar %}
+            <template #search-bar>
+                <sw-search-bar initialSearchType="cbax_lexicon_entry"
+                               initialSearch=""
+                               @search="onSearch">
+                </sw-search-bar>
+            </template>
+        {% endblock %}
+
+        {% block cbax_lexicon_list_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block cbax_lexicon_list_smart_bar_header_title %}
+                    <h2>
+                        {% block cbax_lexicon_list_smart_bar_header_title_text %}
+                            {{ $tc('cbax-lexicon.list.textHeadline') }}
+                        {% endblock %}
+
+                        {% block cbax_lexicon_list_smart_bar_header_amount %}
+                            <span v-if="!isLoading" class="sw-page__smart-bar-amount">
+                                ({{ total }})
+                            </span>
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block cbax_lexicon_list_actions %}
+            <template #smart-bar-actions>
+                {% block cbax_lexicon_list_smart_bar_actions %}
+                    <sw-button
+                        :disabled="isLoading"
+                        v-tooltip.bottom="tooltipGenerateSeo"
+                        variant="secondary"
+                        @click="onGenerateSeo">
+                        {{ $tc('cbax-lexicon.list.buttonGenerateSeo') }}
+                    </sw-button>
+                    <sw-button :routerLink="{ name: 'cbax.lexicon.create' }" variant="primary">
+                        {{ $tc('cbax-lexicon.list.buttonAddEntry') }}
+                    </sw-button>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block cbax_lexicon_list_language_switch %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+        <template #content>
+            {% block cbax_lexicon_list_content %}
+            	<div v-if="entries" :isLoading="isLoading">
+                    <div class="cbax-lexicon-list__content">
+                        {% block cbax_lexicon_list_grid %}
+                            <sw-entity-listing
+                                :isLoading="!entries"
+                                :columns="lexiconColumns"
+                                :fullPage="true"
+                                :items="entries"
+                                :repository="lexiconRepository"
+                                @update-records="updateRecords"
+                                detailRoute="cbax.lexicon.detail">
+                                {# Aktivspalte CSS Klasse setzen #}
+                                <template #column-active="{ item }">
+                                    <sw-icon v-if="item.saleschannels && item.saleschannels.length > 0" name="regular-checkmark" small class="is--active" style="color: #37d046"></sw-icon>
+                                    <sw-icon v-else name="regular-times" small class="is--inactive" style="color: #de294c"></sw-icon>
+                                </template>
+                                {# SalesChannel bestimmen #}
+                                <template #column-saleschannels="{ item }">
+                                    <span
+                                        v-for="(option, index) in item.saleschannels.slice(0, 3)"
+                                        :key="option.salesChannel.id"
+                                    >
+                                        {{ (index > 0) ? `, ${option.salesChannel.translated.name}` : option.salesChannel.translated.name }}
+                                    </span>
+                                    <span v-if="item.saleschannels.length >= 3">
+                                        , ...
+                                    </span>
+                                </template>
+
+                                {% block cbax_lexicon_list_grid_columns_actions %}
+                                    <template #more-actions="{ item }">
+                                        <sw-context-menu-item
+                                            class="cbax_lexicon_list_grid__duplicate-action"
+                                            @click="onDuplicate(item)"
+                                        >
+                                            {{ $tc('sw-product.list.buttonDuplicate') }}
+                                        </sw-context-menu-item>
+                                    </template>
+                                {% endblock %}
+
+                            </sw-entity-listing>
+                        {% endblock %}
+
+                        {% block cbax_lexicon_list_grid_loader %}
+                            <sw-loader v-if="isLoading"></sw-loader>
+                        {% endblock %}
+
+                        {% block cbax_lexicon_list_empty_state %}
+                            <sw-empty-state v-if="!isLoading && !total" :title="$tc('cbax-lexicon.list.placeholderListingEmptyState')"></sw-empty-state>
+                        {% endblock %}
+
+                    </div>
+                </div>
+            {% endblock %}
+
+        </template>
+
+        {% block cbax_lexicon_list_sidebar %}
+        <template #sidebar>
+            <sw-sidebar>
+
+                {% block cbax_lexicon_list_sidebar_refresh %}
+                    <sw-sidebar-item
+                            icon="regular-undo"
+                            :title="$tc('cbax-lexicon.list.buttonSidebarRefresh')"
+                            @click="onRefresh">
+                    </sw-sidebar-item>
+                {% endblock %}
+
+                {% block cbax_lexicon_list_sidebar_filter %}
+                <sw-sidebar-item
+                    ref="filterSideBar"
+                    icon="regular-filter"
+                    :title="$tc('cbax-lexicon.list.labelSidebarFilter')"
+                    @sw-sidebar-item-close-content="closeContent"
+                    @click="closeContent">
+
+                    {% block cbax_lexicon_list_sidebar_filter_sales_channel %}
+                    <sw-sidebar-collapse>
+                        <template #header>{{ $tc('cbax-lexicon.list.labelSidebarFilterSaleschannel') }}</template>
+                        <template #content>
+                            {% block cbax_lexicon_list_sidebar_filter_sales_channel_items %}
+                            <div v-for="(item, index) in salesChannelFilters">
+
+                                {% block cbax_lexicon_filter_switch %}
+                                    <div class="cbax-lexicon-filter-switch">
+                                        {% block cbax_lexicon_filter_switch_field %}
+                                            <slot name="field">
+                                                <sw-switch-field
+                                                          :name="item.id"
+                                                          @update:value="onChange({id: item.id, group: 'saleschannels.salesChannelId', value: $event} )"
+                                                          :label="item.translated.name">
+                                                </sw-switch-field>
+                                            </slot>
+                                        {% endblock %}
+                                    </div>
+                                {% endblock %}
+
+                            </div>
+                            {% endblock %}
+                        </template>
+                    </sw-sidebar-collapse>
+                    {% endblock %}
+
+                </sw-sidebar-item>
+                {% endblock %}
+
+            </sw-sidebar>
+        </template>
+        {% endblock %}
+
+    </sw-page>
+{% endblock %}

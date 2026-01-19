@@ -1,0 +1,189 @@
+{% block aku_cms_factory_element_edit %}
+    <sw-page class="aku-cms-factory-element-edit">
+
+        {% block aku_cms_factory_element_edit_smart_bar_actions %}
+        <template #smart-bar-actions>
+            <sw-button :routerLink="{name: 'aku.cms.factory.element.overview'}">
+                {{$tc('aku-cms-factory-element.edit.cancelButtonText')}}
+            </sw-button>
+
+            <sw-button-process 
+                :isLoading="isLoading"
+                :processSuccess="processSuccess"
+                variant="primary"
+                @process-finish="saveFinished"
+                @click="onClickSave">
+                {{$tc('aku-cms-factory-element.edit.saveButtonText')}}
+
+
+            </sw-button-process>
+        </template>
+        {% endblock %}
+
+        <template #content>
+          
+            
+            {% block aku_cms_factory_element_edit_content %}
+            <sw-card-view>
+                <sw-card v-if="element" :isLoading="isLoading">
+                    <sw-text-field v-model:value="element.name" :error="errors['name']" :label="$tc('aku-cms-factory-element.edit.elementNameLabel')">
+                    </sw-text-field>
+
+                    <div class="d-flex justify-content-between">
+                        <span class="sw-field__label">{{$tc('aku-cms-factory-element.edit.templateLabel')}}</span>
+                        <sw-context-button >
+                            <sw-context-menu-item
+                                @click="showSampleCode = !showSampleCode">
+                                {{$tc('aku-cms-factory-element.edit.showSampleTemplate')}}
+                            </sw-context-menu-item>
+                            <sw-context-menu-item
+                                @click="useSampleCode">
+                                {{$tc('aku-cms-factory-element.edit.useSampleTemplate')}}
+                            </sw-context-menu-item>
+                        </sw-context-button>
+                    </div>
+
+                    <sw-code-editor v-model:value="element.twig"
+                        :completerFunction="null" completionMode="text" mode="twig" :softWraps="true" :setFocus="false" :disabled="false">
+                    </sw-code-editor>
+
+                    <sw-alert variant="error" appearance="notification" :showIcon="false" :closable="false"
+                        v-if="errors['twig']">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                            <p>{{ errors['twig'].detail }}</p>
+                            </div>
+                            <sw-button :disabled="false" :square="false" :block="false" :isLoading="false" @click="useSampleCode">
+                                {{$tc('aku-cms-factory-element.edit.useSampleTemplate')}}
+                            </sw-button>
+                        </div>
+                    </sw-alert>
+                    <sw-alert variant="error" appearance="notification" :showIcon="false" :closable="false"
+                        v-if="errors['twig_render']">
+                        <p>{{ errors['twig_render'].detail }}</p>
+                    </sw-alert>
+
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="sw-field__label">
+                            <label for="sw-field--element-name" class="">
+                                {{$tc('aku-cms-factory-element.edit.elementTreeHeadline')}}
+                            </label>
+                        </div>
+                        <sw-icon name="regular-plus-square" color="#1abc9c"
+                            @click="fieldAdd" >
+                        </sw-icon>
+                    </div>
+
+                    <sw-alert variant="error" appearance="notification" :showIcon="true" :closable="false"
+                        v-if="errors['fields']">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p>{{ errors['fields'].detail }}</p>
+                                <ul v-if="errors['fields'].duplicates">
+                                    <li v-for="dupl in errors['fields'].duplicates">
+                                        {{dupl}}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </sw-alert>
+
+                    <sw-grid :items="gridItemsRecursive()" 
+                        :sortable="true"
+                        :selectable="false">
+                        <template #columns="{ item }">
+
+                            <sw-grid-column flex="minmax(100px, 3fr)" label="Label">
+                                <div   :class="'child-spacer-'+item.level">
+                                    <span @click="treeItemEdit(item)" style="cursor:pointer">
+                                    {{ item.label }}
+                                    </span>
+                                    <br/><small><pre>{{ item.name }}</pre></small>
+                                </div>
+                            </sw-grid-column>
+
+                            <sw-grid-column flex="minmax(100px, 1fr)" label="Type">
+                                {{ item.type }}
+                            </sw-grid-column>
+
+
+                            <sw-grid-column flex="minmax(100px, 1fr)" label="" class="aku-cms-list-icons">
+                                <sw-icon name="solid-chevron-up" 
+                                    style="cursor:pointer;"
+                                    small 
+                                    @click="move(item.id, item.currentPos -1, item.parentItem ? item.parentItem.id : '')" 
+                                    color="#1abc9c"
+                                    :disabled="item.isFirst" > 
+                                </sw-icon>
+                                <sw-icon name="solid-chevron-down" 
+                                    style="cursor:pointer;"
+                                    small 
+                                    @click="move(item.id, item.currentPos + 1, item.parentItem ? item.parentItem.id : '')" 
+                                    color="#1abc9c" 
+                                    disabled="item.isLast">
+                                </sw-icon>
+                                <sw-context-button >
+                                    <sw-context-menu-item
+                                        v-if="'repeater' == item.type"
+                                        @click="fieldAdd(item)">
+                                        {{ $tc('aku-cms-factory-element.edit.createSub') }}
+                                    </sw-context-menu-item>
+                                    <div class="sw-context-menu__group">
+                                        <sw-context-menu-item @click="treeItemEdit(item)">
+                                            {{ $tc('global.default.edit') }}
+                                        </sw-context-menu-item>
+                                        <sw-context-menu-item
+                                            class="sw-context-menu__group-button-delete"
+                                            variant="danger"
+                                            @click="confirm_delete_item = item">
+                                            {{ $tc('global.default.delete') }}
+                                        </sw-context-menu-item>
+                                    </div>
+                                </sw-context-button>
+                            </sw-grid-column>
+                        </template>
+
+                    </sw-grid>
+
+                    
+                </sw-card>
+
+            </sw-card-view>    
+
+            <sw-confirm-modal
+                v-if="confirm_delete_item != null"
+                class="sw-promotion-v2-individual-codes-behavior__confirm-delete-modal"
+                type="delete"
+                :text="$tc('global.default.delete') + ' ' + confirm_delete_item.label + '?'"
+                @confirm="treeItemDelete"
+                @close="confirm_delete_item = null"
+                @cancel="confirm_delete_item = null">
+            </sw-confirm-modal>
+
+            <sw-modal 
+                :title="$tc('aku-cms-factory-element.edit.modalTitle')" 
+                @modal-close="closedModal"
+                v-if="field">
+                
+                    <aku-cms-factory-element-edit-field
+                        :field="field"
+                        @saved="fieldSave"
+                        ></aku-cms-factory-element-edit-field>
+                
+            </sw-modal>
+
+            <sw-modal 
+                :title="$tc('aku-cms-factory-element.edit.sampleCode')" 
+                @modal-close="showSampleCode = !showSampleCode"
+                v-if="showSampleCode">
+                <aku-cms-factory-element-sample :fields="fields" >
+                    </aku-cms-factory-element-sample>
+            </sw-modal>
+
+            {% endblock %}
+
+
+        </template>
+    </sw-page>
+
+{% endblock %}

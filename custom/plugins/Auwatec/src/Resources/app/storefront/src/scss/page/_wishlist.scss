@@ -1,0 +1,14 @@
+.is-ctl-wishlist{
+  .filter-panel-wrapper-toggle-mobile{
+    display: none;
+  }
+  .cms-element-product-listing .cms-listing-col{
+    @extend .col-xl-4;
+    &.wishlist-listing-col{
+      @extend .col-xl-12;
+    }
+  }
+}
+.wishlist-headline{
+  height: 115px;
+}

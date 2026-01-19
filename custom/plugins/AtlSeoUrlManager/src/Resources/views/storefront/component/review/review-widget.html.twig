@@ -1,0 +1,44 @@
+{% sw_extends '@Storefront/storefront/component/review/review-widget.html.twig' %}
+
+{% block component_review_overview %}
+    {% if config('AtlSeoUrlManager.config.metaTagsReview') %}
+        <div class="product-detail-review-rating"
+            {% if productReviewCount > 0 %}
+                itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating"
+            {% endif %}>
+
+            {% if productReviewCount > 0 %}
+                <meta itemprop="reviewCount" content="{{ productReviewCount }}" />
+                <meta itemprop="ratingValue" content="{{ productAvgRating }}" />
+            {% endif %}
+
+            {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
+                points: productAvgRating,
+                style: 'text-primary'
+            } %}
+
+            {% if productReviewCount > 0 %}
+                <p class="h6">
+                    {{ productAvgRating }} {{ "detail.reviewAvgRate"|trans|sw_sanitize }} {{ reviews.matrix.maxPoints }} {{ "detail.reviewAvgRateElements"|trans }}
+                </p>
+            {% endif %}
+        </div>
+
+        {% if productReviewCount > 0 %}
+            {% for review in reviews.entities %}
+                <div itemprop="review" itemtype="https://schema.org/Review" itemscope>
+                    <div itemprop="author" itemtype="https://schema.org/Person" itemscope>
+                        <meta itemprop="name" content="{{ review.externalUser }}" />
+                    </div>
+
+                    <div itemprop="reviewRating" itemtype="https://schema.org/Rating" itemscope>
+                        <meta itemprop="ratingValue" content="{{ review.points }}" />
+                        <meta itemprop="bestRating" content="{{ reviews.matrix.matrix|length }}" />
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

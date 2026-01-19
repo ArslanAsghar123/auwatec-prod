@@ -1,0 +1,76 @@
+{% set page = hook.page %}
+{# @var page \Shopware\Storefront\Page\Product\ProductPage #}
+
+{% set salesChannel = hook.salesChannelContext %}
+{% set salesChannelId = salesChannel.id %}
+
+{% set order = page.order %}
+
+{% set lineItems = order.lineItems %}
+
+{% set delivery = order.deliveries.elements|first %}
+{% set latestDelivery = delivery.shippingDateLatest %}
+{% set shippingDays = delivery.shippingMethod.deliveryTime.max %}
+
+{% set daysDiff = latestDelivery.diff(date(date().format('Y-m-d'))).days %}
+{% set deliveryDateExcludedSunDays = date(date().format('Y-m-d')) %}
+
+{% for i in range(1, daysDiff) %}
+    {% set deliveryDateExcludedSunDays = deliveryDateExcludedSunDays|date_modify("+1 day") %}
+    {% if deliveryDateExcludedSunDays|date('N') == 7 %}
+        {% set deliveryDateExcludedSunDays = deliveryDateExcludedSunDays|date_modify("+1 day") %}
+    {% endif %}
+{% endfor %}
+
+{% do order.addArrayExtension('tsLatestDelivery', {
+    'date': deliveryDateExcludedSunDays
+}) %}
+
+{% for lineItem in lineItems %}
+    {% set itemPayload = lineItem.payload %}
+
+    {% if lineItem.productId is defined and lineItem.productId is not null %}
+        {% set criteria = {
+            'ids': [lineItem.productId],
+            'associations': {
+                'cover': {},
+                'manufacturer': {},
+            }
+        } %}
+        {% set product = services.repository.search('product', criteria).first %}
+        {% set array = {
+            'productId': product.id,
+            'sku': product.productNumber,
+            'gtin': product.ean,
+            'mpn': product.manufacturerNumber,
+            'label': product.translated.name,
+            'coverUrl': product.cover.media.url,
+            'brand': product.manufacturer.translated.name,
+        } %}
+        {% do lineItem.addArrayExtension('tsAdditionalData', array) %}
+    {% endif %}
+
+    {% if itemPayload.parentId is defined and itemPayload.parentId is not null %}
+        {% set parentId = itemPayload.parentId %}
+        {% set criteria = {
+            'ids': [parentId],
+            'associations': {
+                'cover': {},
+                'manufacturer': {},
+            }
+        } %}
+
+        {% set parentProduct = services.repository.search('product', criteria).first %}
+
+        {% set array = {
+            'productId': parentProduct.id,
+            'sku': parentProduct.productNumber,
+            'gtin': parentProduct.ean,
+            'mpn': parentProduct.manufacturerNumber,
+            'label': parentProduct.translated.name,
+            'coverUrl': parentProduct.cover.media.url,
+            'brand': parentProduct.manufacturer.translated.name,
+        } %}
+        {% do lineItem.addArrayExtension('tsParentData', array) %}
+    {% endif %}
+{% endfor %}

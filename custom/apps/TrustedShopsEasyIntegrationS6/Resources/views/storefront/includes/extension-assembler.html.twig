@@ -1,0 +1,22 @@
+{% set extensionTag = '<' ~ extension.tag %}
+
+{% if extension.attributes is defined and extension.attribues is not null %}
+    {% for attribute in extension.attributes %}
+        {% if attribute.value is defined %}
+            {% if attribute.value === false %}
+                {% set extensionTag = extensionTag ~ ' ' ~ attribute.attributeName ~ '="false"' %}
+            {% elseif attribute.value === true %}
+                {% set extensionTag = extensionTag ~ ' ' ~ attribute.attributeName ~ '="true"' %}
+            {% else %}
+                {% set extensionTag = extensionTag ~ ' ' ~ attribute.attributeName ~ '="' ~ attribute.value ~ '"' %}
+            {% endif %}
+        {% else %}
+            {% set extensionTag = extensionTag ~ ' ' ~ attribute.attributeName %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+{% set extensionTag = extensionTag ~ '></'~extension.tag~'>' %}
+
+<!-- added by Trusted Shops app: Start -->
+{{ extensionTag|raw }}
+<!-- End -->

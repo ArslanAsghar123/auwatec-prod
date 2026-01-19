@@ -1,0 +1,48 @@
+<div class="rm-section-actions">
+    <form ref="form" method="POST" :action="url" target="_blank" rel="noopener" class="" @submit.prevent="onSubmit">
+        <input type="hidden" name="partner_id" value="126">
+        <input type="hidden" name="type" value="shopware_v6">
+        <input type="hidden" name="connection" :value="connection">
+        <input type="hidden" name="signup" :value="signup">
+        <div class="rm-section-actions__container">
+            <div class="rm-section-actions__tip">
+                <div class="rm-tip__copy">
+                    Synchronize your customers and products
+                </div>
+
+                <div class="rm-tip__arrow">
+                    <img :src="'bundles/rapi1connector/administration/assets/arrow.png'" alt="">
+                </div>
+            </div>
+
+            <div class="rm-section-actions__col rm-pb-2 sm:rm-pb-0">
+                <h2>Already have an account?</h2>
+
+                <sw-button variant="primary" type="submit" :loading="loading" class="rm-button rm-connect-button" rel="noopener">
+                    {{ $t('rapidmail.connection.connectToRapidmail') }}
+                </sw-button>
+            </div>
+
+            <div class="rm-section-actions__col">
+                <h2>New to rapidmail?</h2>
+
+                <sw-button variant="primary" type="button" @click="onSignup" class="rm-button rm-signup-button" rel="noopener">
+                    {{ $t('rapidmail.connection.createAccount') }}
+                </sw-button>
+            </div>
+        </div>
+    </form>
+
+    <div v-if="payload" class="rm-section-api-settings">
+        <p class="rm-mb-1">{{ $t('rapidmail.form.title') }}</p>
+
+        <div class="rm-field">
+            <label for="accessKey">{{ $t('rapidmail.form.accessKey') }}</label>
+            <sw-text-field id="accessKey" :value="payload.accessKey" disabled/>
+        </div>
+        <div class="rm-field">
+            <label for="secretAccessKey">{{ $t('rapidmail.form.secretAccessKey') }}</label>
+            <sw-text-field id="secretAccessKey" :value="payload.secretAccessKey" disabled/>
+        </div>
+    </div>
+</div>

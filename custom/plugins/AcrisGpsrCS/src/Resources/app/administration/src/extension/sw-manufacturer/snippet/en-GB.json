@@ -1,0 +1,38 @@
+{
+    "sw-manufacturer": {
+        "detail": {
+            "general": {
+                "fieldTitleName": "Brand name",
+                "fieldPlaceholderName": "Enter brand name...",
+                "fieldHelpTextWebsite": "If a domain is entered in this field, a direct link to the domain (= Shopware standard) is created in the frontend. Recommendation: Leave this field empty.",
+                "fieldTitleLinkBehavior": "Link behavior of the brand",
+                "fieldHelpTextLinkBehavior": "This is the link behavior of the brand as soon as it is displayed on the product detail page.",
+                "fieldTitleLinkOptionStandard": "Shopware Standard (link directly to the entered URL)",
+                "fieldTitleLinkOptionModal": "Brand name, brand logo & brand description: Display as modal window"
+            },
+            "acrisGpsr": {
+                "cardManufacturerTitle": "Details of the manufacturer (information obligations under the GPSR Product Safety Regulation)",
+                "manufacturerHint": "Each product offer in online trade must contain the name, the registered trade name or the registered trade mark of the manufacturer of the offered product as well as the postal address and an electronic address (e-mail address or URL of a website) of the manufacturer at which the manufacturer can be contacted. The display is configurable in plugin configuration.",
+                "fieldTitleMfName": "Manufacturer name",
+                "fieldTitlePlaceholderName": "Enter name...",
+                "fieldTitleStreet": "Street",
+                "fieldTitlePlaceholderStreet": "Enter street...",
+                "fieldTitleNumber": "House number",
+                "fieldTitlePlaceholderNumber": "Enter house number...",
+                "fieldTitleZipcode": "Postcode",
+                "fieldTitlePlaceholderZipcode": "Enter postcode...",
+                "fieldTitleCity": "City",
+                "fieldTitlePlaceholderCity": "Enter city...",
+                "fieldTitleCountry": "Country",
+                "fieldTitlePlaceholderCountry": "Enter country...",
+                "fieldTitlePhone": "Phone number",
+                "fieldTitlePlaceholderPhone": "Enter phone number...",
+                "fieldTitleAddress": "Electronic address (e-mail address and/or website)",
+                "fieldTitlePlaceholderAddress": "Enter electronic address...",
+                "cardContactTitle": "Details of the responsible person in the EU (information obligations under the GPSR Product Safety Regulation)",
+                "contactHint": "If the manufacturer of the product offered does not have a branch in the European Union (EU), online retailers must also provide the name, postal address and an electronic address (e-mail address or website URL) of the so-called responsible person within the meaning of the GPSR or in accordance with Regulation (EU) 2019/1020 on market surveillance and product conformity in the product offers affected by this - in addition to the above manufacturer information. The display is configurable in plugin configuration.",
+                "fieldTitleContactName": "Name"
+            }
+        }
+    }
+}

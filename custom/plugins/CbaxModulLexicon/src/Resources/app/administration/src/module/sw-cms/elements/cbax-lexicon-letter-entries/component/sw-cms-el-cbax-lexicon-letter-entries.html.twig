@@ -1,0 +1,31 @@
+{% block sw_cms_element_cbax_lexicon_letter_entries %}
+    <div class="sw-cms-el-cbax-lexicon-listing">
+        <div>
+            <p v-if="isCbaxLexiconCmsPage" class="lexicon-entries-letter">L </p>
+            <p v-if="isCbaxLexiconCmsPage" class="lexicon-entries-header">{{ demoBoxCount }} {{ $tc('elements.cbax-lexicon-letter-entries.component.letterHeader') }}</p>
+            <div v-if="isCbaxLexiconCmsPage" class="sw-cms-el-cbax-lexicon-listing">
+
+                {% block sw_cms_element_cbax_lexicon_letter_entries_list %}
+
+                    <div class="sw-cms-el-cbax-lexicon-listing__content" :style="boxStyle">
+
+                        <div class="lexicon-box"
+                             v-for="index in demoBoxCount"
+                             :key="index">
+                            <div class="lexicon-entry-box">
+                                <h2>Labore</h2>
+                                <p>At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                {% endblock %}
+
+            </div>
+            <sw-alert v-if="!isCbaxLexiconCmsPage" appearance="notification" :showIcon="true" :closable="false">
+                {{ $tc('elements.wrong-page-type-alert') }}
+            </sw-alert>
+        </div>
+    </div>
+{% endblock %}

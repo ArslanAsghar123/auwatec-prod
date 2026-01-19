@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-price.html.twig' %}
+
+{% block page_product_detail_price_block %}
+    {% if config('AcrisDiscountGroupCS.config.showCartQuantityInfoDetail') == 'aboveScalePrices'
+        and config('AcrisDiscountGroupCS.config.activateAcrossScaleDiscounts') == true %}
+        {% sw_include "@Storefront/storefront/page/product-detail/discount-group-cart-quantity.html.twig" %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block page_product_detail_was_price_wrapper %}
+    {% set discountDisplayConfig = config('AcrisDiscountGroupCS.config.discountDisplayProductDetail') %}
+    {% if discountDisplayConfig is empty or discountDisplayConfig == 'listPriceAndDiscount' %}
+        {{ parent() }}
+    {% else %}
+        <span class="acris-discount-{{ discountDisplayConfig }}">
+            {{ parent() }}
+        </span>
+    {% endif %}
+{% endblock %}

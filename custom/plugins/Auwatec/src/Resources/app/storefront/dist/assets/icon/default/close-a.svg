@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-close-a">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="close-a" clip-path="url(#clip-close-a)">
+    <path id="close-a_-_Kontur" data-name="close-a - Kontur" d="M-111.069-411.884-85.884-386.7-60.7-411.884l6.814,6.814-25.186,25.186L-53.884-354.7l-6.814,6.814L-85.884-373.07l-25.186,25.185-6.814-6.814L-92.7-379.884l-25.186-25.186Z" transform="translate(117.884 411.884)"/>
+  </g>
+</svg>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Discount display in the shopping cart</title>
+        <title lang="de-DE">Rabattanzeige im Warenkorb</title>
+
+        <input-field type="single-select">
+            <name>discountAtUnitPrice</name>
+            <defaultValue>no</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>No display (Shopware default)</name>
+                    <name lang="de-DE">Keine Anzeige (Shopware Standard)</name>
+                </option>
+                <option>
+                    <id>listPriceAndDiscount</id>
+                    <name>List price and discount in percentage</name>
+                    <name lang="de-DE">Streichpreis und Rabatt in Prozent</name>
+                </option>
+                <option>
+                    <id>listPrice</id>
+                    <name>List price</name>
+                    <name lang="de-DE">Streichpreis</name>
+                </option>
+                <option>
+                    <id>discount</id>
+                    <name>Discount in percentage</name>
+                    <name lang="de-DE">Rabatt in Prozent</name>
+                </option>
+            </options>
+            <label>Discount display for product unit price</label>
+            <label lang="de-DE">Rabattanzeige bei Produkt Stückpreis</label>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>discountAtSubtotal</name>
+            <defaultValue>no</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>No display (Shopware default)</name>
+                    <name lang="de-DE">Keine Anzeige (Shopware Standard)</name>
+                </option>
+                <option>
+                    <id>listPriceAndDiscount</id>
+                    <name>List price and discount in percentage</name>
+                    <name lang="de-DE">Streichpreis und Rabatt in Prozent</name>
+                </option>
+                <option>
+                    <id>listPrice</id>
+                    <name>List price</name>
+                    <name lang="de-DE">Streichpreis</name>
+                </option>
+                <option>
+                    <id>discount</id>
+                    <name>Discount in percentage</name>
+                    <name lang="de-DE">Rabatt in Prozent</name>
+                </option>
+            </options>
+            <label>Discount display for product subtotal</label>
+            <label lang="de-DE">Rabattanzeige bei Produkt Zwischensumme</label>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>cartColumnLayout</name>
+            <defaultValue>default</defaultValue>
+            <options>
+                <option>
+                    <id>default</id>
+                    <name>Product | Quantity | Unit price | Subtotal (Shopware default)</name>
+                    <name lang="de-DE">Produkt | Anzahl | Stückpreis | Summe (Shopware Standard)</name>
+                </option>
+                <option>
+                    <id>custom</id>
+                    <name>Product | Quantity | Unit price | Discount | Subtotal</name>
+                    <name lang="de-DE">Produkt | Anzahl | Stückpreis | Rabatt | Summe</name>
+                </option>
+            </options>
+            <label>Columns in the checkout process and account area</label>
+            <label lang="de-DE">Spalten im Checkoutprozess und Accountbereich</label>
+            <helpText>If a column arrangement different from the Shopware standard is desired, the two upper plugin settings are ignored.</helpText>
+            <helpText lang="de-DE">Wird eine vom Shopware Standard abweichende Spaltenanordnung gewünscht, werden die beiden oberen Plugineinstellungen ignoriert.</helpText>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>cartConfirmColumnLayout</name>
+            <defaultValue>optimized5Columns</defaultValue>
+            <options>
+                <option>
+                    <id>default4Columns</id>
+                    <name>Shopware default</name>
+                    <name lang="de-DE">Shopware Standard</name>
+                </option>
+                <option>
+                    <id>optimized5Columns</id>
+                    <name>Optimised display for more space per column</name>
+                    <name lang="de-DE">Optimierte Darstellung für mehr Platz pro Spalte</name>
+                </option>
+            </options>
+            <label>Column display in checkout, if 5 column layout selected (see setting above)</label>
+            <label lang="de-DE">Spaltenanzeige im Checkout, wenn 5 Spalten Layout gewählt (siehe Einstellung davor)</label>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Rounding of the percentage discounts</title>
+        <title lang="de-DE">Rundung der prozentuellen Rabattanzeige</title>
+
+        <input-field type="single-select">
+            <name>decimalPlaces</name>
+            <defaultValue>2</defaultValue>
+            <options>
+                <option>
+                    <id>0</id>
+                    <name>0</name>
+                    <name lang="de-DE">0</name>
+                </option>
+                <option>
+                    <id>1</id>
+                    <name>1</name>
+                    <name lang="de-DE">1</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>2 (Shopware default)</name>
+                    <name lang="de-DE">2 (Shopware Standard)</name>
+                </option>
+            </options>
+            <label>Decimal places</label>
+            <label lang="de-DE">Anzahl der Kommastellen</label>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>typeOfRounding</name>
+            <defaultValue>commercial</defaultValue>
+            <options>
+                <option>
+                    <id>commercial</id>
+                    <name>Round commercial</name>
+                    <name lang="de-DE">Kaufmännisch runden</name>
+                </option>
+                <option>
+                    <id>roundOff</id>
+                    <name>Round off</name>
+                    <name lang="de-DE">Abrunden</name>
+                </option>
+                <option>
+                    <id>roundUp</id>
+                    <name>Round up</name>
+                    <name lang="de-DE">Aufrunden</name>
+                </option>
+            </options>
+            <label>Type of rounding</label>
+            <label lang="de-DE">Rundungsart</label>
+        </input-field>
+    </card>
+    <card>
+        <title>Rounding: Calculation of discounts and display in the shopping cart</title>
+        <title lang="de-DE">Rundung: Berechnung von Rabatten und Anzeige im Warenkorb</title>
+
+        <input-field type="single-select">
+            <name>cartRounding</name>
+            <label>Number of decimal places for calculation and display in the cart</label>
+            <label lang="de-DE">Anzahl der Kommastellen zur Berechnung und Anzeige im Warenkorb</label>
+            <defaultValue>shopwareConfig</defaultValue>
+            <options>
+                <option>
+                    <id>shopwareConfig</id>
+                    <name>As configured for the currency (Shopware default)</name>
+                    <name lang="de-DE">Wie bei der Währung konfiguriert (Shopware Standard)</name>
+                </option>
+                <option>
+                    <id>customPositionRoundigAndDisplay</id>
+                    <name>Increased number of decimal places in the calculation, display configured as for the currency</name>
+                    <name lang="de-DE">Erhöhte Anzahl der Kommstellen bei der Berechnung, Anzeige so wie bei der Währung konfiguriert</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Discount display in product box (product overview)</title>
+        <title lang="de-DE">Rabattanzeige in Produktbox (Produktübersicht)</title>
+        <input-field type="single-select">
+            <name>discountDisplayProductBox</name>
+            <defaultValue>listPriceAndDiscount</defaultValue>
+            <options>
+                <option>
+                    <id>listPriceAndDiscount</id>
+                    <name>List price and discount in percentage (Shopware default)</name>
+                    <name lang="de-DE">Streichpreis und Rabatt in Prozent (Shopware Standard)</name>
+                </option>
+                <option>
+                    <id>listPrice</id>
+                    <name>List price</name>
+                    <name lang="de-DE">Streichpreis</name>
+                </option>
+                <option>
+                    <id>discount</id>
+                    <name>Discount in percentage</name>
+                    <name lang="de-DE">Rabatt in Prozent</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Discount display in product detail page</title>
+        <title lang="de-DE">Rabattanzeige in auf Produktdetailseite</title>
+        <input-field type="single-select">
+            <name>discountDisplayProductDetail</name>
+            <defaultValue>listPriceAndDiscount</defaultValue>
+            <options>
+                <option>
+                    <id>listPriceAndDiscount</id>
+                    <name>List price and discount in percentage (Shopware default)</name>
+                    <name lang="de-DE">Streichpreis und Rabatt in Prozent (Shopware Standard)</name>
+                </option>
+                <option>
+                    <id>listPrice</id>
+                    <name>List price</name>
+                    <name lang="de-DE">Streichpreis</name>
+                </option>
+                <option>
+                    <id>discount</id>
+                    <name>Discount in percentage</name>
+                    <name lang="de-DE">Rabatt in Prozent</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Scale discounts</title>
+        <title lang="de-DE">Staffelrabatte</title>
+
+        <input-field type="bool">
+            <name>activateAcrossScaleDiscounts</name>
+            <label>Activate scale discounts in the cart across products</label>
+            <label lang="de-DE">Produktübergreifend Staffelrabatte im Warenkorb aktivieren</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>showCartQuantityInfoDetail</name>
+            <label>Display the current number of items in the same discount group from the shopping cart as a note on the product page</label>
+            <label lang="de-DE">Die aktuelle Anzahl der Artikel der gleichen Rabattgruppe aus dem Warenkorb als Hinweis auf der Produktseite anzeigen</label>
+            <defaultValue>no</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>Don't display</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+                <option>
+                    <id>aboveScalePrices</id>
+                    <name>Show above scale prices</name>
+                    <name lang="de-DE">Über Staffelpreise anzeigen</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>cartQuantityInfoQuantityZero</name>
+            <label>Display of discount group and info text if there is no product of the corresponding discount group in the cart</label>
+            <label lang="de-DE">Anzeige Rabattgruppe und Infotext wenn sich noch kein Produkt der zugehörigen Rabattgruppe im Warenkorb befindet</label>
+            <defaultValue>no</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>Don't display</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+                <option>
+                    <id>discountGroup</id>
+                    <name>Show discount group</name>
+                    <name lang="de-DE">Rabattgruppe anzeigen</name>
+                </option>
+                <option>
+                    <id>discountGroupAndInfo</id>
+                    <name>Show discount group and info text</name>
+                    <name lang="de-DE">Rabattgruppe und Infotext anzeigen</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+</config>

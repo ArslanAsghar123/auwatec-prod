@@ -1,0 +1,133 @@
+{
+    "dreiscSeoBulkProduct": {
+        "general": {
+            "navigation": {
+                "label": "Produkt Bulk Generator"
+            }
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Produkt Bulk Generator"
+            }
+        },
+        "detailBase": {
+            "fields": {
+                "labels": {
+                }
+            }
+        },
+        "payload": {
+            "templateVariablesDescription": {
+                "isVariant": "<b>Ist Produktvariante [if-Beispiel]</b> isVariant",
+                "productId": "Id des Produkts",
+                "productTranslatedName": "Name des Produkts",
+                "productTranslatedDescription": "Beschreibung des Produkts",
+                "productTranslatedKeywords": "Keywords / Schlüsselwörter",
+                "productProductNumber": "Produktnummer",
+                "productManufacturerNumber": "Herstellernummer",
+                "productManufacturerId": "Id des Herstellers",
+                "productManufacturerTranslatedName": "<b>Name des Herstellers</b> (product.manufacturer[↯].translated.name)",
+                "productManufacturerTranslatedDescription": "<b>Beschreibung des Herstellers</b> (product.manufacturer[↯].translated.description)",
+                "productEan": "EAN Nummer",
+                "productRestockTime": "Wiederauffüllzeit in Tagen",
+                "productDeliveryTimeTranslatedName": "<b>Lieferzeit</b> (product.deliveryTime[↯].translated.name)",
+                "productMarkAsTopseller": "<b>Produkt hervorheben [if-Beispiel]</b> (product.markAsTopseller)",
+                "productIsCloseout": "<b>Abverkauf [if-Beispiel]</b> (product.isCloseout)",
+                "productShippingFree": "<b>Versandkostenfrei [if-Beispiel]</b> (product.shippingFree)",
+                "productStock": "Lagerbestand",
+                "productAvailableStock": "Verfügbarer Bestand",
+                "productMinPurchase": "Mindestabnahme",
+                "productMaxPurchase": "Maximalabnahme",
+                "productPurchaseSteps": "Staffelung",
+                "productPackUnit": "Verpackungseinheit",
+                "productPurchaseUnit": "Verkaufseinheit",
+                "productReferenceUnit": "Grundeinheit",
+                "productWeight": "Gewicht",
+                "productWidth": "Breite",
+                "productHeight": "Höhe",
+                "productLength": "Länge",
+                "productProductProperties": "<b>Eigenschaften des Produkts [if-Beispiel]</b> product.properties[↯]",
+                "productProductOptions": "<b>Varianten-Eigenschaften [if-Beispiel]</b> product.options[↯]",
+                "productReleaseDateDate": "Erscheinungsdatum",
+                "productTaxTaxRate": "Steuersatz des Produkts",
+                "productSeoMetaTitle": "Meta Titel des Produkts",
+                "productSeoMetaDescription": "Meta Beschreibung des Produkts",
+                "productSeoUrl": "Url des Produkts",
+                "productSeoIsInheritedMetaTitle": "<b>Meta Titel des Produkts wurde vererbt [if-Beispiel]</b> (productSeo.isInheritedMetaTitle)",
+                "productSeoIsInheritedMetaDescription": "<b>Meta Beschreibung des Produkts wurde vererbt [if-Beispiel]</b> (productSeo.isInheritedMetaDescription)",
+                "productSeoIsInheritedUrl": "<b>URL des Produkts wurde vererbt [if-Beispiel]</b> (productSeo.isInheritedUrl)",
+                 "mainCategoryId": "<b>Id der Hauptkategorie des Produkts</b> (mainCategory.id) [Kann nur bei URL Templates verwendet werden]",
+                "mainCategoryTranslatedName": "<b>Name der Hauptkategorie des Produkts</b> (mainCategory.translated.name) [Kann nur bei URL Templates verwendet werden]",
+                "mainCategoryTranslatedDescription": "<b>Beschreibung der Hauptkategorie des Produkts</b> (mainCategory.translated.description) [Kann nur bei URL Templates verwendet werden]",
+                "mainCategoryTranslatedBreadcrumb": "<b>Breadcrumb der Hauptkategorie des Produkts</b> (mainCategory.translated.breadcrumb) [Kann nur bei URL Templates verwendet werden]",
+                "mainCategoryType": "<b>Kategory-Typ der Hauptkategorie des Produkts</b> (mainCategory.type) [Kann nur bei URL Templates verwendet werden]",
+                "mainCategoryExternalLink": "<b>Externer Link der Hauptkategorie des Produkts</b> (mainCategory.externalLink) [Kann nur bei URL Templates verwendet werden]",
+                "mainCategorySeoMetaTitle": "Meta Titel der Hauptkategorie des Produkts [Kann nur bei URL Templates verwendet werden]",
+                "mainCategorySeoMetaDescription": "Meta Beschreibung der Hauptkategorie des Produkts [Kann nur bei URL Templates verwendet werden]",
+                "mainCategorySeoUrl": "Url der Hauptkategorie des Produkts [Kann nur bei URL Templates verwendet werden]",
+                "mainCategorySeoIsInheritedMetaTitle": "<b>Meta Titel der Hauptkategorie des Produkts wurde vererbt [if-Beispiel]</b> (mainCategorySeo.isInheritedMetaTitle) [Kann nur bei URL Templates verwendet werden]",
+                "mainCategorySeoIsInheritedMetaDescription": "<b>Meta Beschreibung der Hauptkategorie des Produkts wurde vererbt [if-Beispiel]</b> (mainCategorySeo.isInheritedMetaDescription) [Kann nur bei URL Templates verwendet werden]",
+                "mainCategorySeoIsInheritedUrl": "<b>URL der Hauptkategorie des Produkts wurde vererbt [if-Beispiel]</b> (mainCategorySeo.isInheritedUrl) [Kann nur bei URL Templates verwendet werden]",
+                "languageLocaleCode": "<b>Ländercode der Sprache für die das Template generiert wird</b> (language.locale[↯].code)",
+                "liveShopName": "<b>Live-Template zur Ausgabe Shopnamens</b> [Kann nicht bei URL Templates verwendet werden]",
+                "liveProductPrice": "<b>Live-Template zur Ausgabe des Artikelpreises</b> [Kann nicht bei URL Templates verwendet werden]"
+            }
+        },
+        "defaultTemplates": {
+            "metaTitle": {
+                "productName": "Produktname",
+                "productNameAndVariantOptions": "Produktname [+ Variantenoptionen bei Varianten]",
+                "productNameAndShopName": "Produktname + Shopname [Live-Template]",
+                "productNameShippingFreePriceAndShopName": "Produktname + (versandkostenfrei) + für nur X Euro + von Shopname [Live-Template]",
+                "productNameManufacturePriceAndShopName": "Produktname + von Hersteller + für nur X Euro + von Shopname [Live-Template]",
+                "customFieldOrProductNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Produktname",
+                "openAiExampleGerman": "OpenAI Beispiel (Prompt auf Deutsch)",
+                "openAiExampleEnglish": "OpenAI Beispiel (Prompt auf Englisch)"
+            },
+            "metaDescription": {
+                "productNameAndShopName": "Produktname + Shopname [Live-Template]",
+                "productNameShippingFreePriceAndShopName": "Produktname + (versandkostenfrei) + für nur X Euro + von Shopname [Live-Template]",
+                "productNameManufacturePriceAndShopName": "Produktname + von Hersteller + für nur X Euro + von Shopname [Live-Template]",
+                "productNameMAndProperties": "Produktname + Ausgabe der Produkteigenschaften",
+                "trimmedProductDescription": "Produktbeschreibung auf 130 Zeichen gekürzt",
+                "customFieldOrProductNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Produktname",
+                "openAiExampleGerman": "OpenAI Beispiel (Prompt auf Deutsch)",
+                "openAiExampleEnglish": "OpenAI Beispiel (Prompt auf Englisch)"
+            },
+            "url": {
+                "productName": "Produktname [+ Produktnummer bei Varianten]",
+                "productNameAndVariantOptions": "Produktname [+ Variantenoptionen bei Varianten]",
+                "manufacturerAndProductName": "Name des Hersteller + Produktname [+ Produktnummer bei Varianten]",
+                "metaTitleOrProductNameAsFallback": "Meta-Titel falls vorhanden, ansonsten Produktname [+ Produktnummer bei Varianten]",
+                "customFieldOrProductNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Produktname [+ Produktnummer bei Varianten]",
+                "parentCategoryUrlAndProductName": "URL der Eltern-Kategorie + Produktname [+ Produktnummer bei Varianten]",
+                "introTextAndProductName": "\"unsere-topseller/\" + Produktname [+ Produktnummer bei Varianten]",
+                "openAiExampleGerman": "OpenAI Beispiel (Prompt auf Deutsch)",
+                "openAiExampleEnglish": "OpenAI Beispiel (Prompt auf Englisch)"
+            },
+            "robotsTag": {
+                "GrossPriceLessThanFive": "Bei Basis-Bruttopreis unter 5 Euro (bzw. Dollar etc.) noindex,follow, ansonsten index,follow",
+                "indexFollow": "index,follow (Seite indexieren und Links verfolgen)",
+                "indexNofollow": "index,nofollow (Seite indexieren und Links nicht verfolgen)",
+                "noindexFollow": "noindex,follow (Seite nicht indexieren und Links verfolgen)",
+                "noindexNofollow": "noindex,nofollow (Seite nicht indexieren und Links nicht verfolgen)"
+            },
+            "facebookTitle": {
+                "metaTitleOrProductName": "Meta Titel falls vorhanden, ansonsten Produktname",
+                "customFieldOrProductNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Produktname"
+            },
+            "facebookDescription": {
+                "metaDescriptionOrProductName": "Meta Beschreibung falls vorhanden, ansonsten Produktbeschreibung auf 65 Zeichen gekürzt",
+                "customFieldOrProductNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Produktname"
+            },
+            "twitterTitle": {
+                "metaTitleOrProductName": "Meta Titel falls vorhanden, ansonsten Produktname",
+                "customFieldOrProductNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Produktname"
+            },
+            "twitterDescription": {
+                "metaDescriptionOrProductName": "Meta Beschreibung falls vorhanden, ansonsten Produktbeschreibung auf 110 Zeichen gekürzt",
+                "customFieldOrProductNameAsFallback": "Eigenes Zusatzfeld falls vorhanden, ansonsten Produktname"
+            }
+        }
+    }
+}

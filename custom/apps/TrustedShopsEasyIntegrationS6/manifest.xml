@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
+    <meta>
+        <name>TrustedShopsEasyIntegrationS6</name>
+
+        <label>Trusted Shops Easy Integration</label>
+        <label lang="de-DE">Trusted Shops Easy Integration</label>
+        <label lang="es-ES">Trusted Shops Easy Integration</label>
+        <label lang="fr-FR">Trusted Shops Easy Integration</label>
+        <label lang="it-IT">Trusted Shops Easy Integration</label>
+        <label lang="nl-NL">Trusted Shops Easy Integration</label>
+        <label lang="pl-PL">Trusted Shops Easy Integration</label>
+        <label lang="pt-PT">Trusted Shops Easy Integration</label>
+
+        <description>Trusted Shops Easy Integration is the easiest and fastest way to integrate the Trustmark, Buyer Protection, Service and Product Reviews into your Shopware 6 shop.</description>
+        <description lang="de-DE">Mit Trusted Shops Easy Integration integrieren Sie das Gütesiegel, den Käuferschutz und die authentischen Bewertungen schnell und einfach in Ihren Shopware 6 Shop.</description>
+        <description lang="es-ES">Trusted Shops Easy Integration es la forma más fácil y rápida de integrar el Sello de Confianza, la Protección al Comprador, el Servicio y las Reseñas de Productos en tu tienda Shopware 6.</description>
+        <description lang="fr-FR">Trusted Shops Easy Integration est le moyen le plus simple et le plus rapide d'intégrer la marque de confiance, la protection des acheteurs, le service et les évaluations de produits dans votre boutique Shopware 6.</description>
+        <description lang="it-IT">Trusted Shops Easy Integration è il modo più semplice e veloce per integrare il marchio di fiducia, la protezione dell'acquirente, l'assistenza e le recensioni dei prodotti nel vostro negozio Shopware 6.</description>
+        <description lang="nl-NL">Trusted Shops Easy Integration is de makkelijkste en snelste manier om het Trustmark, Kopersbescherming , Service en Productbeoordelingen te integreren in uw Shopware 6 winkel.</description>
+        <description lang="pl-PL">Łatwa integracja Trusted Shops to najprostszy i najszybszy sposób na zintegrowanie znaku jakości, ochrony kupującego, serwisu i recenzji produktów w Twoim sklepie Shopware 6.</description>
+        <description lang="pt-PT">Trusted Shops Easy Integration é a forma mais fácil e rápida de integrar a marca de confiança, protecção do comprador, serviços e revisões de produtos na sua loja Shopware 6.</description>
+
+        <author>Trusted Shops SE</author>
+        <copyright>(c) by Trusted Shops SE</copyright>
+        <version>1.3.3</version>
+        <icon>./Resources/config/plugin.png</icon>
+        <license>proprietary</license>
+    </meta>
+    <setup>
+        <registrationUrl>https://shopware.connect.trustedshops.com/registration</registrationUrl>
+    </setup>
+    <admin>
+        <main-module source="https://shopware.connect.trustedshops.com/connector" />
+        <module name="TsConnector"
+                parent="sw-settings"
+                position="50"
+                source="https://shopware.connect.trustedshops.com/connector"
+        >
+            <label>Trusted Shops Easy Integration</label>
+        </module>
+    </admin>
+    <permissions>
+        <read>system_config</read>
+        <update>system_config</update>
+        <create>system_config</create>
+        <delete>system_config</delete>
+
+        <read>sales_channel</read>
+        <read>sales_channel_domain</read>
+        <read>sales_channel_type</read>
+
+        <read>seo_url</read>
+
+        <read>order</read>
+        <read>order_line_item</read>
+        <read>order_customer</read>
+        <read>order_address</read>
+
+        <read>country_state</read>
+
+        <read>locale</read>
+        <read>language</read>
+
+        <read>state_machine</read>
+        <read>state_machine_state</read>
+
+        <read>product</read>
+        <read>product_media</read>
+        <read>product_manufacturer</read>
+        <read>product_manufacturer_translation</read>
+
+        <read>media</read>
+        <read>app</read>
+    </permissions>
+
+    <webhooks>
+        <webhook name="app_deleted" event="app.deleted" url="https://shopware.connect.trustedshops.com/remove-shop"/>
+        <webhook name="app_updated" event="app.updated" url="https://shopware.connect.trustedshops.com/update-app"/>
+        <webhook name="state_enter.order.state.cancelled" event="state_enter.order.state.cancelled" url="https://shopware.connect.trustedshops.com/order-state"/>
+        <webhook name="state_enter.order.state.completed" event="state_enter.order.state.completed" url="https://shopware.connect.trustedshops.com/order-state"/>
+        <webhook name="state_enter.order.state.in_progress" event="state_enter.order.state.in_progress" url="https://shopware.connect.trustedshops.com/order-state"/>
+        <webhook name="state_enter.order.state.open" event="state_enter.order.state.open" url="https://shopware.connect.trustedshops.com/order-state"/>
+    </webhooks>
+</manifest>

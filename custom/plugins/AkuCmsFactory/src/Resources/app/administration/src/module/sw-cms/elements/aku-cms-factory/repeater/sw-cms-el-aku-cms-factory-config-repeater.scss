@@ -1,0 +1,29 @@
+.sw-cms_el-aku-cms-factory-config-repeater {
+    .button {
+        cursor: pointer;
+    }
+    .button[disabled] {
+        cursor: not-allowed;
+        opacity: 0.5;
+
+    }
+    .d-flex {
+        display: flex;
+    }
+    .justify-content-between {
+        justify-content: space-between
+
+    }
+
+    .repeater--label {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .repeater--trash {
+        cursor:pointer;
+    }
+
+}

@@ -1,0 +1,15 @@
+[id^=intedia] {
+    .sw-settings-item__icon.background--enabled {
+        background-color: #33268c !important;
+    }
+    &:hover {
+        color: darken(#33268c, 10%);
+
+        .sw-settings-item__icon.background--enabled {
+            background-color: darken(#33268c, 10%);
+        }
+    }
+    .sw-icon > svg {
+        color: white;
+    }
+}

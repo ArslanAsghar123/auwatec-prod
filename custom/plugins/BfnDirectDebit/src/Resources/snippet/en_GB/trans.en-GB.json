@@ -1,0 +1,16 @@
+{
+  "bfn-direct-debit": {
+    "owner": "Owner",
+    "ownerPlaceholder": "Owner",
+    "iban": "IBAN",
+    "ibanPlaceholder": "IBAN",
+    "bic-swift": "SWIFT",
+    "bic-swiftPlaceholder": "SWIFT",
+    "notValidPaymetData": "The entered bank details are not correct. Please adjust it.",
+    "iban-error" : "Invalid Iban Number ",
+    "swift-error" : "Invalid Swift Number ",
+    "confirmMandate": "I hereby accept the SEPA mandate and the use of the billing address as the mandate address.",
+    "mandateError": "The creation of a mandate must be approved for payment by direct debit.",
+    "fillPaymetData": "Please enter valid bank details."
+  }
+}

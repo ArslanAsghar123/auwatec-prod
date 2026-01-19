@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+	<card>
+        <title>General</title>
+        <title lang="de-DE">Allgemein</title>
+
+		<input-field type="bool">
+            <name>active</name>
+            <label>Active</label>
+            <label lang="de-DE">Aktiv</label>
+			<defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>linkHandling</name>
+            <label>Show link target in</label>
+            <label lang="de-DE">Verlinkung anzeigen in</label>
+            <defaultValue>modal</defaultValue>
+            <helpText>Here you can decide whether the links open a modal window or only show a tooltip. Only tooltip is possible in off-canvas.</helpText>
+            <helpText lang="de-DE">Hier können Sie entscheiden, ob die Links ein Modalfenster öffnen oder nur einen Tooltip zeigen. In Off-Canvas ist nur Tooltip möglich.</helpText>
+            <options>
+                <option>
+                    <id>modal</id>
+                    <name>Modal window</name>
+                    <name lang="de-DE">Modalfenster</name>
+                </option>
+                <option>
+                    <id>tooltip</id>
+                    <name>Tooltip</name>
+                    <name lang="de-DE">Tooltip</name>
+                </option>
+            </options>
+        </input-field>
+
+		<input-field type="bool">
+            <name>replaceRepeat</name>
+            <label>Replace text several times</label>
+            <label lang="de-DE">Text überall mehrmals ersetzen</label>
+			<defaultValue>true</defaultValue>
+        </input-field>
+
+		<input-field type="bool">
+            <name>replaceComplete</name>
+            <label>Replace only whole words</label>
+            <label lang="de-DE">Nur ganze Wörter ersetzen</label>
+			<defaultValue>true</defaultValue>
+        </input-field>
+	</card>
+
+	<card>
+		<title>SEO</title>
+
+		<component name="cbax-lexicon-config-alert">
+			<name>seoConfigInfo</name>
+			<appearance>notification</appearance>
+			<alertName>seoConfigInfo</alertName>
+            <variant>warning</variant>
+		</component>
+
+		<component name="sw-snippet-field">
+			<name>basisPathSnippet</name>
+			<snippet>cbaxLexicon.basisPathSnippet</snippet>
+			<label>Snippet for SEO basic path for overview page</label>
+			<label lang="de-DE">Textbaustein für SEO-Basispfad für die Übersichtsseite</label>
+			<helpText>For Example: Lexicon - without Domain - Call: http://www.my-shop.de/lexikon - After changing clear the cache and the SEO Urls generate new. Please note: SEO Urls can only be assigned once. For example, if you already have a Lexicon category, then this SEO Url is already taken and will not be generated again.</helpText>
+			<helpText lang="de-DE">Z.B.: Lexikon - ohne Domain - Aufruf: http://www.mein-shop.de/lexikon - nach Änderung den Cache löschen und die SEO Url's neu erzeugen. Bitte beachten: SEO Url's können nur einmal vergeben werden. Wenn Sie z.B. schon eine Kategorie Lexikon haben, dann ist diese SEO Url schon vergeben und wird nicht noch einmal erzeugt.</helpText>
+		</component>
+
+		<component name="sw-snippet-field">
+			<name>basisPathContentsSnippet</name>
+			<snippet>cbaxLexicon.basisPathContentsSnippet</snippet>
+			<label>Snippet for SEO basic path for Table of Contents</label>
+			<label lang="de-DE">Textbaustein für SEO-Basispfad für das Inhaltsverzeichnis</label>
+			<helpText>For example: Contents - without domain - http://www.my-shop.de/lexikon/contents - After changing clear the cache and the SEO Urls generate new</helpText>
+			<helpText lang="de-DE">Z.B.: Inhaltsverzeichnis - ohne Domain - http://www.mein-shop.de/lexikon/inhaltsverzeichnis - Nach Änderung den Cache löschen und die SEO Url's neu erzeugen</helpText>
+		</component>
+
+		<input-field type="bool">
+			<name>trailingSlash</name>
+			<label>Slash at the end of Url</label>
+			<label lang="de-DE">Slash am Ende der Url</label>
+			<defaultValue>true</defaultValue>
+		</input-field>
+
+		<component name="cbax-lexicon-config-seo">
+			<name>configSeo</name>
+		</component>
+	</card>
+
+    <card>
+        <title>Ajax Search</title>
+        <title lang="de-DE">Ajax Suche</title>
+
+        <input-field type="bool">
+            <name>searchActive</name>
+            <label lang="de-DE">Suche erweitern um Lexikon Begriffe</label>
+            <label>Expand search to include lexicon entries</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="int">
+            <name>searchLimit</name>
+            <label>Maximal displayed search results</label>
+            <label lang="de-DE">Maximale Anzahl angezeigter Treffer</label>
+            <placeholder>5</placeholder>
+            <placeholder lang="de-DE">5</placeholder>
+            <defaultValue>5</defaultValue>
+            <min>2</min>
+            <helpText lang="de-DE">Maximale Anzahl angezeigter Treffer</helpText>
+            <helpText>Maximal displayed search results</helpText>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>searchShow</name>
+            <label>Starting from what screen size to display?</label>
+            <label lang="de-DE">Ab welcher Bildschirmgrösse anzeigen?</label>
+            <helpText>Here you can decide from which screen size search results will be displayed.</helpText>
+            <helpText lang="de-DE">Hier können Sie entscheiden, ab welcher Bildschirmgrösse Suchtreffer angezeigt werden.</helpText>
+            <defaultValue>d-sm-block</defaultValue>
+            <options>
+                <option>
+                    <id>d-sm-block</id>
+                    <name>Smartphone (landscape ≥576px)</name>
+                    <name lang="de-DE">Smartphone (Querformat ≥576px)</name>
+                </option>
+                <option>
+                    <id>d-md-block</id>
+                    <name>Tablet (portrait ≥768px)</name>
+                    <name lang="de-DE">Tablet (Hochformat ≥768px)</name>
+                </option>
+                <option>
+                    <id>d-lg-block</id>
+                    <name>Tablet (landscape ≥992px)</name>
+                    <name lang="de-DE">Tablet (Querformat ≥992px)</name>
+                </option>
+                <option>
+                    <id>d-xl-block</id>
+                    <name>Desktop (≥1200)</name>
+                    <name lang="de-DE">Desktop (≥1200)</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="int">
+            <name>searchSuggestWidth</name>
+            <label>Maximal width of the search suggest container in px</label>
+            <label lang="de-DE">Maximale Breite des Suchergebnis-Vorschlags-Containers in px</label>
+            <placeholder>990</placeholder>
+            <placeholder lang="de-DE">990</placeholder>
+            <defaultValue>990</defaultValue>
+            <min>400</min>
+            <helpText lang="de-DE">Maximale Breite des Suchergebnis-Vorschlags-Containers in px</helpText>
+            <helpText>Maximal width of the search suggest container in px</helpText>
+        </input-field>
+    </card>
+
+	<card>
+        <title>Display</title>
+        <title lang="de-DE">Anzeige</title>
+
+		<input-field type="bool">
+            <name>activeArticle</name>
+            <label>In article descriptions</label>
+            <label lang="de-DE">In Artikelbeschreibungen</label>
+			<defaultValue>true</defaultValue>
+        </input-field>
+
+		<input-field type="bool">
+            <name>activeLexicon</name>
+            <label>In lexicon description</label>
+            <label lang="de-DE">In Lexikonbeschreibungen</label>
+			<defaultValue>true</defaultValue>
+        </input-field>
+
+		<input-field type="multi-select">
+			<name>activeProperties</name>
+			<label>In properties</label>
+            <label lang="de-DE">In Eigenschaften</label>
+			<helpText>Please select the fields. Multiple selection possible.</helpText>
+			<helpText lang="de-DE">Bitte die Felder auswählen. Mehrfachauswahl möglich.</helpText>
+			<options>
+				<option>
+					<id>name</id>
+					<name>Properties description</name>
+					<name lang="de-DE">Eigenschaften Bezeichnung</name>
+				</option>
+				<option>
+					<id>value</id>
+					<name>Properties values</name>
+					<name lang="de-DE">Eigenschaften Werte</name>
+				</option>
+			</options>
+		</input-field>
+
+        <component name="cbax-lexicon-customfields-multi-select">
+            <name>activeProductCustomFields</name>
+            <entity>custom_field</entity>
+            <label>In product customfields</label>
+            <label lang="de-DE">In Produkt-Zusatzfelder</label>
+            <helpText>Please select the fields. Multiple selection possible.</helpText>
+            <helpText lang="de-DE">Bitte die Felder auswählen. Mehrfachauswahl möglich.</helpText>
+            <title>In product customfields</title>
+        </component>
+    </card>
+
+    <card>
+        <title>Shopping Experiences (CMS)</title>
+        <title lang="de-DE">Erlebniswelten (CMS)</title>
+
+        <component name="cbax-lexicon-config-alert">
+            <name>cmsConfigInfo</name>
+            <appearance>notification</appearance>
+            <alertName>cmsConfigInfo</alertName>
+        </component>
+
+        <component name="cbax-lexicon-cmspage-single-select">
+            <name>cmsPageIndex</name>
+            <entity>cms_page</entity>
+            <label>Cms-page for lexicon overview page</label>
+            <label lang="de-DE">Cms-Page für die Lexikon-Übersichtseite</label>
+            <helpText>Choose a cms-page for the lexicon overview/start page.</helpText>
+            <helpText lang="de-DE">Cms-Page für die Lexikon-Übersicht-/Start-Seite.</helpText>
+            <title>Choose a cms-page for the lexicon start page</title>
+        </component>
+
+        <component name="cbax-lexicon-cmspage-single-select">
+            <name>cmsPageListing</name>
+            <entity>cms_page</entity>
+            <label>Cms-page for lexicon listing page</label>
+            <label lang="de-DE">Cms-Page für die Lexikon-Listingseite</label>
+            <helpText>Choose a cms-page for the lexicon listing page (initial letter pages).</helpText>
+            <helpText lang="de-DE">Cms-Page für die Lexikon-Listingseite (Anfangsbuchstaben Seiten) auswählen.</helpText>
+            <title>Choose a cms-page for the lexicon listing page</title>
+        </component>
+
+        <component name="cbax-lexicon-cmspage-single-select">
+            <name>cmsPageDetail</name>
+            <entity>cms_page</entity>
+            <label>Cms-page for lexicon detail page</label>
+            <label lang="de-DE">Cms-Page für die Lexikon-Detailseite</label>
+            <helpText>Choose a cms-page for the lexicon detail page (lexicon entry page).</helpText>
+            <helpText lang="de-DE">Cms-Page für die Lexikon-Detailseite (Seiten für einzelne Lexikon Einträge) auswählen.</helpText>
+            <title>Choose a cms-page for the lexicon detail page</title>
+        </component>
+
+        <component name="cbax-lexicon-cmspage-single-select">
+            <name>cmsPageContent</name>
+            <entity>cms_page</entity>
+            <label>Cms-page for lexicon table of content page</label>
+            <label lang="de-DE">Cms-Page für das Lexikon-Inhaltsverzeichnis</label>
+            <helpText>Choose a cms-page for the lexicon table of content page.</helpText>
+            <helpText lang="de-DE">Cms-Page für das Lexikon-Inhaltsverzeichnis auswählen.</helpText>
+            <title>Choose a cms-page for the lexicon table of content page</title>
+        </component>
+    </card>
+
+    <card>
+        <title>Modal window</title>
+        <title lang="de-DE">Modales Fenster</title>
+
+		<input-field>
+            <name>headline</name>
+            <label>The headline of the modal window</label>
+            <label lang="de-DE">Die Headline des modalen Fenster</label>
+			<defaultValue>Lexikon</defaultValue>
+			<helpText>If you want to maintain the text in several languages, use the following text module: cbaxLexicon.page.ajax.headline</helpText>
+			<helpText lang="de-DE">Wenn Sie den Text in mehreren Sprachen pflegen möchten, dann nutzen Sie folgenden Textbaustein: cbaxLexicon.page.ajax.headline</helpText>
+			<required>true</required>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showFooter</name>
+            <label>Show footer</label>
+            <label lang="de-DE">Footer anzeigen</label>
+			<defaultValue>true</defaultValue>
+			<helpText>Shows the footer in the modal window with the link to the lexicon</helpText>
+			<helpText lang="de-DE">Zeigt den Footer im modalen Fenster mit dem Link zum Lexikon</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>showSeo</name>
+            <label>Show Seo Url</label>
+            <label lang="de-DE">Seo Url anzeigen</label>
+            <defaultValue>true</defaultValue>
+            <helpText>Display SEO URL of the lexicon entry at the bottom of the browser when hovering over the term. Turning it off can improve loading time.</helpText>
+            <helpText lang="de-DE">Seo Url des Lexikoneintrags anzeigen unten im Browser wenn Maus über dem Begriff. Ausschalten kann Ladezeit verbessern.</helpText>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Sitemap</title>
+        <title lang="de-DE">Sitemap</title>
+
+        <input-field type="bool">
+            <name>sitemapGenerate</name>
+            <label>Generate sitemap for lexicon pages</label>
+            <label lang="de-DE">Sitemap für Lexikon Seiten erstellen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Meta</title>
+        <title lang="de-DE">Meta</title>
+
+        <input-field type="bool">
+            <name>metaTitleExtended</name>
+            <label>Extended metatitle for manufacturer pages</label>
+            <label lang="de-DE">Erweiterter Metatitel für Hersteller Seiten</label>
+            <helpText>Extend the Metatitle with | SHOPNAME</helpText>
+            <helpText lang="de-DE">Metatitel erweitern mit | SHOPNAME</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>robotsTagIndex</name>
+            <label>Robots meta tag for lexicon navigation page</label>
+            <label lang="de-DE">Robots Meta Tag für Lexikon-Übersichtsseite</label>
+            <defaultValue>index,follow</defaultValue>
+            <helpText>Robots meta tags govern the behavior of search engine crawlers on the page</helpText>
+            <helpText lang="de-DE">Robots Meta Tags regeln das Verhalten von Suchmaschinen-Crawler auf der Seite</helpText>
+            <options>
+                <option>
+                    <id>index,follow</id>
+                    <name>index,follow</name>
+                    <name lang="de-DE">index,follow</name>
+                </option>
+                <option>
+                    <id>index,nofollow</id>
+                    <name>index,nofollow</name>
+                    <name lang="de-DE">index,nofollow</name>
+                </option>
+                <option>
+                    <id>noindex,nofollow</id>
+                    <name>noindex,nofollow</name>
+                    <name lang="de-DE">noindex,nofollow</name>
+                </option>
+                <option>
+                    <id>noindex,follow</id>
+                    <name>noindex,follow</name>
+                    <name lang="de-DE">noindex,follow</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>robotsTagListing</name>
+            <label>Robots meta tag for lexicon listing pages</label>
+            <label lang="de-DE">Robots Meta Tag für Lexikon-Listingseiten</label>
+            <defaultValue>index,follow</defaultValue>
+            <helpText>Robots meta tags govern the behavior of search engine crawlers on the page</helpText>
+            <helpText lang="de-DE">Robots Meta Tags regeln das Verhalten von Suchmaschinen-Crawler auf der Seite</helpText>
+            <options>
+                <option>
+                    <id>index,follow</id>
+                    <name>index,follow</name>
+                    <name lang="de-DE">index,follow</name>
+                </option>
+                <option>
+                    <id>index,nofollow</id>
+                    <name>index,nofollow</name>
+                    <name lang="de-DE">index,nofollow</name>
+                </option>
+                <option>
+                    <id>noindex,nofollow</id>
+                    <name>noindex,nofollow</name>
+                    <name lang="de-DE">noindex,nofollow</name>
+                </option>
+                <option>
+                    <id>noindex,follow</id>
+                    <name>noindex,follow</name>
+                    <name lang="de-DE">noindex,follow</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>robotsTagDetail</name>
+            <label>Robots meta tag for lexicon detail pages</label>
+            <label lang="de-DE">Robots Meta Tag für Lexikon-Detailseiten</label>
+            <defaultValue>index,follow</defaultValue>
+            <helpText>Robots meta tags govern the behavior of search engine crawlers on the page</helpText>
+            <helpText lang="de-DE">Robots Meta Tags regeln das Verhalten von Suchmaschinen-Crawler auf der Seite</helpText>
+            <options>
+                <option>
+                    <id>index,follow</id>
+                    <name>index,follow</name>
+                    <name lang="de-DE">index,follow</name>
+                </option>
+                <option>
+                    <id>index,nofollow</id>
+                    <name>index,nofollow</name>
+                    <name lang="de-DE">index,nofollow</name>
+                </option>
+                <option>
+                    <id>noindex,nofollow</id>
+                    <name>noindex,nofollow</name>
+                    <name lang="de-DE">noindex,nofollow</name>
+                </option>
+                <option>
+                    <id>noindex,follow</id>
+                    <name>noindex,follow</name>
+                    <name lang="de-DE">noindex,follow</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>robotsTagContent</name>
+            <label>Robots meta tag for lexicon table of contents</label>
+            <label lang="de-DE">Robots Meta Tag für Lexikon Inhaltsverzeichnis</label>
+            <defaultValue>index,follow</defaultValue>
+            <helpText>Robots meta tags govern the behavior of search engine crawlers on the page</helpText>
+            <helpText lang="de-DE">Robots Meta Tags regeln das Verhalten von Suchmaschinen-Crawler auf der Seite</helpText>
+            <options>
+                <option>
+                    <id>index,follow</id>
+                    <name>index,follow</name>
+                    <name lang="de-DE">index,follow</name>
+                </option>
+                <option>
+                    <id>index,nofollow</id>
+                    <name>index,nofollow</name>
+                    <name lang="de-DE">index,nofollow</name>
+                </option>
+                <option>
+                    <id>noindex,nofollow</id>
+                    <name>noindex,nofollow</name>
+                    <name lang="de-DE">noindex,nofollow</name>
+                </option>
+                <option>
+                    <id>noindex,follow</id>
+                    <name>noindex,follow</name>
+                    <name lang="de-DE">noindex,follow</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Migration from Shopware 5 to Shopware 6</title>
+        <title lang="de-DE">Migration von Shopware 5 zu Shopware 6</title>
+
+        <component name="cbax-lexicon-config-alert">
+            <name>migrationInfo</name>
+            <alertName>migrationInfo</alertName>
+        </component>
+
+        <input-field type="text">
+            <name>urlImport</name>
+            <label>Shopware 5 shop domain</label>
+            <label lang="de-DE">Shopware 5 Shop-Domain</label>
+            <helpText>An accessible shop domain from Shopware 5 is required here - e.g. "https://my-shop.de"</helpText>
+            <helpText lang="de-DE">Hier wird eine aufrufbare Shop-Domain von Shopware 5 benötigt - z.B. "https://mein-shop.de"</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>cronKeyImport</name>
+            <label>Valid key in shopware 5</label>
+            <label lang="de-DE">Gültiger Schlüssel in Shopware 5</label>
+            <helpText>You can find the valid key in the plugin configuration in Shopware 5</helpText>
+            <helpText lang="de-DE">Den gültigen Schlüssel finden Sie in der Plugin-Konfiguration in Shopware 5</helpText>
+        </input-field>
+
+        <component name="cbax-lexicon-import">
+            <name>importLexicon</name>
+        </component>
+    </card>
+</config>

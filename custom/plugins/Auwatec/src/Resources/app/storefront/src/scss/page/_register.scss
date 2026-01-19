@@ -1,0 +1,141 @@
+.is-ctl-auth,
+.is-ctl-register{
+  .content-main > .container{
+    background: $white;
+    padding-bottom: 50px;
+  }
+}
+.is-act-checkoutregisterpage .checkout{
+  padding-top: 50px;
+}
+.checkout-container{
+  margin-bottom: 0;
+}
+
+.register-shipping-name-row,
+.register-personal{
+  .col-12,
+  .col-sm-6,
+  .col-md-6{
+    @extend .col-xl-4;
+  }
+}
+
+.register-shipping{
+
+}
+
+.register-different-shipping,
+.login-form,
+.register-personal,
+.register-billing .gray-box,
+.register-shipping .gray-box{
+  background: $gray-100;
+}
+
+
+.login-form,
+.register-personal,
+.register-billing,
+.register-shipping{
+  .row{
+    margin-top: 0;
+  }
+}
+
+.register-personal,
+.login-form{
+  padding: 20px;
+}
+
+.register-shipping,
+.register-billing{
+  .gray-box{
+    padding: 20px;
+  }
+}
+
+.register-billing{
+  .card-title{
+    margin-top: 30px;
+  }
+}
+
+.register-different-shipping{
+  padding: 0 20px 20px 20px;
+  .form-check-input{
+    margin-left: 0;
+    margin-right: 10px;
+  }
+}
+
+.register-login-collapse-toogle{
+  padding-left: 30px;
+  position: relative;
+  .icon{
+    color: $sw-color-brand-primary;
+    position: absolute;
+    left: 0;
+  }
+  a{
+    color: $sw-text-color;
+  }
+}
+
+.checkout .register-card{
+  margin-top: 30px;
+}
+
+.privacy-notice{
+  color: $sw-text-color;
+  font-size: 16px;
+  & > strong{
+    @extend .h4;
+  }
+}
+
+.register-required-info{
+  display: none;
+}
+
+.register-submit.d-grid.col-md-6.offset-md-6{
+  @extend .d-block;
+  @extend .col-md-auto;
+  @extend .offset-md-0;
+  margin-top: 30px;
+  text-align: right;
+
+  .btn{
+    @extend .btn-buy-extra;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.checkout-aside-products{
+  border: 1px solid $sw-border-color;
+  margin-top: 30px;
+}
+
+.checkout-aside-product-header{
+  margin-bottom: 15px;
+}
+
+@include media-breakpoint-up(md){
+  .register-submit{
+    text-align: left;
+  }
+  .register-submit.d-grid.col-md-6.offset-md-6{
+    .btn{
+      width: 210px;
+    }
+  }
+}
+
+.register-login-collapse-toogle {
+  &+ .row {
+    &.mb-2 {
+      margin-top: .25rem;
+    }
+  }
+}

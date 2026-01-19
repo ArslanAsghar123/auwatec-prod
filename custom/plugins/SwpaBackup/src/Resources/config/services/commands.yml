@@ -1,0 +1,15 @@
+services:
+
+  # backup database
+  Swpa\SwpaBackup\Command\Backup\BackupCommand:
+    public: true
+    tags: [ console.command ]
+    arguments:
+      - '@swpa.backup.backup_manager'
+      -
+      # backup database
+  Swpa\SwpaBackup\Command\Backup\ClearCommand:
+    public: true
+    tags: [ console.command ]
+    arguments:
+      - '@swpa.backup.backup_manager'

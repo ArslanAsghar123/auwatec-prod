@@ -1,0 +1,45 @@
+{
+  "name": "intedia/doofinder",
+  "description": "This modules integrates DooFinder Search as a Service into Shopware version 6.",
+  "version": "v2.3.2",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "intedia GmbH",
+      "email": "hello@intedia.de",
+      "homepage": "https://www.intedia.de"
+    }
+  ],
+  "require": {
+    "shopware/core": ">=6.6.0.0",
+    "shopware/administration": "*",
+    "shopware/storefront": "*"
+  },
+  "type": "shopware-platform-plugin",
+  "autoload": {
+    "psr-4": {
+      "Intedia\\Doofinder\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Intedia\\Doofinder\\IntediaDoofinderSW6",
+    "plugin-icon": "src/Resources/config/plugin.png",
+    "copyright": "(c) by intedia GmbH",
+    "label": {
+      "de-DE": "DooFinder – Integration für Shopware 6",
+      "en-GB": "DooFinder – Integration for Shopware 6"
+    },
+    "description": {
+      "de-DE": "Mehr als 7000 eCommerce Businesses weltweit vertrauen DooFinder die interne Shopsuche an. Mit unserer Erweiterung ist auch die Integration für Showare 6, nach dem \"plug & play\" Prinzip, spielend einfach. Testen Sie DooFinder 30 Tage kostenlos sowie unverbindlich und profitieren Sie unmittelbar von relevanteren, schnelleren, mobil-optimierten Suchergebnissen. DooFinder steigert nachweisbar die Conversion Rate - überzeugen Sie sich selbst!\n\n\n\nWer sucht, der findet..\n\nDooFinder präsentiert auch bei ungenauen oder fehlerhaften Eingaben in unter 35 Millisekunden passende Treffer. Im Vergleich zu herkömmlichen Shop Suchen, dank künstlicher Intelligenz und fortgeschrittenen, natürlichem Sprachverständnis (natural language processing) ist DooFinder in der Lage, die Suchanfrage auf einem komplett neuem Niveau zu interpretieren. Sie profitieren von mehr Performance, Checkouts sowie höheren Warenkörben. \n\n\n\nWas macht uns aus?\n\nEinfache Integration in Minuten, 30 Tage kostenloser Test. Vom ambitionierten Start up bis hin zum Branchenführer meistert DooFinder die Ansprüche moderner eCommerce Unternehmen. Unschlagbares Preis Leistungsverhältnis. Kompetente Beratung, Service und erfolgsorientierte Umsetzung anspruchsvoller Projekte.",
+      "en-GB": "More than 7000 eCommerce businesses worldwide trust in DooFinder's site search. With our extension for Shopware 6, the installation will be done in no time. Test DooFinder, 30 days for free without any obligation and benefit immediately from more relevant, faster, mobile-optimised search results. DooFinder will increase your conversion rates.\n\n \n\nThose who search, find...\n\nDooFinder shows relevant search results in under 35 milliseconds, on any device. Thanks to advanced search algorithms, artificial intelligence and natural language processingDooFinder brings your Shopware search to the next level. You will benefit from better performance, checkouts and higher shopping cart value.\n\n \n\nWhy DooFinder?\n\nEasy integration in minutes and a 30-day free trial. From ambitious start-ups to market leaders, DooFinder masters the demands of modern eCommerce companies. Unbeatable price-performance ratio. Proficient consulting, service and success-oriented implementation of sophisticated projects."
+    },
+    "manufacturerLink": {
+      "de-DE": "https://store.shopware.com/intedia-gmbh.html",
+      "en-GB": "https://store.shopware.com/en/intedia-gmbh.html"
+    },
+    "supportLink": {
+      "de-DE": "https://www.intedia.de/#contact",
+      "en-GB": "https://www.intedia.de/#contact"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+    "sw-product": {
+        "detailBase": {
+            "acrisGpsr": {
+                "cardTitle": "GPSR Product Safety Regulation",
+                "hint": "If filled, these fields have a higher priority than the GPSR information at the manufacturer (Catalogues > Manufacturer > GPSR information). The display is configurable in plugin configuration.",
+                "fieldTitleProductType": "Product type and product identifiers",
+                "fieldTitlePlaceholderProductType": "Enter product type and product identifiers...",
+                "fieldTitleProductManufacturer": "Manufacturer information",
+                "fieldTitlePlaceholderProductManufacturer": "Enter manufacturer information...",
+                "fieldTitleProductContact": "Responsible person (EU)",
+                "fieldTitlePlaceholderProductContact": "Enter responsible person...",
+                "fieldTitleProductWarningHint": "Warning note",
+                "fieldTitlePlaceholderProductWarningHint": "Enter warning note...",
+                "fieldTitleProductSecurityHint": "Safety note",
+                "fieldTitlePlaceholderProductSecurityHint": "Enter safety note...",
+                "fieldTitleProductInformationHint": "Important information",
+                "fieldTitlePlaceholderInformationHint": "Enter important information..."
+            }
+        }
+    },
+    "global": {
+        "acris-document-upload": {
+            "caption": "Drag files here to upload",
+            "buttonUrlUpload": "Upload by URL",
+            "buttonFileUpload": "Upload document",
+            "buttonOpenMedia": "Open document",
+
+            "buttonSwitchToFileUpload": "Upload file from your computer",
+            "buttonSwitchToUrlUpload": "Upload file from url"
+        },
+        "acris-product-download":  {
+            "context":  {
+                "buttonEdit": "Edit",
+                "buttonDelete": "Delete"
+            }
+        }
+    }
+}

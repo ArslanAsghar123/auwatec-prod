@@ -1,0 +1,167 @@
+{
+    "dreiscSeoRichSnippet": {
+        "general": {
+            "navigation": {
+                "label": "Rich Snippets (JSON-LD)"
+            }
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Rich Snippets",
+                "saveButtonText": "Speichern"
+            },
+            "tabs": {
+                "general": "Allgemein",
+                "product": "Produkte",
+                "breadcrumb": "Breadcrumb",
+                "business": "Unternehmen"
+            },
+            "cards": {
+                "titles": {
+                    "salesChannel": "Verkaufskanal",
+                    "general": "Allgemein",
+                    "productAvailability": "Verfügbarkeit der Produkte",
+                    "productItemCondition": "Zustand der Produkte",
+                    "skuCompilation": "Händlerspezifische Kennung",
+                    "mpnCompilation": "Herstellerteile-Nummer",
+                    "priceValidUntilInterval": "Preis gültig bis Datum",
+                    "review": "Bewertungen",
+                    "additionalProductSettings": "Weitere Produkt-Einstellungen",
+                    "detailPage": "Produkt-Detailseite",
+                    "startPage": "Startseite",
+                    "logo": "Logo des Unternehmens",
+                    "localBusiness": "Lokales Unternehmen",
+                    "localBusinessAddress": "Adresse",
+                    "localBusinessOpeningHours": "Öffnungszeiten"
+                }
+            },
+            "alert": {
+                "jsonLdInfo": {
+                    "title": "Mikrodaten durch JSON-LD ersetzen",
+                    "content": "Im Shopware Standard werden die Rich Snippets durch sogenannte Mikrodaten im Quellcode übertragen. Ist die folgende Option aktiv, so werden diese Mikrodaten aus dem Quellcode entfernt und durch die von Google empfohlenen JSON-LD Rich Snippets ersetzt."
+                }
+            },
+            "button": {
+                "text": {
+                    "authorSnippet": "Textbaustein Konfiguration in neuem Fenster öffnen",
+                    "homeTextSnippet": "Textbaustein Konfiguration für Startseiten-Bezeichnung in neuem Fenster öffnen"
+                }
+            },
+            "fields": {
+                "labels": {
+                    "active": "Rich Snippets über JSON-LD aktivieren",
+                    "activeBreadcrumb": "Breadcrumb per JSON-LD übergeben",
+                    "activeLocalBusiness": "Lokales Unternehmen per JSON-LD übergeben",
+                    "defaultItemCondition": "Standardwert für den Zustand der Produkte",
+                    "defaultAvailability": "Standardwert für die Verfügbarkeit von normalen Produkten",
+                    "defaultAvailabilityOutOfStock": "Standardwert für die Verfügbarkeit von normalen Produkten ohne Lagerbestand",
+                    "defaultAvailabilityClearanceSale": "Standardwert für die Verfügbarkeit von Abverkauf-Produkten",
+                    "defaultAvailabilityClearanceSaleOutOfStock": "Standardwert für die Verfügbarkeit von Abverkauf-Produkten ohne Lagerbestand",
+                    "skuCompilation": "Standardwert für Händlerspezifische Kennung (sku)",
+                    "mpnCompilation": "Standardwert für Herstellerteile-Nummer (mpn)",
+                    "priceValidUntilInterval": "Standardwert für das Feld \"Preis gültig bis Datum\" (priceValidUntil)",
+                    "priceValidUntilCustomDays": "Anzahl an Tagen",
+                    "authorCompilation": "Autor der Bewertung",
+                    "sellerName": "Name des Verkäufers",
+                    "productShowInBreadcrumbMode": "Produktseite als eigenes Breadcrumb Element",
+                    "homeShowInBreadcrumbMode": "Startseite als eigenes Breadcrumb Element",
+                    "activeLogo": "Logo per JSON-LD übergeben",
+                    "logoImage": "Logo",
+                    "logoUrl": "URL des Logos",
+                    "localBusinessName": "Name des Unternehmens",
+                    "localBusinessUrl": "URL des Unternehmensstandorts",
+                    "localBusinessTelephone": "Telefonnummer",
+                    "streetAddress": "Straße und Hausnummer",
+                    "addressLocality": "Stadt",
+                    "postalCode": "PLZ",
+                    "addressCountry": "Land"
+                },
+                "helpText": {
+                    "defaultAvailability": "Normale Produkte sind alle Hauptartikel und Varianten, die nicht für den Abverkauf markiert sind.<br><br>Der hier definierte Wert wird nur dann ausgegeben, wenn in den Details des jeweiligen Produkts keine abweichende Verfügbarkeit definiert wurde.",
+                    "defaultItemCondition": "Der hier definierte Wert wird nur dann ausgegeben, wenn in den Details des jeweiligen Produkts kein abweichender Produktzustand definiert wurde.",
+                    "skuCompilation": "Der hier definierte Wert wird nur dann ausgegeben, wenn in den Details des jeweiligen Produkts keine abweichende SKU Nummer definiert wurde.",
+                    "mpnCompilation": "Der hier definierte Wert wird nur dann ausgegeben, wenn in den Details des jeweiligen Produkts keine abweichende MPN Nummer definiert wurde.",
+                    "priceValidUntilInterval": "Der hier definierte Wert wird nur dann ausgegeben, wenn in den Details des jeweiligen Produkts kein abweichendes Datum definiert wurde.",
+                    "authorCompilation": "Google empfiehlt bei einer Bewertung auch den Namen des Autors zu übertragen. An dieser Stelle kannst du konfigurieren, welcher Wert als Autor übertragen wird.",
+                    "sellerName": "Wird ausgegeben unter: &commat;type:Product » &commat;type:Offer » seller » &commat;type Organization",
+                    "productShowInBreadcrumbMode": "Standardmäßig werden auf der Detailseite nur die Kategorien als Breadcrumb ausgegben.<br><br>Wird diese Option aktiviert, so wird für die Detailseite ein eigenes Element zum Breadcrumb hinzugefügt.",
+                    "homeShowInBreadcrumbMode": "Standardmäßig werden nur die Kategorien als Breadcrumb ausgegben.<br><br>Wird diese Option aktiviert, so wird für die Startseite als erstes Element zum Breadcrumb hinzugefügt."
+                }
+            },
+            "availabilities": {
+                "UseDefault": "Standardwert übertragen (SEO Professional » Rich Snippets (JSON-LD) » Produkte)",
+                "InStock": "Auf Lager (InStock)",
+                "LimitedAvailability": "Begrenzte Verfügbarkeit (LimitedAvailability)",
+                "InStoreOnly": "Nur im Laden (InStoreOnly)",
+                "OnlineOnly": "Nur online erhältlich (OnlineOnly)",
+                "Discontinued": "Abgesetzt (Discontinued)",
+                "OutOfStock": "Nicht vorrättig (OutOfStock)",
+                "PreOrder": "Vorbestellen (PreOrder)",
+                "PreSale": "Vorverkauf (PreSale)",
+                "SoldOut": "Ausverkauft (SoldOut)"
+            },
+            "itemConditions": {
+                "UseDefault": "Standardwert übertragen (SEO Professional » Rich Snippets (JSON-LD) » Produkte)",
+                "NewCondition": "Neu (NewCondition)",
+                "UsedCondition": "Gebraucht (UsedCondition)",
+                "RefurbishedCondition": "Generalüberholt (RefurbishedCondition)",
+                "DamagedCondition": "Beschädigt (DamagedCondition)"
+            },
+            "skuCompilations": {
+                "UseDefault": "Standardwert übertragen (SEO Professional » Rich Snippets (JSON-LD) » Produkte)",
+                "productNumber": "Produktnummer (empfohlen)",
+                "manufacturerNumberOtherwiseProductNumber": "Herstellernummer falls vorhanden, ansonsten Produktnummer"
+            },
+            "mpnCompilations": {
+                "UseDefault": "Standardwert übertragen (SEO Professional » Rich Snippets (JSON-LD) » Produkte)",
+                "productNumber": "Produktnummer",
+                "manufacturerNumberOtherwiseProductNumber": "Herstellernummer falls vorhanden, ansonsten Produktnummer (empfohlen)"
+            },
+            "priceValidUntilIntervals": {
+                "UseDefault": "Standardwert übertragen (SEO Professional » Rich Snippets (JSON-LD) » Produkte)",
+                "notDisplay": "Dieses Feld standardmäßig nicht ausgeben",
+                "today": "Aktuelles Datum",
+                "1day": "Aktuelles Datum + 1 Tag",
+                "1week": "Aktuelles Datum + 1 Woche",
+                "2week": "Aktuelles Datum + 2 Woche",
+                "1month": "Aktuelles Datum + 1 Monat",
+                "customDays": "Aktuelles Datum + eigene Anzahl an Tagen"
+            },
+            "reviewAuthorCompilations": {
+                "UseDefault": "Standardwert übertragen (SEO Professional » Rich Snippets (JSON-LD) » Produkte)",
+                "notDisplay": "Dieses Feld standardmäßig nicht ausgeben",
+                "staticSnippet": "Statischen Wert übergeben (Textbaustein)",
+                "firstName": "Vorname des Kunden übergeben",
+                "firstNameAndFirstLetterOfLastName": "Vorname + Anfangsbuchstabe des Nachnamen des Kunden übergeben (empfohlen)",
+                "firstNameAndLastName": "Vorname + Nachname des Kunden übergeben (Einverständnis der Kunden vorausgesetzt!)"
+            },
+            "showInBreadcrumbModes": {
+                "product": {
+                    "notDisplay": "Nicht ausgeben",
+                    "onlyShop": "Nur im Shop ausgeben",
+                    "onlyJsonLd": "Nur per Rich Snippet übertragen",
+                    "shopAndJsonLd": "Im Shop ausgeben und per Rich Snippet übertragen"
+                }
+            }
+        },
+        "openingHoursGrid": {
+            "columns": {
+                "active": "Aktiv",
+                "dayOfWeekString": "Wochentag",
+                "opens": "öffnet um",
+                "closes": "schließt um"
+            },
+            "dataSource": {
+                "dayOfWeek": {
+                    "monday": "Montag",
+                    "tuesday": "Dienstag",
+                    "wednesday": "Mittwoch",
+                    "thursday": "Donnerstag",
+                    "friday": "Freitag",
+                    "saturday": "Samstag",
+                    "sunday": "Sonntag"
+                }
+            }
+        }
+    }
+}

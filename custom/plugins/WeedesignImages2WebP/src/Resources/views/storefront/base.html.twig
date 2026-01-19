@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_body_script %}
+    {{ parent() }}
+
+    {% if config('WeedesignImages2WebP.config.backlink') %}
+        
+        {% set WeedesignImages2WebPBacklinksTitle = [
+            "WeedesignImages2WebP.backlink.title.1",
+            "WeedesignImages2WebP.backlink.title.2",
+            "WeedesignImages2WebP.backlink.title.3",
+            "WeedesignImages2WebP.backlink.title.4"
+        ] %}
+        {% set WeedesignImages2WebPBacklinksDescription = [
+            "WeedesignImages2WebP.backlink.title.1",
+            "WeedesignImages2WebP.backlink.title.2",
+            "WeedesignImages2WebP.backlink.title.3",
+            "WeedesignImages2WebP.backlink.title.4"
+        ] %}
+        <details class="weedesign-images2webp-plugin">
+            <summary>{{ random(WeedesignImages2WebPBacklinksTitle)|trans }}</summary>
+            <a href="{{ 'WeedesignImages2WebP.backlink.src'|trans }}">{{ random(WeedesignImages2WebPBacklinksDescription)|trans }}</a>
+        </details>
+
+    {% endif %}
+
+{% endblock %}

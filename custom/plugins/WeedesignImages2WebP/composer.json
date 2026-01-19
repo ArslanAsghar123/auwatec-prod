@@ -1,0 +1,49 @@
+{
+  "name": "weedesign/images2webp",
+  "keywords": [
+    "shopware",
+    "webp",
+    "frontend",
+    "images",
+    "convert"
+  ],
+  "description": "This plugin converts all your images to webp.",
+  "version": "3.4.0",
+  "type": "shopware-platform-plugin",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "weedesign",
+      "homepage": "https://weedesign.de"
+    }
+  ],
+  "require": {
+    "shopware/core": ">=6.6",
+    "rosell-dk/webp-convert": "^2.9"
+  },
+  "extra": {
+    "shopware-plugin-class": "Weedesign\\Images2WebP\\WeedesignImages2WebP",
+    "plugin-icon": "src/Resources/config/plugin.png",
+    "label": {
+      "de-DE": "WebP Bilder",
+      "en-GB": "WebP images"
+    },
+    "description": {
+      "de-DE": "Bilder zu WebP konvertieren",
+      "en-GB": "Convert images to WebP"
+    },
+    "manufacturerLink": {
+      "de-DE": "https://weedesign.de",
+      "en-GB": "https://weedesign.de"
+    },
+    "supportLink": {
+      "de-DE": "https://weedesign.de",
+      "en-GB": "https://weedesign.de"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Weedesign\\Images2WebP\\": "src/"
+    }
+  }
+}

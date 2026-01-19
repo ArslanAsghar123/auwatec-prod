@@ -1,0 +1,133 @@
+{
+    "dreiscSeoBulkProduct": {
+        "general": {
+            "navigation": {
+                "label": "Product Bulk Generator"
+            }
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Product Bulk Generator"
+            }
+        },
+        "detailBase": {
+            "fields": {
+                "labels": {
+                }
+            }
+        },
+        "payload": {
+            "templateVariablesDescription": {
+                "isVariant": "<b>Is product variant [if example]</b> isVariant",
+                "productId": "Id of the product",
+                "productTranslatedName": "Product name",
+                "productTranslatedDescription": "Description of the product",
+                "productTranslatedKeywords": "Keywords",
+                "productProductNumber": "Product number",
+                "productManufacturerNumber": "Manufacturer number",
+                "productManufacturerId": "Id of the manufacturer",
+                "productManufacturerTranslatedName": "<b>Name of the manufacturer</b> (product.manufacturer[↯].translated.name)",
+                "productManufacturerTranslatedDescription": "<b>Description of the manufacturer</b> (product.manufacturer[↯].translated.description)",
+                "productEan": "EAN Code",
+                "productRestockTime": "Refill time in days",
+                "productDeliveryTimeTranslatedName": "<b>Delivery time</b> (product.deliveryTime[↯].translated.name)",
+                "productMarkAsTopseller": "<b>Highlight product [if example]</b> (product.markAsTopseller)",
+                "productIsCloseout": "<b>Sales [if example]</b> (product.isCloseout)",
+                "productShippingFree": "<b>Free shipping [if example]</b> (product.shippingFree)",
+                "productStock": "Inventory",
+                "productAvailableStock": "Available inventory",
+                "productMinPurchase": "Minimum purchase",
+                "productMaxPurchase": "Maximum purchase",
+                "productPurchaseSteps": "Graduation",
+                "productPackUnit": "Packaging Unit",
+                "productPurchaseUnit": "Sales unit",
+                "productReferenceUnit": "Basic unit",
+                "productWeight": "Weight",
+                "productWidth": "Width",
+                "productHeight": "Height",
+                "productLength": "Length",
+                "productProductProperties": "<b>Product properties [if example]</b> product.properties[↯]",
+                "productProductOptions": "<b>Variant properties [if example]</b> product.options[↯]",
+                "productReleaseDateDate": "Publication date",
+                "productTaxTaxRate": "Product tax rate",
+                "productSeoMetaTitle": "Meta title of the product",
+                "productSeoMetaDescription": "Meta description of the product",
+                "productSeoUrl": "Url of the product",
+                "productSeoIsInheritedMetaTitle": "<b>Meta title of the product was inherited [if example]</b> (productSeo.isInheritedMetaTitle)",
+                "productSeoIsInheritedMetaDescription": "<b>Meta description of the product was inherited [if example]</b> (productSeo.isInheritedMetaDescription)",
+                "productSeoIsInheritedUrl": "<b>Product URL was inherited [if example]</b> (productSeo.isInheritedUrl)",
+                 "mainCategoryId": "<b>Id the main category of the product</b> (mainCategory.id) [Can only be used with URL templates]",
+                "mainCategoryTranslatedName": "<b>Name of the main category of the product</b> (mainCategory.translated.name) [Can only be used with URL templates]",
+                "mainCategoryTranslatedDescription": "<b>Description of the main category of the product</b> (mainCategory.translated.description) [Can only be used with URL templates]",
+                "mainCategoryTranslatedBreadcrumb": "<b>Breadcrumb the main category of the product</b> (mainCategory.translated.breadcrumb) [Can only be used with URL templates]",
+                "mainCategoryType": "<b>Category type of the main category of the product</b> (mainCategory.type) [Can only be used with URL templates]",
+                "mainCategoryExternalLink": "<b>External link of the main category of the product</b> (mainCategory.externalLink) [Can only be used with URL templates]",
+                "mainCategorySeoMetaTitle": "Meta title of the main category of the product [Can only be used with URL templates]",
+                "mainCategorySeoMetaDescription": "Meta description of the main category of the product [Can only be used with URL templates]",
+                "mainCategorySeoUrl": "Url of the main category of the product [Can only be used with URL templates]",
+                "mainCategorySeoIsInheritedMetaTitle": "<b>Meta title of the main category of the product was inherited [if example]</b> (mainCategorySeo.isInheritedMetaTitle) [Can only be used with URL templates]",
+                "mainCategorySeoIsInheritedMetaDescription": "<b>Meta description of the main category of the product was inherited [if example]</b> (mainCategorySeo.isInheritedMetaDescription) [Can only be used with URL templates]",
+                "mainCategorySeoIsInheritedUrl": "<b>Product main category URL inherited [if example]</b> (mainCategorySeo.isInheritedUrl) [Can only be used with URL templates]",
+                "languageLocaleCode": "<b>Country code of the language for which the template is generated</b> (language.locale[↯].code)",
+                "liveShopName": "<b>Live template for the output of shop names</b> [Cannot be used with URL templates]",
+                "liveProductPrice": "<b>Live template for issuing the item price</b> [Cannot be used with URL templates]"
+            }
+        },
+        "defaultTemplates": {
+            "metaTitle": {
+                "productName": "Product name",
+                "productNameAndVariantOptions": "Product name [+ variant options for variants]",
+                "productNameAndShopName": "Product name + shop name [live template]",
+                "productNameShippingFreePriceAndShopName": "Product name + (free shipping) + for only X Euro + from shop name [live template]",
+                "productNameManufacturePriceAndShopName": "Product name + from manufacturer + for only X Euro + from shop name [live template]",
+                "customFieldOrProductNameAsFallback": "Own additional field if available, otherwise product name",
+                "openAiExampleGerman": "OpenAI Example (Prompt in German)",
+                "openAiExampleEnglish": "OpenAI Example (Prompt in English)"
+            },
+            "metaDescription": {
+                "productNameAndShopName": "Product name + shop name [live template]",
+                "productNameShippingFreePriceAndShopName": "Product name + (free shipping) + for only X Euro + from shop name [live template]",
+                "productNameManufacturePriceAndShopName": "Product name + from manufacturer + for only X Euro + from shop name [live template]",
+                "productNameMAndProperties": "Product name + output of the product properties",
+                "trimmedProductDescription": "Product description shortened to 130 characters",
+                "customFieldOrProductNameAsFallback": "Own additional field if available, otherwise product name",
+                "openAiExampleGerman": "OpenAI Example (Prompt in German)",
+                "openAiExampleEnglish": "OpenAI Example (Prompt in English)"
+            },
+            "url": {
+                "productName": "Product name [+ product number for variants]",
+                "productNameAndVariantOptions": "Product name [+ variant options for variants]",
+                "manufacturerAndProductName": "Manufacturer's name + product name [+ product number for variants]",
+                "metaTitleOrProductNameAsFallback": "Meta title if available, otherwise product name [+ product number for variants]",
+                "customFieldOrProductNameAsFallback": "Own additional field if available, otherwise product name [+ product number for variants]",
+                "parentCategoryUrlAndProductName": "URL of the parent category + product name [+ product number for variants]",
+                "introTextAndProductName": "\"our-topseller /\" + product name [+ product number for variants]",
+                "openAiExampleGerman": "OpenAI Example (Prompt in German)",
+                "openAiExampleEnglish": "OpenAI Example (Prompt in English)"
+            },
+            "robotsTag": {
+                "GrossPriceLessThanFive": "If the base gross price is less than 5 dollars (or euros etc.) noindex, follow, otherwise index, follow",
+                "indexFollow": "index,follow (index page and track links)",
+                "indexNofollow": "index,nofollow (index page and do not track links)",
+                "noindexFollow": "noindex,follow (do not index page and follow links)",
+                "noindexNofollow": "noindex,nofollow (do not index page and do not follow links)"
+            },
+            "facebookTitle": {
+                "metaTitleOrProductName": "Meta title if available, otherwise product name",
+                "customFieldOrProductNameAsFallback": "Own additional field if available, otherwise product name"
+            },
+            "facebookDescription": {
+                "metaDescriptionOrProductName": "Meta description if available, otherwise product description shortened to 65 characters",
+                "customFieldOrProductNameAsFallback": "Own additional field if available, otherwise product name"
+            },
+            "twitterTitle": {
+                "metaTitleOrProductName": "Meta title if available, otherwise product name",
+                "customFieldOrProductNameAsFallback": "Own additional field if available, otherwise product name"
+            },
+            "twitterDescription": {
+                "metaDescriptionOrProductName": "Meta description if available, otherwise product description shortened to 110 characters",
+                "customFieldOrProductNameAsFallback": "Own additional field if available, otherwise product name"
+            }
+        }
+    }
+}

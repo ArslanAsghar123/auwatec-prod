@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults autowire="true" autoconfigure="true"/>
+
+        <service id="AkuCmsFactory\Subscriber\CmsElementSubscriber">
+            <argument type="service" id="cms_factory_element.repository"/>
+            <argument type="service" id="AkuCmsFactory\Services\CmsElementService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="AkuCmsFactory\Element\CmsFactoryElementDefinition">
+            <tag name="shopware.entity.definition" entity="cms_factory_element"/>
+        </service>
+
+        <service id="Twig\Extension\StringLoaderExtension">
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="AkuCmsFactory\Controller\RenderController" public="true">
+            <tag name="controller.service_arguments"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="AkuCmsFactory\Services\CmsElementService">
+            <argument type="service" id="cms_factory_element.repository"/>
+            <argument type="service" id="media.repository"/>
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="product_stream.repository"/>
+            <argument type="service" id="product_manufacturer.repository"/>
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="sales_channel.category.repository"/>
+            <argument type="service" id="Shopware\Core\Content\ProductStream\Service\ProductStreamBuilder"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingLoader"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\DefinitionInstanceRegistry"/>
+        </service>
+
+
+    </services>
+
+</container>

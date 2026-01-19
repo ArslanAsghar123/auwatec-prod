@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-filter-a">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="filter-a" clip-path="url(#clip-filter-a)">
+    <path id="filter-a-2" data-name="filter-a" d="M-293.1-328.05v-5.713H-311v-6.857h17.9v-5.716h6.857v18.286Zm12.573-5.713v-6.857H-247v6.857Zm5.713-15.62V-355.1H-311v-6.857h36.191v-5.713h6.857v18.283Zm12.57-5.713v-6.857H-247v6.857Zm-36.951-15.62v-5.713H-311v-6.857h11.81V-389h6.857v18.283Zm12.57-5.713v-6.857H-247v6.857Z" transform="translate(311 391)"/>
+  </g>
+</svg>

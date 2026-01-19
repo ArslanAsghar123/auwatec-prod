@@ -1,0 +1,6 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/meta.html.twig' %}
+
+{% block layout_head_javascript_tracking %}
+    {% sw_include '@Storefront/storefront/iron_matomo/default.html.twig' %}
+    {{ parent() }}
+{% endblock %}

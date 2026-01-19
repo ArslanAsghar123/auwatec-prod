@@ -1,0 +1,29 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{# moved to page_checkout_confirm_form_submit #}
+{% block page_checkout_confirm_tos %}{% endblock %}
+
+{% block page_checkout_confirm_form_submit %}
+    <div class="row g-0">
+        <div class="col-12 col-md-6 offset-md-6 col-lg-12 offset-lg-0">
+            <div class="tos-info">
+                <div class="h4">
+                    {{ "checkout.confirmTermsHeader"|trans|sw_sanitize }}
+                </div>
+                <input type="checkbox"
+                       checked="checked"
+                       class="checkout-confirm-tos-checkbox form-check-input d-none"
+                       required="required"
+                       id="tos"
+                       name="tos"/>
+
+                <p class="revocation-notice">
+                    {{ "checkout.confirmTermsText"|trans({
+                        '%url%': path('frontend.cms.page',{ id: config('core.basicInformation.tosPage') })
+                    })|raw }}
+                </p>
+            </div>
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% block component_product_box_name %}
+    {{ parent() }}
+
+    {% set tsConfig = config('trustedShopsApp.config') %}
+    {% set tsChannelId = context.salesChannel.id ?? null %}
+    {% set activeLanguageIsoCode = page.header.activeLanguage.translationCode.code ?? null %}
+
+    {% if activeLanguageIsoCode == null and cmsPage != null %}
+        {% set activeLanguageIsoCode = cmsPage.extensions.activeLanguage.locale.code %}
+    {% endif %}
+
+    {% set tsChannelRef = tsChannelId ~ '.' ~ activeLanguageIsoCode %}
+
+    {% if tsChannelId is not null %}
+        {% if expectedMapping is null %}
+            {% set expectedMapping = [] %}
+            {% for mappedChannel in tsConfig.mappedChannels %}
+                {% set expectedMapping = expectedMapping|merge({ (mappedChannel.salesChannelRef): mappedChannel.eTrustedChannelRef}) %}
+            {% endfor %}
+        {% endif %}
+        {% if tsConfig[tsChannelId][activeLanguageIsoCode].widgets is defined and expectedMapping[tsChannelRef] === tsConfig[tsChannelId][activeLanguageIsoCode].widgets.eTrustedChannelRef %}
+
+            {% if product.parentId and product.extensions.tsParentProduct is defined %}
+                {% set product = product.extensions.tsParentProduct %}
+            {% endif %}
+
+            <div class="ts-rating" style="overflow: hidden">
+                <!-- added by Trusted Shops app: Start -->
+                {% sw_include '@Storefront/storefront/includes/widget-assembler.html.twig' with {
+                    widgets: tsConfig[tsChannelId][activeLanguageIsoCode].widgets.children.0.children,
+                    product: product,
+                    widgetLocationId: 'wdg-loc-pl'
+                } %}
+                <!-- End -->
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

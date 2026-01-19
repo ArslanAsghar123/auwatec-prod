@@ -1,0 +1,427 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% set extensionMedia = page.footer.extensions['Media'] %}
+{% set extensionFooterKit = page.footer.extensions['CogiFooterKit'] %}
+{% set extensionProduct = page.footer.extensions['Product'] %}
+{% set footerKit = extensionFooterKit.get('footerKit')|first %}
+{% set media = extensionMedia.get('media') %}
+{% set product = extensionProduct.get('product') %}
+{% set mediaUrl = "" %}
+{% set navigationBackgroundImageUrl = "" %}
+{% set isSalesChannel = false %}
+
+{% if footerKit is not empty %}
+    {% if checkFooterStorefrontId(context, footerKit.salesChannelId) %}
+        {% set isSalesChannel = true %}
+    {% endif %}
+{% endif %}
+
+ {% for itemMedia in media %}
+        {% if footerKit.navigationConfig.backgroundImage == itemMedia.id %}
+            {% set navigationBackgroundImageUrl = itemMedia.url %}
+        {% endif %}
+{% endfor %}
+
+{% block layout_footer_inner_container %}
+
+    {% if isSalesChannel %}
+        <div id="footerColumns"
+            class="row footer-columns col-12 m-0 p-0 border-top border-bottom-0"
+            data-collapse-footer="true"
+            style= "
+                background: {{ footerKit.navigationConfig.backgroundColor }};
+                {% if navigationBackgroundImageUrl %}
+                    background-image: url('{{ navigationBackgroundImageUrl }}');
+                    background-position: {{ footerKit.navigationConfig.backgroundImagePosition }};
+                    background-size: {{ footerKit.navigationConfig.backgroundImageFit}};
+                    background-repeat: {{ footerKit.navigationConfig.backgroundImageRepeat }};
+                {% endif %}
+                ">
+
+            {% if footerKit.navigationConfig.active %}
+
+
+                <div class="container col-12"
+                style="padding: {{ footerKit.navigationConfig.verticalSpacing ? footerKit.navigationConfig.verticalSpacing : "25px" }} {{ footerKit.navigationConfig.horizontalSpacing ? footerKit.navigationConfig.horizontalSpacing : "25px" }} !important;
+                ">
+                    <div class="{% if config('CogiFooterKit.config.cogiFooterKitFullWidth') %}row{% else %}container flex-md-wrap d-md-flex justify-content-md-start align-items-md-start{% endif %}">
+                        {% if footerKit.navigationConfig.serviceHotline %}
+                            {% block layout_footer_navigation_hotline %}
+                                <div class="col-md-3 footer-column js-footer-column pb-4">
+                                    {% block layout_footer_navigation_hotline_headline %}
+                                        <div class="footer-column-headline footer-headline js-footer-column-headline js-collapse-footer-column-trigger"
+                                                id="collapseFooterHotlineTitle"
+                                                data-bs-target="#collapseFooterHotline"
+                                                data-bs-toggle="collapse"
+                                                aria-expanded="true"
+                                                aria-controls="collapseFooterHotline"
+                                                style="color: {{ footerKit.navigationConfig.fontColor }};">
+                                            {{ 'footer.serviceHotlineHeadline'|trans|sw_sanitize }}
+                                            {% block layout_footer_navigation_hotline_icons %}
+                                                <div class="footer-column-toggle">
+                                                    <span class="footer-plus-icon">
+                                                        {% sw_icon 'plus' %}
+                                                    </span>
+                                                    <span class="footer-minus-icon">
+                                                        {% sw_icon 'minus' %}
+                                                    </span>
+                                                </div>
+                                            {% endblock %}
+                                        </div>
+                                    {% endblock %}
+
+                                    {% block layout_footer_navigation_hotline_content %}
+                                        <div id="collapseFooterHotline"
+                                                class="footer-column-content collapse js-footer-column-content footer-contact"
+                                                aria-labelledby="collapseFooterHotlineTitle">
+                                            <div class="footer-column-content-inner">
+                                                <p class="footer-contact-hotline">
+                                                    {{ 'footer.serviceHotline'|trans|sw_sanitize }}
+                                                </p>
+                                            </div>
+                                            <div class="footer-contact-form">
+                                                {{ 'footer.serviceContactLink'|trans({
+                                                    '%url%': path('frontend.cms.page', { id: config('core.basicInformation.contactPage') })
+                                                })|raw }}
+                                            </div>
+                                        </div>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+
+                        {% if footerKit.navigationConfig["active"] %}
+                            {% block layout_footer_navigation_columns %}
+                                {% for root in page.footer.navigation.tree %}
+                                    {% block layout_footer_navigation_column %}
+                                        <div class="col-md-3 footer-column js-footer-column">
+                                            {% block layout_footer_navigation_information_headline %}
+                                                <div class="footer-column-headline footer-headline js-collapse-footer-column-trigger"
+                                                        data-bs-target="#collapseFooterTitle{{ loop.index }}"
+                                                        data-bs-toggle="collapse"
+                                                        aria-expanded="true"
+                                                        aria-controls="collapseFooter{{ loop.index }}"
+                                                        style="color: {{ footerKit.navigationConfig.fontColor }};">
+                                                    {{ root.category.translated.name }}
+                                                    {% block layout_footer_navigation_information_icons %}
+                                                        <div class="footer-column-toggle">
+                                                            <span class="footer-plus-icon">
+                                                                {% sw_icon 'plus' %}
+                                                            </span>
+                                                            <span class="footer-minus-icon">
+                                                                {% sw_icon 'minus' %}
+                                                            </span>
+                                                        </div>
+                                                    {% endblock %}
+                                                </div>
+                                            {% endblock %}
+
+                                            {% block layout_footer_navigation_information_content %}
+                                                <div id="collapseFooterTitle{{ loop.index }}"
+                                                        class="footer-column-content collapse js-footer-column-content"
+                                                        aria-labelledby="collapseFooterTitle{{ loop.index }}">
+                                                    <div class="footer-column-content-inner">
+                                                        {% block layout_footer_navigation_information_links %}
+                                                            <ul class="list-unstyled">
+                                                                {% for treeItem in root.children %}
+                                                                    {% set category = treeItem.category %}
+                                                                    {% set name = category.translated.name %}
+                                                                    {% set externalLink = category.translated.externalLink %}
+                                                                    {% block layout_footer_navigation_information_link_item %}
+                                                                        <li class="footer-link-item">
+                                                                            {% block layout_footer_navigation_information_link %}
+                                                                                {% if category.type == 'folder' %}
+                                                                                    <div>{{ name }}</div>
+                                                                                {% else %}
+                                                                                    <a class="footer-link"
+                                                                                       style="color: {{ footerKit.navigationConfig.fontColorLink }}; transition: all {{ footerKit.navigationConfig.transitionTime }};"
+                                                                                        {% if footerKit.navigationConfig.fontColorLink or footerKit.navigationConfig.fontColorLinkHover %}
+                                                                                            onMouseOver="this.style.color='{{ footerKit.navigationConfig.fontColorLinkHover }}'"
+                                                                                            onMouseOut="this.style.color='{{ footerKit.navigationConfig.fontColorLink }}'"
+                                                                                        {% endif %}
+                                                                                       href="{{ category_url(category) }}"
+                                                                                       {% if category_linknewtab(category) %}target="_blank"{% endif %}
+                                                                                       title="{{ name }}">
+                                                                                        {{ name }}
+                                                                                    </a>
+                                                                                {% endif %}
+                                                                            {% endblock %}
+                                                                        </li>
+                                                                    {% endblock %}
+                                                                {% endfor %}
+                                                            </ul>
+                                                        {% endblock %}
+                                                    </div>
+                                                </div>
+                                            {% endblock %}
+                                        </div>
+                                    {% endblock %}
+                                {% endfor %}
+                            {% endblock %}
+                            {% block custom_navigation_blocks %}
+                                {% for block in footerKit.navigationBlock %}
+                                    {% if block.active %}
+                                        {% block layout_footer_navigation_block_column %}
+                                            <div class="{{ block.col }} footer-column js-footer-column">
+                                                {% block layout_footer_navigation_block_headline %}
+                                                    <div class="footer-column-headline footer-headline js-collapse-footer-column-trigger"
+                                                         data-bs-target="#collapseFooterTitle{{ loop.index }}"
+                                                         data-bs-toggle="collapse"
+                                                         aria-expanded="true"
+                                                         aria-controls="collapseFooter{{ loop.index }}"
+                                                         style="color: {{ footerKit.navigationConfig.fontColor }};">
+                                                        {{ block.title }}
+                                                        {% block layout_footer_navigation_block_icons %}
+                                                            <div class="footer-column-toggle">
+                                                                <span class="footer-plus-icon">
+                                                                    {% sw_icon 'plus' %}
+                                                                </span>
+                                                                <span class="footer-minus-icon">
+                                                                    {% sw_icon 'minus' %}
+                                                                </span>
+                                                            </div>
+                                                        {% endblock %}
+                                                    </div>
+                                                {% endblock %}
+
+                                                {% block layout_footer_navigation_block_content %}
+                                                    <div id="collapseFooterTitle{{ loop.index }}"
+                                                         class="footer-column-content collapse js-footer-column-content"
+                                                         aria-labelledby="collapseFooterTitle{{ loop.index }}">
+                                                        <div class="footer-column-content-inner">
+                                                            {% block layout_footer_navigation_block_links %}
+                                                                {{ block.block|raw }}
+                                                            {% endblock %}
+                                                        </div>
+                                                    </div>
+                                                {% endblock %}
+                                            </div>
+                                        {% endblock %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endblock %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+            {% block layout_footer_information_custom %}
+                {% if footerKit.informationConfig.basicSettings.active and footerKit.informationConfig.basicSettings.informationType == 'custom' %}
+                    <div class="col-12 d-flex row customColumns m-0
+                    {% if footerKit.informationConfig.basicSettings.center %}
+                        justify-content-center
+                    {% endif %}
+                    "
+                    style="background: {{ footerKit.informationConfig.basicSettings.backgroundColor }}; padding: {{ footerKit.informationConfig.basicSettings.verticalSpacing ? footerKit.informationConfig.basicSettings.verticalSpacing : "25px" }} {{ footerKit.informationConfig.basicSettings.horizontalSpacing ? footerKit.informationConfig.basicSettings.horizontalSpacing : "25px" }};">
+                        {% if footerKit.productSliderTitle %}
+                            <div class="col-12 d-flex justify-content-center" style="background: {{ footerKit.informationConfig.basicSettings.backgroundColor }};">
+                                <h3 class="p-0 m-0 py-3" style="color: {{ footerKit.informationConfig.basicSettings.titleColor }};"> {{ footerKit.productSliderTitle }} </h3>
+                            </div>
+                        {% endif %}
+                        {% for informationBlock in footerKit.informationBlock %}
+                            {% if informationBlock.active %}
+                                <div class="{{ informationBlock.col }}">
+                                    {{ informationBlock.block|raw }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+            {% block layout_footer_information_dynamic_products %}
+                {% if footerKit.informationConfig.basicSettings.active and footerKit.informationConfig.basicSettings.informationType == 'dynamic' %}
+                    <div class="col-12 d-flex row customColumns m-0 p0 justify-content-center"
+                        style="background: {{ footerKit.informationConfig.basicSettings.backgroundColor }}; padding: {{ footerKit.informationConfig.basicSettings.verticalSpacing ? footerKit.informationConfig.basicSettings.verticalSpacing : "25px" }} {{ footerKit.informationConfig.basicSettings.horizontalSpacing ? footerKit.informationConfig.basicSettings.horizontalSpacing : "25px" }};">
+                        {% if footerKit.productSliderTitle %}
+                            <div class="col-12 d-flex justify-content-center" style="background: {{ footerKit.informationConfig.basicSettings.backgroundColor }};">
+                                <h3 class="p-0 m-0 py-3" style="color: {{ footerKit.informationConfig.basicSettings.titleColor }};"> {{ footerKit.productSliderTitle }} </h3>
+                            </div>
+                        {% endif %}
+                        {% sw_include '@FooterKit/storefront/layout/footer/tools/product-slider.html.twig' with {'product': product } %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+            <div class="row col-12 p-0 m-0">
+                {% block layout_footer_payment_logos %}
+                    {% if footerKit.paymentShippingConfig.paymentActive %}
+                        <div class="footer-logo- is-payment col-12 d-flex row m-0
+                        {% if footerKit.paymentShippingConfig.paymentActive == footerKit.paymentShippingConfig.shippingActive %}
+                            col-md-6
+                            justify-content-md-end
+                            justify-content-center
+                        {% else %}
+                            col-md-12
+                            justify-content-center
+                        {% endif %}
+                        " style="background: {{ footerKit.paymentShippingConfig.backgroundColor }}; padding: {{ footerKit.paymentShippingConfig.verticalSpacing ? footerKit.paymentShippingConfig.verticalSpacing : "25px" }} {{ footerKit.paymentShippingConfig.horizontalSpacing ? footerKit.paymentShippingConfig.horizontalSpacing : "25px" }};">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <span class="m-0" style="font-size: 18px; font-weight: 600; text-align: center; color: {{ footerKit.paymentShippingConfig.fontColor }};">{{ footerKit.paymentString|trans }}</span>
+                            </div>
+                            {% for paymentMethod in page.salesChannelPaymentMethods %}
+                                {% block layout_footer_payment_logo %}
+                                    {% if paymentMethod.media %}
+                                        <div class="img-wrapper m-2">
+                                            {% sw_thumbnails 'footer-payment-image-thumbnails' with {
+                                                media: paymentMethod.media,
+                                                sizes: {
+                                                    'default': '35px'
+                                                },
+                                                attributes: {
+                                                    'class': 'img-fluid footer-logo-image',
+                                                    'alt': (paymentMethod.media.translated.alt ?: paymentMethod.translated.name),
+                                                    'title': (paymentMethod.media.translated.title ?: paymentMethod.translated.name)
+                                                }
+                                            } %}
+                                        </div>
+                                    {% endif %}
+                                {% endblock %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+
+                {% block layout_footer_shipping_logos %}
+                    {% if footerKit.paymentShippingConfig.shippingActive %}
+                        <div class="is-shipping footer-logo- is-payment col-12 d-flex row m-0
+                        {% if footerKit.paymentShippingConfig.shippingActive == footerKit.paymentShippingConfig.paymentActive %}
+                            col-md-6
+                            justify-content-md-start
+                            justify-content-center
+                        {% else %}
+                            col-md-12
+                            justify-content-center
+                        {% endif %}
+                        " style="background: {{ footerKit.paymentShippingConfig.backgroundColor }}; padding: {{ footerKit.paymentShippingConfig.verticalSpacing ? footerKit.paymentShippingConfig.verticalSpacing : "25px" }} {{ footerKit.paymentShippingConfig.horizontalSpacing ? footerKit.paymentShippingConfig.horizontalSpacing : "25px" }};">
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <span class="m-0" style="font-size: 18px; font-weight: 600; text-align: center; color: {{ footerKit.paymentShippingConfig.fontColor }};">{{ footerKit.shippingString|trans }}</span>
+                            </div>
+                            {% for shippingMethod in page.salesChannelShippingMethods %}
+                                {% block layout_footer_shipping_logo %}
+                                    {% if shippingMethod.media %}
+                                        <div class="img-wrapper m-2">
+                                            {% sw_thumbnails 'footer-shipping-image-thumbnails' with {
+                                                media: shippingMethod.media,
+                                                sizes: {
+                                                    'default': '35px'
+                                                },
+                                                attributes: {
+                                                    'class': 'img-fluid footer-logo-image',
+                                                    'alt': (shippingMethod.media.translated.alt ?: shippingMethod.translated.name),
+                                                    'title': (shippingMethod.media.translated.title ?: shippingMethod.translated.name)
+                                                }
+                                            } %}
+                                        </div>
+                                    {% endif %}
+                                {% endblock %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+
+        {% if footerKit.bottomConfig.basicSettings.active %}
+            <div class="col-12 p-0" style="background: {{ footerKit.bottomConfig.basicSettings.backgroundColor }};">
+                {% block social_media_block %}
+                    {% if footerKit.bottomConfig.socialMediaSettings.active %}
+                        <div class="col-12" style="padding: {{ footerKit.bottomConfig.socialMediaSettings.verticalSpacing ? footerKit.bottomConfig.socialMediaSettings.verticalSpacing : "25px" }} {{ footerKit.bottomConfig.socialMediaSettings.horizontalSpacing ? footerKit.bottomConfig.socialMediaSettings.horizontalSpacing : "25px" }};">
+                            <div class="d-flex justify-content-center col-12 p-0">
+                                <h1 style="font-weight: 600; font-size: 1.2rem; color: {{ footerKit.bottomConfig.socialMediaSettings.fontColor }};">{{ footerKit.socialMediaString|trans }}</h1>
+                            </div>
+                            <ul class="nav col-12 p-0" style="display: flex; flex-flow: row wrap; justify-content: center;">
+                                {% for socialMedia in footerKit.bottomConfig.socialMedia %}
+                                    {% if socialMedia.active %}
+                                        <li class="m-1 d-flex justify-content-center align-center">
+                                            {% for itemMedia in media %}
+                                                {% if socialMedia.media == itemMedia.id %}
+                                                    {% set mediaUrl = itemMedia.url %}
+                                                    <a
+                                                        href="{{ socialMedia.url }}"
+                                                        {% if footerKit.bottomConfig.socialMediaSettings.tab %}
+                                                            target="_blank"
+                                                        {% endif %}
+                                                        >
+                                                        <img style="height: {{ footerKit.bottomConfig.socialMediaSettings.iconSize ? footerKit.bottomConfig.socialMediaSettings.iconSize : "30px" }}"
+                                                                src="{{ mediaUrl }}"
+                                                                alt="socialMedia1">
+                                                    </a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                {% endblock %}
+
+
+                {% block layout_footer_company_logo %}
+                    {% if footerKit.bottomConfig.companyLogoSettings.active %}
+                        <div class="d-flex justify-content-center col-12"
+                            style="padding: {{ footerKit.bottomConfig.companyLogoSettings.verticalSpacing ? footerKit.bottomConfig.companyLogoSettings.verticalSpacing : "25px" }} {{ footerKit.bottomConfig.companyLogoSettings.horizontalSpacing ? footerKit.bottomConfig.companyLogoSettings.horizontalSpacing : "25px" }};">
+                            {% for itemMedia in media %}
+                                {% if footerKit.bottomConfig.companyLogoSettings.media == itemMedia.id %}
+                                    {% set mediaUrl = itemMedia.url %}
+                                    <img style="height: {{ footerKit.bottomConfig.companyLogoSettings.size ? footerKit.bottomConfig.companyLogoSettings.size : "50px" }}" src="{{ mediaUrl }}" alt="logo">
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+
+                {% block layout_footer_custom_link %}
+                    {% if footerKit.bottomConfig.customLinkSettings.active %}
+                        <ul class="nav d-flex justify-content-center col-12 p-1 customLink" style="padding: {{ footerKit.bottomConfig.customLinkSettings.verticalSpacing ? footerKit.bottomConfig.customLinkSettings.verticalSpacing : "0px" }} {{ footerKit.bottomConfig.customLinkSettings.horizontalSpacing ? footerKit.bottomConfig.customLinkSettings.horizontalSpacing : "0px" }} !important;">
+                            {% for customLink in footerKit.customLink %}
+                                {% if customLink.active %}
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                            {% if footerKit.bottomConfig.customLinkSettings.fontColor or footerKit.bottomConfig.customLinkSettings.fontColorHover %}
+                                                onMouseOver="this.style.color='{{ footerKit.bottomConfig.customLinkSettings.fontColorHover }}'"
+                                                onMouseOut="this.style.color='{{ footerKit.bottomConfig.customLinkSettings.fontColor }}'"
+                                            {% endif %}
+                                            style="color: {{ footerKit.bottomConfig.customLinkSettings.fontColor }}; transition: all {{ footerKit.bottomConfig.customLinkSettings.transitionTime }};
+                                                    font-size: {{ footerKit.bottomConfig.customLinkSettings.fontSize ? footerKit.bottomConfig.customLinkSettings.fontSize : ".875rem" }}"
+                                            href="{{ customLink.url }}"
+                                            {% if footerKit.bottomConfig.customLinkSettings.tab %}
+                                                target="_blank"
+                                            {% endif %}
+                                            >
+                                            {{ customLink.name|trans }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endblock %}
+
+                {% block layout_footer_vat %}
+                    {% if footerKit.bottomConfig.basicSettings.vatActive %}
+                        <div class="footer-vat-new d-flex justify-content-center new-footer col-12"
+                            style="color: {{ footerKit.bottomConfig.basicSettings.vatFontColor }}; padding: {{ footerKit.bottomConfig.basicSettings.vatVerticalSpacing ? footerKit.bottomConfig.basicSettings.vatVerticalSpacing : "0" }} {{ footerKit.bottomConfig.basicSettings.vatHorizontalSpacing ? footerKit.bottomConfig.basicSettings.vatHorizontalSpacing : "10px" }};">
+                            {% if context.taxState == "gross" %}
+                                <p>
+                                    {{ "footer.includeVat"|trans({
+                                        '%url%': path('frontend.cms.page',{ id: config('core.basicInformation.shippingPaymentInfoPage') })
+                                    })|raw }}
+                                </p>
+                            {% else %}
+                                <p>
+                                    {{ "footer.excludeVat"|trans({
+                                        '%url%': path('frontend.cms.page',{ id: config('core.basicInformation.shippingPaymentInfoPage') })
+                                    })|raw }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        {% endif %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+{% endblock %}

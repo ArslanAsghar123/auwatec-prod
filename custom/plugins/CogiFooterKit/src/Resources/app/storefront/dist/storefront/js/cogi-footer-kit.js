@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([["cogi-footer-kit"],{"65/V":function(o,n){}},[["65/V","runtime"]]]);

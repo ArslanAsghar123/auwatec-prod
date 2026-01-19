@@ -1,0 +1,19 @@
+{% block dreisc_seo_component_breadcrumb_default %}
+<li class="breadcrumb-item"
+    {% if key is same as(categoryId) %}aria-current="page"{% endif %}>
+    {% if breadcrumbCategory.type == 'folder' %}
+        <div>{{ name }}</div>
+    {% else %}
+        <a href="{{ category_url(breadcrumbCategory) }}"
+           class="breadcrumb-link {% if key is same as(categoryId) and true != ignoreActive %} is-active{% endif %}"
+           title="{{ name }}"
+           {% if category_linknewtab(breadcrumbCategory) %}target="_blank"{% endif %}
+           itemprop="item">
+            <link itemprop="url"
+                  href="{{ category_url(breadcrumbCategory) }}"/>
+            <span class="breadcrumb-title" itemprop="name">{{ name }}</span>
+        </a>
+        <meta itemprop="position" content="{{ breadcrumbCategory.id }}"/>
+    {% endif %}
+</li>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% sw_extends '@Storefront/storefront/layout/header/search.html.twig' %}
+
+{# just changed the icon #}
+{% block layout_header_search_button %}
+    <button type="submit"
+            class="btn header-search-btn"
+            aria-label="{{ "header.searchButton"|trans|striptags }}">
+        <span class="header-search-icon">
+            {% sw_icon 'zoom-a' style { 'namespace': 'Auwatec' } %}
+        </span>
+    </button>
+{% endblock %}

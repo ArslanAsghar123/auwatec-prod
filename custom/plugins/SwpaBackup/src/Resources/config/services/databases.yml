@@ -1,0 +1,13 @@
+services:
+
+  swpa.backup.databases.mysql:
+    class: Swpa\SwpaBackup\Databases\MysqlDatabase
+    public: false
+    tags: [ "swpa.backup.databases" ]
+    arguments: [ "@swpa.backup.config" ]
+
+  swpa.backup.databases:
+    class: Swpa\SwpaBackup\Databases\DatabaseProvider
+    public: false
+    arguments: [ "@swpa.backup.config" ]
+

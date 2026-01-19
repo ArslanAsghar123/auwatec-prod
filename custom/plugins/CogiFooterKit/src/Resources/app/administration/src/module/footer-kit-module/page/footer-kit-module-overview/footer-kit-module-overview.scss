@@ -1,0 +1,136 @@
+.frame{
+    border: 1px solid lightgray;
+    border-radius: 5px; 
+    padding: 10px;
+}
+
+.backgroundCard{
+    background: #f1f1f1;
+    .sw-field--switch .sw-field--switch__content {
+        background: #f1f1f1 !important;
+    }
+}
+
+.backgroundCard2{
+    background: #fafafa;
+}
+
+.backgroundCardWhite{
+    background: #ffffff;
+}
+
+.centered{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.socialMeidaPaddingHead{
+    padding-top: 0.5em;
+}
+
+.plus-button {
+	border: 2px solid #189eff;
+	background-color: #b4e7ff;
+	font-size: 16px;
+	height: 2.5em;
+	width: 2.5em;
+	border-radius: 999px;
+    position: relative;
+    transition: all 300ms;
+	
+	&:after,
+	&:before {
+		content: "";
+		display: block;
+		background-color: #189eff;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 300ms;
+	}
+	
+	&:before {
+		height: 1em;
+		width: 0.2em;
+	}
+
+	&:after {
+		height: 0.2em;
+		width: 1em;
+    }
+    
+    &:active{
+        outline: none;
+        border: none;
+    }
+
+    &:focus{
+        outline:0;
+    }
+
+    &:hover{
+        cursor: pointer;
+        border: 2px solid #b4e7ff;
+        &:before,
+        &:after{
+            background-color: #58b9ff;
+        }
+    }
+}
+
+.plus-button--large {
+	font-size: 22px;
+}
+
+.minus-button {
+	border: 2px solid #ff3636;
+	background-color: #ffb0b0;
+	font-size: 16px;
+	height: 2.5em;
+	width: 2.5em;
+	border-radius: 999px;
+    position: relative;
+    transition: all 300ms;
+	
+	&:after,
+	&:before {
+		content: "";
+		display: block;
+		background-color: #ff3636;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 300ms;
+	}
+
+	&:after {
+		height: 0.2em;
+		width: 1em;
+    }
+    
+    &:active{
+        outline: none;
+        border: none;
+    }
+
+    &:focus{
+        outline:0;
+    }
+
+    &:hover{
+        cursor: pointer;
+        border: 2px solid #ffb0b0;
+        &:before,
+        &:after{
+            background-color: #ff7c7c;
+        }
+    }
+}
+
+.minus-button--small {
+	font-size: 8px;
+}

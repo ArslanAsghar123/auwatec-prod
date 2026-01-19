@@ -1,0 +1,144 @@
+{
+    "footer-kit": {
+        "general": {
+            "footerKitSettingsLabel": "Footerbaukasten"
+        },
+        "tabs":{
+            "mainLabel": "Allgemein",
+            "navigationLabel": "Footer Navigation",
+            "informationLabel": "Informations-Footer",
+            "paymentShippingLabel": "Bezahl/Versand-Logos",
+            "bottomLabel": "Bottom-Footer"
+        },
+        "button":{
+            "saveLabel": "Speichern"
+        },
+        "save":{
+            "messageSaveSuccess": "Die Einstellungen wurde erfolgreich gespeichert."
+        },
+        "message": {
+            "addFail": "Das Limit der Blöcke wurde erreicht."
+        },
+        "helpText": {
+            "navigation": "Um die Navigation zu erstellen, findest du hier ein Tutorial: https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/grundlegende-einrichtung",
+            "serviceHotline": "Zeigt die Standard Service-Hotline",
+            "shipping": "Zeigt die Logos der aktiven Versandarten des Shops",
+            "payment": "Zeigt die Logos der aktiven Zahlungsmethoden des Shops"
+        },
+        "placeholder": {
+            "spacingCustomLinks": "Wert in Pixel (0px)",
+            "spacing" : "Wert in Pixel (25px)",
+            "size": "Wert in Pixel (25px)",
+            "socialMediaString": "folge uns auf...",
+            "linkName": "Gib einen Linknamen ein...",
+            "logoSize": "Wert in Pixel (50px)",
+            "payment": "Zahlungsmethoden",
+            "shipping": "Versandarten",
+            "transitionTime": "200ms",
+            "productSelect": "Wähle deine Produkte...",
+            "numberOfNewProduct": "6",
+            "salesChannel": "Wähle deine Storefront aus...",
+            "fontSize": "Wert in Pixel (15px)",
+            "productTitle": "Gebe einen Titel an..."
+        },
+        "label": {
+            "mainLabel": "Allgemein",
+            "fontSize": "Schriftgröße",
+            "vertical": "Vertikaler Abstand",
+            "horizontal": "Horizontaler Abstand",
+            "background": "Navigation Hintergrund",
+            "backgroundType": "Hintergrund-Typ",
+            "backgroundColor": "Hintergrundfarbe",
+            "color": "Farbe",
+            "image": "Bild",
+            "fontColor": "Schriftfarbe",
+            "fontColorHover": "Schriftfarbe Hover",
+            "fontColorLink": "Linkfarbe",
+            "fontColorLinkHover": "Linkfarbe Hover",
+            "backgroundImage": "Hintergrundbild",
+            "headingColor": "Überschriftfarbe",
+            "transitionTime": "Übergang",
+            "active": "Aktiv",
+            "tab": "In einem neuem Tab öffnen",
+            "center": "Blöcke zentral ausgerichtet",
+            "columnSize": "Spaltengröße",
+            "paymentActive": "Zahlungmethoden-Logos Aktiv",
+            "shippingActive": "Versandarten-Logos Aktiv",
+            "navigationLabel": "Navigation Grundeinstellungen",
+            "serviceHotlineLabel": "Service-Hotline",
+            "informationLabel": "Informations-Footer Grundeinstellungen",
+            "informationBlocksLabel": "Informationsblöcke",
+            "informationBlockLabel": "Block",
+            "paymentShippingLabel": "Bezahl/Versand-Logos Grundeinstellungen",
+            "paymentStringLabel": "Bezahlstring",
+            "shippingStringLabel": "Versandstring",
+            "bottomFooterLabel": "Bottom-Footer Grundeinstellungen",
+            "socialMediaLabel": "Social Media Grundeinstellungen",
+            "socialMediaString": "Social Media String",
+            "iconSizeLabel": "Icon Größe",
+            "socialMediaBlocksLabel": "Social Media Blöcke",
+            "socialMediaBlockLabel": "Social Media Block",
+            "iconLabel": "Icon",
+            "customLinksLabel": "Benutzerdefinierte Links Grundeinstellungen",
+            "customLinksBlocksLabel": "Benutzerdefinierte Links Blöcke",
+            "customLinkBlockLabel": "Benutzerdefinierter Link",
+            "urlLabel": "URL",
+            "linkNameLabel": "Link Name",
+            "companyLogoLabel": "Firmenlogo Einstellungen",
+            "logoSizeLabel": "Logo Größe",
+            "logo": "Logo",
+            "vatLabel": "MwSt. Text Einstellungen",
+            "informationDynamicLabel": "Produkte anzeigen",
+            "switchInformationType": "Informationstyp",
+            "productType": "Produkt Typ Anzeige",
+            "numberOfNewProduct": "Anzahl neuer Produkte",
+            "salesChannel": "Verkaufskanal",
+            "productTitle": "Titel",
+            "titleColor": "Titelfarbe"
+        },
+        "background": {
+            "positionLabel": "Hintergrundbild Position",
+            "positionCenter": "Zentral",
+            "positionTop": "Oben",
+            "positionRight": "Rechts",
+            "positionBottom": "Unten",
+            "positionLeft": "Links"
+        },
+        "fit": {
+            "label": "Hintergrundbild Anpassung",
+            "cover": "Cover",
+            "contain": "Contain",
+            "auto": "Auto"
+        },
+        "repeatValue": {
+            "label": "Wiederholungseinstellungen",
+            "repeat": "Wiederholen",
+            "no-repeat": "Nicht wiederholen",
+            "repeat-x": "Wiederholen x-Achse",
+            "repeat-y": "Wiederholen y-Achse"
+        },
+        "information": {
+            "dynamic": "Produkte",
+            "custom": "Benutzerdefiniert",
+            "productSelect": "Produktauswahl",
+            "productNew": "Neue Produkte"
+        },
+        "list": {
+            "header": "Footerbaukasten-Liste",
+            "addButton": "Hinzufügen",
+            "noNameLabel": "Kein Name vergeben!",
+            "noSalesChannelLabel": "Kein Verkaufskanal gewählt!"
+        },
+        "table": {
+            "name": "Name",
+            "salesChannel": "Verkaufskanal"
+        },
+        "create": {
+            "createButton": "Erstellen",
+            "backButton": "Zurück",
+            "name": "Name",
+            "salesChannel": "Verkaufskanal",
+            "messageCreateSuccess": "Das Item wurde erfolgreich erstellt!"
+        }
+    }
+}

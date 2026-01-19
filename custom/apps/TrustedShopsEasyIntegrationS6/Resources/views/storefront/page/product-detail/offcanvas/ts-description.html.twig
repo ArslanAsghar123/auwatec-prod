@@ -1,0 +1,44 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block page_product_detail_ts_review_container %}
+        <div class="product-detail-ts-review-tab tab-pane-container">
+            {# {% block page_product_detail_ts_review_title %}
+                <div class="h3 product-detail-ts-review-tab-title">
+                    {{ "detail.descriptionTitle"|trans|sw_sanitize }} "{{ page.product.translated.name }}"
+                </div>
+            {% endblock %} #}
+
+            {% block page_product_detail_ts_review_content %}
+                {# {% block page_product_detail_ts_review_content_text %}
+                    <div class="product-detail-ts-review-tab-text"
+                         itemprop="description">
+                        {{ page.product.translated.description|raw }}
+                    </div>
+                {% endblock %} #}
+
+                {% block page_product_detail_ts_review_content_properties %}
+                    {% for widget in tsConfig[tsChannelId][activeLanguageIsoCode].widgets.children.0.children %}
+                        {% if widget.widgetLocation.id === widgetLocationId %}
+                            {% set widgetTag = '<' ~ widget.tag ~ ' ' ~ widget.attributes.id.attributeName ~ '="'~ widget.attributes.id.value ~'"' %}
+
+                            {% if widget.attributes.productIdentifier is defined %}
+                                {% if widget.attributes.productIdentifier.attributeName === "data-gtin" and product.ean is not null %}
+                                    {% set widgetTag = widgetTag ~ ' ' ~ widget.attributes.productIdentifier.attributeName ~ '="'~ product.ean|trim ~'"' %}
+                                {% elseif widget.attributes.productIdentifier.attributeName === "data-mpn" and product.manufacturerNumber is not null %}
+                                    {% set widgetTag = widgetTag ~ ' ' ~ widget.attributes.productIdentifier.attributeName ~ '="'~ product.manufacturerNumber|trim ~'"' %}
+                                {% else %}
+                                    {% set widgetTag = widgetTag ~ 'data-sku="'~ product.productNumber|trim ~'"' %}
+                                {% endif %}
+                            {% endif %}
+
+                            {% set widgetTag = widgetTag ~ '></' ~ widget.tag ~ '>' %}
+
+                            {{ widgetTag|raw }}
+                        {% endif %}
+                    {% endfor %}
+                {% endblock %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

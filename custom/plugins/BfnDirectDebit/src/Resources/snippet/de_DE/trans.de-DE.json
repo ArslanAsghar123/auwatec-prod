@@ -1,0 +1,16 @@
+{
+  "bfn-direct-debit": {
+    "owner": "Inhaber",
+    "ownerPlaceholder": "Inhaber",
+    "iban": "IBAN",
+    "ibanPlaceholder": "IBAN",
+    "bic-swift": "BIC / SWIFT",
+    "bic-swiftPlaceholder": "BIC / SWIFT",
+    "notValidPaymetData": "Die eingegebene Bankverbindung ist nicht korrekt. Bitte korrigiere diese.",
+    "iban-error" : "Ungültige IBAN-Nummer",
+    "swift-error" : "Ungültige SWIFT-Nummer",
+    "confirmMandate": "Ich akzeptiere hiermit das SEPA-Mandat und die Verwendung der Rechnungsadresse als Mandatsadresse.",
+    "mandateError": "Die Erstellung eines Mandats muss für die Zahlung per Lastschrift genehmigt werden.",
+    "fillPaymetData": "Bitte eine valide Bankverbindung eingeben."
+  }
+}

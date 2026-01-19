@@ -1,0 +1,66 @@
+{% set baseSliderOptions = {
+    slider: {
+        gutter: 10,
+        navPosition: 'bottom',
+        autoplay: false,
+        autoplayButtonOutput: false,
+        nav: true,
+        controls: true,
+        loop: false,
+        responsive: {
+            xs: {items: 1},
+            sm: {items: 2},
+            md: {items: 3},
+            lg: {items: 4},
+            xl: {items: 5},
+            xxl: {items: 6}
+        },
+    }
+} %}
+<div class="logo-slider">
+    {% if data.text_headline !== '' %}
+        <div class="logo-slider-header">
+            <div class="logo-slider-header-headline h2">
+                {{ data.text_headline }}
+            </div>
+        </div>
+    {% endif %}
+    {% if data.rep_logo is defined and data.rep_logo is iterable %}
+        <div class="base-slider has-nav" data-base-slider="true"
+             data-base-slider-options='{{ baseSliderOptions|json_encode }}'>
+            <div class="logo-slider-slider">
+                <div data-base-slider-container="true">
+                    {% for sub0 in data.rep_logo %}
+                        {% if sub0.med_image is defined and sub0.med_image is not null %}
+                            <div>
+                                <div class="logo-slider-item">
+                                    {% if sub0.text_link  !== '' %}
+                                    <a href="{{ sub0.text_link }}">
+                                        {% endif %}
+                                        {% sw_thumbnails 'thumbnails' with {
+                                            media: sub0.med_image
+                                        } %}
+                                        {% if sub0.text_link  !== '' %}
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="base-slider-controls"
+                 data-base-slider-controls="true">
+                <button
+                        class="base-slider-controls-prev product-slider-controls-prev">
+                    {% sw_icon 'arrow-head-left' %}
+                </button>
+                <button
+                        class="base-slider-controls-next product-slider-controls-next">
+                    {% sw_icon 'arrow-head-right' %}
+                </button>
+            </div>
+        </div>
+    {% endif %}
+</div>

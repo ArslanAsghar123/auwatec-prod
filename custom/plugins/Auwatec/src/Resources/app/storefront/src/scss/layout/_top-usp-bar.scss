@@ -1,0 +1,28 @@
+.top-usp-bar{
+  //background: $sw-color-brand-primary;
+  background-color: $blue-background-dark;
+  color: $white;
+  padding: 10px 0;
+  overflow: hidden;
+  max-height: 44px;
+
+  .top-usp-bar-inner {
+    max-height: 24px;
+    overflow: hidden;
+  }
+}
+
+.top-usp{
+  font-family: $font-family-roboto;
+  font-weight: bold;
+  font-size: 15px;
+  text-transform: uppercase;
+  text-align: center;
+  .icon{
+    color: $white;
+    width: 14px;
+    height: 14px;
+    vertical-align: top;
+    margin-right: 3px;
+  }
+}

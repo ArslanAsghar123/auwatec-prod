@@ -1,0 +1,136 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/tabs.html.twig' %}
+
+{% block page_product_detail_tabs_navigation_description %}
+    {% if page.product.extensions.acrisGpsr %}
+        {% set setFirstSelected = true %}
+        {% set gpsrTabContents = page.product.extensions.acrisGpsr.getByDisplayTypeAndPosition('gpsrTab', 'beforeDescriptionTab') %}
+        {% if gpsrTabContents.count > 0 %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-nav-item.html.twig' with {
+                'id': 'gpsr-main',
+                'isGpsrTab': true
+            } %}
+            {% set setFirstSelected = false %}
+        {% endif %}
+
+        {% set ownTabsGrouped = page.product.extensions.acrisGpsr.getByDisplayTypeAndPositionGrouped('tab', 'beforeDescriptionTab') %}
+        {% for contentType, gpsrTabContents in ownTabsGrouped %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-nav-item.html.twig' with {
+                'id': 'gpsr-'~contentType,
+                'isGpsrTab': false,
+                'contentType': contentType
+            } %}
+            {% set setFirstSelected = false %}
+        {% endfor %}
+    {% endif %}
+
+    {{ parent() }}
+
+    {% if page.product.extensions.acrisGpsr %}
+        {% set setFirstSelected = false %}
+        {% set gpsrTabContents = page.product.extensions.acrisGpsr.getByDisplayTypeAndPosition('gpsrTab', 'afterDescriptionTab') %}
+        {% if gpsrTabContents.count > 0 %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-nav-item.html.twig' with {
+                'id': 'gpsr-main',
+                'isGpsrTab': true
+            } %}
+        {% endif %}
+
+        {% set ownTabsGrouped = page.product.extensions.acrisGpsr.getByDisplayTypeAndPositionGrouped('tab', 'afterDescriptionTab') %}
+        {% for contentType, gpsrTabContents in ownTabsGrouped %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-nav-item.html.twig' with {
+                'id': 'gpsr-'~contentType,
+                'isGpsrTab': false,
+                'contentType': contentType
+            } %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block page_product_detail_tabs_navigation_review %}
+    {{ parent() }}
+
+    {% if page.product.extensions.acrisGpsr %}
+        {% set gpsrTabContents = page.product.extensions.acrisGpsr.getByDisplayTypeAndPosition('gpsrTab', 'afterReviewsTab') %}
+        {% if gpsrTabContents.count > 0 %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-nav-item.html.twig' with {
+                'id': 'gpsr-main',
+                'isGpsrTab': true
+            } %}
+        {% endif %}
+
+        {% set ownTabsGrouped = page.product.extensions.acrisGpsr.getByDisplayTypeAndPositionGrouped('tab', 'afterReviewsTab') %}
+        {% for contentType, gpsrTabContents in ownTabsGrouped %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-nav-item.html.twig' with {
+                'id': 'gpsr-'~contentType,
+                'isGpsrTab': false,
+                'contentType': contentType
+            } %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block page_product_detail_tabs_content_description %}
+    {% if page.product.extensions.acrisGpsr %}
+        {% set setFirstSelected = true %}
+        {% set gpsrTabContents = page.product.extensions.acrisGpsr.getByDisplayTypeAndPosition('gpsrTab', 'beforeDescriptionTab') %}
+        {% if gpsrTabContents.count > 0 %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-pane.html.twig' with {
+                'id': 'gpsr-main',
+                'gpsrInfoCollection': gpsrTabContents
+            } %}
+            {% set setFirstSelected = false %}
+        {% endif %}
+
+        {% set ownTabsGrouped = page.product.extensions.acrisGpsr.getByDisplayTypeAndPositionGrouped('tab', 'beforeDescriptionTab') %}
+        {% for contentType, gpsrTabContents in ownTabsGrouped %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-pane.html.twig' with {
+                'id': 'gpsr-'~contentType,
+                'gpsrInfoCollection': gpsrTabContents
+            } %}
+            {% set setFirstSelected = false %}
+        {% endfor %}
+    {% endif %}
+
+    {{ parent() }}
+
+    {% if page.product.extensions.acrisGpsr %}
+        {% set setFirstSelected = false %}
+        {% set gpsrTabContents = page.product.extensions.acrisGpsr.getByDisplayTypeAndPosition('gpsrTab', 'afterDescriptionTab') %}
+        {% if gpsrTabContents.count > 0 %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-pane.html.twig' with {
+                'id': 'gpsr-main',
+                'gpsrInfoCollection': gpsrTabContents
+            } %}
+        {% endif %}
+
+        {% set ownTabsGrouped = page.product.extensions.acrisGpsr.getByDisplayTypeAndPositionGrouped('tab', 'afterDescriptionTab') %}
+        {% for contentType, gpsrTabContents in ownTabsGrouped %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-pane.html.twig' with {
+                'id': 'gpsr-'~contentType,
+                'gpsrInfoCollection': gpsrTabContents
+            } %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% block page_product_detail_tabs_content_review %}
+    {{ parent() }}
+
+    {% if page.product.extensions.acrisGpsr %}
+        {% set gpsrTabContents = page.product.extensions.acrisGpsr.getByDisplayTypeAndPosition('gpsrTab', 'afterReviewsTab') %}
+        {% if gpsrTabContents.count > 0 %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-pane.html.twig' with {
+                'id': 'gpsr-main',
+                'gpsrInfoCollection': gpsrTabContents
+            } %}
+        {% endif %}
+
+        {% set ownTabsGrouped = page.product.extensions.acrisGpsr.getByDisplayTypeAndPositionGrouped('tab', 'afterReviewsTab') %}
+        {% for contentType, gpsrTabContents in ownTabsGrouped %}
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-pane.html.twig' with {
+                'id': 'gpsr-'~contentType,
+                'gpsrInfoCollection': gpsrTabContents
+            } %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

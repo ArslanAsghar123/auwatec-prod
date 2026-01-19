@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Matomo tracking</title>
+        <title lang="de-DE">Matomo Tracking</title>
+        <input-field>
+            <name>matomoUrl</name>
+            <copyable>true</copyable>
+            <label>Matomo URL</label>
+            <label lang="de-DE">Matomo URL</label>
+            <placeholder lang="de-DE">Url zur Matomo Installation z.B. https://www.shop.com/matomo.</placeholder>
+            <placeholder>Url for Matomo installation e.g. https://www.shop.com/matomo.</placeholder>
+            <helpText><![CDATA[More Examples:<br />//www.shop.com/matomo<br />//matomo.shop.com/<br />]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Weitere Beispiele:<br />//www.shop.com/matomo<br />//matomo.shop.com/<br />]]></helpText>
+        </input-field>
+
+        <input-field>
+            <name>matomoFile</name>
+            <copyable>true</copyable>
+            <label>Matomo File</label>
+            <label lang="de-DE">Matomo Datei</label>
+            <placeholder lang="de-DE">PHP Datei von Matomo. Default matomo.php</placeholder>
+            <placeholder>PHP Datei von Matomo. Default matomo.php</placeholder>
+            <helpText><![CDATA[PHP file from e.g. matomo.php]]></helpText>
+            <helpText lang="de-DE"><![CDATA[PHP Datei von Matomo z.B matomo.php]]></helpText>
+        </input-field>
+
+        <input-field>
+            <name>matomoScript</name>
+            <copyable>true</copyable>
+            <label>Matomo JS</label>
+            <label lang="de-DE">Matomo JS</label>
+            <placeholder lang="de-DE">Javascript Datei von Matomo. Default matomo.js</placeholder>
+            <placeholder>Javascript File from Matomo. Default matomo.js</placeholder>
+            <helpText><![CDATA[Javascript File from Matomo e.g. matomo.js]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Javascript Datei von Matomo z.B matomo.js]]></helpText>
+        </input-field>
+
+
+        <input-field>
+            <name>siteId</name>
+            <label>Matomo Site-ID</label>
+            <label lang="de-DE">Matomo Seiten-ID</label>
+            <placeholder lang="de-DE">ID der Shopkonfiguration in Matomo.</placeholder>
+            <placeholder>ID of the shop configuration in Matomo.</placeholder>
+        </input-field>
+        <input-field type="bool">
+            <name>allowSubdomain</name>
+            <label>Track visitors across all subdomains</label>
+            <label lang="de-DE">Besucher aufzeichnen auf allen Subdomains</label>
+            <helpText lang="de-DE"><![CDATA[Hierdurch werden Besucher, die x.example.de und y.example.de besuchen als eindeutige Besucher gewertet.]]></helpText>
+            <helpText><![CDATA[So if one visitor visits x.example.com and y.example.com, they will be counted as a unique visitor.]]></helpText>
+        </input-field>
+        <input-field>
+            <name>hostDomain</name>
+            <copyable>true</copyable>
+            <label lang="de-DE">Haupt Domain für Subdomains</label>
+            <label>Main Domain for subdomains</label>
+            <placeholder>Only the domain name e.g. "example.com" if the shop is on e.g. shop.example.de</placeholder>
+            <placeholder lang="de-DE">Nur der Domainname z.B. "example.de" wenn der Shop auf z.B. shop.example.de liegt.</placeholder>
+            <helpText lang="de-DE"><![CDATA[Ändern der Hauptdomain abweichend zum Domänen URL für Subdomains tracking. Relevant wenn der Shop auf einer Subdomain liegt z.B. shop.example.de ]]></helpText>
+            <helpText><![CDATA[Changing the main domain other than the domain URL for subdomains tracking. Relevant if the shop is located on a subdomain e.g. shop.example.com.]]></helpText>
+        </input-field>
+    </card>
+    <card>
+        <title>Matomo Cookie</title>
+        <title lang="de-DE">Matomo Cookie</title>
+        <input-field type="bool">
+            <name>requireCookieConsent</name>
+            <label lang="de-DE">Statistische Werte ohne Cookies seit Matomo 3.14.0</label>
+            <label>Statistical values without cookies since Matomo 3.14.0</label>
+            <helpText lang="de-DE"><![CDATA[Matomo 3.14.0. Wenn aktiviert, werden nur statische Werte ohne Cookies aufgezeichnet, es sei denn, es wurden Cookies akzeptiert.]]></helpText>
+            <helpText><![CDATA[Matomo 3.14.0. When activated, only static values without cookies are recorded, unless cookies were accepted.]]></helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>disableCookies</name>
+            <label lang="de-DE">Alle Tracking Cookies deaktivieren</label>
+            <label>Disable all tracking cookies</label>
+            <helpText lang="de-DE"><![CDATA[Deaktiviert alle Matomo Cookies unabhängig davon ob der Benutzer zustimmt oder nicht.]]></helpText>
+            <helpText><![CDATA[Disables all Matomo cookies regardless of whether the user agrees or disagrees.]]></helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>startTracking</name>
+            <label lang="de-DE">Tracken starten</label>
+            <label>Start tracking</label>
+            <helpText lang="de-DE"><![CDATA[Ab wann soll Matomo Tracking eingebunden werden?. Bitte beachten Sie die DSGVO und regionales Recht.]]></helpText>
+            <helpText><![CDATA[When should the Matomo Tracking be integrated?. Please note the GDPR and regional law.]]></helpText>
+            <defaultValue>0</defaultValue>
+            <options>
+                <option>
+                    <id>0</id>
+                    <name lang="de-DE">erst wenn der Shopware Cookie akzeptiert ist.</name>
+                    <name>only if Shopware cookie is accepted.</name>
+                </option>
+                <option>
+                    <id>1</id>
+                    <name lang="de-DE">nur wenn der spezifische Cookie gesetzt ist</name>
+                    <name>only if the specific cookie is set</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name lang="de-DE">immer</name>
+                    <name>always</name>
+                </option>
+                <option>
+                    <id>4</id>
+                    <name lang="de-DE">Wird von meinem eigenen Script Code verwaltet</name>
+                    <name>Managed by my own script code</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="text">
+            <name>cookieName</name>
+            <label lang="de-DE">Cookie Name</label>
+            <label>Cookie name</label>
+            <helpText lang="de-DE">Name des Cookies (steht im Browser unter den Dev-Tools Cookie Einstellungen)</helpText>
+            <helpText>Name of the cookie (available in the browser under the dev-tools cookie settings)</helpText>
+            <defaultValue></defaultValue>
+        </input-field>
+        <input-field type="text">
+            <name>cookieValue</name>
+            <label lang="de-DE">Cookie Wert</label>
+            <label>Cookie value</label>
+            <helpText lang="de-DE">Der Wert, wenn Cookies akzeptiert werden</helpText>
+            <helpText>The value when cookies are accepted</helpText>
+            <defaultValue></defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>cookieValueAsRegex</name>
+            <label lang="de-DE">Cookie Wert als Regex</label>
+            <label>Cookie value as regex</label>
+            <helpText lang="de-DE">Der Wert, der im Cookie Value per "Regular Expression" gesucht wird</helpText>
+            <helpText>The value that is searched for in the Cookie Value by "Regular Expression".</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+    <card>
+        <title>Matomo Extras</title>
+        <title lang="de-DE">Matomo Extras</title>
+        <input-field type="bool">
+            <name>groupByDomain</name>
+            <label lang="de-DE">Domain der Seite beim Tracken dem Seitentitel voranstellen</label>
+            <label>Prepend the site domain to the page title when tracking</label>
+            <helpText lang="de-DE"><![CDATA[Wenn jemand die "About"-Seite auf blog.example.de besucht, wird dies aufgezeichnet als "blog / About". Dies ist der einfachste Weg um einen Überblick über Ihren Traffic nach Sub-Domain zu bekommen.]]></helpText>
+            <helpText><![CDATA[So if someone visits the "About" page on blog.example.com it will be recorded as "blog / About". This is the easiest way to get an overview of your traffic by sub-domain.]]></helpText>
+        </input-field>
+        <input-field type="single-select">
+            <name>userId</name>
+            <label lang="de-DE">Kunden tracking</label>
+            <label>Track customer</label>
+            <helpText lang="de-DE"><![CDATA[Angemeldete Kunden tracken. Bitte prüfen Sie das regionale Recht]]></helpText>
+            <helpText><![CDATA[Customer information when logged in. Please check region law]]></helpText>
+            <defaultValue>0</defaultValue>
+            <options>
+                <option>
+                    <id>0</id>
+                    <name lang="de-DE">Niemals</name>
+                    <name>never</name>
+                </option>
+                <option>
+                    <id>1</id>
+                    <name lang="de-DE">Kunden-ID (SW intern)</name>
+                    <name>Customer ID (SW internal)</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name lang="de-DE">Kundennummer</name>
+                    <name>Customer number</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name lang="de-DE">E-Mail</name>
+                    <name>E-Mail</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="bool">
+            <name>conversionFirstReferrer</name>
+            <label lang="de-DE">Conversions dem ersten Referrer zuordnen.</label>
+            <label>Assign conversions to the first referrer</label>
+            <helpText lang="de-DE"><![CDATA[Der Parameter ordnet Conversions dem ersten Referrer statt dem letzten Referrer zu.]]></helpText>
+            <helpText><![CDATA[The parameter assigns conversions to the first referrer instead of the last referrer.]]></helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>useOwnMatomoScript</name>
+            <label lang="de-DE">Eigenes Script verwenden</label>
+            <label>Use your own script</label>
+            <helpText lang="de-DE"><![CDATA[Für spezielle Erweiterungen können Sie selbst etwas hinzufügen]]></helpText>
+            <helpText><![CDATA[For specific extensions, you can add something yourself]]></helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="textarea">
+            <name>useOwnMatomoScriptCode</name>
+            <label lang="de-DE">Eigenes Script Code</label>
+            <label>Own script code</label>
+            <helpText lang="de-DE"><![CDATA[Für die Verwendung des eigenen Scripts wird kein Verantwortung oder  Support übernommen.]]></helpText>
+            <helpText><![CDATA[No responsibility or support is assumed for the use of your own script.]]></helpText>
+            <placeholder><![CDATA[<script type="text/javascript">
+    var _paq = _paq || [];
+    (function() {
+        var u=ironMatomoDataLayer.matomoUrl;
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+    })();
+</script>
+            ]]></placeholder>
+        </input-field>
+
+
+    </card>
+</config>

@@ -1,0 +1,25 @@
+[id^=acris], .acris-settings-item {
+    .sw-settings-item__icon.background--enabled {
+        background-color: #a6c836 !important;
+    }
+    &:hover {
+        color: darken(#a6c836, 10%) !important;
+
+        .sw-settings-item__icon.background--enabled {
+            background-color: darken(#a6c836, 10%) !important;
+        }
+    }
+    .sw-icon > svg {
+        color: white !important;
+    }
+}
+
+.acris-settings-content-grid  {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr)) !important;
+    grid-gap: 30px 10px !important;
+}
+
+#acris-gpsr-menu{
+    white-space: pre;
+}

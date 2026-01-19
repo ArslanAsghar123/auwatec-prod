@@ -1,0 +1,39 @@
+@import "~scss/variables";
+
+.acris-discount-group-detail-tabs {
+    .acris-discount-group-detail-context-button {
+        padding-bottom: 30px;
+        .sw-context-button {
+            float: right;
+        }
+    }
+
+    .acris-discount-group-product-tab-card {
+        padding-top: 20px;
+    }
+
+    .acris-discount-group-headline {
+        //padding-bottom: 15px;
+    }
+
+    .acris-discount-group-detail-tabs__discount_group_label {
+        margin-bottom: 16px;
+    }
+}
+
+.acris-discount-group-detail-tabs__empty-state {
+    .acris-discount-group-detail-tabs__empty-state-inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 400px;
+
+        .acris-discount-group-detail-tabs__empty-state-inner--label {
+            max-width: 240px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+    }
+}

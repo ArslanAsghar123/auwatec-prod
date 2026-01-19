@@ -1,0 +1,48 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/finish-details.html.twig' %}
+
+{% block page_checkout_finish_ordernumber %}{% endblock %}
+
+{% block page_checkout_finish_teaser %}
+    {% if page.changedPayment != true %}
+        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+            type: 'success',
+            content: "checkout.finishInfoConfirmationMail"|trans|sw_sanitize,
+            iconCache: false
+        } %}
+    {% endif %}
+
+    <div class="finish-info-box">
+        <table class="finish-info-box-table">
+            <tr>
+                <td>
+                    {{ "checkout.finishInfoOrdernumber"|trans|sw_sanitize }}
+                </td>
+                {# class and data-attr needed for shopware tracking js #}
+                <td class="finish-ordernumber" data-order-number="{{ page.order.orderNumber }}">
+                    {{ page.order.orderNumber }}
+                </td>
+            </tr>
+            {% if page.order.customerComment %}
+                <tr>
+                    <td>
+                        {{ "checkout.finishInfoComment"|trans|sw_sanitize }}
+                    </td>
+                    <td>
+                        {{ page.order.customerComment|sw_sanitize|nl2br }}
+                    </td>
+                </tr>
+            {% endif %}
+        </table>
+    </div>
+{% endblock %}
+
+
+{% block page_checkout_finish_order_payment_method %}
+<div class="gray-box">
+    {{ parent() }}
+    {% endblock %}
+
+    {% block page_checkout_finish_order_dispatch_method %}
+    {{ parent() }}
+</div>
+{% endblock %}

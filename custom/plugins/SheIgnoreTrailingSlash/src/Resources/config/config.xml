@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Settings</title>
+        <title lang="de-DE">Einstellungen</title>
+        <input-field type="bool">
+            <name>onlyIgnoreTrailingSlash</name>
+            <label>Only Ignore Trailing Slash</label>
+            <label lang="de-DE">Nur den Trailing Slash ignorieren</label>
+            <defaultValue>false</defaultValue>
+            <helpText>By default, the plugin allows the user to enter incomplete URLs and will recognize it. This setting enables the Plugin to exclusively ignore trailing slashes.</helpText>
+            <helpText lang="de-DE">Standardmäßig erlaubt dieses Plugin dem Nutzer unvollständige URLs einzugeben. Diese Einstellung ändert das Verhalten, sodass nur trailing slashes ignoriert werden.</helpText>
+        </input-field>
+    </card>
+</config>

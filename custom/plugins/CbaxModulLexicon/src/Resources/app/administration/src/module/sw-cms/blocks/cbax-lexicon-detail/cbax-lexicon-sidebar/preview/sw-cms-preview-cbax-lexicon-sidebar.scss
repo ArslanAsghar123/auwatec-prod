@@ -1,0 +1,23 @@
+.sw-cms-preview-sidebar {
+    padding: 12px;
+    width: 100%;
+    position: relative;
+
+    .sw-cms-preview-sidebar-content {
+        width: 40%;
+        font-size: 13px;
+
+        .sw-cms-preview-sidebar-headline{
+            border-bottom: 1px solid lightgrey;
+        }
+    }
+
+    .sw-cms-preview-cbax-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        height: 20px;
+        width: 20px;
+    }
+}

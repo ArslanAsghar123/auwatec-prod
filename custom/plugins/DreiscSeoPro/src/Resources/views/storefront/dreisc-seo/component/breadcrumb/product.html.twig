@@ -1,0 +1,10 @@
+{% block dreisc_seo_component_breadcrumb_product %}
+    {# Place the breadcrumb item for the product #}
+    <div class="breadcrumb-placeholder">
+        {% sw_icon 'arrow-medium-right' style { 'size': 'fluid', 'pack': 'solid'} %}
+    </div>
+
+    <a class="dreisc-seo--product-breadcrumb is-active" href="{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}">
+        {{ product.translated.name }}
+    </a>
+{% endblock %}

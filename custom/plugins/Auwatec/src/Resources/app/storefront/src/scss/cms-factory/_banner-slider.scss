@@ -1,0 +1,125 @@
+.banner{
+  overflow: hidden;
+  .banner-content{
+    //background: $sw-color-brand-primary;
+    background-color: $blue-background-dark;
+    padding: 15px;
+    min-height: 290px;
+  }
+  .banner-image{
+    height: 240px;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  .banner-headline{
+    margin-bottom: 20px;
+    &,h1,h2,h3,h4{
+      color: $white;
+      font-family: $font-family-roboto;
+      font-size: 28px;
+      line-height: 34px;
+      font-weight: $font-weight-bold;
+    }
+  }
+  .banner-text{
+    font-family: $font-family-roboto;
+    font-size: 17px;
+    line-height: 26px;
+    font-weight: $font-weight-bold;
+    margin-bottom: 20px;
+    color: $white;
+  }
+  .banner-button{
+    .btn{
+      .icon{
+        vertical-align: top;
+      }
+    }
+  }
+
+  &.is-color-secondary {
+    .banner-content{
+      &,
+      &:after{
+        background: $sw-color-brand-secondary;
+      }
+    }
+    .banner-text{
+      color: $white;
+    }
+  }
+}
+
+@include media-breakpoint-up(md){
+  .banner{
+    .banner-content{
+      padding: 30px;
+    }
+  }
+}
+
+
+@include media-breakpoint-up(lg){
+  .banner{
+    height: 450px;
+    display: flex;
+    overflow: hidden;
+    .banner-content{
+      height: 100%;
+      width: 420px;
+      order: 1;
+      padding: 30px 0 30px 50px;
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .banner-content-inner{
+        position: relative;
+        z-index: 1;
+      }
+
+      &:after{
+        content: "";
+        position: absolute;
+        display: block;
+        width: 270px;
+        transform: skewX(-25deg);
+        z-index: 0;
+        right: -110px;
+        top: 0;
+        background: $blue-background-dark;
+        height: 100%;
+      }
+    }
+    .banner-image{
+      height: 100%;
+      width: calc(100% - 420px);
+      order: 2;
+    }
+    .banner-headline{
+      &,h1,h2,h3,h4{
+        font-size: 34px;
+        line-height: 38px;
+      }
+    }
+  }
+  .col-md-6{
+    .banner{
+      .banner-content {
+        width: 370px;
+        padding: 30px 0 30px 40px;
+        &:after{
+          transform: skewX(-19deg);
+          right: -80px;
+        }
+      }
+      .banner-image{
+        width: calc(100% - 370px);
+      }
+    }
+  }
+}

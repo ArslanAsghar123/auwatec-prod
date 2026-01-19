@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-delivery-b">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="delivery-b" clip-path="url(#clip-delivery-b)">
+    <path id="delivery-b-2" data-name="delivery-b" d="M74.285,13.62a2,2,0,0,0-1.241-1.852L44.763.15a2,2,0,0,0-1.522,0L14.96,11.768a2,2,0,0,0-1.241,1.852V50.38a2,2,0,0,0,1.241,1.852L43.241,63.85a2,2,0,0,0,1.519,0c.024-.008-1.047.431,28.283-11.618a2,2,0,0,0,1.241-1.852ZM44,23.242l-10.42-4.281L56.1,9.137,67.219,13.7ZM17.724,16.776l8.99,3.693v10.42a2,2,0,0,0,4,0V22.114L42,26.749V59.01L17.724,49.038ZM44,4.167l6.941,2.852-22.52,9.824L20.786,13.7Zm2,22.582,24.276-9.973V49.038L46,59.01Z" transform="translate(-11.719)"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+imports:
+  - { resource: 'services/commands.yml' }
+  - { resource: 'services/databases.yml' }
+  - { resource: 'services/entities.yml' }
+  - { resource: 'services/logger.yml' }
+  - { resource: 'services/services.yml' }
+  - { resource: 'services/storage.yml' }
+  - { resource: 'services/tasks.yml' }
+

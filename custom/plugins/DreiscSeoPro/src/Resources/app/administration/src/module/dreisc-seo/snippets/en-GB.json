@@ -1,0 +1,46 @@
+{
+    "dreiscSeo": {
+        "general": {
+            "navigation": {
+                "label": "SEO Professional"
+            }
+        },
+        "seoFilterPromotion": {
+            "navigationLabel": "\uD83C\uDD95 Filter SEO Url and SEO Filter Landing Pages",
+            "bannerLink": "http://dashboard.dreischild.com/files/seo-filter-promotion_en.jpg",
+            "storeLink": "https://store.shopware.com/en/dreis19332340010m/filter-seo-url-and-seo-filter-landingpages.html",
+            "smartBar": {
+                "header": "Now available: Filter SEO Url and SEO Filter Landingpages"
+            }
+        },
+        "doku": {
+            "general": {
+                "buttonText": "Open documentation for this setting in a new window"
+            },
+            "links": {
+                "modulesRedirect": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Fredirect",
+                "modulesBulkGenerators": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Fbulk-generators",
+                "seoSettings": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fseo-settings",
+                "modulesRedirectImportExport": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Fredirect%2Fredirect-import-export",
+                "settings": {
+                    "bulkGenerators": "https://de-dreischild-com.translate.goog/docs/seo-professional/modules/settings/seo-settings?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=de&_x_tr_pto=wapp#bulk-generatoren",
+                    "seoSettingsMetaTags": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Fsettings%2Fseo-settings",
+                    "seoSettingsSerpPreview": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Fsettings%2Fseo-settings",
+                    "seoSettingsSeoUrl": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Fsettings%2Fseo-settings",
+                    "seoSettingsSocialMedia": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Fsettings%2Fseo-settings",
+                    "robotsTxt": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Fsettings%2Frobotstxt",
+                    "ai": "https://de-dreischild-com.translate.goog/docs/seo-professional/modules/settings/seo-settings?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=de&_x_tr_pto=wapp#kuenstliche-intelligenz---openai",
+                    "canonical": "https://de-dreischild-com.translate.goog/docs/seo-professional/modules/settings/seo-settings?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=de&_x_tr_pto=wapp#canonical-urls",
+                    "sitemap": "https://de-dreischild-com.translate.goog/docs/seo-professional/modules/settings/seo-settings?_x_tr_sl=auto&_x_tr_tl=en&_x_tr_hl=de&_x_tr_pto=wapp#sitemap"
+                },
+                "richSnippets": {
+                    "general": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Frich-snippets-json-ld",
+                    "product": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Frich-snippets-json-ld%2Fproducts",
+                    "breadcrumb": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Frich-snippets-json-ld%2Fbreadcrumb",
+                    "logo": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Frich-snippets-json-ld%2Forganization",
+                    "business": "https://translate.google.com/translate?sl=de&tl=en&u=https%3A%2F%2Fde.dreischild.com%2Fdocs%2Fseo-professional%2Fmodules%2Frich-snippets-json-ld%2Forganization"
+                }
+            }
+        }
+    }
+}

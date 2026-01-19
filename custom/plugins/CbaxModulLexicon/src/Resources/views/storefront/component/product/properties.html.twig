@@ -1,0 +1,28 @@
+{% sw_extends '@Storefront/storefront/component/product/properties.html.twig' %}
+
+{% block component_product_properties_item_label %}
+
+    {% if ('name' in config('CbaxModulLexicon.config.activeProperties')) %}
+        <th class="properties-label">{{ group.translated.name|raw }}:</th>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+{% endblock %}
+
+{% block component_product_properties_item_value %}
+
+    {% if ('value' in config('CbaxModulLexicon.config.activeProperties')) %}
+        <td class="properties-value">
+            {% apply spaceless %}
+                {% for option in group.options %}
+                    <span>{% if loop.index > 1 %}, {% endif %}{{ option.translated.name|raw }}</span>
+                {% endfor %}
+            {% endapply %}
+        </td>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+    
+{% endblock %}
+

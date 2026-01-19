@@ -1,0 +1,39 @@
+{
+    "sw-product": {
+        "detailBase": {
+            "acrisGpsr": {
+                "cardTitle": "GPSR Produktsicherheitsverordnung",
+                "hint": "Wenn befüllt, haben diese Felder eine höher Priorität als die GPSR Informationen am Hersteller (Kataloge > Hersteller > GPSR Informationen). Die Anzeige ist in der Plugin-Konfiguration konfigurierbar.",
+                "fieldTitleProductType": "Produktart und Produktidentifkatoren",
+                "fieldTitlePlaceholderProductType": "Produktart und Produktidentifkatoren eingeben...",
+                "fieldTitleProductManufacturer": "Herstellerinformationen",
+                "fieldTitlePlaceholderProductManufacturer": "Herstellerinformationen eingeben...",
+                "fieldTitleProductContact": "Verantwortliche Person (EU)",
+                "fieldTitlePlaceholderProductContact": "Verantwortliche Person eingeben...",
+                "fieldTitleProductWarningHint": "Warnhinweis",
+                "fieldTitlePlaceholderProductWarningHint": "Warnhinweis eingeben...",
+                "fieldTitleProductSecurityHint": "Sicherheitshinweis",
+                "fieldTitlePlaceholderProductSecurityHint": "Sicherheitshinweis eingeben...",
+                "fieldTitleProductInformationHint": "Wichtige Information",
+                "fieldTitlePlaceholderInformationHint": "Wichtige Information eingeben..."
+            }
+        }
+    },
+    "global": {
+        "acris-document-upload": {
+            "caption": "Dateien zum Hochladen hierhin ziehen",
+            "buttonUrlUpload": "Über URL hochladen",
+            "buttonFileUpload": "Dokumente hochladen",
+            "buttonOpenMedia": "Dokument auswählen",
+
+            "buttonSwitchToFileUpload": "Datei von Deinem Computer hochladen",
+            "buttonSwitchToUrlUpload": "Datei von URL hochladen"
+        },
+        "acris-product-download":  {
+            "context":  {
+                "buttonEdit": "Bearbeiten",
+                "buttonDelete": "Löschen"
+            }
+        }
+    }
+}

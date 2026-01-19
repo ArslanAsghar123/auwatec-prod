@@ -1,0 +1,9 @@
+{% block sw_product_detail_content_tabs_reviews %}
+
+    {% parent %}
+
+    <!-- We'll define a custom route here, an explanation will follow later -->
+    <sw-tabs-item v-if="displaySetting == 'tab'" :route="{ name: 'sw.product.detail.gpsr', params: { id: $route.params.id } }" title="GPSR">
+        GPSR
+    </sw-tabs-item>
+{% endblock %}

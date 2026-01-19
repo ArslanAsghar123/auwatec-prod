@@ -1,0 +1,36 @@
+.sw-cms-el-aku-cms-factory-gallery-field-search-result {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.sw-cms-el-aku-cms-factory-gallery-field {
+    margin-bottom: 0;
+
+    .current_images{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+
+        .image {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            padding: 5px;
+            min-width: 50px;
+        }
+        .image:hover {
+            background: #eee;
+        }
+        .controls {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            display: none;
+        }
+
+        .image:hover .controls {
+            display: block;
+        }
+    }
+
+}

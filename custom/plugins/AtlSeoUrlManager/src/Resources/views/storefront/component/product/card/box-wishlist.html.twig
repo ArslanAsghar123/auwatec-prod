@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-wishlist.html.twig' %}
+
+{% block component_product_wishlist_remove_form %}
+    {% set size = size ?? 'md' %}
+
+    <form action="{{ path('frontend.wishlist.product.delete', {'id': product.id}) }}"
+          method="post"
+          class="product-wishlist-form">
+
+        {% block component_product_wishlist_remove_redirect %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block component_product_wishlist_remove_submit %}
+            {{ parent() }}
+        {% endblock %}
+    </form>
+{% endblock %}

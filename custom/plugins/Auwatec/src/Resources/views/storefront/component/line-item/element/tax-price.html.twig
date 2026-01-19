@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/component/line-item/element/tax-price.html.twig' %}
+
+
+{% block component_line_item_tax_price_inner %}
+    {% for calculatedTax in lineItem.price.calculatedTaxes %}
+        <div class="line-item-unit-price-value">
+            {{ lineItem.price.unitPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+        </div>
+    {% endfor %}
+{% endblock %}
+

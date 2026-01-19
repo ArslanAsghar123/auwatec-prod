@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-close-b">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="close-b" clip-path="url(#clip-close-b)">
+    <path id="close-b-2" data-name="close-b" d="M-373-255.8-399.8-229l-5.2-5.2,26.8-26.8L-405-287.8l5.2-5.2,26.8,26.8,26.8-26.8,5.2,5.2L-367.8-261l26.8,26.8-5.2,5.2Z" transform="translate(405 293.001)"/>
+  </g>
+</svg>

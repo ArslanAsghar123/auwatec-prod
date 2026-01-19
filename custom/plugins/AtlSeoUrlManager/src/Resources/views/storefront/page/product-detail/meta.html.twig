@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/meta.html.twig' %}
+
+{% block layout_head_canonical %}
+    {% set canonicalUrl = page.product.id %}
+    {% set inheritanceOverride = page.product.translated.customFields.atl_seo_url_manager_product_canonical_inheritance_override %}
+
+    {% if page.product.parentId and config('AtlSeoUrlManager.config.parentCanonicalUrls') and not inheritanceOverride %}
+        {% set canonicalUrl = page.product.parentId %}
+    {% elseif page.product.canonicalProductId and not config('AtlSeoUrlManager.config.parentCanonicalUrls') %}
+        {% set canonicalUrl = page.product.canonicalProductId %}
+    {% endif %}
+
+    <link rel="canonical" href="{{ seoUrl('frontend.detail.page', { productId: canonicalUrl }) }}" />
+{% endblock %}

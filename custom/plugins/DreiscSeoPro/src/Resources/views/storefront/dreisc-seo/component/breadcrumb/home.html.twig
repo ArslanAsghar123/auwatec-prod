@@ -1,0 +1,9 @@
+{% block dreisc_seo_component_breadcrumb_home %}
+    <a class="dreisc-seo--home-breadcrumb" href="{{ path('frontend.home.page') }}">
+        {{ 'dreiscSeoPro.richSnippets.breadcrumb.homeText'|trans }}
+    </a>
+
+    <div class="breadcrumb-placeholder">
+        {% sw_icon 'arrow-medium-right' style { 'size': 'fluid', 'pack': 'solid'} %}
+    </div>
+{% endblock %}

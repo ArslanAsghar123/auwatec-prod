@@ -1,0 +1,80 @@
+{% block acris_discount_group_detail_tabs %}
+<div class="acris-discount-group-detail-tabs" v-if="!isLoading">
+
+    {% block acris_discount_group_detail_discount_group_custom_field %}
+    <sw-card v-if="!isLoading" class="acris-discount-group-detail-tabs__discount_group_custom_field">
+        {% block acris_discount_group_detail_content_discount_group %}
+            <sw-text-field v-model:value="discountGroupValue"
+                           @update:value="discountGroupValueChange"
+                           class="acris-discount-group-detail__acris_discount_group_discount_value"
+                           :label="$tc('acris-discount-group.product.fieldTitleLabelDiscountGroupValue')"
+                           :helpText="$tc('acris-discount-group.product.fieldTitleHelpTextDiscountGroupValue')"
+                           :placeholder="$tc('acris-discount-group.product.fieldTitlePlaceholderDiscountGroupValue')">
+            </sw-text-field>
+        {% endblock %}
+    </sw-card>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_discount_group_label %}
+    <h2 class="sw-card acris-discount-group-detail-tabs__discount_group_label">{{ $tc('acris-discount-group.product.generalDiscountGroupCard') }}</h2>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_tabs_items %}
+        <ul v-if="!isLoading && product.extensions.acrisDiscountGroups && product.extensions.acrisDiscountGroups.length > 0" class="acris-discount-group-detail-tabs__tabs-list">
+            <acris-discount-groups-form
+                v-for="item in product.extensions.acrisDiscountGroups"
+                :key="item.id"
+                :acrisDiscountGroup="item"
+                :allowEdit="acl.can('product.editor')">
+            </acris-discount-groups-form>
+        </ul>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_tabs_add %}
+        <sw-card v-if="product && product.extensions && product.extensions.acrisDiscountGroups && product.extensions.acrisDiscountGroups.length > 0" hero>
+            <sw-button
+                    variant="ghost"
+                    @click="onAddDiscountGroup"
+                    :disabled="!acl.can('product.editor')"
+                    v-tooltip="{
+                        message: this.$tc('sw-privileges.tooltip.warning'),
+                        disabled: this.acl.can('product.editor'),
+                        showOnDisabledElements: true
+                }">
+                {{ $tc('acris-discount-group.product.buttonAddDiscountGroup') }}
+            </sw-button>
+        </sw-card>
+    {% endblock %}
+
+    {% block acris_discount_group_detail_empty_state %}
+    <sw-card class="acris-discount-group-detail-tabs__empty-state"  v-else>
+        <sw-loader v-if="isLoading"></sw-loader>
+        <div v-else>
+            <template>
+                <div class="acris-discount-group-detail-tabs__empty-state-inner">
+                    <img :src="assetFilter('/administration/static/img/empty-states/products-empty-state.svg')">
+
+                    <div class="acris-discount-group-detail-tabs__empty-state-inner--label">
+                        <p>{{ $tc('acris-discount-group.product.emptyStateDescription') }}</p>
+                    </div>
+
+                    {% block acris_discount_group_detail_empty_state_tabs_add %}
+                    <sw-button
+                        variant="ghost"
+                        @click="onAddDiscountGroup"
+                        :disabled="!acl.can('product.editor')"
+                        v-tooltip="{
+                                        message: this.$tc('sw-privileges.tooltip.warning'),
+                                        disabled: this.acl.can('product.editor'),
+                                        showOnDisabledElements: true
+                                }">
+                        {{ $tc('acris-discount-group.product.buttonAddDiscountGroup') }}
+                    </sw-button>
+                    {% endblock %}
+                </div>
+            </template>
+        </div>
+    </sw-card>
+    {% endblock %}
+</div>
+{% endblock %}

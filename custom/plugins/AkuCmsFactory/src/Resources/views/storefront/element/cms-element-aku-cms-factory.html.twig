@@ -1,0 +1,8 @@
+{% block aku_cms_factory_element %}
+    <div class="aku-cms-factory-element" >
+
+        {% set data = element.data %}
+        {{ include(template_from_string(element.data.__template)) }}
+        
+    </div>
+{% endblock %}

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Enable cookie settings reload</title>
+        <title lang="de-DE">Nachträgliche Cookie-Einstellungen aktivieren</title>
+        <component name="sw-switch-field">
+            <name>loyxxEnableCookieSettingsReload</name>
+            <label>Enable cookie settings reload</label>
+            <label lang="de-DE">Aktivieren Sie das Neuladen der Cookie-Einstellungen</label>
+            <defaultValue>true</defaultValue>
+        </component>
+    </card>
+    <card>
+        <input-field type="single-select">
+            <name>loyxxCookieSettingsLinkPosition</name>
+            <title>Cookie reload button position</title>
+            <title lang="de-DE">Position und Aussehen der Cookie-Einstellungen</title>
+            <defaultValue>button</defaultValue>
+            <options>
+                <option>
+                    <id>button</id>
+                    <name>Fixed button on footer</name>
+                    <name lang="de-DE">Als Icon im Footer</name>
+                </option>
+                <option>
+                    <id>category</id>
+                    <name>Use it as a category</name>
+                    <name lang="de-DE">Als Kategorie</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>loyxxCookieAcceptSelectedButtonColor</name>
+            <label>Accept-selected-cookies button stile</label>
+            <label lang="de-DE">Stil des Cookie-Auswahl-Annehmen button anpassen.</label>
+            <helpText>Choose style from bootstrap button styles</helpText>
+            <helpText lang="de-DE">Wählen Sie einen Stil aus den Bootstrap-Schaltflächenstilen</helpText>
+            <defaultValue>primary</defaultValue>
+            <options>
+                <option>
+                    <id>primary</id>
+                    <name>Primary</name>
+                </option>
+                <option>
+                    <id>secondary</id>
+                    <name>Secondary</name>
+                </option>
+                <option>
+                    <id>success</id>
+                    <name>Success</name>
+                </option>
+                <option>
+                    <id>danger</id>
+                    <name>Danger</name>
+                </option>
+                <option>
+                    <id>warning</id>
+                    <name>Warning</name>
+                </option>
+                <option>
+                    <id>info</id>
+                    <name>Info</name>
+                </option>
+                <option>
+                    <id>light</id>
+                    <name>Light</name>
+                </option>
+                <option>
+                    <id>dark</id>
+                    <name>Dark</name>
+                </option>
+                <option>
+                    <id>outline-primary</id>
+                    <name>Outline-Primary</name>
+                </option>
+                <option>
+                    <id>outline-secondary</id>
+                    <name>Outline-Secondary</name>
+                </option>
+                <option>
+                    <id>outline-success</id>
+                    <name>Outline-Success</name>
+                </option>
+                <option>
+                    <id>outline-danger</id>
+                    <name>Outline-Danger</name>
+                </option>
+                <option>
+                    <id>outline-warning</id>
+                    <name>Outline-Warning</name>
+                </option>
+                <option>
+                    <id>outline-info</id>
+                    <name>Outline-Info</name>
+                </option>
+                <option>
+                    <id>outline-light</id>
+                    <name>Outline-Light</name>
+                </option>
+                <option>
+                    <id>outline-dark</id>
+                    <name>Outline-Dark</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>loyxxCookieAcceptAllButtonColor</name>
+            <label>Accept-cookies button stile</label>
+            <label lang="de-DE">Stil des Cookies-Annehmen button anpassen.</label>
+            <helpText>Choose style from bootstrap button styles</helpText>
+            <helpText lang="de-DE">Wählen Sie einen Stil aus den Bootstrap-Schaltflächenstilen</helpText>
+            <defaultValue>primary</defaultValue>
+            <options>
+                <option>
+                    <id>primary</id>
+                    <name>Primary</name>
+                </option>
+                <option>
+                    <id>secondary</id>
+                    <name>Secondary</name>
+                </option>
+                <option>
+                    <id>success</id>
+                    <name>Success</name>
+                </option>
+                <option>
+                    <id>danger</id>
+                    <name>Danger</name>
+                </option>
+                <option>
+                    <id>warning</id>
+                    <name>Warning</name>
+                </option>
+                <option>
+                    <id>info</id>
+                    <name>Info</name>
+                </option>
+                <option>
+                    <id>light</id>
+                    <name>Light</name>
+                </option>
+                <option>
+                    <id>dark</id>
+                    <name>Dark</name>
+                </option>
+                <option>
+                    <id>outline-primary</id>
+                    <name>Outline-Primary</name>
+                </option>
+                <option>
+                    <id>outline-secondary</id>
+                    <name>Outline-Secondary</name>
+                </option>
+                <option>
+                    <id>outline-success</id>
+                    <name>Outline-Success</name>
+                </option>
+                <option>
+                    <id>outline-danger</id>
+                    <name>Outline-Danger</name>
+                </option>
+                <option>
+                    <id>outline-warning</id>
+                    <name>Outline-Warning</name>
+                </option>
+                <option>
+                    <id>outline-info</id>
+                    <name>Outline-Info</name>
+                </option>
+                <option>
+                    <id>outline-light</id>
+                    <name>Outline-Light</name>
+                </option>
+                <option>
+                    <id>outline-dark</id>
+                    <name>Outline-Dark</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>loyxxCookieDeclineAllButtonColor</name>
+            <label>Decline-cookies button stile</label>
+            <label lang="de-DE">Stil des Cookies-Ablehnen button anpassen.</label>
+            <helpText>Choose style from bootstrap button styles</helpText>
+            <helpText lang="de-DE">Wählen Sie einen Stil aus den Bootstrap-Schaltflächenstilen</helpText>
+            <defaultValue>primary</defaultValue>
+            <options>
+                <option>
+                    <id>primary</id>
+                    <name>Primary</name>
+                </option>
+                <option>
+                    <id>secondary</id>
+                    <name>Secondary</name>
+                </option>
+                <option>
+                    <id>success</id>
+                    <name>Success</name>
+                </option>
+                <option>
+                    <id>danger</id>
+                    <name>Danger</name>
+                </option>
+                <option>
+                    <id>warning</id>
+                    <name>Warning</name>
+                </option>
+                <option>
+                    <id>info</id>
+                    <name>Info</name>
+                </option>
+                <option>
+                    <id>light</id>
+                    <name>Light</name>
+                </option>
+                <option>
+                    <id>dark</id>
+                    <name>Dark</name>
+                </option>
+                <option>
+                    <id>outline-primary</id>
+                    <name>Outline-Primary</name>
+                </option>
+                <option>
+                    <id>outline-secondary</id>
+                    <name>Outline-Secondary</name>
+                </option>
+                <option>
+                    <id>outline-success</id>
+                    <name>Outline-Success</name>
+                </option>
+                <option>
+                    <id>outline-danger</id>
+                    <name>Outline-Danger</name>
+                </option>
+                <option>
+                    <id>outline-warning</id>
+                    <name>Outline-Warning</name>
+                </option>
+                <option>
+                    <id>outline-info</id>
+                    <name>Outline-Info</name>
+                </option>
+                <option>
+                    <id>outline-light</id>
+                    <name>Outline-Light</name>
+                </option>
+                <option>
+                    <id>outline-dark</id>
+                    <name>Outline-Dark</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+</config>

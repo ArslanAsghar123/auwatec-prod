@@ -1,0 +1,114 @@
+{% block swpa_backup_content_card %}
+    <div class="sw-product-detail-base">
+        {% block swpa_backup_content_card_channel_config %}
+            <sw-sales-channel-config v-model:value="config"
+                                     ref="configComponent"
+                                     domain="SwpaBackup.settings">
+                {% block swpa_backup_content_card_channel_config_sales_channel %}
+                    <template #select="{ onInput, selectedSalesChannelId, salesChannel }">
+                        {% block swpa_backup_content_card_channel_config_sales_channel_card %}
+                            <sw-card title="Channel">
+                                {% block swpa_backup_content_card_channel_config_sales_channel_card_title %}
+                                    <sw-single-select
+                                        v-model:value="selectedSalesChannelId"
+                                        :options="salesChannel"
+                                        label-property="translated.name"
+                                        value-property="id"
+                                        show-clearable-button
+                                        @update:value="onInput"
+                                    />
+                                {% endblock %}
+
+                                {% block swpa_backup_content_card_channel_config_sales_channel_card_footer %}
+                                    <template #footer>
+                                        {% block swpa_backup_content_card_channel_config_sales_channel_card_footer_container %}
+                                            <sw-container columns="0.5fr 0.5fr 1fr 0.5fr"
+                                                          gap="0px 30px">
+                                                {% block swpa_backup_actions_save %}
+                                                    <sw-button-process v-model:value="isSaveSuccessful"
+                                                                       class="sw-settings-login-registration__save-action"
+                                                                       variant="primary"
+                                                                       :isLoading="isLoading"
+                                                                       :disabled="isLoading|| selectedSalesChannelId!==null || !isAvailable"
+                                                                       @click="onSave">
+                                                        {{ $tc('swpa-backup.settingForm.save') }}
+                                                    </sw-button-process>
+                                                {% endblock %}
+                                                <div></div>
+                                                <div></div>
+                                                {% block swpa_backup_actions_run %}
+                                                    <sw-button v-if="canCreateBackup"
+                                                               class="sw-settings-login-registration__save-action"
+                                                               variant="danger"
+                                                               :isLoading="isCreateBackupInProgress"
+                                                               @click="onCreateBackup">
+                                                        {{ $tc('swpa-backup.settingForm.runBackup') }}
+                                                    </sw-button>
+                                                {% endblock %}
+                                            </sw-container>
+                                        {% endblock %}
+                                    </template>
+                                {% endblock %}
+                            </sw-card>
+                        {% endblock %}
+                    </template>
+                {% endblock %}
+
+                {% block swpa_backup_content_card_channel_config_cards %}
+                    <template #content="{ actualConfigData, allConfigs, selectedSalesChannelId }">
+                        <div v-if="actualConfigData">
+                            {% block swpa_backup_content_card_channel_config_general_card %}
+                                <swpa-backup-general v-if="hasAccess('editor')" :isLoading="isLoading"
+                                                     :actualConfigData="actualConfigData"
+                                                     :selectedSalesChannelId="selectedSalesChannelId"
+                                                     :allConfigs="allConfigs"
+                                >
+                                </swpa-backup-general>
+                            {% endblock %}
+
+                            {% block swpa_backup_content_card_channel_config_local_card %}
+                                <swpa-backup-local v-if="hasAccess('editor')" :isLoading="isLoading"
+                                                   :actualConfigData="actualConfigData"
+                                                   :selectedSalesChannelId="selectedSalesChannelId"
+                                                   :allConfigs="allConfigs"
+                                >
+                                </swpa-backup-local>
+                            {% endblock %}
+
+                            {% block swpa_backup_content_card_channel_config_sftp_card %}
+                                <swpa-backup-sftp v-if="hasAccess('editor')" :isLoading="isLoading"
+                                                  :actualConfigData="actualConfigData"
+                                                  :selectedSalesChannelId="selectedSalesChannelId"
+                                                  :allConfigs="allConfigs"
+                                >
+                                </swpa-backup-sftp>
+                            {% endblock %}
+
+                            {% block swpa_backup_content_card_channel_config_ftp_card %}
+                                <swpa-backup-ftp v-if="hasAccess('editor')" :isLoading="isLoading"
+                                                 :actualConfigData="actualConfigData"
+                                                 :selectedSalesChannelId="selectedSalesChannelId"
+                                                 :allConfigs="allConfigs"
+                                >
+                                </swpa-backup-ftp>
+                            {% endblock %}
+
+                            {% block swpa_backup_content_card_channel_config_aws_card %}
+                                <swpa-backup-aws v-if="hasAccess('editor')" :isLoading="isLoading"
+                                                 :actualConfigData="actualConfigData"
+                                                 :selectedSalesChannelId="selectedSalesChannelId"
+                                                 :allConfigs="allConfigs"
+                                >
+                                </swpa-backup-aws>
+                            {% endblock %}
+                        </div>
+                    </template>
+                {% endblock %}
+            </sw-sales-channel-config>
+        {% endblock %}
+
+        {% block swpa_backup_content_card_loading %}
+            <sw-loader v-if="isLoading"></sw-loader>
+        {% endblock %}
+    </div>
+{% endblock %}

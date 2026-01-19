@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Minimal configuration</title>
+        <input-field type="text">
+            <name>connectUrl</name>
+            <label>URL used for connecting to Rapidmail.</label>
+            <defaultValue>https://my.rapidmail.de/datalink/store/credentials</defaultValue>
+        </input-field>
+        <input-field type="text">
+            <name>overviewUrl</name>
+            <label>URL to overview of integrations.</label>
+            <defaultValue>https://my.rapidmail.de/datalink/wizard.html#/datalink/list</defaultValue>
+        </input-field>
+    </card>
+</config>

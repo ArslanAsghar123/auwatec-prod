@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-last-seen-product-slider.html.twig' %}
+
+
+{% block element_last_seen_product_slider_slider %}
+    {% set lastSeenProductOptions = {
+        productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '300px',
+        slider: {
+            gutter: 10,
+            autoplayButtonOutput: false,
+            nav: false,
+            mouseDrag: false,
+            controls: sliderConfig.navigation.value ? true : false,
+            autoplay: sliderConfig.rotate.value ? true : false
+        },
+        gutter: gutter,
+        url: ajaxUrl
+    } %}
+    {{ parent() }}
+{% endblock %}

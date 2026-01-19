@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-select-salutation.html.twig' %}
+
+{% block cms_form_select_salutation_content %}
+    <div class="form-group d-none">
+        {% block cms_form_select_salutation_content_label %}{% endblock %}
+
+        {% block cms_form_select_salutation_content_select %}
+            <select name="salutationId"
+                    id="form-Salutation"
+                    {% if required %}required="required"{% endif %}
+                    class="form-select contact-select{% if formViolations.getViolations('/salutationId') %} is-invalid{% endif %}">
+                {% set salutation = element.data|first %}
+                <option value="{{ salutation.id }}" selected="selected">
+                    {{ salutation.displayName }}
+                </option>
+            </select>
+        {% endblock %}
+    </div>
+{% endblock %}

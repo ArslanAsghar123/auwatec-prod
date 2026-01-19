@@ -1,0 +1,19 @@
+{% block php_schmiede_last_seen_products_last_seen_slider_headline %}
+
+    <li class="nav-item">
+        <a class="nav-link product-detail-tab-navigation-link {{ active == 1 ? 'active' : '' }}"
+           id="cross-selling-last-seen-tab"
+           data-bs-toggle="tab"
+           href="#cross-selling-last-seen-tab-pane"
+           role="tab"
+           title="{{ 'phpSchmied.lastseenproducts.headline' | trans }}"
+           aria-controls="cross-selling-tab-last-seen-pane"
+           aria-selected="true">
+            {{ 'phpSchmied.lastseenproducts.headline' | trans }}
+            <span class="product-detail-tab-navigation-icon">
+                {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+            </span>
+        </a>
+    </li>
+
+{% endblock %}

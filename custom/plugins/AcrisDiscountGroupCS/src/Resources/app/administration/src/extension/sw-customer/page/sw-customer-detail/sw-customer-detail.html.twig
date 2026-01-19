@@ -1,0 +1,10 @@
+{% block sw_customer_detail_content_tab_order %}
+{% parent %}
+
+<sw-tabs-item class="acris-discount-group-customer-tab"
+              :route="{ name: 'acris.discount.group.customer.tab', params: { id: $route.params.id } }"
+              :title="$tc('acris-discount-group.customer.discountGroupTabTitle')">
+    {{ $tc('acris-discount-group.customer.discountGroupTabTitle') }}
+</sw-tabs-item>
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{
+    "name": "iron/matomo",
+    "description": "Matomo plugin for shopware 6",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "version": "3.2.0",
+    "authors": [
+        {
+            "name": "Martin Eisenführer"
+        }
+    ],
+    "require": {
+        "shopware/core": "~6.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "IronMatomo\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "IronMatomo\\IronMatomo",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "copyright": "(c) by Martin Eisenführer",
+        "label": {
+            "de-DE": "Matomo Tracking",
+            "en-GB": "Matomo Tracking"
+        },
+        "description": {
+            "de-DE": "Integration von Matomo Webanalytik in Ihrem Shop",
+            "en-GB": "Integration of Matomo Webanalytics in your shop"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/martin-eisenfuehrer.html",
+            "en-GB": "https://store.shopware.com/martin-eisenfuehrer.html"
+        },
+        "supportLink": {
+            "de-DE": "https://store.shopware.com/martin-eisenfuehrer.html",
+            "en-GB": "https://store.shopware.com/martin-eisenfuehrer.html"
+        }
+    }
+}

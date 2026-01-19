@@ -1,0 +1,29 @@
+.cbax-lexicon-cms-slot-wrapper {
+    padding: 12px;
+    overflow: hidden;
+    position: relative;
+
+    .sw-cms-el-cbax-lexicon-content {
+        .lexicon-entries {
+            margin-bottom: 12px;
+
+            .lexicon-entries-letter {
+                font-size: 20px;
+                font-weight: bold;
+                display: inline;
+            }
+            .lexicon-entries-header {
+                font-size: 14px;
+                display: inline;
+            }
+            .lexicon-entries-box {
+                border: 1px solid black;
+                white-space: pre;
+                padding: 10px;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+

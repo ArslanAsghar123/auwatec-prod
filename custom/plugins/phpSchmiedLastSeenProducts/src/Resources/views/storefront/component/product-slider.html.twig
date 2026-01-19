@@ -1,0 +1,10 @@
+{% for product in products %}
+    {% block element_product_slider_inner_item %}
+        <div class="product-slider-item">
+            {% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+                'layout': layout,
+                'displayMode': displayMode
+            } %}
+        </div>
+    {% endblock %}
+{% endfor %}

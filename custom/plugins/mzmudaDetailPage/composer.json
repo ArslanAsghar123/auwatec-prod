@@ -1,0 +1,38 @@
+{
+  "name": "mzmuda/mzmuda-detail-page",
+  "description": "Artikeldetail-Seite - Zoom(Lupe) bei Mousover deaktivieren",
+  "version": "v3.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "mzmuda.de",
+      "homepage": "https://mzmuda.de"
+    }
+  ],
+  "require": {
+    "shopware/core": "6.6.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mzmuda\\mzmudaDetailPage\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Mzmuda\\mzmudaDetailPage\\mzmudaDetailPage",
+    "copyright": "mzmuda.de",
+    "plugin-icon": "src/Resources/config/plugin.png",
+    "manufacturerLink": {
+      "de-DE": "https://mzmuda.de",
+      "en-GB": "https://mzmuda.de"
+    },
+    "label": {
+      "de-DE": "Artikeldetail-Seite - Zoom(Lupe) bei Mousover deaktivieren",
+      "en-GB": "Detail page - remove zoom on hover"
+    },
+    "description": {
+      "de-DE": "Artikeldetail-Seite - Zoom(Lupe) bei Mousover deaktivieren",
+      "en-GB": "Detail page - remove zoom on hover"
+    }
+  }
+}

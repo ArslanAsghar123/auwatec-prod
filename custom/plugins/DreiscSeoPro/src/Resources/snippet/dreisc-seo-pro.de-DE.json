@@ -1,0 +1,12 @@
+{
+    "dreiscSeoPro": {
+        "richSnippets": {
+            "reviews": {
+                "defaultAuthor": "Kunde"
+            },
+            "breadcrumb": {
+                "homeText": "Home"
+            }
+        }
+    }
+}

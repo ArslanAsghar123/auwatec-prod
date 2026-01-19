@@ -1,0 +1,61 @@
+.aku-cms-factory-element-edit {
+    /* Verhindern dass der create-Item-Dialog angezeigt wird */
+    .sw-tree-item__element:not(.is--draggable) {
+        display:none;
+    }
+
+    .no-items {
+        padding: 30px;
+        
+    }
+    .child-spacer-0{
+        padding: 0 0rem 0 0;
+    }
+    .child-spacer-1{
+        padding-left: 1rem;
+    }
+    .child-spacer-2{
+        padding-left: 2rem;
+    }
+    .child-spacer-3{
+        padding-left: 3rem;
+    }
+    .child-spacer-4{
+        padding-left: 4rem;
+    }
+    .child-spacer-5{
+        padding-left: 5rem;
+    }
+    .d-flex {
+        display: flex;
+    }
+    .text-right {
+        text-align: right;
+    }
+    .d-block {
+        display: block;
+    }
+    .flex-row {
+        flex-direction: row;
+    }
+    .align-items-center {
+        align-items: center;
+    }
+    .justify-content-between  {
+        justify-content: space-between;
+    }
+    .justify-content-end {
+        justify-content:end;
+    }
+    .mt-n3 {
+        margin-top: -1rem;
+    }
+    .mb-3 {
+        margin-bottom: 1rem;
+    }
+
+    .aku-cms-list-icons .sw-grid__cell-content {
+        justify-content: space-between;
+    }
+    
+}

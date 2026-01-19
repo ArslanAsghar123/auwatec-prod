@@ -1,0 +1,297 @@
+{
+  "swpa-backup": {
+    "header": "Backup",
+    "general": {
+      "mainMenuItemGeneral": "Backup",
+      "descriptionTextModule": "Backup settings"
+    },
+    "messageNotBlank": "This value cannot be empty.",
+    "tab": {
+      "settings": "Settings",
+      "log": "Backups"
+    },
+    "list": {
+      "column": {
+        "comment": "Message",
+        "status": "Status",
+        "time": "Time [min.]",
+        "deleted": {
+          "label": "Deleted",
+          "options": {
+            "deleted": "[deleted]",
+            "exists": "[exists]",
+            "notFound": "[not found]"
+          }
+        },
+        "filename": "Backup Filename",
+        "createdAt": "Created At"
+      }
+    },
+    "connection": {
+      "messages": {
+        "testConnectionSuccess": {
+          "title": "Connection to Destination Filesystem",
+          "text": "Connection was successfully"
+        },
+        "testConnectionFailed": {
+          "title": "Connection to Destination Filesystem",
+          "text": "Connection failed. Please check entered data"
+        },
+        "testPermissionFailed": {
+          "title": "Connection to Destination Filesystem",
+          "text": "Connection was successfully, but permissions failed. Please check rights of the user."
+        },
+        "error": {
+          "title": "Critical Error"
+        }
+      }
+    },
+    "backup": {
+      "messages": {
+        "createSuccess": {
+          "title": "Create new backup",
+          "text": "Backup was successfully created"
+        },
+        "createFailed": {
+          "title": "Error",
+          "text": "Cannot create new backup. Please check entered data"
+        },
+        "noAccess": {
+          "title": "Missing permissions",
+          "text": "Sie haben die erforderlichen Berechtigungen für diese Aktion nicht. Bitten Sie Ihren Administrator um Autorisierung."
+        }
+      }
+    },
+    "settingForm": {
+      "save": "Save",
+      "runBackup": "Create Backup",
+      "messages": {
+        "savedSuccess": {
+          "title": "Backup Settings",
+          "text": "The settings have been saved successfully"
+        },
+        "savedError": {
+          "title": "Backup Settings",
+          "text": "The settings were not saved"
+        }
+      },
+      "general": {
+        "cardTitle": "General",
+        "generalBackupEnable": {
+          "label": "Enable Backup",
+          "tooltipText": ""
+        },
+        "generalExcludePath": {
+          "label": "The paths will be excluded from the backup",
+          "tooltipText": "Example: <br/>vendor<br/>dev-ops<br/>public/media<br/><br/> Excluded by default: ./.idea, ./platform, ./files, ./var/cache, ./public/bundles, ./public/sitemap, ./public/theme and ./public/thumbnail"
+        },
+        "generalMaintenanceIp": {
+          "label": "Disable maintenance mode for the IPs",
+          "tooltipText": "Example: 127.0.0.1,127.0.0.2"
+        },
+        "generalMaintenanceMode": {
+          "label": "Maintenance Mode",
+          "tooltipText": "Please put your store into maintenance mode during the backup"
+        },
+        "generalCleanBackup": {
+          "label": "Remove old Backups",
+          "tooltipText": ""
+        },
+        "generalCleanPeriod": {
+          "label": "Save for the last",
+          "tooltipText": "",
+          "options": {
+            "week": "1 week",
+            "month": "1 month",
+            "threeMonth": "3 months",
+            "sixMonth": "6 months"
+          }
+        },
+        "generalBackupType": {
+          "label": "Backup Type",
+          "tooltipText": "",
+          "options": {
+            "database": "Database",
+            "databaseMedia": "Database + Media",
+            "system": "System",
+            "systemWithoutMedia": "System (without media)"
+          }
+        },
+        "generalDestinationFilesystem": {
+          "label": "Destination Filesystem",
+          "tooltipText": "",
+          "options": {
+            "local": "Local",
+            "sftp": "SFTP",
+            "ftp": "FTP",
+            "aws": "AWS S3"
+          }
+        },
+        "generalRunTime": {
+          "label": "Start Time",
+          "tooltipText": ""
+        },
+        "generalRunFrequency": {
+          "label": "Frequency",
+          "tooltipText": "",
+          "options": {
+            "daily": "Daily",
+            "weekly": "Weekly",
+            "monthly": "Monthly"
+          }
+        }
+      },
+      "local": {
+        "cardTitle": "Local Filesystem",
+        "filesystemLocalRoot": {
+          "label": "Path to backup storage",
+          "tooltipText": "Due to security reasons we strictly recommend to store the files within the original SW-Folder /files or in a folder that is not reachable from outside!"
+        }
+      },
+      "sftp": {
+        "cardTitle": "SFTP",
+        "testConnection": "Test SFTP Connection",
+        "messages": {
+          "testConnectionSuccess": {
+            "title": "SFTP Connection",
+            "text": "Connection was successfully"
+          },
+          "testConnectionFailed": {
+            "title": "SFTP Connection",
+            "text": "Connection failed. Please check entered data"
+          },
+          "testPermissionFailed": {
+            "title": "SFTP Connection",
+            "text": "Connection was successfully, but permissions failed. Please check rights of the user."
+          }
+        },
+        "filesystemSftpHost": {
+          "label": "Host",
+          "tooltipText": ""
+        },
+        "filesystemSftpUsername": {
+          "label": "Username",
+          "tooltipText": ""
+        },
+        "filesystemSftpPassword": {
+          "label": "Password",
+          "tooltipText": ""
+        },
+        "filesystemSftpPort": {
+          "label": "Port",
+          "tooltipText": ""
+        },
+        "filesystemSftpTimeout": {
+          "label": "Timeout",
+          "tooltipText": ""
+        },
+        "filesystemSftpPrivateKey": {
+          "label": "Private Key",
+          "tooltipText": ""
+        },
+        "filesystemSftpRoot": {
+          "label": "Path to backup storage",
+          "tooltipText": "Please make sure that the directory exists and is not reachable from outside via HTTP!"
+        }
+      },
+      "ftp": {
+        "cardTitle": "FTP",
+        "testConnection": "Test FTP Connection",
+        "messages": {
+          "testConnectionSuccess": {
+            "title": "FTP Connection",
+            "text": "Connection was successfully"
+          },
+          "testConnectionFailed": {
+            "title": "FTP Connection",
+            "text": "Connection failed. Please check entered data"
+          },
+          "testPermissionFailed": {
+            "title": "FTP Connection",
+            "text": "Connection was successfully, but permissions failed. Please check rights of the user."
+          }
+        },
+        "filesystemFtpHost": {
+          "label": "Host",
+          "tooltipText": ""
+        },
+        "filesystemFtpUsername": {
+          "label": "Username",
+          "tooltipText": ""
+        },
+        "filesystemFtpPassword": {
+          "label": "Password",
+          "tooltipText": ""
+        },
+        "filesystemFtpPort": {
+          "label": "Port",
+          "tooltipText": ""
+        },
+        "filesystemFtpTimeout": {
+          "label": "Timeout",
+          "tooltipText": ""
+        },
+        "filesystemFtpPassive": {
+          "label": "Passive mode",
+          "tooltipText": ""
+        },
+        "filesystemFtpRoot": {
+          "label": "Path to backup storage",
+          "tooltipText": "Please make sure that the directory is not reachable from outside via HTTP!"
+        }
+      },
+      "aws": {
+        "cardTitle": "AWS S3",
+        "testConnection": "Test AWS S3 Connection",
+        "messages": {
+          "testConnectionSuccess": {
+            "title": "AWS S3 Connection",
+            "text": "Connection was successfully"
+          },
+          "testConnectionFailed": {
+            "title": "AWS S3 Connection",
+            "text": "Connection failed. Please check entered data"
+          },
+          "testPermissionFailed": {
+            "title": "AWS S3 Connection",
+            "text": "Connection was successfully, but permissions failed. Please check rights of the user."
+          }
+        },
+        "filesystemAwsKey": {
+          "label": "Key",
+          "tooltipText": "see: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+        },
+        "filesystemAwsSecret": {
+          "label": "Secret",
+          "tooltipText": "see: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+        },
+        "filesystemAwsRegion": {
+          "label": "Region",
+          "tooltipText": "Use codes from: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints"
+        },
+        "filesystemAwsVersion": {
+          "label": "Version",
+          "tooltipText": ""
+        },
+        "filesystemAwsBucket": {
+          "label": "Bucket",
+          "tooltipText": "see: https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#create-bucket-intro"
+        },
+        "filesystemAwsRoot": {
+          "label": "Path to backup storage",
+          "tooltipText": "Please make sure that the directory is not reachable from outside via HTTP!"
+        }
+      }
+    }
+  },
+  "sw-privileges": {
+    "permissions": {
+      "swpa_backup": {
+        "label": "Backup"
+      },
+      "swpa_backup_log": {
+        "label": "Backup Log"
+      }
+    }
+  }
+}

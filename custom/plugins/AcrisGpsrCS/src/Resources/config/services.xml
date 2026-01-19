@@ -1,0 +1,159 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Entities -->
+        <service id="Acris\Gpsr\Twig\EmailUrlValidator">
+            <tag name="twig.extension"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\GpsrNoteDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_note"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrNoteTranslation\GpsrNoteTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_note_translation"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrNote\GpsrNoteRuleDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_note_rule"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrNote\GpsrNoteSalesChannelDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_note_sales_channel"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrNote\GpsrNoteStreamDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_note_stream"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\GpsrManufacturerDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_mf"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrManufacturerTranslation\GpsrManufacturerTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_mf_translation"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrManufacturer\GpsrManufacturerRuleDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_mf_rule"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrManufacturer\GpsrManufacturerSalesChannelDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_mf_sales_channel"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrManufacturer\GpsrManufacturerStreamDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_mf_stream"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\GpsrContactDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_contact"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrContactTranslation\GpsrContactTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_contact_translation"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrContact\GpsrContactRuleDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_contact_rule"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrContact\GpsrContactSalesChannelDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_contact_sales_channel"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrContact\GpsrContactStreamDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_contact_stream"/>
+        </service>
+
+        <!-- Extensions -->
+        <service id="Acris\Gpsr\Custom\ProductStreamExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\RuleExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\SalesChannelExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <!-- Own Services -->
+        <service id="Acris\Gpsr\Components\ProductGpsrInfo\GpsrService">
+            <argument id="Acris\Gpsr\Components\ProductGpsrInfo\GpsrGateway" type="service"/>
+            <argument id="Shopware\Core\System\SystemConfig\SystemConfigService" type="service"/>
+            <argument type="service" id="media.repository"/>
+
+        </service>
+
+        <service id="Acris\Gpsr\Components\ProductGpsrInfo\GpsrGateway">
+            <argument id="acris_gpsr_mf.repository" type="service"/>
+            <argument id="acris_gpsr_contact.repository" type="service"/>
+            <argument id="acris_gpsr_note.repository" type="service"/>
+        </service>
+
+        <service id="Acris\Gpsr\Storefront\Subscriber\GpsrSubscriber">
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheInvalidator"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="Acris\Gpsr\Storefront\Subscriber\ProductCriteriaSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="Acris\Gpsr\Storefront\Subscriber\ProductLoadedSubscriber">
+            <argument id="Acris\Gpsr\Components\ProductGpsrInfo\GpsrService" type="service"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="Acris\Gpsr\Storefront\Subscriber\ProductPageCriteriaEvent">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="Acris\Gpsr\Storefront\Subscriber\ProductExportSubscriber">
+            <argument id="Acris\Gpsr\Components\ProductGpsrInfo\GpsrService" type="service"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Acris\Gpsr\Custom\ProductGpsrDownloadDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_p_d" />
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrProductDownloadTranslation\GpsrProductDownloadTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_p_d_translation" />
+        </service>
+        <service id="Acris\Gpsr\Custom\GpsrContactDownloadDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_c_d" />
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrContactDownloadTranslation\GpsrContactDownloadTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_c_d_translation" />
+        </service>
+        <service id="Acris\Gpsr\Custom\GpsrNoteDownloadDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_n_d" />
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrNoteDownloadTranslation\GpsrNoteDownloadTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_n_d_translation" />
+        </service>
+        <service id="Acris\Gpsr\Custom\GpsrManufacturerDownloadDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_mf_d" />
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\GpsrManufacturerDownloadTranslation\GpsrManufacturerDownloadTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="acris_gpsr_mf_d_translation" />
+        </service>
+        <service id="Acris\Gpsr\Custom\ManufacturerDownloadDefinition">
+            <tag name="shopware.entity.definition" entity="acris_mf_d" />
+        </service>
+        <service id="Acris\Gpsr\Custom\Aggregate\ManufacturerDownloadTranslation\ManufacturerDownloadTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="acris_mf_d_translation" />
+        </service>
+        <service id="Acris\Gpsr\Custom\ProductExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\ContactExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\NoteExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\ManufacturerExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\CoreManufacuterExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\Gpsr\Custom\MediaExtensionGpsr">
+            <tag name="shopware.entity.extension"/>
+        </service>
+        <service id="Acris\Gpsr\Storefront\Subscriber\ImportExportSubscriber">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="product_manufacturer.repository"/>
+            <argument type="service" id="media.repository"/>
+            <argument type="service" id="acris_gpsr_p_d.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>

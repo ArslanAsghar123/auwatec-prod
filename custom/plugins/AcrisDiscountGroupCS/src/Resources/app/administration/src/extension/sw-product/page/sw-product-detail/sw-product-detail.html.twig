@@ -1,0 +1,13 @@
+{% block sw_product_detail_content_tabs_cross_selling %}
+    {% parent() %}
+
+<sw-tabs-item class="acris-discount-group-product-tab"
+              :route="{ name: 'acris.discount.group.product.tab', params: { id: $route.params.id } }"
+              :product="product"
+              v-if="!isChild"
+              :hasError="swProductDiscountGroupTabError"
+              :title="$tc('acris-discount-group.product.discountGroupTabTitle')">
+    {{ $tc('acris-discount-group.product.discountGroupTabTitle') }}
+</sw-tabs-item>
+{% endblock %}
+

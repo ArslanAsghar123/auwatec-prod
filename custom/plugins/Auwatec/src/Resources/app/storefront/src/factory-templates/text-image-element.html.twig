@@ -1,0 +1,20 @@
+<div class="text-image-element">
+    <div class="row align-items-center">
+        <div class="col-12 col-md-8 offset-md-2 col-xl-4 {% if data.choice_image_position == 'Right' %}offset-xl-0 order-xl-2{% else %}offset-xl-1{% endif %}">
+            <div class="text-image-element-image">
+                {% if data.med_image is defined and data.med_image is not null %}
+                    {% sw_thumbnails 'thumbnails' with {
+                        media: data.med_image
+                    } %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-xl-6 {% if data.choice_image_position == 'Right' %}offset-xl-1 order-xl-1{% endif %}">
+            <div class="text-image-element-content">
+                {% if data.text_text !== '' %}
+                    {{ data.text_text|raw }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

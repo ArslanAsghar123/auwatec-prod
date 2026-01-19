@@ -1,0 +1,51 @@
+{% block intedia_doofinder_index %}
+<sw-page class="intedia-doofiner-index sw-settings-index">
+    {% block intedia_doofinder_index_smart_bar_header %}
+    <template slot="smart-bar-header">
+        {% block intedia_doofinder_index_smart_bar_header_title %}
+        <h2>
+            {% block intedia_doofinder_index_smart_bar_header_title_text %}
+                {{ $tc('intedia-doofinder-index.index.textHeadline') }}
+            {% endblock %}
+        </h2>
+        {% endblock %}
+    </template>
+    {% endblock %}
+
+    {% block intedia_doofinder_index_content %}
+    <template #content>
+        {% block intedia_doofinder_index_content_card_view %}
+        <sw-card-view>
+            {% block intedia_doofinder_index_content_card %}
+            <sw-card class="intedia-doofinder_index__card">
+                {% block intedia_doofinder_index_content_grid %}
+                <div class="sw-settings__content-grid">
+                    {% block intedia_doofinder_index_card_item %}
+                        {% block sw_settings_intedia_doofinder_item %}
+                            <sw-settings-item id="intedia-settings-intedia-doofinder-layers"
+                                              :label="$tc('intedia-doofinder-layers.general.mainMenuItemGeneral')"
+                                              :to="{ name: 'intedia.doofinder.layers.index' }">
+                                <template #icon>
+                                    <sw-icon name="solid-layer-group"></sw-icon>
+                                </template>
+                            </sw-settings-item>
+
+                            <sw-settings-item id="intedia-settings-intedia-doofinder-stores"
+                                              :label="$tc('intedia-doofinder-stores.general.mainMenuItemGeneral')"
+                                              :to="{ name: 'intedia.doofinder.stores.index' }">
+                                <template #icon>
+                                    <sw-icon name="solid-marketplace-stall"></sw-icon>
+                                </template>
+                            </sw-settings-item>
+                        {% endblock %}
+                    {% endblock %}
+                </div>
+                {% endblock %}
+            </sw-card>
+            {% endblock %}
+        </sw-card-view>
+        {% endblock %}
+    </template>
+    {% endblock %}
+</sw-page>
+{% endblock %}

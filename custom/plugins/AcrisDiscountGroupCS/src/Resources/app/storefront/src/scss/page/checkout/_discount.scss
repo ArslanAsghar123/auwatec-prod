@@ -1,0 +1,103 @@
+.line-item-unit-price, .line-item-total-price {
+
+  &.with-list-price {
+    color: #e52427;
+  }
+}
+
+.line-item-unit-list-price-price, .line-item-total-list-price-price {
+  text-decoration: line-through;
+}
+
+.acris-line-item-discount-price-value {
+  @extend .fw-normal;
+}
+
+.acris-discount-group-custom-line-item.is-offcanvas .acris-line-item-discount-price-value-label {
+  @extend .d-inline-block;
+}
+
+// only cart page line item product image / name
+.acris-discount-group-custom-line-item:not(.is-offcanvas, .is-order, .no-remove-button) {
+  .line-item-info {
+    @include media-breakpoint-up(md) {
+      @include make-col(3);
+    }
+  }
+
+  .line-item-quantity {
+    @include media-breakpoint-up(sm) {
+      @include make-col(3);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(2);
+    }
+  }
+
+  .line-item-unit-price {
+    @include media-breakpoint-up(sm) {
+      @include make-col(3);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(2);
+    }
+  }
+
+  .acris-line-item-discount-price {
+    @include media-breakpoint-up(sm) {
+      @include make-col(3);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(2);
+    }
+  }
+
+  .line-item-total-price {
+    @include media-breakpoint-up(sm) {
+      @include make-col(3);
+    }
+    @include media-breakpoint-up(md) {
+      @include make-col(2);
+    }
+  }
+}
+
+// order history and finish cart line item product image / name
+.acris-discount-group-custom-line-item.is-order,
+.acris-discount-group-custom-line-item.no-remove-button {
+  .line-item-info {
+    // @extend .pe-0;
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+    }
+  }
+}
+
+.acris-discount-group-custom-cart-layout {
+  &.is-act-confirmpage,
+  &.is-act-finishpage,
+  &.is-ctl-accountorder {
+    .checkout {
+      .checkout-main {
+        @extend .col-lg-9;
+      }
+
+      .checkout-aside {
+        @extend .offset-lg-7;
+        @extend .col-lg-4;
+      }
+    }
+  }
+
+  &.is-act-cartpage {
+    .checkout {
+      .checkout-main {
+        @extend .col-lg-9;
+      }
+
+      .checkout-aside {
+        @extend .col-lg-3;
+      }
+    }
+  }
+}

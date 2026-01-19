@@ -1,0 +1,32 @@
+{% sw_extends '@Storefront/storefront/component/address/address-personal.html.twig' %}
+
+{% block component_address_personal_fields_salutation %}
+    <div class="form-group col-md-3 col-sm-6 d-none">
+        {% block component_address_personal_fields_salutation_label %}
+            <label class="form-label"
+                   for="{{ idPrefix ~ prefix }}personalSalutation">
+                {{ "account.personalSalutationLabel"|trans|sw_sanitize }}{{ "general.required"|trans|sw_sanitize }}
+            </label>
+        {% endblock %}
+
+        {% block component_address_form_salutation_select %}
+            <select id="{{ idPrefix ~ prefix }}personalSalutation"
+                    class="form-select{% if formViolations.getViolations('/salutationId') is not empty %} is-invalid{% endif %} d-none"
+                    name="{% if prefix %}{{ prefix }}[salutationId]{% else %}salutationId{% endif %}"
+                    required="required">
+                {% set salutation = page.salutations|first %}
+                <option value="{{ salutation.id }}" selected="selected">
+                    {{ salutation.translated.displayName }}
+                </option>
+            </select>
+        {% endblock %}
+
+        {% block component_address_form_salutation_select_error %}
+            {% if formViolations.getViolations('/salutationId') is not empty %}
+                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+                    violationPath: '/salutationId'
+                } %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}

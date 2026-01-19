@@ -1,0 +1,46 @@
+services:
+
+  # Array Formatter
+  swpa.backup.logger.formatter:
+    class: Swpa\SwpaBackup\Logger\Formatter\ArrayFormatter
+    public: true
+
+  # service to add log files to archive
+  swpa.backup.archive:
+    class: Swpa\SwpaBackup\Service\Archive
+
+  # config service, to work with plugin configuration
+  swpa.backup.config:
+    class: Swpa\SwpaBackup\Service\Config
+    public: true
+    shared: false
+    arguments:
+      - '@kernel'
+      - '@Shopware\Core\System\SystemConfig\SystemConfigService'
+      - '@Doctrine\DBAL\Connection'
+      - '@swpa.backup.logger'
+
+  swpa.backup.backup_manager:
+    class: Swpa\SwpaBackup\Service\Manager
+    arguments:
+      - "@swpa.backup.filesystems"
+      - "@swpa.backup.databases"
+      - '@swpa.backup.config'
+      - '@swpa.backup.logger'
+      - '@swpa_backup.repository'
+      - '@Doctrine\DBAL\Connection'
+
+  Swpa\SwpaBackup\Controller\ValidationController:
+    public: true
+    arguments:
+      - '@swpa.backup.config'
+    calls:
+      - setContainer: [ '@service_container' ]
+
+  Swpa\SwpaBackup\Controller\BackupController:
+    public: true
+    arguments:
+      - '@swpa.backup.config'
+      - '@swpa.backup.backup_manager'
+    calls:
+      - setContainer: [ '@service_container' ]

@@ -1,0 +1,11 @@
+<div class="sw-field sw-block-field sw-field--default">
+    <div class="sw-field__label">
+        <label for="sw-field--label" class="">{{ label }}</label>
+        <sw-help-text class="sw-field__help-text" :text="helpText" v-if="helpText"></sw-help-text>
+    </div>
+    <sw-checkbox-field
+            v-for="row in model"
+            :key="row.key"
+            :label="row.label"
+            v-model:value="row.checked" />
+</div>

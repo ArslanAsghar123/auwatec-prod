@@ -1,0 +1,27 @@
+.footer-usp{
+  background: $blue-background-dark;
+  padding: 60px 0 0 0;
+  .usp{
+    padding: 0 0 60px 0;
+    text-align: center;
+  }
+  .usp-image{
+    margin-bottom: 15px;
+    .icon{
+      width: 70px;
+      height: 70px;
+      color: $white;
+    }
+  }
+  .usp-headline{
+    color: $white;
+    font-size: 22px;
+    font-weight: $font-weight-bold;
+    font-family: $font-family-roboto;
+    margin-bottom: 15px;
+  }
+  .usp-text{
+    color: $white;
+  }
+}
+

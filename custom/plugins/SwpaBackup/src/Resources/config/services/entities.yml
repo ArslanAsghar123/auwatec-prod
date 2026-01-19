@@ -1,0 +1,5 @@
+services:
+
+  Swpa\SwpaBackup\DAL\Backup\SwpaBackupDefinition:
+    tags:
+      - { name: 'shopware.entity.definition', entity: 'swpa_backup' }

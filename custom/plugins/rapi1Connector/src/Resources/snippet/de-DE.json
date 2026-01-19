@@ -1,0 +1,16 @@
+{
+  "rapidmail": {
+    "navigationItem": "Rapidmail",
+    "signupNavigationItem": "Create account",
+    "or": "oder",
+    "connection": {
+      "connectToRapidmail": "Connect",
+      "createAccount": "Create free account"
+    },
+    "form": {
+      "title": "API-Einstellungen (Falls Sie Ihren Shop manuell bei rapidmail einrichten müssen)",
+      "accessKey": "Access key ID",
+      "secretAccessKey": "Secret access key"
+    }
+  }
+}

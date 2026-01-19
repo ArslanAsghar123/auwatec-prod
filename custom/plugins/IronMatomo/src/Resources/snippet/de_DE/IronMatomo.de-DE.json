@@ -1,0 +1,8 @@
+{
+    "IronMatomo": {
+        "cookie": {
+            "name": "Matomo Tracking",
+            "description": "Tracking-Statistiken zur Optimierung der Benutzerabläufe. Es werden keine persönlichen Daten gespeichert."
+        }
+    }
+}

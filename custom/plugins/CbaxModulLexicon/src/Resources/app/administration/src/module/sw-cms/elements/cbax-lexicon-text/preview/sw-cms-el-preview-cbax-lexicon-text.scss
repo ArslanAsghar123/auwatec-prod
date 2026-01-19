@@ -1,0 +1,21 @@
+.sw-cms-el-preview-text {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 14px;
+        line-height: 20px;
+        margin: 0 0 6px 0;
+    }
+
+    p {
+        font-size: 10px;
+        line-height: 15px;
+    }
+
+    .sw-cms-preview-cbax-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 10;
+        height: 20px;
+        width: 20px;
+    }
+}

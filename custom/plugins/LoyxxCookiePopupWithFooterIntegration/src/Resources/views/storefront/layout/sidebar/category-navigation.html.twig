@@ -1,0 +1,38 @@
+{% sw_extends '@Storefront/storefront/layout/sidebar/category-navigation.html.twig' %}
+
+{% block layout_navigation_categories_link_children %}
+    {% set pluginConfigurations = context.context.extensions.loyxx_configrations.configs %}
+    {% if (item.category.id == pluginConfigurations.loyxx_category_id) %}
+        {% if  (pluginConfigurations.loyxx_cookie_enabled) and
+            (pluginConfigurations.loyxx_cookie_button_pos == 'category') %}
+            <a class="category-navigation-link{% if item.category.id is same as(activeResult.id) %} is-active{% endif %}{% if item.category.id in activeResult.path %} in-path{% endif %}"
+               href="{{ path('frontend.cookie.offcanvas') }}"
+               {% if category_linknewtab(item.category) %}target="_blank"{% endif %}>
+                {% block layout_navigation_categories_link_children_name %}
+                    {{ parent() }}
+                {% endblock %}
+            </a>
+
+        {% endif %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block layout_navigation_categories_link %}
+    {% set pluginConfigurations = context.context.extensions.loyxx_configrations.configs %}
+    {% if (item.category.id == pluginConfigurations.loyxx_category_id) %}
+        {% if  (pluginConfigurations.loyxx_cookie_enabled) and
+            (pluginConfigurations.loyxx_cookie_button_pos == 'category') %}
+            <a class="category-navigation-link{% if item.category.id is same as(activeResult.id) %} is-active{% endif %}"
+               href="{{ path('frontend.cookie.offcanvas') }}"
+               {% if category_linknewtab(item.category) %}target="_blank"{% endif %}>
+                {% block layout_navigation_categories_link_name %}
+                    {{ parent() }}
+                {% endblock %}
+            </a>
+        {% endif %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

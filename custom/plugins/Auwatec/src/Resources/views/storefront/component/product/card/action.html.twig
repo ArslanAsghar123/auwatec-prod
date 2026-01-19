@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+{% block page_product_detail_product_buy_button %}
+    <div>
+        <button class="btn btn-buy"
+                title="{{ "listing.boxAddProduct"|trans|striptags }}">
+            {{ "listing.boxAddProduct"|trans|sw_sanitize }}
+            {% sw_icon 'shoppingcart-a' style { 'namespace': 'Auwatec' } %}
+        </button>
+    </div>
+{% endblock %}
+
+{% block component_product_box_action_detail %}
+    <div>
+        <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+           class="btn btn-outline-primary detail-button"
+           title="{{ "listing.boxProductDetails"|trans|striptags }}">
+            {{ "listing.boxProductDetails"|trans|sw_sanitize }}
+            {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+        </a>
+    </div>
+{% endblock %}

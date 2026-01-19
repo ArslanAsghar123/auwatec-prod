@@ -1,0 +1,16 @@
+{% block sw_cms_element_cbax_lexicon_text %}
+    <div class="sw-cms-el-text">
+        <div class="sw-cms-el-text__mapping-preview content-editor"
+             v-html="$sanitize(demoValue)"
+             v-if="element.config.content.source === 'mapped'">
+        </div>
+
+        <sw-text-editor v-else
+                        v-model:value="element.config.content.value"
+                        @blur="onBlur"
+                        @update:value="onInput"
+                        :verticalAlign="element.config.verticalAlign.value"
+                        :isInlineEdit="true">
+        </sw-text-editor>
+    </div>
+{% endblock %}

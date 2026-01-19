@@ -1,0 +1,27 @@
+{% for widget in widgets %}
+    {% if
+        (whitelist is not defined or
+        (whitelist is defined and widget.applicationType in whitelist))
+        and
+        (blacklist is not defined or
+        (blacklist is defined and widget.applicationType not in blacklist))
+    %}
+        {% if widget.widgetLocation.id === widgetLocationId %}
+            {% set widgetTag = '<' ~ widget.tag ~ ' ' ~ widget.attributes.id.attributeName ~ '="'~ widget.attributes.id.value ~'"' %}
+
+            {% if widget.attributes.productIdentifier is defined %}
+                {% if widget.attributes.productIdentifier.attributeName === "data-gtin" and product.ean is not null %}
+                    {% set widgetTag = widgetTag ~ ' ' ~ widget.attributes.productIdentifier.attributeName ~ '="'~ product.ean|trim ~'"' %}
+                {% elseif widget.attributes.productIdentifier.attributeName === "data-mpn" and product.manufacturerNumber is not null %}
+                    {% set widgetTag = widgetTag ~ ' ' ~ widget.attributes.productIdentifier.attributeName ~ '="'~ product.manufacturerNumber|trim ~'"' %}
+                {% else %}
+                    {% set widgetTag = widgetTag ~ ' data-sku="'~ product.productNumber|trim ~'"' %}
+                {% endif %}
+            {% endif %}
+
+            {% set widgetTag = widgetTag ~ '></' ~ widget.tag ~ '>' %}
+
+            {{ widgetTag|raw }}
+        {% endif %}
+    {% endif %}
+{% endfor %}

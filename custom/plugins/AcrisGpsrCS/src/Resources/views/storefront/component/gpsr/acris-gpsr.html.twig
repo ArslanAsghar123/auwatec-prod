@@ -1,0 +1,304 @@
+{% block acris_gpsr %}
+    {% set pluginConfig = config('AcrisGpsrCS.config') %}
+    {% set needToShowDocumentTitleForWarning = config('AcrisGpsrCS.config').warningDocumentTitleDisplay == 'yes' %}
+    {% set needToShowDocumentTitleForSafety = config('AcrisGpsrCS.config').safetyDocumentTitleDisplay == 'yes' %}
+    {% set needToShowDocumentTitleDisplay = config('AcrisGpsrCS.config').importantDocumentTitleDisplay == 'yes' %}
+    {% set needToShowProductTypeTitleDisplay = config('AcrisGpsrCS.config').productTypeTitleDisplay == 'yes' %}
+    {% set needToShowWarningTitleDisplay = config('AcrisGpsrCS.config').warningTitleDisplay == 'yes' %}
+    {% set needToShowSafetyTitleDisplay = config('AcrisGpsrCS.config').safetyTitleDisplay == 'yes' %}
+    {% set needToShowImportantTitleDisplay = config('AcrisGpsrCS.config').importantTitleDisplay == 'yes' %}
+    {% set needToShowTitle = true %}
+
+<div class="acris-gpsr mb-3{% if gpsrInfo.mobileVisibility == 'hide' %} hide-for-mobile{% endif %}">
+        {% block acris_gpsr_modal_part_one %}
+            {% if gpsrInfo.displayType == "description" and gpsrInfo.descriptionDisplay == 'modal' %}
+                {% if gpsrInfo.contentType == 'contact' %}
+                    {% set modalTitle = 'acrisGpsr.gpsrHeadlineContact'|trans|sw_sanitize %}
+                    {% set modalInfoText = 'acrisGpsr.gpsrModalInfoTextContact'|trans|sw_sanitize %}
+                    {% set modalLinkText = 'acrisGpsr.gpsrModalLinkTextContact'|trans|sw_sanitize %}
+                {% elseif gpsrInfo.contentType == 'manufacturer' %}
+                    {% set modalTitle = 'acrisGpsr.gpsrHeadlineManufacturer'|trans|sw_sanitize %}
+                    {% set modalInfoText = 'acrisGpsr.gpsrModalInfoTextManufacturer'|trans|sw_sanitize %}
+                    {% set modalLinkText = 'acrisGpsr.gpsrModalLinkTextManufacturer'|trans|sw_sanitize %}
+                {% else %}
+                    {% set modalTitle = 'acrisGpsr.gpsrHeadline'|trans|sw_sanitize %}
+                    {% set modalInfoText = 'acrisGpsr.gpsrModalInfoText'|trans|sw_sanitize %}
+                    {% set modalLinkText = 'acrisGpsr.gpsrModalLinkText'|trans|sw_sanitize %}
+                {% endif %}
+                {% set modalId = 'gpsr-'~gpsrInfo.id %}
+                {% set modalLabel = 'gpsr-'~gpsrInfo.id~"-label" %}
+
+                {% if gpsrInfo.modalInfoText %}
+                    {% set modalInfoText = gpsrInfo.modalInfoText %}
+                {% endif %}
+                {% if gpsrInfo.modalLinkText %}
+                    {% set modalLinkText = gpsrInfo.modalLinkText %}
+                {% endif %}
+                {% if not gpsrInfo.headline %}
+                    {% set showHeadline = false %}
+                {% endif %}
+
+                <div class="gpsr-modal-link-wrapper">
+                    {{ modalInfoText }}
+                    <a data-ajax-modal="true" class="gpsr-modal-link" href="" data-bs-toggle="modal" data-bs-target="#{{ modalId }}">{{ modalLinkText }}</a>
+                </div>
+
+                <div class="modal fade" id="{{ modalId }}" tabindex="-1" aria-labelledby="{{ modalLabel }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="{{ modalLabel }}">
+                        {{ modalTitle }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+            {% endif %}
+        {% endblock %}
+
+        {% block acris_gpsr_style %}
+            {# do styling only for notes #}
+            {% if gpsrInfo.noteType %}
+                <style>
+                    #note_{{ gpsrInfo.id }} .acris-gpsr-content {
+                    {% if gpsrInfo.backgroundColor %} background-color: {{ gpsrInfo.backgroundColor }};
+                    {% endif %}{% if gpsrInfo.borderColor %} border: 1px solid{{ gpsrInfo.borderColor }};
+                    {% endif %}{% if gpsrInfo.backgroundColor or gpsrInfo.borderColor %} padding: 15px;
+                    {% endif %}
+                    }
+
+                    #note_{{ gpsrInfo.id }} .acris-gpsr-note-headline {
+                    {% if gpsrInfo.headlineColor %} color: {{ gpsrInfo.headlineColor }};
+                    {% endif %}
+                    }
+                    {% set mediaSize = '100px' %}
+
+                    {% if gpsrInfo.mediaSize and gpsrInfo.mediaSize > 0 %}
+                    {% set mediaSize = gpsrInfo.mediaSize~'px' %}
+                    #note_{{ gpsrInfo.id }} .gpsr-thumbnail-note-image {
+                        width: {{ mediaSize }};
+                    }
+                    {% endif %}
+                </style>
+            {% endif %}
+        {% endblock %}
+
+        {% block acris_gpsr_content %}
+            <div id="note_{{ gpsrInfo.id }}" class="acris-gpsr-note">
+                {% set noteContent %}
+                {% set headlineFallback = '' %}
+                {% if gpsrInfo.contentType == 'manufacturer' %}
+                    {% set headlineFallback = 'acrisGpsr.gpsrHeadlineManufacturer'|trans|sw_sanitize %}
+                {% elseif gpsrInfo.contentType == 'contact' %}
+                    {% set headlineFallback = 'acrisGpsr.gpsrHeadlineContact'|trans|sw_sanitize %}
+                {% elseif gpsrInfo.contentType == 'type' %}
+                    {% set headlineFallback = 'acrisGpsr.gpsrProductType'|trans|sw_sanitize %}
+                {% endif %}
+                {% if gpsrInfo.noteType == 'warning' %}
+                    {% set headlineFallback = 'acrisGpsr.gpsrHeadlineProductWarning'|trans|sw_sanitize %}
+                {% endif %}
+                {% if gpsrInfo.noteType == 'security' %}
+                    {% set headlineFallback = 'acrisGpsr.gpsrHeadlineProductSafetyNote'|trans|sw_sanitize %}
+                {% endif %}
+                {% if gpsrInfo.noteType == 'information' %}
+                    {% set headlineFallback = 'acrisGpsr.gpsrHeadlineProductImportantInformation'|trans|sw_sanitize %}
+                {% endif %}
+
+                {% if gpsrInfo.headline or headlineFallback is not empty %}
+                {% if gpsrInfo.hintHeadlineSeoSize %}
+                    {% set headlineTag = gpsrInfo.hintHeadlineSeoSize %}
+                {% else %}
+                    {% set headlineTag = 'div' %}
+                {% endif %}
+                {% if gpsrInfo.hintEnableHeadlineSize == true and gpsrInfo.hintHeadlineSize %}
+                    {% set headlineSize = gpsrInfo.hintHeadlineSize %}
+                {% else %}
+                    {% set headlineSize = 'h4' %}
+                {% endif %}
+
+                {% if gpsrInfo.contentType == 'type' and not needToShowProductTypeTitleDisplay %}
+                    {% set needToShowTitle = false %}
+                {% endif %}
+
+                {% if gpsrInfo.noteType == 'warning' and not needToShowWarningTitleDisplay %}
+                    {% set needToShowTitle = false %}
+                {% endif %}
+
+                {% if gpsrInfo.noteType == 'security' and not needToShowSafetyTitleDisplay %}
+                    {% set needToShowTitle = false %}
+                {% endif %}
+
+                {% if gpsrInfo.noteType == 'information' and not needToShowImportantTitleDisplay %}
+                    {% set needToShowTitle = false %}
+                {% endif %}
+
+                {% if gpsrInfo.contentType == 'type' and pluginConfig.gpsrHeadlineProductTypeHeading and pluginConfig.gpsrHeadlineProductTypeHeading !='text' %}
+                    {% set headlineSize = pluginConfig.gpsrHeadlineProductTypeHeading %}
+                    {% set headlineTag = pluginConfig.gpsrHeadlineProductTypeHeading %}
+                {% endif %}
+
+                {% if gpsrInfo.contentType == 'manufacturer' and pluginConfig.gpsrHeadlineManufacturerTypeHeading and pluginConfig.gpsrHeadlineManufacturerTypeHeading !='text' %}
+                    {% set headlineSize = pluginConfig.gpsrHeadlineManufacturerTypeHeading %}
+                    {% set headlineTag = pluginConfig.gpsrHeadlineManufacturerTypeHeading %}
+                {% endif %}
+
+                {% if gpsrInfo.contentType == 'contact' and pluginConfig.gpsrHeadlineProductResponsiblePersonHeading and pluginConfig.gpsrHeadlineProductResponsiblePersonHeading !='text' %}
+                    {% set headlineSize = pluginConfig.gpsrHeadlineProductResponsiblePersonHeading %}
+                    {% set headlineTag = pluginConfig.gpsrHeadlineProductResponsiblePersonHeading %}
+                {% endif %}
+
+                {% if gpsrInfo.noteType == 'warning' and headlineFallback and pluginConfig.gpsrHeadlineProductWarningHeading and pluginConfig.gpsrHeadlineProductWarningHeading !='text' %}
+                    {% set headlineSize = pluginConfig.gpsrHeadlineProductWarningHeading %}
+                    {% set headlineTag = pluginConfig.gpsrHeadlineProductWarningHeading %}
+                {% endif %}
+
+                {% if gpsrInfo.noteType == 'security' and headlineFallback and pluginConfig.gpsrHeadlineProductSafetyHeading and pluginConfig.gpsrHeadlineProductSafetyHeading !='text' %}
+                    {% set headlineSize = pluginConfig.gpsrHeadlineProductSafetyHeading %}
+                    {% set headlineTag = pluginConfig.gpsrHeadlineProductSafetyHeading %}
+                {% endif %}
+
+                {% if gpsrInfo.noteType == 'information' and headlineFallback and pluginConfig.gpsrHeadlineProductImportantInformationHeading and pluginConfig.gpsrHeadlineProductImportantInformationHeading !='text' %}
+                    {% set headlineSize = pluginConfig.gpsrHeadlineProductImportantInformationHeading %}
+                    {% set headlineTag = pluginConfig.gpsrHeadlineProductImportantInformationHeading %}
+                {% endif %}
+
+                {% block acris_gpsr_main_content_headline %}
+                {% if needToShowTitle %}
+
+                    <{{ headlineTag }} class="acris-gpsr-note-headline {{ headlineSize }}{% if gpsrInfo.hintAlignment %} text-{{ gpsrInfo.hintAlignment }}{% endif%}">
+                    {% if gpsrInfo.headline %}
+                        {{ gpsrInfo.headline }}
+                    {% else %}
+                        {{ headlineFallback }}
+                    {% endif %}
+                </{{ headlineTag }}>
+                    {% endif %}
+                 {% endblock %}
+            {% endif %}
+
+            {% block acris_gpsr_main_content_text %}
+                {% if gpsrInfo.text %}
+                    <div class="acris-gpsr-type-{{ gpsrInfo.contentType }}">{{ gpsrInfo.text|raw }}</div>
+                {% endif %}
+            {% endblock %}
+            {% endset %}
+
+            {% set mediaContent %}
+                {% if gpsrInfo.media %}
+                    {% block acris_gpsr_note_detail_media %}
+                        {% set mediaSize = '100px' %}
+
+                        {% if gpsrInfo.mediaSize and gpsrInfo.mediaSize > 0 %}
+                            {% set mediaSize = gpsrInfo.mediaSize~'px' %}
+                        {% endif %}
+
+                        {% block acris_gpsr_note_detail_media_thumbnail %}
+                            {% sw_thumbnails 'gpsr-image-thumbnails' with {
+                                media: gpsrInfo.media,
+                                sizes: {
+                                    default: mediaSize
+                                },
+                                attributes: {
+                                    class: 'gpsr-thumbnail-note-image',
+                                    alt: (gpsrInfo.media.translated.alt ?: gpsrInfo.media.fileName),
+                                    title: (gpsrInfo.media.translated.title ?: gpsrInfo.media.fileName)
+                                }
+                            } %}
+                        {% endblock %}
+                    {% endblock %}
+                {% endif %}
+            {% endset %}
+
+            {% block acris_gpsr_content_inner %}
+                <div class="acris-gpsr-content">
+                    {% if gpsrInfo.media %}
+                        <div class="row">
+                            {% if gpsrInfo.mediaPosition == 'left' %}
+                                <div class="acris-gpsr-content-media col-auto align-content-center">
+                                    {{ mediaContent }}
+                                </div>
+                            {% endif %}
+                            <div class="acris-gpsr-content-text col">
+                                {{ noteContent }}
+                            </div>
+                            {% if gpsrInfo.mediaPosition == 'right' %}
+                                <div class="acris-gpsr-content-media col-auto align-content-center">
+                                    {{ mediaContent }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        {{ noteContent }}
+                    {% endif %}
+                </div>
+            {% endblock %}
+
+                {% block acris_gpsr_address %}
+                    {% if gpsrInfo.hasAddress %}
+                        {% sw_include '@Storefront/storefront/component/gpsr/type/acris-gpsr-info.html.twig' with {
+                            name: gpsrInfo.name,
+                            street: gpsrInfo.street,
+                            houseNumber: gpsrInfo.houseNumber,
+                            zipcode: gpsrInfo.zipcode,
+                            city: gpsrInfo.city,
+                            country: gpsrInfo.country,
+                            phoneNumber: gpsrInfo.phoneNumber,
+                            address: gpsrInfo.address
+                        } %}
+                    {% endif %}
+                {% endblock %}
+                    {% set headlineTag = "h6" %}
+
+                    {% if gpsrInfo.noteType == 'warning' and needToShowDocumentTitleForWarning and gpsrInfo.getDocumentUrls %}
+                    {% if pluginConfig.gpsrProductWarningDocumentsUrlHeading %}
+                        {% set headlineTag = pluginConfig.gpsrProductWarningDocumentsUrlHeading %}
+                    {% endif %}
+                        <br> <{{ headlineTag }}>{{ 'acrisGpsr.gpsrDocumentTitleWarning'|trans|sw_sanitize }}</{{ headlineTag }}>
+                    {% endif %}
+                    {% if gpsrInfo.noteType == 'security' and needToShowDocumentTitleForSafety and gpsrInfo.getDocumentUrls %}
+                        {% if pluginConfig.gpsrProductSafetyDocumentsUrlHeading %}
+                            {% set headlineTag = pluginConfig.gpsrProductSafetyDocumentsUrlHeading %}
+                        {% endif %}
+                        <br> <{{ headlineTag }}>{{ 'acrisGpsr.gpsrDocumentTitleSafety'|trans|sw_sanitize }}</{{ headlineTag }}>
+                    {% endif %}
+                    {% if gpsrInfo.noteType == 'information' and needToShowDocumentTitleDisplay and gpsrInfo.getDocumentUrls %}
+                        {% if pluginConfig.gpsrProductImportantInformationDocumentsUrlHeading %}
+                            {% set headlineTag = pluginConfig.gpsrProductImportantInformationDocumentsUrlHeading %}
+                        {% endif %}
+                        <br> <{{ headlineTag }}>{{ 'acrisGpsr.gpsrDocumentTitleImportant'|trans|sw_sanitize }}</{{ headlineTag }}>
+                    {% endif %}
+                    {% if pluginConfig.fileDisplay == 'bulletList'and gpsrInfo.getDocumentUrls %}
+                    <ul>
+                    {% endif %}
+
+                    {% for document in gpsrInfo.getDocumentUrls %}
+                        {% if pluginConfig.fileDisplay == 'bulletList' %}
+                        <li>
+                            {% endif %}
+                            <a href="{{ document.url }}" download="{{ document.filename }}">{{ document.filename }}</a>
+                        {% if pluginConfig.fileDisplay == 'bulletList' %}
+                        </li>
+                            {% endif %}
+                            {% endfor %}
+                    {% if pluginConfig.fileDisplay == 'bulletList' and gpsrInfo.getDocumentUrls %}
+                    </ul>
+                     {% endif %}
+            </div>
+        {% endblock %}
+
+        {% block acris_gpsr_modal_part_two %}
+            {% if gpsrInfo.displayType == "description" and gpsrInfo.descriptionDisplay == 'modal' %}
+                </div>
+                </div>
+                </div>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% if gpsrInfo.displaySeparator == 'show' and isLastGpsrEntry != true %}
+            {% block acris_gpsr_content_separator %}
+                <hr>
+            {% endblock %}
+        {% endif %}
+    </div>
+{% endblock %}

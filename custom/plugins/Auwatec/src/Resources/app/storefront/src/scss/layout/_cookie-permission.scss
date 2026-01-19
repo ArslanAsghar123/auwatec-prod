@@ -1,0 +1,47 @@
+.cookie-permission-content{
+  font-size: 16px;
+  font-weight: $font-weight-bold;
+  a{
+    color: $sw-text-color;
+    text-decoration: underline;
+  }
+}
+
+.cookie-permission-actions{
+  .btn{
+    @extend .btn-success;
+  }
+}
+
+.offcanvas-cookie{
+  .btn{
+    @extend .btn-success;
+    @extend .btn-block;
+  }
+
+  .loyxx-cookie-buttons {
+    .js-offcanvas-cookie-submit {
+      display: none;
+    }
+
+    .js-cookie-permission-button {
+      button {
+        --bs-btn-color: #ffbd5d;
+        --bs-btn-border-color: #ffbd5d;
+        --bs-btn-hover-color: #000;
+        --bs-btn-hover-bg: #ffbd5d;
+        --bs-btn-hover-border-color: #ffbd5d;
+        --bs-btn-focus-shadow-rgb: 255, 189, 93;
+        --bs-btn-active-color: #000;
+        --bs-btn-active-bg: #ffbd5d;
+        --bs-btn-active-border-color: #ffbd5d;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: #ffbd5d;
+        --bs-btn-disabled-bg: transparent;
+        --bs-btn-disabled-border-color: #ffbd5d;
+        --bs-gradient: none;
+        background: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@mixin show {
+    display: block;
+}
+
+.slider-lg{
+    display: none;
+}
+
+.slider-md{
+    display: none;
+}
+
+.slider-sm{
+    display: none;
+}
+
+@include media-breakpoint-up(lg){
+    .slider-lg{
+        @include show();
+    }
+}
+
+@include media-breakpoint-only(md){
+    .slider-md{
+        @include show;
+
+    }
+}
+
+@include media-breakpoint-down(sm){
+    .slider-sm{
+        @include show;
+        padding: 0 !important;
+    }
+    .p0{
+        padding: 0 !important;
+    }
+    .px0{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}

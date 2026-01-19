@@ -1,0 +1,8 @@
+{#{{ dump(page.product.seoCategory) }}#}
+{#{{ dump(page.extensions.ironMatomoExt.seoCategory) }}#}
+
+{% set price = page.product.calculatedPrice %}
+{% if page.product.calculatedPrices|length >= 1 %}
+    {% set price = page.product.calculatedPrices.first %}
+{% endif %}
+window._paq.push(['setEcommerceView',"{{ page.product.productNumber }}","{{ page.product.translated.name }}","{{ page.extensions.ironMatomoExt.seoCategory }}",{{ price.unitPrice|number_format(2, '.', '') }}]);

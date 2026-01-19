@@ -1,0 +1,11 @@
+{% block sw_cms_element_cbax_lexicon_entry %}
+    <div class="cbax-lexicon-cms-slot-wrapper">
+        <div v-if="isCbaxLexiconCmsPage" class="sw-cms-el-entry">
+            <h3>Lorem</h3>
+            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+        </div>
+        <sw-alert v-if="!isCbaxLexiconCmsPage" appearance="notification" :showIcon="true" :closable="false">
+            {{ $tc('elements.wrong-page-type-alert') }}
+        </sw-alert>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+.offcanvas{
+  border: none;
+  .offcanvas-close{
+    border: none;
+    background: $sw-color-brand-primary;
+    color: $white;
+    font-size: 17px;
+    font-family: $font-family-roboto;
+    font-weight: $font-weight-bold;
+    .icon{
+      color: $white;
+      &.icon-arrow-head-left{
+        width: 14px;
+        & > svg{
+          top: 3px;
+        }
+      }
+    }
+  }
+  &.offcanvas-bottom{
+    border-radius: 0;
+  }
+}
+
+h3.filter-panel-offcanvas-only{
+  margin: 0;
+}

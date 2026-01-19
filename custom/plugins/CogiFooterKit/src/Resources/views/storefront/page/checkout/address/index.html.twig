@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/page/checkout/address/index.html.twig' %}
+
+{% block base_footer %}
+
+    {% set extensionFooterKit = page.footer.extensions['CogiFooterKit'] %}
+    {% set footerKit = extensionFooterKit.get('footerKit')|first %}
+    {% set isSalesChannel = false %}
+
+    {% if footerKit is not empty %}
+        {% if checkFooterStorefrontId(context, footerKit.salesChannelId) %}
+            {% set isSalesChannel = true %}
+        {% endif %}
+    {% endif %}
+
+    {% if isSalesChannel %}
+        {% sw_include '@FooterKit/storefront/layout/footer/cogi-footer-minimal.html.twig' %}
+    {% else %}
+        {% sw_include '@Storefront/storefront/layout/footer/footer-minimal.html.twig' %}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
+
+{% block element_product_listing_pagination_nav_top %}
+    <button class="btn btn-outline-primary btn-block filter-panel-wrapper-toggle-mobile"
+            type="button"
+            onclick="document.getElementsByClassName('filter-panel-wrapper-toggle')[0].click()"
+            aria-label="{{ "general.menuLink"|trans }}">
+        {% sw_icon 'sliders-horizontal' %}
+        {{ "listing.filterTitleText"|trans }}
+    </button>
+{% endblock %}

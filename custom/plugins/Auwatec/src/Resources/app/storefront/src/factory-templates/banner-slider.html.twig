@@ -1,0 +1,83 @@
+{% set baseSliderOptions = {
+    slider: {
+        navPosition: 'bottom',
+        speed: 1000,
+        autoplayTimeout: 3000,
+        autoplay: false,
+        autoplayButtonOutput: false,
+        nav: true ,
+        controls: true
+    }
+} %}
+{% if data.rep_slide is defined and data.rep_slide is iterable %}
+    <div class="banner-slider base-slider has-nav" data-base-slider="true"
+         data-base-slider-options='{{ baseSliderOptions|json_encode }}'>
+        <div data-base-slider-container="true">
+            {% for sub0 in data.rep_slide %}
+                <div>
+                    <div class="banner is-color-{{ sub0.choice_color|lower }}">
+                        {% set mobileSrc = '' %}
+                        {% set alt = '' %}
+                        {% if sub0.med_image_mobile is defined and sub0.med_image_mobile is not null %}
+                            {% set mobileSrc = sub0.med_image_mobile.url %}
+                            {% set alt = sub0.med_image_mobile.alt %}
+                        {% elseif sub0.med_image_tablet is defined and sub0.med_image_tablet is not null %}
+                            {% set mobileSrc = sub0.med_image_tablet.url %}
+                            {% set alt = sub0.med_image_tablet.alt %}
+                        {% elseif sub0.med_image is defined and sub0.med_image is not null %}
+                            {% set mobileSrc = sub0.med_image.url %}
+                            {% set alt = sub0.med_image.alt %}
+                        {% endif %}
+                        <div class="banner-image">
+                            <picture>
+                                {% if sub0.med_image is defined and sub0.med_image is not null %}
+                                    <source media="(min-width:1024px)" srcset="{{ sub0.med_image.url }}">
+                                {% endif %}
+                                {% if sub0.med_image_tablet is defined and sub0.med_image_tablet is not null %}
+                                    <source media="(min-width:768px)" srcset="{{ sub0.med_image_tablet.url }}">
+                                {% endif %}
+                                <img srcset="{{ mobileSrc}}" alt="{{ alt }}">
+                            </picture>
+                        </div>
+                        <div class="banner-content">
+                            <div class="banner-content-inner">
+                                {% if sub0.text_headline !== '' %}
+                                    <div class="banner-headline">
+                                        {{ sub0.text_headline }}
+                                    </div>
+                                {% endif %}
+
+                                {% if sub0.text_text !== '' %}
+                                    <p class="banner-text">
+                                        {{ sub0.text_text }}
+                                    </p>
+                                {% endif %}
+
+                                {% if sub0.text_link !== '' and sub0.text_button_text !== '' %}
+                                    <div class="banner-button">
+                                        <a href="{{ sub0.text_link }}" class="btn btn-outline-light">
+                                            {{ sub0.text_button_text }}
+                                            {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="base-slider-controls"
+             data-base-slider-controls="true">
+            <button
+                    class="base-slider-controls-prev product-slider-controls-prev">
+                {% sw_icon 'arrow-head-left' %}
+            </button>
+            <button
+                    class="base-slider-controls-next product-slider-controls-next">
+                {% sw_icon 'arrow-head-right' %}
+            </button>
+        </div>
+    </div>
+{% endif %}

@@ -1,0 +1,62 @@
+
+<div class="sub-teaser-container">
+    <div class="sub-teaser-header">
+        <div class="sub-teaser-header-headline h2">
+            {% if data.text_headline !== '' %}
+                {{ data.text_headline }}
+            {% endif %}
+        </div>
+    </div>
+
+    {% if data.rep_teaser is defined and data.rep_teaser is iterable %}
+        <div class="row sub-teaser-row">
+            {% for sub0 in data.rep_teaser %}
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3 sub-teaser-col">
+                    <div class="sub-teaser{% if sub0.text_link !== '' and sub0.text_button_text !== ''  %} has-button{% endif %}">
+                        <div class="sub-teaser-image">
+                            {% if sub0.text_headline !== '' %}
+                            <div class="sub-teaser-headline h4">
+                                {{ sub0.text_headline }}
+                                </p>
+                                {% endif %}
+
+                                {% if sub0.text_link !== '' %}
+                                <a href="{{ sub0.text_link }}">
+                                    {% endif %}
+                                    {% if sub0.med_image is defined and sub0.med_image is not null %}
+                                        {% sw_thumbnails 'thumbnails' with {
+                                            media: sub0.med_image
+                                        } %}
+                                    {% endif %}
+                                    {% if sub0.text_link !== '' %}
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% if sub0.text_text !== '' %}
+                            <p class="sub-teaser-headline">
+                                {{ sub0.text_text }}
+                            </p>
+                        {% endif %}
+
+                        {% if sub0.text_link !== '' and sub0.text_button_text !== ''  %}
+                            <a href="{{ sub0.text_link }}" class="btn btn-outline-primary sub-teaser-button">
+                                {{ sub0.text_button_text }}
+                                {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if data.text_bottom_link !== '' and data.text_link_bottom_text !== '' %}
+        <div class="sub-teaser-footer">
+            <a href="{{ data.text_bottom_link }}" class="h4 sub-teaser-footer-link">
+                {% sw_icon 'chevron-a-right' style { 'namespace': 'Auwatec' } %}
+                {{ data.text_link_bottom_text }}
+            </a>
+        </div>
+    {% endif %}
+</div>

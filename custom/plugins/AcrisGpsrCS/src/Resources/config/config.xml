@@ -1,0 +1,919 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>GPSR information priority</title>
+        <title lang="de-DE">Priorität der GPSR-Informationen</title>
+
+        <component name="acris-gpsr-info-text">
+            <name>gpsrPriorityInfoText</name>
+            <placeholder>This plugin offers 3 ways to specify GPSR information:
+                1.) Catalogues > manufacturer (information on the manufacturer and information on the responsible person)
+                2.) Catalogs > products (product type, information about the manufacturer, information about the responsible person, warning, safety notice and important information. )
+                3.) Settings > extensions > GPSR Product Safety Regulation: Rule-controlled (manufacturer, responsible person, warning/safety instructions)
+                GPSR data is only displayed once, which means that we have implemented prioritization:
+                The highest priority is the dynamic management (3rd), then the GPSR information on the product (2nd) and finally the GPSR information on the manufacturer (1st)</placeholder>
+            <placeholder lang="de-DE">Dieses Plugin bietet 3 Möglichkeiten GPSR Informationen anzugeben:
+                1.) Kataloge > Hersteller (Angaben zum Hersteller und Angaben zur verantwortlichen Person)
+                2.) Kataloge > Produkte (Produktart, Angaben zum Hersteller, Angaben zur verantwortlichen Person, Warnhinweis, Sicherheitshinweis und Wichtige Information. )
+                3.) Einstellungen > Erweiterungen > GPSR Produktsicherheitsverordnung: Regelgesteuert (Hersteller, Verantwortliche Person, Warn/Sicherheitshinweise)
+                Es werden GPSR Daten immer nur einmalig angezeigt, das bedeutet, dass wir eine Priorisierung implementiert haben:
+                Höchste Priorität hat die dynamische Verwaltung (3.) dann die GPSR Informationen am Produkt (2.) und zuletzt die GPSR Informationen am Hersteller (1.) </placeholder>
+        </component>
+    </card>
+
+    <card>
+        <title>GPSR snippets</title>
+        <title lang="de-DE">GPSR snippets</title>
+
+        <component name="sw-snippet-field">
+            <name>gpsrHeadlineManufacturer</name>
+            <label>Product manufacturer title</label>
+            <label lang="de-DE">Titel des Produktherstellers</label>
+            <snippet>acrisGpsr.gpsrHeadlineManufacturer</snippet>
+        </component>
+
+        <input-field type="single-select">
+            <name>gpsrHeadlineManufacturerTypeHeading</name>
+            <label>Product manufacturer title heading type</label>
+            <label lang="de-DE">Produkthersteller Titel Überschrift Typ</label>
+            <defaultValue>text</defaultValue>
+            <options>
+                <option>
+                    <id>h1</id>
+                    <name>h1</name>
+                    <name lang="de-DE">h1</name>
+                </option>
+                <option>
+                    <id>h2</id>
+                    <name>h2</name>
+                    <name lang="de-DE">h2</name>
+                </option>
+                <option>
+                    <id>h3</id>
+                    <name>h3</name>
+                    <name lang="de-DE">h3</name>
+                </option>
+                <option>
+                    <id>h4</id>
+                    <name>h4</name>
+                    <name lang="de-DE">h4</name>
+                </option>
+                <option>
+                    <id>h5</id>
+                    <name>h5</name>
+                    <name lang="de-DE">h5</name>
+                </option>
+                <option>
+                    <id>h6</id>
+                    <name>h6</name>
+                    <name lang="de-DE">h6</name>
+                </option>
+                <option>
+                    <id>text</id>
+                    <name>text</name>
+                    <name lang="de-DE">text</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>gpsrHeadlineProductType</name>
+            <label>Product type title</label>
+            <label lang="de-DE">Titel der Produktart</label>
+            <snippet>acrisGpsr.gpsrProductType</snippet>
+        </component>
+
+        <input-field type="single-select">
+            <name>gpsrHeadlineProductTypeHeading</name>
+            <label>Product type title heading type</label>
+            <label lang="de-DE">Produkttyp Titel Überschrift Typ</label>
+            <defaultValue>text</defaultValue>
+            <options>
+                <option>
+                    <id>h1</id>
+                    <name>h1</name>
+                    <name lang="de-DE">h1</name>
+                </option>
+                <option>
+                    <id>h2</id>
+                    <name>h2</name>
+                    <name lang="de-DE">h2</name>
+                </option>
+                <option>
+                    <id>h3</id>
+                    <name>h3</name>
+                    <name lang="de-DE">h3</name>
+                </option>
+                <option>
+                    <id>h4</id>
+                    <name>h4</name>
+                    <name lang="de-DE">h4</name>
+                </option>
+                <option>
+                    <id>h5</id>
+                    <name>h5</name>
+                    <name lang="de-DE">h5</name>
+                </option>
+                <option>
+                    <id>h6</id>
+                    <name>h6</name>
+                    <name lang="de-DE">h6</name>
+                </option>
+                <option>
+                    <id>text</id>
+                    <name>text</name>
+                    <name lang="de-DE">text</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>gpsrHeadlineProductWarning</name>
+            <label>Product warning note title</label>
+            <label lang="de-DE">Titel des Produktwarnhinweises</label>
+            <snippet>acrisGpsr.gpsrHeadlineProductWarning</snippet>
+        </component>
+
+        <input-field type="single-select">
+            <name>gpsrHeadlineProductWarningHeading</name>
+            <label>Product warning title heading type</label>
+            <label lang="de-DE">Produktwarntitel Überschriftstyp</label>
+            <defaultValue>text</defaultValue>
+            <options>
+                <option>
+                    <id>h1</id>
+                    <name>h1</name>
+                    <name lang="de-DE">h1</name>
+                </option>
+                <option>
+                    <id>h2</id>
+                    <name>h2</name>
+                    <name lang="de-DE">h2</name>
+                </option>
+                <option>
+                    <id>h3</id>
+                    <name>h3</name>
+                    <name lang="de-DE">h3</name>
+                </option>
+                <option>
+                    <id>h4</id>
+                    <name>h4</name>
+                    <name lang="de-DE">h4</name>
+                </option>
+                <option>
+                    <id>h5</id>
+                    <name>h5</name>
+                    <name lang="de-DE">h5</name>
+                </option>
+                <option>
+                    <id>h6</id>
+                    <name>h6</name>
+                    <name lang="de-DE">h6</name>
+                </option>
+                <option>
+                    <id>text</id>
+                    <name>text</name>
+                    <name lang="de-DE">text</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>gpsrHeadlineProductWarningDocumentsUrl</name>
+            <label>Product warning uploaded documents title</label>
+            <label lang="de-DE">Produktwarnung hochgeladene Dokumente Titel</label>
+            <snippet>acrisGpsr.gpsrDocumentTitleWarning</snippet>
+        </component>
+
+        <input-field type="single-select">
+            <name>gpsrProductWarningDocumentsUrlHeading</name>
+            <label>Product warning uploaded documents heading type</label>
+            <label lang="de-DE">Produktwarnung hochgeladene Dokumente Überschriftstyp</label>
+            <defaultValue>text</defaultValue>
+            <options>
+                <option>
+                    <id>h1</id>
+                    <name>h1</name>
+                    <name lang="de-DE">h1</name>
+                </option>
+                <option>
+                    <id>h2</id>
+                    <name>h2</name>
+                    <name lang="de-DE">h2</name>
+                </option>
+                <option>
+                    <id>h3</id>
+                    <name>h3</name>
+                    <name lang="de-DE">h3</name>
+                </option>
+                <option>
+                    <id>h4</id>
+                    <name>h4</name>
+                    <name lang="de-DE">h4</name>
+                </option>
+                <option>
+                    <id>h5</id>
+                    <name>h5</name>
+                    <name lang="de-DE">h5</name>
+                </option>
+                <option>
+                    <id>h6</id>
+                    <name>h6</name>
+                    <name lang="de-DE">h6</name>
+                </option>
+                <option>
+                    <id>div</id>
+                    <name>text</name>
+                    <name lang="de-DE">text</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>gpsrHeadlineProductSafetyNote</name>
+            <label>Product safety note title</label>
+            <label lang="de-DE">Titel des Produktsicherheitshinweises</label>
+            <snippet>acrisGpsr.gpsrHeadlineProductSafetyNote</snippet>
+        </component>
+
+        <input-field type="single-select">
+            <name>gpsrHeadlineProductSafetyHeading</name>
+            <label>Product safety title heading type</label>
+            <label lang="de-DE">Produktsicherheitstitel Überschriftstyp</label>
+            <defaultValue>text</defaultValue>
+            <options>
+                <option>
+                    <id>h1</id>
+                    <name>h1</name>
+                    <name lang="de-DE">h1</name>
+                </option>
+                <option>
+                    <id>h2</id>
+                    <name>h2</name>
+                    <name lang="de-DE">h2</name>
+                </option>
+                <option>
+                    <id>h3</id>
+                    <name>h3</name>
+                    <name lang="de-DE">h3</name>
+                </option>
+                <option>
+                    <id>h4</id>
+                    <name>h4</name>
+                    <name lang="de-DE">h4</name>
+                </option>
+                <option>
+                    <id>h5</id>
+                    <name>h5</name>
+                    <name lang="de-DE">h5</name>
+                </option>
+                <option>
+                    <id>h6</id>
+                    <name>h6</name>
+                    <name lang="de-DE">h6</name>
+                </option>
+                <option>
+                    <id>text</id>
+                    <name>text</name>
+                    <name lang="de-DE">text</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>gpsrHeadlineProductSafetyDocumentsUrl</name>
+            <label>Product safety uploaded documents title</label>
+            <label lang="de-DE">Produktsicherheit hochgeladene Dokumente Titel</label>
+            <snippet>acrisGpsr.gpsrDocumentTitleSafety</snippet>
+        </component>
+
+        <input-field type="single-select">
+            <name>gpsrProductSafetyDocumentsUrlHeading</name>
+            <label>Product safety uploaded documents heading type</label>
+            <label lang="de-DE">Produktsicherheit hochgeladene Dokumente Rubrikart</label>
+            <defaultValue>text</defaultValue>
+            <options>
+                <option>
+                    <id>h1</id>
+                    <name>h1</name>
+                    <name lang="de-DE">h1</name>
+                </option>
+                <option>
+                    <id>h2</id>
+                    <name>h2</name>
+                    <name lang="de-DE">h2</name>
+                </option>
+                <option>
+                    <id>h3</id>
+                    <name>h3</name>
+                    <name lang="de-DE">h3</name>
+                </option>
+                <option>
+                    <id>h4</id>
+                    <name>h4</name>
+                    <name lang="de-DE">h4</name>
+                </option>
+                <option>
+                    <id>h5</id>
+                    <name>h5</name>
+                    <name lang="de-DE">h5</name>
+                </option>
+                <option>
+                    <id>h6</id>
+                    <name>h6</name>
+                    <name lang="de-DE">h6</name>
+                </option>
+                <option>
+                    <id>div</id>
+                    <name>text</name>
+                    <name lang="de-DE">text</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>gpsrHeadlineProductImportantInformation</name>
+            <label>Product Important information title</label>
+            <label lang="de-DE">Produkt Wichtige Informationen Titel</label>
+            <snippet>acrisGpsr.gpsrHeadlineProductImportantInformation</snippet>
+        </component>
+
+        <input-field type="single-select">
+            <name>gpsrHeadlineProductImportantInformationHeading</name>
+            <label>Product important information title heading type</label>
+            <label lang="de-DE">Wichtige Informationen zum Produkt Titel Überschrift Typ</label>
+            <defaultValue>text</defaultValue>
+            <options>
+                <option>
+                    <id>h1</id>
+                    <name>h1</name>
+                    <name lang="de-DE">h1</name>
+                </option>
+                <option>
+                    <id>h2</id>
+                    <name>h2</name>
+                    <name lang="de-DE">h2</name>
+                </option>
+                <option>
+                    <id>h3</id>
+                    <name>h3</name>
+                    <name lang="de-DE">h3</name>
+                </option>
+                <option>
+                    <id>h4</id>
+                    <name>h4</name>
+                    <name lang="de-DE">h4</name>
+                </option>
+                <option>
+                    <id>h5</id>
+                    <name>h5</name>
+                    <name lang="de-DE">h5</name>
+                </option>
+                <option>
+                    <id>h6</id>
+                    <name>h6</name>
+                    <name lang="de-DE">h6</name>
+                </option>
+                <option>
+                    <id>text</id>
+                    <name>text</name>
+                    <name lang="de-DE">text</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>gpsrHeadlineProductImportantInformationDocumentsUrl</name>
+            <label>Product important information uploaded documents title</label>
+            <label lang="de-DE">Produkt wichtige Informationen hochgeladene Dokumente Titel</label>
+            <snippet>acrisGpsr.gpsrDocumentTitleImportant</snippet>
+        </component>
+
+        <input-field type="single-select">
+            <name>gpsrProductImportantInformationDocumentsUrlHeading</name>
+            <label>Product important information uploaded documents heading type</label>
+            <label lang="de-DE">Produkt wichtige Informationen hochgeladene Dokumente Überschriftstyp</label>
+            <defaultValue>text</defaultValue>
+            <options>
+                <option>
+                    <id>h1</id>
+                    <name>h1</name>
+                    <name lang="de-DE">h1</name>
+                </option>
+                <option>
+                    <id>h2</id>
+                    <name>h2</name>
+                    <name lang="de-DE">h2</name>
+                </option>
+                <option>
+                    <id>h3</id>
+                    <name>h3</name>
+                    <name lang="de-DE">h3</name>
+                </option>
+                <option>
+                    <id>h4</id>
+                    <name>h4</name>
+                    <name lang="de-DE">h4</name>
+                </option>
+                <option>
+                    <id>h5</id>
+                    <name>h5</name>
+                    <name lang="de-DE">h5</name>
+                </option>
+                <option>
+                    <id>h6</id>
+                    <name>h6</name>
+                    <name lang="de-DE">h6</name>
+                </option>
+                <option>
+                    <id>div</id>
+                    <name>text</name>
+                    <name lang="de-DE">text</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="sw-snippet-field">
+            <name>gpsrHeadlineContact</name>
+            <label>Product responsible person title</label>
+            <label lang="de-DE">Titel der Produktverantwortlichen</label>
+            <snippet>acrisGpsr.gpsrHeadlineContact</snippet>
+        </component>
+        <input-field type="single-select">
+            <name>gpsrHeadlineProductResponsiblePersonHeading</name>
+            <label>Product responsible person title heading type</label>
+            <label lang="de-DE">Produktverantwortlicher Titel Rubrik Art</label>
+            <defaultValue>text</defaultValue>
+            <options>
+                <option>
+                    <id>h1</id>
+                    <name>h1</name>
+                    <name lang="de-DE">h1</name>
+                </option>
+                <option>
+                    <id>h2</id>
+                    <name>h2</name>
+                    <name lang="de-DE">h2</name>
+                </option>
+                <option>
+                    <id>h3</id>
+                    <name>h3</name>
+                    <name lang="de-DE">h3</name>
+                </option>
+                <option>
+                    <id>h4</id>
+                    <name>h4</name>
+                    <name lang="de-DE">h4</name>
+                </option>
+                <option>
+                    <id>h5</id>
+                    <name>h5</name>
+                    <name lang="de-DE">h5</name>
+                </option>
+                <option>
+                    <id>h6</id>
+                    <name>h6</name>
+                    <name lang="de-DE">h6</name>
+                </option>
+                <option>
+                    <id>text</id>
+                    <name>text</name>
+                    <name lang="de-DE">text</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Display settings for GPSR information under Catalogs > manufacturer</title>
+        <title lang="de-DE">Anzeige Einstellungen für GPSR Infos unter Kataloge > Hersteller</title>
+
+        <component name="acris-gpsr-info-text">
+            <name>gpsrManufacturerInfoText</name>
+            <placeholder>The GPSR information can be edited in catalogues > manufacturers > manufacturers > information about the manufacturer (information obligations for the GPSR Product Safety Regulation) or information about the responsible person in the EU (information obligations for the GPSR Product Safety Regulation) can be entered. The display settings for the storefront can be done here.</placeholder>
+            <placeholder lang="de-DE">Es können die GPSR Informationen bei Kataloge > Hersteller > Hersteller bearbeiten > Angaben zum Hersteller (Informationspflichten zur GPSR Produktsicherheitsverordnung) bzw. Angaben zur verantwortlichen Person in der EU (Informationspflichten zur GPSR Produktsicherheitsverordnung) eingetragen werden. Die Anzeigeeinstellungen für die Storefront können hier durchgeführt werden.</placeholder>
+        </component>
+
+        <input-field type="single-select">
+            <name>manuDetailDisplay</name>
+            <label>Details of the manufacturer display</label>
+            <label lang="de-DE">Details der Herstelleranzeige</label>
+            <defaultValue>description</defaultValue>
+            <options>
+                <option>
+                    <id>gpsrTab</id>
+                    <name>In the GPSR tab</name>
+                    <name lang="de-DE">Auf der Registerkarte GPSR</name>
+                </option>
+                <option>
+                    <id>ownTab</id>
+                    <name>In own tab</name>
+                    <name lang="de-DE">Im eigenen Tab</name>
+                </option>
+                <option>
+                    <id>description</id>
+                    <name>In the product description</name>
+                    <name lang="de-DE">In der Produktbeschreibung</name>
+                </option>
+                <option>
+                    <id>noDisplay</id>
+                    <name>Don't display</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>manuPersonDisplay</name>
+            <label>Details of the responsible person in the EU display</label>
+            <label lang="de-DE">Angaben zur verantwortlichen Person in der EU-Anzeige</label>
+            <defaultValue>description</defaultValue>
+            <options>
+                <option>
+                    <id>gpsrTab</id>
+                    <name>In the GPSR tab</name>
+                    <name lang="de-DE">Auf der Registerkarte GPSR</name>
+                </option>
+                <option>
+                    <id>ownTab</id>
+                    <name>In own tab</name>
+                    <name lang="de-DE">Im eigenen Tab</name>
+                </option>
+                <option>
+                    <id>description</id>
+                    <name>In the product description</name>
+                    <name lang="de-DE">In der Produktbeschreibung</name>
+                </option>
+                <option>
+                    <id>noDisplay</id>
+                    <name>Don't display</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Display Settings for GPSR Info under Catalogs > Products</title>
+        <title lang="de-DE">Anzeige Einstellungen für GPSR Infos unter Kataloge > Produkte</title>
+
+        <component name="acris-gpsr-info-text">
+            <name>gpsrProductInfoText</name>
+            <placeholder>You can edit the GPSR information in catalogs > products > product > enter the GPSR Product Safety Ordinance. The display settings for the storefront can be done here.
+                When data is entered on the product, it has a higher priority than the GPSR information that is entered directly with the manufacturer.</placeholder>
+            <placeholder lang="de-DE">Es können die GPSR Informationen bei Kataloge > Produkte > Produkt bearbeiten > GPSR Produktsicherheitsverordnung eingetragen werden. Die Anzeigeeinstellungen für die Storefront können hier durchgeführt werden.
+                Wenn Daten am Produkt eingetragen werden, dann haben diese eine höhere Priorität als die GPSR Informationen welche direkt beim Hersteller eingetragen sind.</placeholder>
+        </component>
+
+        <input-field type="single-select">
+            <name>productTypeDisplay</name>
+            <label>Product type and identifiers display</label>
+            <label lang="de-DE">Anzeige der Produktart und Produktidentifkatoren</label>
+            <defaultValue>description</defaultValue>
+            <options>
+                <option>
+                    <id>gpsrTab</id>
+                    <name>In the GPSR tab</name>
+                    <name lang="de-DE">Auf der Registerkarte GPSR</name>
+                </option>
+                <option>
+                    <id>ownTab</id>
+                    <name>In own tab</name>
+                    <name lang="de-DE">Im eigenen Tab</name>
+                </option>
+                <option>
+                    <id>description</id>
+                    <name>In the product description</name>
+                    <name lang="de-DE">In der Produktbeschreibung</name>
+                </option>
+                <option>
+                    <id>noDisplay</id>
+                    <name>Don't display</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>productTypeTitleDisplay</name>
+            <label>Show Product Type Title</label>
+            <label lang="de-DE">Produkttyp anzeigen Titel</label>
+            <defaultValue>yes</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>Don't show</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+                <option>
+                    <id>yes</id>
+                    <name>Show Title</name>
+                    <name lang="de-DE">Titel anzeigen</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>productManuDetailDisplay</name>
+            <label>Manufacturer information display</label>
+            <label lang="de-DE">Anzeige der Herstellerinformationen</label>
+            <defaultValue>description</defaultValue>
+            <options>
+                <option>
+                    <id>gpsrTab</id>
+                    <name>In the GPSR tab</name>
+                    <name lang="de-DE">Auf der Registerkarte GPSR</name>
+                </option>
+                <option>
+                    <id>ownTab</id>
+                    <name>In own tab</name>
+                    <name lang="de-DE">Im eigenen Tab</name>
+                </option>
+                <option>
+                    <id>description</id>
+                    <name>In the product description</name>
+                    <name lang="de-DE">In der Produktbeschreibung</name>
+                </option>
+                <option>
+                    <id>noDisplay</id>
+                    <name>Don't display</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>productPersonDisplay</name>
+            <label>Responsible person in the EU display</label>
+            <label lang="de-DE">Verantwortliche Person in der EU-Anzeige</label>
+            <defaultValue>description</defaultValue>
+            <options>
+                <option>
+                    <id>gpsrTab</id>
+                    <name>In the GPSR tab</name>
+                    <name lang="de-DE">Auf der Registerkarte GPSR</name>
+                </option>
+                <option>
+                    <id>ownTab</id>
+                    <name>In own tab</name>
+                    <name lang="de-DE">Im eigenen Tab</name>
+                </option>
+                <option>
+                    <id>description</id>
+                    <name>In the product description</name>
+                    <name lang="de-DE">In der Produktbeschreibung</name>
+                </option>
+                <option>
+                    <id>noDisplay</id>
+                    <name>Don't display</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>productWarningDisplay</name>
+            <label>Warning / Safety note and Important information display</label>
+            <label lang="de-DE">Warnung Sicherheitshinweis und Anzeige wichtiger Informationen</label>
+            <defaultValue>description</defaultValue>
+            <options>
+                <option>
+                    <id>gpsrTab</id>
+                    <name>In the GPSR tab</name>
+                    <name lang="de-DE">Auf der Registerkarte GPSR</name>
+                </option>
+                <option>
+                    <id>ownTab</id>
+                    <name>In own tab</name>
+                    <name lang="de-DE">Im eigenen Tab</name>
+                </option>
+                <option>
+                    <id>description</id>
+                    <name>In the product description</name>
+                    <name lang="de-DE">In der Produktbeschreibung</name>
+                </option>
+                <option>
+                    <id>noDisplay</id>
+                    <name>Don't display</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>warningTitleDisplay</name>
+            <label>Show Warning Title</label>
+            <label lang="de-DE">Titel der Warnung anzeigen</label>
+            <defaultValue>yes</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>Don't show</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+                <option>
+                    <id>yes</id>
+                    <name>Show Title</name>
+                    <name lang="de-DE">Titel anzeigen</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>warningDocumentTitleDisplay</name>
+            <label>Show Warning Document Title</label>
+            <label lang="de-DE">Warnung anzeigen Dokumententitel</label>
+            <defaultValue>yes</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>Don't show</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+                <option>
+                    <id>yes</id>
+                    <name>Show Title</name>
+                    <name lang="de-DE">Titel anzeigen</name>
+                </option>
+            </options>
+        </input-field>
+        <component name="sw-snippet-field">
+            <name>warningDocumentTitle</name>
+            <label>Warning Documents Title</label>
+            <label lang="de-DE">Warnhinweis Dokumente Titel</label>
+            <snippet>acrisGpsr.gpsrDocumentTitleWarning</snippet>
+        </component>
+        <input-field type="single-select">
+            <name>safetyTitleDisplay</name>
+            <label>Show Safety Title</label>
+            <label lang="de-DE">Sicherheitstitel anzeigen</label>
+            <defaultValue>yes</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>Don't show</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+                <option>
+                    <id>yes</id>
+                    <name>Show Title</name>
+                    <name lang="de-DE">Titel anzeigen</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>safetyDocumentTitleDisplay</name>
+            <label>Show Safety Document Title</label>
+            <label lang="de-DE">Titel des Sicherheitsdokuments anzeigen</label>
+            <defaultValue>default</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>Don't show</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+                <option>
+                    <id>yes</id>
+                    <name>Show Title</name>
+                    <name lang="de-DE">Titel anzeigen</name>
+                </option>
+            </options>
+        </input-field>
+        <component name="sw-snippet-field">
+            <name>safetyDocumentTitleDisplay</name>
+            <label>Safety Documents Title</label>
+            <label lang="de-DE">Sicherheitsdokumente Titel</label>
+            <snippet>acrisGpsr.gpsrDocumentTitleSafety</snippet>
+        </component>
+        <input-field type="single-select">
+            <name>importantTitleDisplay</name>
+            <label>Show Important Title</label>
+            <label lang="de-DE">Wichtigen Titel anzeigen</label>
+            <defaultValue>yes</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>Don't show</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+                <option>
+                    <id>yes</id>
+                    <name>Show Title</name>
+                    <name lang="de-DE">Titel anzeigen</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>importantDocumentTitleDisplay</name>
+            <label>Show Important Document Title</label>
+            <label lang="de-DE">Wichtige Dokumententitel anzeigen</label>
+            <defaultValue>default</defaultValue>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>Don't show</name>
+                    <name lang="de-DE">Keine Anzeige</name>
+                </option>
+                <option>
+                    <id>yes</id>
+                    <name>Show Title</name>
+                    <name lang="de-DE">Titel anzeigen</name>
+                </option>
+            </options>
+        </input-field>
+        <component name="sw-snippet-field">
+            <name>importantDocumentTitle</name>
+            <label>Important Documents Title</label>
+            <label lang="de-DE">Wichtige Dokumente Titel</label>
+            <snippet>acrisGpsr.gpsrDocumentTitleImportant</snippet>
+        </component>
+    </card>
+
+    <card>
+        <title>Display settings GPSR Tab</title>
+        <title lang="de-DE">Anzeige Einstellungen für GPSR Tab</title>
+
+        <input-field type="single-select">
+            <name>gpsrTabPosition</name>
+            <label>GPSR Tab display position</label>
+            <label lang="de-DE">GSPR Tab Anzeige Position</label>
+            <defaultValue>afterReviewsTab</defaultValue>
+            <options>
+                <option>
+                    <id>beforeDescriptionTab</id>
+                    <name>Before the description tab</name>
+                    <name lang="de-DE">Vor dem Tab Beschreibung</name>
+                </option>
+                <option>
+                    <id>afterDescriptionTab</id>
+                    <name>After the Description tab</name>
+                    <name lang="de-DE">Nach dem Tab Beschreibung</name>
+                </option>
+                <option>
+                    <id>afterReviewsTab</id>
+                    <name>After the Reviews tab</name>
+                    <name lang="de-DE">Nach dem Tab Bewertung</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+    <card>
+        <title>Display settings GPSR Documents</title>
+        <title lang="de-DE">Anzeige Einstellungen für GPSR Dokumente</title>
+        <input-field type="single-select">
+            <name>fileDisplay</name>
+            <label>GPSR File display</label>
+            <label lang="de-DE">GPSR-Dateianzeige</label>
+            <defaultValue>default</defaultValue>
+            <options>
+                <option>
+                    <id>default</id>
+                    <name>Default</name>
+                    <name lang="de-DE">Standard</name>
+                </option>
+                <option>
+                    <id>bulletList</id>
+                    <name>Bullet List</name>
+                    <name lang="de-DE">Aufzählungsliste</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+    <card>
+        <title>Display of gpsr information at product in admin</title>
+        <title lang="de-DE">Anzeige der GPSR Informationen beim Produkt im Admin</title>
+        <input-field type="single-select">
+            <name>gpsrDisplay</name>
+            <defaultValue>folded</defaultValue>
+            <options>
+                <option>
+                    <id>folded</id>
+                    <name>Under General Information folded</name>
+                    <name lang="de-DE">Unter Allgemeine Informationen eingeklappt</name>
+                </option>
+                <option>
+                    <id>full</id>
+                    <name>Under General Information</name>
+                    <name lang="de-DE">Unter Allgemeine Informationen</name>
+                </option>
+                <option>
+                    <id>tab</id>
+                    <name>As a separate tab</name>
+                    <name lang="de-DE">Als eigenen Tab</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Display manufacturer GPSR data imported via ERP system for the product</title>
+        <title lang="de-DE">Anzeige der über das ERP-System importierten GPSR-Daten des Herstellers für das Produkt</title>
+        <input-field type="bool">
+            <name>displayERPImportedManufacturerGPSRData</name>
+            <label>Activate</label>
+            <label lang="de-DE">Aktivieren</label>
+            <helpText>If active, then the manufacturer data can be imported via the ERP system for the product, the imported GPSR data of the manufacturer will be displayed instead of the GPSR data configures on the manufacturer directly for the product in the Storefront.</helpText>
+            <helpText lang="de-DE">Wenn aktiv, wenn die Herstellerdaten über das ERP-System für das Produkt importiert werden, werden die importierten GPSR-Daten des Herstellers für das Produkt anstelle der direkt gepflegten Daten am Hersteller in der Storefront angezeigt.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+</config>

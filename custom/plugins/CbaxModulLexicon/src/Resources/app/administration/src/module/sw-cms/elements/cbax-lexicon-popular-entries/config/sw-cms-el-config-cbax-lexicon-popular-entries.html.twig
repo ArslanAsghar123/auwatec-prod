@@ -1,0 +1,55 @@
+{% block sw_cms_el_config_cbax_lexicon_popular_entries %}
+    <div class="sw-cms-el-config-cbax-lexicon-popular-listing">
+
+        {% block sw_cms_element_cbax_lexicon_popular_entries_config_headline %}
+            <sw-text-field :label="$tc('elements.cbax-lexicon-popular-entries.config.label.headline')"
+                           v-model:value="element.config.headline.value">
+            </sw-text-field>
+        {% endblock %}
+
+        {% block sw_cms_element_cbax_lexicon_popular_entries_config_template_select %}
+            <sw-select-field v-model:value="element.config.template.value"
+                             :label="$tc('elements.cbax-lexicon-popular-entries.config.label.template')">
+                {% block sw_cms_element_cbax_lexicon_popular_entries_config_template_select_options %}
+                    <option value="listing_1col">{{ $tc('elements.cbax-lexicon-popular-entries.config.template.listing_1col') }}</option>
+                    <option value="listing_2col">{{ $tc('elements.cbax-lexicon-popular-entries.config.template.listing_2col') }}</option>
+                    <option value="listing_3col">{{ $tc('elements.cbax-lexicon-popular-entries.config.template.listing_3col') }}</option>
+                    <option value="listing_4col">{{ $tc('elements.cbax-lexicon-popular-entries.config.template.listing_4col') }}</option>
+                {% endblock %}
+            </sw-select-field>
+        {% endblock %}
+
+        {% block sw_cms_element_cbax_lexicon_popular_entries_config_entryBoxHeight_select %}
+            <sw-number-field v-model:value="element.config.entryNumber.value"
+                             :label="$tc('elements.cbax-lexicon-popular-entries.config.label.entryNumber')">
+            </sw-number-field>
+        {% endblock %}
+        
+        {% block sw_cms_element_cbax_lexicon_letter_entries_config_template_select %}
+            <div class="sw-cms-el-config-cbax-lexicon-popular-listing__two-columns">
+                <sw-select-field 
+                    :label="$tc('elements.cbax-lexicon-letter-entries.config.label.buttonVariant')"
+                    v-model:value="element.config.buttonVariant.value">
+                    <option value="btn-primary">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonVariant.optionValuePrimary') }}</option>
+                    <option value="btn-outline-primary">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonVariant.optionValueOutlinePrimary') }}</option>
+                    <option value="btn-secondary">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonVariant.optionValueSecondary') }}</option>
+                    <option value="btn-outline-secondary">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonVariant.optionValueOutlineSecondary') }}</option>
+                    <option value="btn-info">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonVariant.optionValueInfo') }}</option>
+                    <option value="btn-outline-info">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonVariant.optionValueOutlineInfo') }}</option>
+                    <option value="btn-light">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonVariant.optionValueLight') }}</option>
+                    <option value="btn-outline-light">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonVariant.optionValueOutlineLight') }}</option>
+                    <option value="btn-link">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonVariant.optionValueLink') }}</option>
+                </sw-select-field>
+                
+                <sw-select-field 
+                    :label="$tc('elements.cbax-lexicon-letter-entries.config.label.buttonSize')"
+                    v-model:value="element.config.buttonSize.value">
+                    <option value="btn-sm">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonSize.optionValueSmall') }}</option>
+                    <option value="btn-md">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonSize.optionValueMedium') }}</option>
+                    <option value="btn-lg">{{ $tc('elements.cbax-lexicon-letter-entries.config.buttonSize.optionValueLarge') }}</option>
+                </sw-select-field>
+            </div>
+		{% endblock %}
+
+    </div>
+{% endblock %}

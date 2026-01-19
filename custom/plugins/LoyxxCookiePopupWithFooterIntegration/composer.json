@@ -1,0 +1,42 @@
+{
+    "name": "loyxx/cookie_popup_with_footer_integration",
+    "description": "Cookie consent conversion Popup with menu integration.",
+    "version": "v6.0.2",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "LENZ eBusiness GmbH",
+            "homepage": "https://lenz-ebusiness.de"
+        }
+    ],
+    "require": {
+        "shopware/core": ">=6.6.0.0 <6.7.0.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "LoyxxCookiePopupWithFooterIntegration\\LoyxxCookiePopupWithFooterIntegration",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "copyright": "(c) by LENZ eBusiness GmbH",
+        "label": {
+            "de-DE": "Cookie-Zustimmung Konvertierungs-Popup mit Menü-Integration",
+            "en-GB": "Cookie consent conversion Popup with menu integration"
+        },
+        "description": {
+            "de-DE": "Das Plugin stellt ein neues Layout für den Cookie-Consent bereit. Zudem können die Cookie-Einstellungen nachträglich per Link in den Menüs oder per Icon im Footer angepasst werden.",
+            "en-GB": "The plugin provides a new layout for the cookie content. In addition, the cookie settings can be subsequently adjusted via link in the menus or via an icon in the footer."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/shopdoktor.html",
+            "en-GB": "https://store.shopware.com/en/shopdoktor.html"
+        },
+        "supportLink": {
+            "de-DE": "https://lenz-ebusiness.de",
+            "en-GB": "https://lenz-ebusiness.de"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "LoyxxCookiePopupWithFooterIntegration\\": "src/"
+        }
+    }
+}

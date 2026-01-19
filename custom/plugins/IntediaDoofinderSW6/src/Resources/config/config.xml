@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+
+        <title>DooFinder Integration</title>
+
+        <input-field type="bool">
+            <name>doofinderEnabled</name>
+            <label>DooFinder Search enabled</label>
+            <label lang="de-DE">DooFinder Suche aktivieren</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+
+        <input-field>
+            <name>apiKey</name>
+            <label>API Schlüssel</label>
+            <label lang="de-DE">API Key</label>
+            <copyable>true</copyable>
+            <helpText>Pleas provide your Doofinder API access key. (https://app.doofinder.com/admin/account)</helpText>
+            <helpText lang="de-DE">Hinterlegen Sie hier Ihren persönlichen Doofinder API Schlüssel. (https://app.doofinder.com/admin/account)</helpText>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>doofinderLayer</name>
+            <label>Doofinder Layer Integration type</label>
+            <label lang="de-DE">DooFinder Layer Integrations-Typ</label>
+            <helpText>Choose how you want to integrate the doofinder layer.</helpText>
+            <helpText lang="de-DE">Mit dieser Option können Sie festlegen, ob und wie der DooFinder Layer in Shopware integriert werden soll.</helpText>
+            <options>
+                <option>
+                    <id>0</id>
+                    <name>Native – DooFinder in Shopware's Layer</name>
+                    <name lang="de-DE">Nativ – DooFinder im Shopware Layer</name>
+                </option>
+                <option>
+                    <id>1</id>
+                    <name>intedia CDN – Maintained by intedia (Legacy)</name>
+                    <name lang="de-DE">intedia CDN – Ein von uns gepflegtes Script (Legacy)</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>DooFinder Live Layer</name>
+                    <name lang="de-DE">DooFinder Live Layer</name>
+                </option>
+            </options>
+            <defaultValue>1</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>doofinderRecommendation</name>
+            <label>DooFinder Recommendation enabled</label>
+            <label lang="de-DE">DooFinder Recommendations aktivieren</label>
+            <helpText><![CDATA[Your plan has to include doofinder recommendations for this option to work. Please activate recommendations at: <a href="https://admin.doofinder.com/admin/store/searchengine/" target="_blank">DooFinder</a> ]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Ihr DooFinder Plan muss die DooFinder Recommendations beinhalten, damit diese Option aktiviert werden kann. Über den folgenden Link können Sie die Recommendations bei DooFinder aktivieren: <a href="https://admin.doofinder.com/admin/store/searchengine/" target="_blank">DooFinder</a> ]]></helpText>
+            <defaultValue>0</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>doofinderSearchSubscriberActivate</name>
+            <label>Doofinder nativ search enabled</label>
+            <label lang="de-DE">Doofinder native Suche aktivieren</label>
+            <helpText>Choose a Option of how the nativ search of doofinder is activated</helpText>
+            <helpText lang="de-DE">Legen Sie fest, wie die native Suche von Doofinder aktiviert werden soll.</helpText>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Aktiviert</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>Deaktiviert für Bots</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>Deaktiviert für Alle</name>
+                </option>
+            </options>
+            <defaultValue>2</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+
+        <title>Advanced Configuration</title>
+        <title lang="de-DE">Erweiterte Einstellungen</title>
+
+        <input-field type="single-select">
+            <name>doofinderInjectionBlock</name>
+            <label>Doofinder Template Block</label>
+            <helpText>Choose the template block, to inject doofinder into.</helpText>
+            <helpText lang="de-DE">Legen Sie fest, in welchem Template-Block das DooFinder Modul integriert werden soll.</helpText>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Footer (Block: 'layout_footer_inner_container')</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>Base (Block: 'base_body_script')</name>
+                </option>
+            </options>
+            <defaultValue>1</defaultValue>
+        </input-field>
+
+        <input-field>
+            <name>apiDomain</name>
+            <label>DooFinder API-Domain</label>
+            <defaultValue>%s-api.doofinder.com</defaultValue>
+            <copyable>true</copyable>
+        </input-field>
+
+        <input-field>
+            <name>searchDomain</name>
+            <label>DooFinder Search-Domain</label>
+            <defaultValue>%s-search.doofinder.com</defaultValue>
+            <copyable>true</copyable>
+        </input-field>
+
+        <input-field>
+            <name>adminDomain</name>
+            <label>DooFinder Admin-Domain</label>
+            <defaultValue>%s-admin.doofinder.com</defaultValue>
+            <copyable>true</copyable>
+        </input-field>
+
+        <input-field type="bool">
+            <name>doofinderDebug</name>
+            <label>DooFinder Debug Mode</label>
+            <label lang="de-DE">DooFinder Debug Modus</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>doofinderRecommendationTemplate</name>
+            <label>DooFinder Recommendation Template</label>
+            <label lang="de-DE">DooFinder Recommendation Template</label>
+            <helpText>Here you can individualize how the recommendations made by DooFinder should be displayed.</helpText>
+            <helpText lang="de-DE">Hier können Sie die Darstellung der Recommendations von DooFinder individualisieren.</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>doofinderFilterBreadcrumb</name>
+            <label>Remove structure elements from breadcrumb</label>
+            <label lang="de-DE">Strukturelemente aus Breadcrumb entfernen</label>
+            <helpText>From the doofinder export, remove all breadcrumb elements that are not of type 'page'.</helpText>
+            <helpText lang="de-DE">Entfernt aus dem Doofinder-Export alle Breadcrumb-Elemente die nicht vom Typ 'page' sind.</helpText>
+        </input-field>
+
+        <input-field>
+            <name>exportMemoryLimit</name>
+            <label>Minimum product export memory limit</label>
+            <label lang="de-DE">Minimales Produktexport Memory Limit</label>
+            <defaultValue>5G</defaultValue>
+            <copyable>true</copyable>
+        </input-field>
+
+    </card>
+
+</config>

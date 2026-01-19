@@ -1,0 +1,253 @@
+{
+  "swpa-backup": {
+    "header": "Backup",
+    "general": {
+      "mainMenuItemGeneral": "Backup",
+      "descriptionTextModule": "Einstellungen für Backup"
+    },
+    "messageNotBlank": "Dieser Wert darf nicht leer sein.",
+    "tab": {
+      "settings": "Einstellungen",
+      "log": "Backups"
+    },
+    "list": {
+      "column": {
+        "comment": "Nachricht",
+        "status": "Status",
+        "time": "Zeit [Min.]",
+        "deleted": "Gelöscht",
+        "deleted": {
+          "label": "Gelöscht",
+          "options": {
+            "deleted": "[gelöscht]",
+            "exists": "[existiert]",
+            "notFound": "[nicht gefunden]"
+          }
+        },
+        "filename": "Filename",
+        "createdAt": "Erstellt am"
+      }
+    },
+    "connection": {
+      "messages": {
+        "testConnectionSuccess": {
+          "title": "Verbindung zum Zieldateisystem",
+          "text": "Verbindung war erfolgreich"
+        },
+        "testConnectionFailed": {
+          "title": "Verbindung zum Zieldateisystem",
+          "text": "Verbindung fehlgeschlagen. Bitte überprüfen Sie die eingegebenen Daten"
+        },
+        "testPermissionFailed": {
+          "title": "Verbindung zum Zieldateisystem",
+          "text": "Die Verbindung war erfolgreich, aber die Berechtigungen sind fehlgeschlagen. Bitte überprüfen Sie die Rechte des Benutzers."
+        },
+        "error": {
+          "title": "Kritischer Fehler"
+        }
+      }
+    },
+    "backup": {
+      "messages": {
+        "createSuccess": {
+          "title": "Backup Erstellung",
+          "text": "Backup wurde erfolgreich erstellt"
+        },
+        "createFailed": {
+          "title": "Fehler",
+          "text": "Backup kann nicht erstellt werden. Bitte überprüfen Sie die eingegebenen Daten"
+        },
+        "noAccess": {
+          "title": "Fehlende Berechtigungen!",
+          "text": "Sie haben keine Rechte, um die Einstellungen des Backups zu ändern"
+        }
+      }
+    },
+    "settingForm": {
+      "save": "Speichern",
+      "runBackup": "Backup erstellen",
+      "messages": {
+        "savedSuccess": {
+          "title": "Backup Einstellungen",
+          "text": "Die Einstellungen wurden erfolgreich gespeichert"
+        },
+        "savedError": {
+          "title": "Backup Einstellungen",
+          "text": "Die Einstellungen wurden nicht gespeichert"
+        }
+      },
+      "general": {
+        "cardTitle": "Allgemein",
+        "generalBackupEnable": {
+          "label": "Backup aktivieren",
+          "tooltipText": ""
+        },
+        "generalExcludePath": {
+          "label": "Die Pfade werden aus dem Backup ausgeschlossenen",
+          "tooltipText": "z.B.: <br/>vendor<br/>dev-ops<br/>public/media<br/><br/> Standardmäßig ausgeschlossen: ./.idea, ./platform, ./files, ./var/cache, ./public/bundles, ./public/sitemap, ./public/theme and ./public/thumbnail"
+        },
+        "generalMaintenanceIp": {
+          "label": "Deaktivieren Wartungsmodus für die IP(s)",
+          "tooltipText": "Beispiel: 127.0.0.1,127.0.0.2"
+        },
+        "generalMaintenanceMode": {
+          "label": "Wartungsmodus während dem Backup",
+          "tooltipText": "Bitte schalten Sie Ihren Store während der Sicherung in den Wartungsmodus"
+        },
+        "generalCleanBackup": {
+          "label": "Die alte Backups löschen",
+          "tooltipText": ""
+        },
+        "generalCleanPeriod": {
+          "label": "Speichern für",
+          "tooltipText": "",
+          "options": {
+            "week": "die letzte Woche",
+            "month": "den letzten Monat",
+            "threeMonth": "die letzten 3 Monate",
+            "sixMonth": "die letzten 6 Monate"
+          }
+        },
+        "generalBackupType": {
+          "label": "Sicherung Typ",
+          "tooltipText": "",
+          "options": {
+            "database": "Datenbank",
+            "databaseMedia": "Datenbank + Medien",
+            "system": "System",
+            "systemWithoutMedia": "System (ausgenommen Medien)"
+          }
+        },
+        "generalDestinationFilesystem": {
+          "label": "Zieldateisystem",
+          "tooltipText": "",
+          "options": {
+            "local": "Local",
+            "sftp": "SFTP",
+            "ftp": "FTP",
+            "aws": "AWS S3"
+          }
+        },
+        "generalRunTime": {
+          "label": "Startzeit",
+          "tooltipText": ""
+        },
+        "generalRunFrequency": {
+          "label": "Häufigkeit",
+          "tooltipText": "",
+          "options": {
+            "daily": "täglich",
+            "weekly": "wöchentlich",
+            "monthly": "monatlich"
+          }
+        }
+      },
+      "local": {
+        "cardTitle": "Lokales Dateisystem",
+        "filesystemLocalRoot": {
+          "label": "Pfad zum Backup",
+          "tooltipText": "Aus Sicherheitsgründen empfehlen wir, die Dateien innerhalb des SW-Ordners /files oder in einem Ordner zu speichern, der von außen nicht zugänglich ist!"
+        }
+      },
+      "sftp": {
+        "cardTitle": "SFTP",
+        "filesystemSftpHost": {
+          "label": "Host",
+          "tooltipText": ""
+        },
+        "filesystemSftpUsername": {
+          "label": "Username",
+          "tooltipText": ""
+        },
+        "filesystemSftpPassword": {
+          "label": "Passwort",
+          "tooltipText": ""
+        },
+        "filesystemSftpPort": {
+          "label": "Port",
+          "tooltipText": ""
+        },
+        "filesystemSftpTimeout": {
+          "label": "Timeout",
+          "tooltipText": ""
+        },
+        "filesystemSftpPrivateKey": {
+          "label": "Private Key",
+          "tooltipText": ""
+        },
+        "filesystemSftpRoot": {
+          "label": "Pfad zum Backup",
+          "tooltipText": "Stellen Sie bitte sicher, dass das Verzeichniss existiert und von ausen über HTTP nicht erreichbar ist!"
+        }
+      },
+      "ftp": {
+        "cardTitle": "FTP",
+        "filesystemFtpHost": {
+          "label": "Host",
+          "tooltipText": ""
+        },
+        "filesystemFtpUsername": {
+          "label": "Username",
+          "tooltipText": ""
+        },
+        "filesystemFtpPassword": {
+          "label": "Password",
+          "tooltipText": ""
+        },
+        "filesystemFtpPort": {
+          "label": "Port",
+          "tooltipText": ""
+        },
+        "filesystemFtpTimeout": {
+          "label": "Timeout",
+          "tooltipText": ""
+        },
+        "filesystemFtpPassive": {
+          "label": "Passivmodus",
+          "tooltipText": ""
+        },
+        "filesystemFtpRoot": {
+          "label": "Pfad zum Backup",
+          "tooltipText": "Stellen Sie bitte sicher, dass das Verzeichniss von ausen über HTTP nicht erreichbar ist!"
+        }
+      },
+      "aws": {
+        "cardTitle": "AWS S3",
+        "filesystemAwsKey": {
+          "label": "Key",
+          "tooltipText": "Sehen: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+        },
+        "filesystemAwsSecret": {
+          "label": "Secret",
+          "tooltipText": "Sehen: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys"
+        },
+        "filesystemAwsRegion": {
+          "label": "Region",
+          "tooltipText": "Verwenden Sie bitte die Codes: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints"
+        },
+        "filesystemAwsVersion": {
+          "label": "Version",
+          "tooltipText": ""
+        },
+        "filesystemAwsBucket": {
+          "label": "Bucket",
+          "tooltipText": "Sehen: https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#create-bucket-intro"
+        },
+        "filesystemAwsRoot": {
+          "label": "Pfad zum Backup",
+          "tooltipText": "Stellen Sie bitte sicher, dass das Verzeichniss von ausen über HTTP nicht erreichbar ist!"
+        }
+      }
+    }
+  },
+  "sw-privileges": {
+    "permissions": {
+      "swpa_backup": {
+        "label": "Backup"
+      },
+      "swpa_backup_log": {
+        "label": "Backup Log"
+      }
+    }
+  }
+}

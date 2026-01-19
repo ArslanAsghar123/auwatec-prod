@@ -1,0 +1,380 @@
+{% block acris_gpsr_manufacturer_detail %}
+    <sw-page class="acris-gpsr-manufacturer-detail" v-if="item">
+
+        {% block acris_gpsr_manufacturer_detail_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block acris_gpsr_manufacturer_detail_smart_bar_header_title %}
+                    <h2>{{ $tc('acris-gpsr-manufacturer.detail.textHeadline') }}</h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+
+        {% block acris_gpsr_manufacturer_detail_smart_bar_language %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"
+                                    :disabled="$route.params.newItem"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+
+        {% block acris_gpsr_manufacturer_detail_smart_bar_actions %}
+            <template #smart-bar-actions>
+                {% block acris_gpsr_manufacturer_detail_smart_bar_actions_cancel %}
+                    <sw-button :disabled="item.isLoading" :routerLink="{ name: 'acris.gpsr.manufacturer.index' }">
+                        {{ $tc('acris-gpsr-manufacturer.detail.buttonCancel') }}
+                    </sw-button>
+                {% endblock %}
+
+                {% block acris_gpsr_manufacturer_detail_smart_bar_actions_save %}
+                    <sw-button-process
+                            class="acris-gpsr-manufacturer-detail__save-action"
+                            :isLoading="isLoading"
+                            :processSuccess="processSuccess"
+                            variant="primary"
+                            :disabled="item.productStreams.length == 0"
+                            @update:processSuccess="saveFinish"
+                            @click="onClickSave">
+                        {{ $tc('acris-gpsr-manufacturer.detail.buttonSave') }}
+                    </sw-button-process>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block acris_gpsr_manufacturer_detail_content %}
+            <template #content>
+                <sw-card-view>
+
+                    {% block acris_gpsr_manufacturer_detail_general_card %}
+                        <sw-card :isLoading="isLoading" v-if="item"
+                                 position-identifier="acris-gpsr-manufacturer-detail-content"
+                                 :title="$tc('acris-gpsr-manufacturer.detail.cardTitleGeneral')">
+
+
+                            {% block acris_gpsr_manufacturer_detail_general_hint %}
+                                <sw-alert
+                                        class="acris-gpsr-manufacturer-detail__gpsr-genral-hint"
+                                        variant="info">
+                                    {{ $tc('acris-gpsr-manufacturer.detail.manufacturerNote') }}
+                                </sw-alert>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_general_active %}
+                                <sw-switch-field v-model:value="item.active"
+                                                 class="acris-gpsr-manufacturer-detail__item_active"
+                                                 :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleLabelActive')"
+                                                 :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextActive')">
+                                </sw-switch-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_content_internal_id %}
+                                <sw-text-field v-model:value="item.internalId"
+                                               class="acris-gpsr-manufacturer-detail__item_internal-id"
+                                               :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleLabelInternalId')"
+                                               :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderInternalId')"
+                                               :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextInternalId')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_content_internal_name %}
+                                <sw-text-field v-model:value="item.internalName"
+                                               class="acris-gpsr-manufacturer-detail__item_internal-name"
+                                               :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleLabelInternalName')"
+                                               :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderInternalName')"
+                                               :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextInternalName')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_content_internal_note %}
+                                <sw-text-field
+                                        v-model:value="item.internalNotice"
+                                        class="acris-gpsr-manufacturer-detail__item_internal-notice"
+                                        :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleLabelInternalNote')"
+                                        :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderInternalNote')"
+                                        :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextInternalNote')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_content_priority %}
+                                <sw-number-field v-model:value="item.priority"
+                                                 numberType="int"
+                                                 class="acris-gpsr-manufacturer-detail__item_priority"
+                                                 :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleLabelPriority')"
+                                                 :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextPriority')"
+                                                 :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderPriority')">
+                                </sw-number-field>
+                            {% endblock %}
+
+                        </sw-card>
+                    {% endblock %}
+
+
+                    {% block acris_gpsr_manufacturer_detail_assignment_card %}
+                        <sw-card :isLoading="isLoading" v-if="item"
+                                 position-identifier="acris-gpsr-manufacturer-detail-content"
+                                 :title="$tc('acris-gpsr-manufacturer.detail.cardTitleAssignment')">
+
+                            {% block acris_gpsr_manufacturer_detail_assignment_sales_channel %}
+                                <sw-entity-many-to-many-select
+                                        v-if="item.salesChannels"
+                                        :localMode="true"
+                                        :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleLabelSalesChannel')"
+                                        :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextSalesChannel')"
+                                        :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderSalesChannel')"
+                                        :entity-collection="item.salesChannels"
+                                        @update:entity-collection="onSalesChannelChange">
+                                </sw-entity-many-to-many-select>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_assignment_streams %}
+                                <sw-entity-many-to-many-select
+                                        v-if="item.productStreams"
+                                        required
+                                        :localMode="true"
+                                        :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleProductStream')"
+                                        :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextProductStream')"
+                                        :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderProductStream')"
+                                        :entity-collection="item.productStreams"
+                                        @update:entity-collection="onProductStreamChange">
+                                </sw-entity-many-to-many-select>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_assignment_rule %}
+                                <sw-entity-many-to-many-select
+                                        v-if="item.rules"
+                                        :localMode="true"
+                                        :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleLabelRule')"
+                                        :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextRule')"
+                                        :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderRule')"
+                                        :entity-collection="item.rules"
+                                        @update:entity-collection="onRulesChange">
+                                </sw-entity-many-to-many-select>
+                            {% endblock %}
+                        </sw-card>
+                    {% endblock %}
+
+                    {% block acris_gpsr_manufacturer_detail_display_card %}
+                        <sw-card :isLoading="isLoading" v-if="item"
+                                 position-identifier="acris-gpsr-manufacturer-detail-content"
+                                 :title="$tc('acris-gpsr-manufacturer.detail.cardTitleDisplay')">
+
+                            {% block acris_gpsr_manufacturer_detail_display_headline %}
+                                <sw-text-field v-model:value="item.headline"
+                                               class="acris-gpsr-manufacturer-detail__item_hint-headline"
+                                               :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleHeadline')"
+                                               :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderHeadline')"
+                                               :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextHeadline')">
+                                </sw-text-field>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_display_text %}
+                                <sw-text-editor type="textarea"
+                                                v-model:value="item.text"
+                                                class="acris-gpsr-manufacturer-detail__item_hint-text"
+                                                :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleText')"
+                                                :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderText')">
+                                </sw-text-editor>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_display_type %}
+                                <sw-single-select v-model:value="item.displayType"
+                                                  class="acris-gpsr-manufacturer-detail__item_display-type"
+                                                  :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleDisplayType')"
+                                                  :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextDisplayType')"
+                                                  :options="displayTypeOptions">
+                                </sw-single-select>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_display_tab_wrapper %}
+                                <div :class="{ 'hide-options': item.displayType === 'description', 'show-link': item.displayType !== 'description' }">
+                                    {% block acris_gpsr_manufacturer_detail_display_tab_text %}
+                                            <sw-external-link
+                                                    v-if="item.displayType === 'tab'"
+                                                    class="acris-gpsr-manufacturer-detail__item_display-link"
+                                                    :href="$tc('acris-gpsr-manufacturer.detail.fieldTabLink')"
+                                            >
+                                                {{ $tc('acris-gpsr-manufacturer.detail.fieldTitleTabLink') }}
+                                            </sw-external-link>
+                                            <sw-external-link
+                                                    v-if="item.displayType === 'gpsrTab'"
+                                                    class="acris-gpsr-manufacturer-detail__item_display-link"
+                                                    :href="$tc('acris-gpsr-manufacturer.detail.fieldGpsrTabLink')"
+                                            >
+                                                {{ $tc('acris-gpsr-manufacturer.detail.fieldTitleGpsrTabLink') }}
+                                            </sw-external-link>
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_manufacturer_detail_display_tab_position %}
+                                        <sw-single-select v-model:value="item.tabPosition"
+                                                          v-if="item.displayType === 'tab'"
+                                                          class="acris-gpsr-manufacturer-detail__item_tab-position"
+                                                          :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleTabPosition')"
+                                                          :options="tabPositionOptions">
+                                        </sw-single-select>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_display_description_wrapper %}
+                                <div :class="{ 'hide-options': item.displayType === 'tab' || item.displayType === 'gpsrTab' }">
+                                    {% block acris_gpsr_manufacturer_detail_display_description_display %}
+                                        <sw-single-select v-model:value="item.descriptionDisplay"
+                                                          class="acris-gpsr-manufacturer-detail__item_description-display"
+                                                          :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleDescriptionType')"
+                                                          :options="descriptionDisplayOptions">
+                                        </sw-single-select>
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_manufacturer_detail_display_description_modal_wrapper %}
+                                        <div :class="{ 'hide-options': item.displayType === 'description' && item.descriptionDisplay === 'amongEachOther' }">
+                                            {% block acris_gpsr_manufacturer_detail_display_modal_info %}
+                                                <sw-text-field v-model:value="item.modalInfoText"
+                                                               class="acris-gpsr-manufacturer-detail__item_modal-info"
+                                                               :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleModalText')"
+                                                               :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderModalText')"
+                                                               :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextModalText')">
+                                                </sw-text-field>
+                                            {% endblock %}
+                                            {% block acris_gpsr_manufacturer_detail_display_modal_link %}
+                                                <sw-text-field v-model:value="item.modalLinkText"
+                                                               class="acris-gpsr-manufacturer-detail__item_modal-link"
+                                                               :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleModalLinkText')"
+                                                               :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderModalLinkText')"
+                                                               :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextModalLinkText')">
+                                                </sw-text-field>
+                                            {% endblock %}
+                                        </div>
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_manufacturer_detail_display_description_beneath_wrapper %}
+                                        <div :class="{ 'hide-options': item.displayType === 'tab' || item.displayType === 'gpsrTab' }">
+                                            {% block acris_gpsr_manufacturer_detail_display_description_position %}
+                                                <sw-single-select v-model:value="item.descriptionPosition"
+                                                                  class="acris-gpsr-manufacturer-detail__item_description-position"
+                                                                  :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleDescriptionPosition')"
+                                                                  :options="descriptionPositionOptions">
+                                                </sw-single-select>
+                                            {% endblock %}
+                                        </div>
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_display_separator %}
+                                <sw-single-select v-model:value="item.displaySeparator"
+                                                  class="acris-gpsr-manufacturer-detail__item_description-position"
+                                                  :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleSeparator')"
+                                                  :help-text="$tc('acris-gpsr-manufacturer.detail.fieldTitleHelpTextSeparator')"
+                                                  :options="separatorOptions">
+                                </sw-single-select>
+                            {% endblock %}
+                                {% block acris_gpsr_manufacturer_detail_manufacturer_file %}
+                                        <acris-gpsr-file-download-form
+                                                :entity="item"
+                                                extensionName="acrisGpsrManufacturerDownloads"
+                                                repositoryName="acris_gpsr_mf_d"
+                                                entityName="acris_gpsr_mf_d"
+                                                acrisUploadTag="acrisGpsrManufacturerDownloads"
+                                                @media-open="onOpenDownloadModal">
+                                        </acris-gpsr-file-download-form>
+                                {% endblock %}
+                        </sw-card>
+                    {% endblock %}
+
+                    {% block acris_gpsr_manufacturer_detail_mf %}
+                        <sw-card
+                                class="acris-gpsr-manufacturer-detail__gpsr-manufacturer"
+                                position-identifier="sw-manufacturer-detail-gpsr-manufacturer"
+                                :title="$tc('acris-gpsr-manufacturer.detail.cardManufacturerTitle')"
+                        >
+                            {% block acris_gpsr_manufacturer_detail_mf_hint %}
+                                <sw-alert
+                                        class="acris-gpsr-manufacturer-detail__gpsr-hint"
+                                        variant="info">
+                                    {{ $tc('acris-gpsr-manufacturer.detail.manufacturerHint') }}
+                                </sw-alert>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_mf_name %}
+                                <sw-text-field
+                                        v-model:value="item.name"
+                                        class="acris-gpsr-manufacturer-detail__gpsr-name"
+                                        :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleMfName')"
+                                        :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderName')"
+                                />
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_mf_address %}
+                                <sw-container columns="1fr 1fr" gap="0px 30px" align="start">
+                                    {% block acris_gpsr_manufacturer_detail_mf_street %}
+                                        <sw-text-field
+                                                v-model:value="item.street"
+                                                class="acris-gpsr-manufacturer-detail__gpsr-street"
+                                                :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleStreet')"
+                                                :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderStreet')"
+                                        />
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_manufacturer_detail_mf_number %}
+                                        <sw-text-field
+                                                v-model:value="item.houseNumber"
+                                                class="acris-gpsr-manufacturer-detail__gpsr-number"
+                                                :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleNumber')"
+                                                :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderNumber')"
+                                        />
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_manufacturer_detail_mf_zipcode %}
+                                        <sw-text-field
+                                                v-model:value="item.zipcode"
+                                                class="acris-gpsr-manufacturer-detail__gpsr-number"
+                                                :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleZipcode')"
+                                                :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderZipcode')"
+                                        />
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_manufacturer_detail_mf_city %}
+                                        <sw-text-field
+                                                v-model:value="item.city"
+                                                class="acris-gpsr-manufacturer-detail__gpsr-city"
+                                                :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleCity')"
+                                                :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderCity')"
+                                        />
+                                    {% endblock %}
+
+                                    {% block acris_gpsr_manufacturer_detail_mf_country %}
+                                        <sw-text-field
+                                                v-model:value="item.country"
+                                                class="acris-gpsr-manufacturer-detail__gpsr-country"
+                                                :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleCountry')"
+                                                :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderCountry')"
+                                        />
+                                    {% endblock %}
+                                </sw-container>
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_mf_phone %}
+                                <sw-text-field
+                                        v-model:value="item.phoneNumber"
+                                        class="acris-gpsr-manufacturer-detail__gpsr-phone"
+                                        :label="$tc('acris-gpsr-manufacturer.detail.fieldTitlePhone')"
+                                        :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderPhone')"
+                                />
+                            {% endblock %}
+
+                            {% block acris_gpsr_manufacturer_detail_mf_electronical_address %}
+                                <sw-text-field
+                                        v-model:value="item.address"
+                                        class="acris-gpsr-manufacturer-detail__gpsr-address"
+                                        :label="$tc('acris-gpsr-manufacturer.detail.fieldTitleAddress')"
+                                        :placeholder="$tc('acris-gpsr-manufacturer.detail.fieldTitlePlaceholderAddress')"
+                                />
+                            {% endblock %}
+
+                        </sw-card>
+                    {% endblock %}
+                </sw-card-view>
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

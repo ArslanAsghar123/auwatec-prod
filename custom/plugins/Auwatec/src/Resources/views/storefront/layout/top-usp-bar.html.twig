@@ -1,0 +1,53 @@
+{% set baseSliderOptions = {
+    slider: {
+        gutter: 10,
+        speed: 1000,
+        autoplayTimeout: 3000,
+        autoplay: true,
+        autoplayButtonOutput: false,
+        nav: false,
+        controls: false,
+        loop: true,
+        responsive: {
+            xs: {items: 1},
+            sm: {items: 1},
+            md: {items: 2},
+            lg: {items: 2},
+            xl: {items: 4},
+            xxl: {items: 4}
+        },
+    }
+} %}
+<div class="top-usp-bar">
+    <div class="container">
+        <div class="top-usp-bar-inner" data-base-slider="true"
+             data-base-slider-options='{{ baseSliderOptions|json_encode }}'>
+            <div data-base-slider-container="true">
+                <div>
+                    <div class="top-usp">
+                        {% sw_icon 'percent-a' style { 'namespace': 'Auwatec' } %}
+                        {{ 'topUspBar.usp1'|trans }}
+                    </div>
+                </div>
+                <div>
+                    <div class="top-usp">
+                        {% sw_icon 'checkmark-a' style { 'namespace': 'Auwatec' } %}
+                        {{ 'topUspBar.usp2'|trans }}
+                    </div>
+                </div>
+                <div>
+                    <div class="top-usp">
+                        {% sw_icon 'checkmark-a' style { 'namespace': 'Auwatec' } %}
+                        {{ 'topUspBar.usp3'|trans }}
+                    </div>
+                </div>
+                <div>
+                    <div class="top-usp">
+                        {% sw_icon 'checkmark-a' style { 'namespace': 'Auwatec' } %}
+                        {{ 'topUspBar.usp4'|trans }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+{
+    "name": "she/ignore-trailing-slash",
+    "description": "Ignore trailing slash",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "version": "2.1.0",
+    "authors": [
+        {
+            "name": "blackpoint GmbH",
+            "homepage": "https://www.blackpoint.de"
+        }
+      ],
+    "require": {
+        "shopware/core": "^6.4"
+    },
+    "extra": {
+        "shopware-plugin-class": "She\\IgnoreTrailingSlash\\SheIgnoreTrailingSlash",
+        "label": {
+            "de-DE": "Ignoriere Trailing Slash",
+            "en-GB": "Ignore trailing slash"
+        },
+        "description": {
+            "de-DE": "Durch diese App wird bei einer falsch eingegebenen SEO-URL, trotzdem die richtige Seite angezeigt, so kann die Seite auch ohne abschließenden Schrägstrich (/) aufgerufen werden.",
+            "en-GB": "Through this app, if the SEO URL is entered incorrectly, the correct page is still displayed, so the page can be called even without a trailing slash (/)."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/laudert.html",
+            "en-GB": "https://store.shopware.com/laudert.html"
+        },
+        "supportLink": {
+            "de-DE": "https://account.shopware.com/",
+            "en-GB": "https://account.shopware.com/"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "She\\IgnoreTrailingSlash\\": "src/"
+        }
+    }
+}

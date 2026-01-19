@@ -1,0 +1,69 @@
+<div>
+
+    {% block cbax_lexicon_config_seo_actions %}
+        <sw-alert
+                :showIcon="false"
+                appearance="notification"
+        >
+            {{ translatedLexiconConfigSeo['cbax-lexicon'].seo.text }}
+
+            <div style="margin-top: 15px">
+                <sw-button
+                        variant="primary"
+                        @click="onGenerateSeos"
+                        :isLoading="isLoading"
+                        :block="true"
+                >
+                    {{ translatedLexiconConfigSeo['cbax-lexicon'].seo.button }}
+                </sw-button>
+            </div>
+
+            <div style="margin-top: 15px">
+                {{ translatedLexiconConfigSeo['cbax-lexicon'].seo.deleteText }}
+            </div>
+
+            <div style="margin-top: 15px">
+                <sw-button
+                        variant="secondary"
+                        @click="onShowDeleteModal"
+                        :isLoading="isLoading"
+                        :block="true"
+                >
+                    {{ translatedLexiconConfigSeo['cbax-lexicon'].seo.deleteButton }}
+                </sw-button>
+            </div>
+
+        </sw-alert>
+    {% endblock %}
+
+    {% block cbax_lexicon_config_delete_modal %}
+        <sw-modal
+            v-if="showDeleteModal"
+            :title="$tc('global.default.warning')"
+            variant="small"
+            @modal-close="onCloseDeleteModal"
+        >
+            {{ translatedLexiconConfigSeo['cbax-lexicon'].seo.deleteInfoText }}
+            <div class="cbax-lexicon-config-confirm-delete">
+                {{ translatedLexiconConfigSeo['cbax-lexicon'].seo.deleteConfirmText }}
+            </div>
+
+            <template #modal-footer>
+                <sw-button
+                    size="small"
+                    @click="onCloseDeleteModal"
+                >
+                    {{ translatedLexiconConfigSeo['cbax-lexicon'].seo.cancelButton }}
+                </sw-button>
+                <sw-button
+                    variant="danger"
+                    size="small"
+                    @click="onDeleteSeos"
+                >
+                    {{ translatedLexiconConfigSeo['cbax-lexicon'].seo.confirmButton }}
+                </sw-button>
+            </template>
+        </sw-modal>
+    {% endblock %}
+
+</div>

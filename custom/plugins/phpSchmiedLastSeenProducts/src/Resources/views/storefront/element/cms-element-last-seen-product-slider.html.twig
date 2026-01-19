@@ -1,0 +1,116 @@
+{% block element_last_seen_product_slider %}
+    {% if not sliderConfig %}
+        {% set sliderConfig = element.fieldConfig.elements %}
+    {% endif %}
+    {% if element.data.products is null and sliderConfig.ajaxLoad.value %}
+        <div class="cms-element-product-slider cms-element-{{ element.type }}">
+            {% block element_last_seen_product_slider_alignment %}
+                {% set gutter = 10 %}
+                {% set productSliderOptions = {
+                    productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '300px',
+                    slider: {
+                        gutter: gutter,
+                        autoplayButtonOutput: false,
+                        nav: false,
+                        mouseDrag: false,
+                        controls: sliderConfig.navigation.value ? true : false,
+                        autoplay: sliderConfig.rotate.value ? true : false
+                    }
+                } %}
+
+                {% if not sliderConfig.navigation.value %}
+                    {% set productSliderOptions = productSliderOptions|replace_recursive({
+                        slider: {
+                            mouseDrag: true
+                        }
+                    }) %}
+                {% endif %}
+
+                {% set ajaxUrl = path('frontend.lastSeenProducts.fetch', {
+                    'layout': sliderConfig.boxLayout.value,
+                    'displayMode': sliderConfig.displayMode.value
+                }) %}
+
+                {% set lastSeenProductOptions = {
+                    productboxMinWidth: sliderConfig.elMinWidth.value ? sliderConfig.elMinWidth.value : '300px',
+                    slider: {
+                        gutter: gutter,
+                        autoplayButtonOutput: false,
+                        nav: false,
+                        mouseDrag: false,
+                        controls: sliderConfig.navigation.value ? true : false,
+                        autoplay: sliderConfig.rotate.value ? true : false
+                    },
+                    gutter: gutter,
+                    url: ajaxUrl
+                } %}
+
+                {% block element_last_seen_product_slider_slider %}
+                    <div class="base-slider product-slider {% if sliderConfig.navigation.value %} has-nav{% endif %} {% if sliderConfig.ajaxLoad.value %}is-loading{% endif %}" data-base-slider="true"
+                         data-base-slider-options="{{ productSliderOptions|json_encode }}"
+                            {% if sliderConfig.ajaxLoad.value %}
+                        data-last-seen-product-slider="true"
+                        data-last-seen-product-slider-options="{{ lastSeenProductOptions | json_encode }}"
+                            {% endif %}>
+
+                        {% block element_last_seen_product_slider_title %}
+                            {% if sliderConfig.title.value %}
+                                <div class="cms-element-title">
+                                    <p class="cms-element-title-paragraph">{{ sliderConfig.title.value }}</p>
+                                </div>
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block element_last_seen_product_slider_text %}
+                            {% if sliderConfig.text.value %}
+                                <div class="cms-element-text">
+                                    {{ sliderConfig.text.value|raw }}
+                                </div>
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block element_last_seen_product_slider_inner %}
+                            {% block element_last_seen_product_slider_element %}
+                                <div class="product-slider-container" data-base-slider-container="true">
+                                    {% sw_include '@Storefront/storefront/component/product-slider.html.twig' with {
+                                        'products': element.data.products.elements,
+                                        'layout': sliderConfig.boxLayout.value,
+                                        'displayMode': sliderConfig.displayMode.value
+                                    } %}
+                                </div>
+                            {% endblock %}
+
+                            {% block element_last_seen_product_slider_controls %}
+                                {% if sliderConfig.navigation.value %}
+                                    <div class="product-slider-controls-container">
+                                        <div class="base-slider-controls"
+                                             data-base-slider-controls="true">
+                                            {% block element_last_seen_product_slider_controls_items %}
+                                                <button class="base-slider-controls-prev product-slider-controls-prev">
+                                                    {% block element_last_seen_product_slider_controls_items_prev_icon %}
+                                                        {% sw_icon 'arrow-head-left' %}
+                                                    {% endblock %}
+                                                </button>
+                                                <button class="base-slider-controls-next product-slider-controls-next">
+                                                    {% block element_last_seen_product_slider_controls_items_next_icon %}
+                                                        {% sw_icon 'arrow-head-right' %}
+                                                    {% endblock %}
+                                                </button>
+                                            {% endblock %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            {% endblock %}
+        </div>
+    {% else %}
+        <div class="cms-element-product-slider">
+            {% sw_include '@Storefront/storefront/element/cms-element-product-slider.html.twig' with {
+                element: element
+            } %}
+        </div>
+    {% endif %}
+{% endblock %}

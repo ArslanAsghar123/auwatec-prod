@@ -1,0 +1,10 @@
+{% block acris_gpsr_tab_nav_pane %}
+    <div class="tab-pane fade show{% if setFirstSelected %} active{% endif %}"
+         id="{{ id }}-pane"
+         role="tabpanel"
+         aria-labelledby="{{ id }}-tab">
+        <div class="product-detail-description acris-gpsr-tab-content tab-pane-container">
+            {% sw_include '@Storefront/storefront/component/gpsr/tabs/acris-gpsr-tab-content.html.twig' %}
+        </div>
+    </div>
+{% endblock %}

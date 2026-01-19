@@ -1,0 +1,40 @@
+{% sw_extends '@Storefront/storefront/cbax-lexicon/page/navigation.html.twig' %}
+
+{% block cbax_lexicon_page_navigation_char %}
+    <div class="lexicon-navigation-panel">
+        <a href="{{ seoUrl('frontend.cbax.lexicon.index') }}"
+           class="btn btn-secondary btn-sm{% if cbaxModulLexicon.page === 'index' %} is--active{% endif %}"
+           title="{{ "cbaxLexicon.page.navigation.linkIndex"|trans }}">
+            {% sw_icon '3dots' style { 'namespace': 'Auwatec' } %}
+        </a>
+        {% for entry in cbaxModulLexicon.byChar %}
+            {% if entry.countEntries %}
+                <a href="{{ entry.link }}"
+                   class="btn btn-secondary btn-sm{% if entry.char === cbaxModulLexicon.char %} is--active{% endif %}"
+                   title="{{ entry.char }}">
+                    {% if entry.char === "0-9" %}#{% else %}{{ entry.char }}{% endif %}
+                </a>
+            {% else %}
+                <button class="btn disabled btn-sm" disabled>
+                    {% if entry.char === "0-9" %}#{% else %}{{ entry.char }}{% endif %}
+                </button>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block cbax_lexicon_page_navigation %}
+    <div class="lexicon-headline cms-headline">
+        {% if isDetailPage is defined and isDetailPage == 'true' %}
+            <span class="h1">
+                {{ 'lexicon.headline'|trans }}
+            </span>
+
+            {% else %}
+                <h1>
+                    {{ 'lexicon.headline'|trans }}
+                </h1>
+        {% endif %}
+    </div>
+    {{ parent() }}
+{% endblock %}

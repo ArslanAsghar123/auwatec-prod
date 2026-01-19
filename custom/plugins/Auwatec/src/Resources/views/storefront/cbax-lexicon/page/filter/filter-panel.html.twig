@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/cbax-lexicon/page/filter/filter-panel.html.twig' %}
+
+{# removed link to content #}
+{% block component_filter_panel_items_container %}
+    <div class="filter-panel-items-container lexicon-filter-panel-items-container">
+
+        {% for entry in cbaxModulLexicon.byChar %}
+            {% if entry.countEntries %}
+                <a href="{{ entry.link }}" class="btn btn-light btn-block" title="{{ entry.char }}">{{ entry.char }}</a>
+            {% endif %}
+        {% endfor %}
+
+        <a class="btn btn-block btn-primary" href="{{ seoUrl('frontend.cbax.lexicon.index') }}" title="{{ "cbaxLexicon.page.navigation.linkIndex"|trans }}">
+            {{ "cbaxLexicon.page.navigation.linkIndex"|trans }}
+        </a>
+
+    </div>
+    <!-- erforderlich für JS von Shopware -->
+    <div data-listing="true"></div>
+{% endblock %}

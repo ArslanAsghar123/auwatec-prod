@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-chevron-a-up">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="chevron-a-up" clip-path="url(#clip-chevron-a-up)">
+    <path id="chevron-a-up-2" data-name="chevron-a-up" d="M7,63.823-.177,56.648,24.648,31.823-.177,7,7-.177l32,32Z" transform="translate(0.177 50.998) rotate(-90)"/>
+  </g>
+</svg>

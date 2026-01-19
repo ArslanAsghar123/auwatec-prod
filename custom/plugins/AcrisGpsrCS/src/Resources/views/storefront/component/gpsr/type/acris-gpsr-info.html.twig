@@ -1,0 +1,39 @@
+{% block acris_gpsr_info_detail %}
+    {% block acris_gpsr_info_detail_content %}
+        <div class="acris-gpsr-info-content">
+            {% if name %}
+                <div class="acris-gpsr-info-name fw-bold">{{ name }}</div>
+            {% endif %}
+            {% if street or street and houseNumber %}
+                <div class="acris-gpsr-info-street">
+                    {% if street %}{{ street }} {% endif %}
+                    {% if houseNumber %} {{ houseNumber }} {% endif %}
+                </div>
+            {% endif %}
+            {% if zipcode or city or country %}
+                <div class="acris-gpsr-info-address">
+                    {% if zipcode %}{{ zipcode }}{% endif %}
+                    {% if city %} {{ city }}{% endif %}
+                    {%- if (zipcode or city) and country -%}, {%- endif -%}
+                    {% if country %} {{ country }} {% endif %}
+                </div>
+            {% endif %}
+            {% if phoneNumber %}
+                <div class="acris-gpsr-info-phone">
+                    <a href="tel:{{ phoneNumber }}">{{ phoneNumber }}</a>
+                </div>
+            {% endif %}
+            {% if address %}
+                <div class="acris-gpsr-info-electronic-address">
+                    {% if is_valid_url(address) %}
+                        <a href="{{ address }}" target="_blank">{{ address }}</a>
+                    {% elseif is_valid_email(address) %}
+                        <a href= "mailto:{{ address }}">{{ address }}</a>
+                    {% else %}
+                        {{ address }}
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    {% endblock %}
+{% endblock %}

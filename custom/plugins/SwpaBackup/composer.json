@@ -1,0 +1,50 @@
+{
+    "name": "swpa/backup",
+    "description": "Backup",
+    "version": "3.0.2",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "swpa"
+        }
+    ],
+    "extra": {
+        "shopware-plugin-class": "Swpa\\SwpaBackup\\SwpaBackup",
+        "copyright": "(c) swpa",
+        "label": {
+            "de-DE": "Backup",
+            "en-GB": "Backup"
+        },
+        "description": {
+            "de-DE": "Erstellt Backups der Datenbank und System für Shopware 6",
+            "en-GB": "Create backup of database & system for Shopware 6"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://swpa.dev/",
+            "en-GB": "https://swpa.dev/"
+        },
+        "supportLink": {
+            "de-DE": "https://swpa.dev/index.html#contact",
+            "en-GB": "https://swpa.dev/index.html#contact"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Swpa\\SwpaBackup\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Swpa\\SwpaBackup\\Test\\": "tests/"
+        }
+    },
+    "require": {
+        "ifsnop/mysqldump-php": "^2.8",
+        "league/flysystem-sftp": "^3.6",
+        "phpseclib/phpseclib": "^2.0||^3.0",
+        "league/flysystem-ftp": "^3.15",
+        "league/flysystem-async-aws-s3": "^3.29",
+        "shopware/core": ">=6.6"
+    }
+}

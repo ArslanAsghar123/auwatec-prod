@@ -1,0 +1,12 @@
+{
+    "acris-gpsr-menu": {
+        "general": {
+            "mainMenuItemMoreSettings": "More Settings",
+            "mainMenuItemGeneral": "GPSR Product Safety Regulation",
+            "descriptionTextModule": "Advanced GPSR features."
+        },
+        "index": {
+            "textHeadline": "GPSR Product Safety Regulation"
+        }
+    }
+}

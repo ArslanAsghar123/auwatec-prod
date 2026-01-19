@@ -1,0 +1,120 @@
+.product-box{
+  border: none;
+  .card-body{
+    padding: 15px 15px 25px 15px;
+  }
+
+  .buy-widget{
+    width: 100%;
+  }
+
+  .btn-buy,
+  .detail-button{
+    width: 100%;
+  }
+
+  .btn-buy{
+    @extend .btn-success;
+  }
+
+  .product-wishlist{
+    display: none;
+  }
+  .product-price-unit, //TODO: check if necessary
+  .product-rating,
+  .list-price-percentage,
+  .product-cheapest-price,
+  .product-variant-characteristics{
+    display: none;
+  }
+}
+
+.product-badges{
+  left: auto;
+  .badge{
+    height: 24px;
+    line-height: 24px;
+    font-size: 15px;
+    padding: 0 10px;
+    border-radius: 0;
+  }
+  .badge-discount{
+    display: none;
+  }
+}
+
+.product-name{
+  font-family: $font-family-roboto;
+}
+
+
+.product-description{
+  font-size: 16px;
+  line-height: 24px;
+  height: 50px;
+}
+
+.product-box-unit{
+  font-size: 15px;
+  font-weight: $font-weight-bold;
+}
+
+.product-price{
+  color: $blue-background-dark;
+  font-family: $font-family-roboto;
+  font-size: 20px;
+  .list-price{
+    font-size: 18px;
+  }
+}
+
+.product-slider{
+  .product-badges {
+    left: 10px;
+    top: 10px;
+  }
+  .product-image-wrapper{
+    height: 180px;
+  }
+  .product-name{
+    margin-bottom: 0;
+  }
+  .product-description,
+  .product-action{
+    display: none;
+  }
+  .product-box-unit{
+    font-weight: $font-weight-normal;
+  }
+}
+
+@include media-breakpoint-up(xl){
+  .cms-element-product-listing .product-box{
+    .card-body{
+      padding: 30px 30px 40px 30px;
+    }
+    .btn-buy,
+    .detail-button{
+      width: auto;
+    }
+    .product-price-info,
+    .product-action{
+      width: 50%;
+      float: left;
+    }
+    .product-price-info{
+      margin-top: 40px;
+    }
+    .product-action{
+      margin-top: 30px;
+      text-align: right;
+    }
+  }
+  .product-slider{
+    .product-box{
+      .product-price-info{
+        margin-top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "sw-cms": {
+    "blocks": {
+      "commerce": {
+        "lastSeenProductSlider": {
+          "label": "Last seen product slider"
+        }
+      }
+    },
+    "elements": {
+      "lastSeenProductSlider": {
+        "label": "Last seen product slider",
+        "config": {
+          "label": {
+            "title": "Headline",
+            "text": "Text",
+            "minItems": "Minimum number of products",
+            "maxItems": "Maximum number of products",
+            "ajaxLoad": "Asynchronous loading (Ajax)",
+            "desktopItems": "Desktop: Items per slide",
+            "mobileItems": "Mobile: Items per slide",
+            "loop": "Infinite loop",
+            "arrows": "Show arrows",
+            "dots": "Show dots",
+            "sildeItems": "Slide items per click"
+          },
+          "placeholder": {
+            "title": "Headline",
+            "text": "Text",
+            "minItems": "Minimum number of products",
+            "maxItems": "Maximum number of products",
+            "desktopItems": "Items per slide",
+            "mobileItems": "Items per slide",
+            "sildeItems": "Slide items per click"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-image-gallery.html.twig' %}
+
+{% block element_image_gallery_inner_item %}
+    <div class="gallery-slider-item-container">
+        <div class="gallery-slider-item is-{{ displayMode }} js-magnifier-container"
+                {% if minHeight and (displayMode == "cover" or displayMode == "contain") %} style="min-height: {{ minHeight }}"{% endif %}
+                {% if (displayMode == "standard" and image.isSpatialObject()) %} style="min-height: 240px"{% endif %}>
+            {% set attributes = {
+                class: 'img-fluid gallery-slider-image',
+                title: (image.translated.title ?: fallbackImageTitle),
+                loading: ( loop.first ? 'eager' : 'lazy' )
+            } %}
+
+            {% block element_image_gallery_inner_item_spatial %}
+                {% if image.isSpatialObject() %}
+                    <span class="badge bg-secondary m-3 position-absolute top-0 end-0 d-md-none">3D</span>
+                    <div class="spatial-canvas-spinner position-absolute top-50 start-50 bg-white flex justify-content-center align-items-center" style="--bs-bg-opacity: .8;">
+                        <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <div class="gallery-slider-spatial-canvas-wrapper position-absolute start-0 end-0 top-0 bottom-0">
+                        <canvas
+                                data-spatial-gallery-slider-viewer
+                                data-spatial-model-url="{{ image.url }}"
+                                data-product-slider-position="{{ loop.index0 }}"
+                        ></canvas>
+                        <span
+                                class="spatial-canvas-note spatial-slider-movement-note position-absolute start-50 text-center badge mx-0 py-1 px-3 translate-middle-x"
+                                data-spatial-movement-note
+                                data-spatial-movement-note-touch-text="{{ 'component.cms.imageGallery.touchMove'|trans|striptags }}"
+                        >
+                                                                                        {{ 'component.cms.imageGallery.clickMove'|trans|striptags }}
+                                                                                    </span>
+                        {% if image.config.spatial.arReady ?? defaultEnableAugmentedReality %}
+                            <div class="ar-button button position-absolute d-inline-flex justify-content-center align-items-center text-center py-0 px-2 w-auto"
+                                 data-spatial-ar-viewer
+                                 data-spatial-ar-viewer-options='{ "spatialArId": "{{ image.id }}" }'
+                                 data-spatial-model-url="{{ image.url }}">
+
+                                {% sw_icon 'augmented' style {
+                                    'size': 'fluid'
+                                } %}
+                                <span>{{ 'spatial.openArView'|trans|striptags }}</span>
+
+                            </div>
+                            {% sw_include '@Storefront/storefront/utilities/ar-overlay.html.twig' %}
+                        {% endif %}
+                    </div>
+
+                    {% block element_image_gallery_qr_code_modal %}
+                        {% sw_include '@Storefront/storefront/utilities/qr-code-modal.html.twig'
+                            with {
+                            "qrCodeOptions": {
+                                "params": {
+                                    "autostartAr": image.id
+                                }
+                            }
+                        }
+                        %}
+                    {% endblock %}
+                {% elseif image.getMediaType().getName() === 'VIDEO' %}
+                    {% set attributes = attributes|merge({ controls: true }) %}
+
+                    {% if isProduct %}
+                        {% set attributes = attributes|merge({ itemprop: 'video' }) %}
+                    {% endif %}
+
+                    {% sw_include '@Storefront/storefront/utilities/video.html.twig' with {
+                        media: image,
+                        attributes: attributes
+                    } %}
+                {% else %}
+                    {% set attributes = attributes|merge({
+                        class: attributes.class ~ ' magnifier-image js-magnifier-image',
+                        alt: (image.translated.alt ?: fallbackImageTitle),
+                        'data-full-image': image.url
+                    }) %}
+
+                    {% if displayMode == 'cover' or displayMode == 'contain' %}
+                        {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
+                    {% endif %}
+
+                    {% if isProduct %}
+                        {% set attributes = attributes|merge({ itemprop: 'image' }) %}
+                    {% endif %}
+
+                    {% if loop.first %}
+                        {% set attributes = attributes|merge({ fetchpriority: 'high' }) %}
+                    {% endif %}
+
+                    {% sw_thumbnails 'gallery-slider-image-thumbnails' with {
+                        media: image,
+                        attributes: attributes
+                    } %}
+                {% endif %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

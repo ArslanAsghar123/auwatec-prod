@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/page/account/sidebar.html.twig' %}
+
+{# just changed the icon #}
+{% block page_account_sidebar_logout %}
+    <a href="{{ path('frontend.account.logout.page') }}"
+       class="btn btn-link account-aside-btn">
+        {% sw_icon 'sign-out-a' style { 'namespace': 'Auwatec' } %}
+        {{ "account.logout"|trans|sw_sanitize }}
+    </a>
+{% endblock %}
+
+{# just changed the icon #}
+{% block page_account_sidebar_guest_abort %}
+    <a href="{{ path('frontend.account.logout.page') }}"
+       data-account-guest-abort-button="true"
+       class="btn btn-link account-aside-btn">
+        {% sw_icon 'sign-out-a' style { 'namespace': 'Auwatec' } %}
+        {{ "account.guestAbort"|trans|sw_sanitize }}
+    </a>
+{% endblock %}

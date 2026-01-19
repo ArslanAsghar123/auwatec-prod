@@ -1,0 +1,33 @@
+{% sw_extends '@Storefront/storefront/cbax-lexicon/page/text-detail.html.twig' %}
+
+{% block cbax_lexicon_page_detail_text %}
+    <div class="cms-block cms-block-text lexicon-text-detail">
+        <div class="lexicon-dv-back-button-wrapper">
+            <button class="lexicon-dv-back-button btn btn-outline-primary" onclick="history.go(-1); return false;">
+                {% sw_icon 'arrow-a-right' style { 'namespace': 'Auwatec' } %}
+                {{ "cbaxLexicon.page.text.detail.backbutton"|trans }}
+            </button>
+        </div>
+        <div class="cms-block-container" style="padding: 20px;">
+            <div class="cms-block-container-row row cms-row ">
+                <div class="col-12">
+                    <div class="cms-element-text">
+                        {% block cbax_lexicon_page_detail_text_title %}
+                            <div class="lexicon-detail-title">
+                                <h1>{{ cbaxModulLexicon.entry.translated.title }}</h1>
+                            </div>
+                        {% endblock %}
+
+                        {% block cbax_lexicon_page_detail_text_description %}
+                            {% if cbaxModulLexicon.entry.translated.descriptionLong %}
+                                <div class="lexicon-detail-description">{{ cbaxModulLexicon.entry.translated.descriptionLong|raw }}</div>
+                            {% else %}
+                                <div class="lexicon-detail-description">{{ cbaxModulLexicon.entry.translated.description|raw }}</div>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

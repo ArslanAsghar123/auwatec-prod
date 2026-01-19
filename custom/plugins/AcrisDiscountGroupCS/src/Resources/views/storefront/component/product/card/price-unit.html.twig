@@ -1,0 +1,12 @@
+{% sw_extends '@Storefront/storefront/component/product/card/price-unit.html.twig' %}
+
+{% block component_product_box_price %}
+    {% set discountDisplayConfig = config('AcrisDiscountGroupCS.config.discountDisplayProductBox') %}
+    {% if discountDisplayConfig is empty or discountDisplayConfig == 'listPriceAndDiscount' %}
+        {{ parent() }}
+    {% else %}
+        <div class="acris-discount-{{ discountDisplayConfig }}">
+            {{ parent() }}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,238 @@
+{
+    "dreiscSeoRedirect": {
+        "general": {
+            "navigation": {
+                "label": "301 und 302 URL Weiterleitungen"
+            },
+            "textSnippets": {
+                "yes": "Ja",
+                "no": "Nein"
+            }
+        },
+        "exporter": {
+            "cards": {
+                "export": "Weiterleitungen als CSV Datei exportieren"
+            },
+            "buttons": {
+                "download": "CSV Datei herunterladen"
+            }
+        },
+        "importer": {
+            "modalTitle": "Import und Export der Weiterleitungen",
+            "notifications": {
+                "missingHeader": {
+                    "message": "Die von dir hochgeladene CSV Datei weist keine Überschriftzeile auf. Diese sind für den Import erforderlich. Beispiel CSV Formate findest du in der Dokumentation."
+                },
+                "importFailed": {
+                    "title": "Die Weiterleitungen konnten nicht importiert werden",
+                    "message": "Bei allen <b>{total} Weiterleitungen<\/b> kam es zu einem Fehler. Weitere Informationen hierzu findest du unten im Log."
+                },
+                "importIncomplete": {
+                    "title": "Die Weiterleitungen wurden teilweise importiert",
+                    "message": "Es wurden {total} Weiterleitungen importiert. Bei <b>{errors} Weiterleitungen<\/b> kam es zu einem Fehler. Weitere Informationen hierzu findest du unten im Log."
+                },
+                "importSuccessful": {
+                    "title": "Import erfolgreich",
+                    "message": "Es wurden <b>{total} Weiterleitungen<\/b> importiert."
+                }
+            },
+            "notice": {
+                "top": "<b>Hinweis:<\/b> Die CSV Datei für diesen Import muss in einem bestimmten Format vorliegen. Eine ausführliche Beschreibung sowie Beispiele findest du in der Dokumentation."
+            },
+            "fileInput": {
+                "label": "Wähle eine CSV Datei zum Hochladen aus"
+            },
+            "cards": {
+                "import": "CSV-Datei hochladen",
+                "importResultList": "Log des letzten Imports"
+            },
+            "fields": {
+                "labels": {
+                    "delimiter": "Spalten-Trennzeichen"
+                }
+            },
+            "list": {
+                "filerTabs": {
+                    "showAll": "Alle Log-Einträge anzeigen",
+                    "showOnlyBugs": "Nur Log-Einträge mit Fehlern anzeigen"
+                },
+                "success": "Import erfolgreich - ",
+                "alreadyExists": "Weiterleitung existiert bereits - ",
+                "openInNewTab": "Konfiguration in neuem Tab öffnen",
+                "openDuplicateInNewTab": "Konfiguration der bereits vorhandenen Weiterleitung in neuem Tab öffnen",
+                "failure": "Import fehlgeschlagen - ",
+                "showError": "Fehlermeldung anzeigen",
+                "detailModal": {
+                    "title": "Fehlermeldung - Zeile {rowIndex}"
+                },
+                "sourceAlreadyExists": "<b>Weiterleitung existiert bereits<\/b><br>In der Zeile {rowIndex} der CSV Datei hast du eine Weiterleitung definiert, für dessen Weiterleitungsquelle bereits eine Weiterleitung im System konfiguriert ist.",
+                "missingSource": "<b>Fehlende Weiterleitungsquelle<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei kein Feld hinterlegt, dass die Quelle der Weiterleitung definiert. Mögliche Felder sind: sourceProductNumber, sourceInternalUrl, sourceCategoryId und sourceProductId",
+                "missingTarget": "<b>Fehlendes Weiterleitungsziel<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei kein Feld hinterlegt, dass das Ziel der Weiterleitung definiert. Mögliche Felder sind: targetProductNumber, targetInternalUrl, targetCategoryId, targetProductId und targetExternalUrl",
+                "invalidHttpStatusCode": "<b>Invalider HTTP Status Code<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>httpStatusCode<\/i> den Wert \"{httpStatusCode}\" übergeben. Dies ist kein valider HTTP Status Code. Möglich ist 301 oder 302.",
+                "invalidSourceProductNumber": "<b>Ungültige Produktnummer<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>sourceProductNumber<\/i> den Wert \"{productNumber}\" übergeben. Diese Produktnummer konnte im System nicht gefunden werden.",
+                "invalidSourceInternalUrl": "<b>Invalide Sales Channel Domain<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>sourceInternalUrl<\/i> den Wert \"{url}\" übergeben. Es konnte hierbei keine oder keine valide Sales Channel Domain ermittelt werden.<br><br>Um eine interne URL zu setzen müsst du sie im CSV Import inklusive Domain angeben. Schaue hierbei auch, ob du die URL mit HTTP oder HTTPS in der Shopware Konfiguration hinterlegt hast.<br><br><b>Beispiel:<\/b><br><i>http:\/\/www.mein-shop.de\/meine-url<\/i> bzw.<br><i>http:\/\/www.mein-shop.de\/meine-url<\/i>",
+                "invalidSourceInternalUrlEmptyBaseUrl": "<b>Fehlender URL Pfad<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>sourceInternalUrl<\/i> den Wert \"{url}\" übergeben. Eine Weiterleitung der Startseite kann in der aktuellen Version des Plugins nicht konfiguriert werden.",
+                "invalidSourceCategoryIdNotFound": "<b>Ungültige Kategorie Id<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>sourceCategoryId<\/i> den Wert \"{categoryId}\" übergeben. Es konnte keine Kategorie mit dieser Id im System gefunden werden.",
+                "invalidSourceCategoryIdUuidFormat": "<b>Ungültige Kategorie Id<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>sourceCategoryId<\/i> den Wert \"{categoryId}\" übergeben. Hierbei handelt es sich um keine valide HEX ID.",
+                "invalidSourceProductIdNotFound": "<b>Ungültige Produkt Id<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>sourceProductId<\/i> den Wert \"{productId}\" übergeben. Es konnte kein Produkt mit dieser Id im System gefunden werden.",
+                "invalidSourceProductIdUuidFormat": "<b>Ungültige Produkt Id<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>sourceProductId<\/i> den Wert \"{productId}\" übergeben. Hierbei handelt es sich um keine valide HEX ID.",
+                "invalidTargetProductNumber": "<b>Ungültige Produktnummer<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>targetProductNumber<\/i> den Wert \"{productNumber}\" übergeben. Diese Produktnummer konnte im System nicht gefunden werden.",
+                "invalidTargetInternalUrl": "<b>Invalide Sales Channel Domain<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>targetInternalUrl<\/i> den Wert \"{url}\" übergeben. Es konnte hierbei keine oder keine valide Sales Channel Domain ermittelt werden.<br><br>Um eine interne URL zu setzen müsst du sie im CSV Import inklusive Domain angeben. Schaue hierbei auch, ob du die URL mit HTTP oder HTTPS in der Shopware Konfiguration hinterlegt hast.<br><br><b>Beispiel:<\/b><br><i>http:\/\/www.mein-shop.de\/meine-url<\/i> bzw.<br><i>http:\/\/www.mein-shop.de\/meine-url<\/i>",
+                "invalidTargetInternalUrlEmptyBaseUrl": "<b>Fehlender URL Pfad<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>targetInternalUrl<\/i> den Wert \"{url}\" übergeben. Eine Weiterleitung zur Startseite kann in der aktuellen Version des Plugins nicht konfiguriert werden.",
+                "invalidTargetCategoryIdNotFound": "<b>Ungültige Kategorie Id<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>targetCategoryId<\/i> den Wert \"{categoryId}\" übergeben. Es konnte keine Kategorie mit dieser Id im System gefunden werden.",
+                "invalidTargetCategoryIdUuidFormat": "<b>Ungültige Kategorie Id<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>targetCategoryId<\/i> den Wert \"{categoryId}\" übergeben. Hierbei handelt es sich um keine valide HEX ID.",
+                "invalidTargetProductIdNotFound": "<b>Ungültige Produkt Id<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>targetProductId<\/i> den Wert \"{productId}\" übergeben. Es konnte kein Produkt mit dieser Id im System gefunden werden.",
+                "invalidTargetProductIdUuidFormat": "<b>Ungültige Produkt Id<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>targetProductId<\/i> den Wert \"{productId}\" übergeben. Hierbei handelt es sich um keine valide HEX ID.",
+                "invalidDeviatingDomain": "<b>Ungültige abweichende Domain<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>targetDeviatingDomain<\/i> den Wert \"{deviatingDomain}\" übergeben. Es konnte hierbei keine Sales Channel Domain ermittelt werden, die hiermit übereinstimmt.<br><br>Beachte hierbei bitte, dass die Domain 1:1 so hinterlegt werden muss, wie sie auch in Shopware in er Konfiguration der Verkaufskanäle definiert ist. Mögliche Fehlerquellen sind also, dass die Domain mit http statt https angegeben wurde oder aber das ein Slash am Ende vergessen bzw. versehentlich gesetzt wurde.",
+                "invalidRestrictionDomain": "<b>Ungültige Domain Beschränkung<\/b><br>Du hast in der Zeile {rowIndex} der CSV Datei in der Spalte <i>sourceRestrictionDomains<\/i> den Wert \"{restrictionDomain}\" übergeben. Es konnte hierbei keine Sales Channel Domain ermittelt werden, die hiermit übereinstimmt.<br><br>Beachte hierbei bitte, dass die Domain 1:1 so hinterlegt werden muss, wie sie auch in Shopware in er Konfiguration der Verkaufskanäle definiert ist. Mögliche Fehlerquellen sind also, dass die Domain mit http statt https angegeben wurde oder aber das ein Slash am Ende vergessen bzw. versehentlich gesetzt wurde."
+            }
+        },
+        "list": {
+            "smartBar": {
+                "header": "301 und 302 URL Weiterleitungen",
+                "addButtonText": "Neue Weiterleitung anlegen",
+                "importExportButtonText": "CSV Import / Export"
+            },
+            "searchBar": {
+                "header": "301 und 302 URL Weiterleitungen"
+            },
+            "notification": {
+                "titleSaveSuccess": "Erfolg",
+                "messageSaveSuccess": "Das Element wurde erfolgreich gespeichert.",
+                "messageSaveError": "Fehler",
+                "titleSaveError": "Das Element konnte nicht gespeichert werden!"
+            },
+            "columns": {
+                "labels": {
+                    "active": "Aktiv",
+                    "sourcePath": "Quelle",
+                    "redirectUrl": "Ziel",
+                    "redirectHttpStatusCode": "HTTP Status Code"
+                },
+                "types": {
+                    "product": "<i>[Produkt] <\/i>",
+                    "category": "<i>[Kategorie] <\/i>"
+                }
+            },
+            "contextMenu": {
+                "show": "Anzeigen",
+                "edit": "Bearbeiten",
+                "delete": "Löschen"
+            },
+            "deleteModal": {
+                "title": "Weiterleitung löschen",
+                "confirmText": "Bist du sicher, dass diese Weiterleitung gelöscht werden soll?",
+                "cancelButtonText": "Abbrechen",
+                "deleteButtonText": "Löschen"
+            },
+            "messageEmpty": "Noch keine Weiterleitung"
+        },
+        "create": {
+            "smartBar": {
+                "header": "Neue Weiterleitung erstellen"
+            }
+        },
+        "detail": {
+            "smartBar": {
+                "header": "Einstellungen der Weiterleitung",
+                "editButtonText": "Bearbeiten",
+                "deleteButtonText": "Löschen",
+                "cancelButtonText": "Abbrechen",
+                "saveButtonText": "Speichern"
+            },
+            "tabs": {
+                "general": "Allgemein"
+            },
+            "notification": {
+                "titleSaveError": "Beim Speichern ist ein Fehler aufgetreten",
+                "messageSaveError": "Das Element konnte nicht gespeichert werden."
+            }
+        },
+        "detailBase": {
+            "cards": {
+                "titles": {
+                    "settings": "Grundeinstellungen",
+                    "source": "Quelle der Weiterleitung",
+                    "target": "weiterleiten auf ..."
+                }
+            },
+            "fields": {
+                "labels": {
+                    "sourceSalesChannelDomainId": "Domain",
+                    "sourcePath": "Quell-URL",
+                    "redirectSalesChannelDomainId": "Domain",
+                    "redirectPath": "Ziel-URL",
+                    "active": "Aktiv",
+                    "parameterForwarding": "Parameter der Quell-URL an die Ziel-URL weiterleiten",
+                    "redirectUrl": "URL",
+                    "redirectHttpStatusCode": "HTTP Status Code",
+                    "sourceProductId": "Produkt",
+                    "sourceCategoryId": "Kategorie",
+                    "hasSourceSalesChannelDomainRestriction": "Weiterleitung auf Domain(s) beschränken",
+                    "sourceSalesChannelDomainRestrictionIds": "Diese Weiterleitung nur bei den folgenden Domains durchführen:",
+                    "sourceType": {
+                        "url": "Interne URL",
+                        "product": "Produkt",
+                        "category": "Kategorie"
+                    },
+                    "redirectProductId": "Produkt",
+                    "redirectCategoryId": "Kategorie",
+                    "hasDeviatingRedirectSalesChannelDomain": "An abweichende Domain weiterleiten",
+                    "deviatingRedirectSalesChannelDomainId": "Abweichende Ziel-Domain",
+                    "redirectType": {
+                        "url": "Interne URL",
+                        "externalUrl": "Externe URL",
+                        "product": "Produkt",
+                        "category": "Kategorie"
+                    }
+                },
+                "errors": {
+                    "defaultError": "Dieses Feld darf nicht leer sein"
+                },
+                "placeholder": {
+                    "sourceSalesChannelDomainId": "Gib die Domain der Quell-URL ein ...",
+                    "redirectSalesChannelDomainId": "Gib die Domain der Ziel-URL ein ...",
+                    "sourceProductId": "Gib das Produkt an, für das eine Weiterleitung eingerichtet werden soll  ...",
+                    "sourceCategoryId": "Gib die Kategorie an, für die eine Weiterleitung eingerichtet werden soll  ...",
+                    "sourceSalesChannelDomainRestrictionIds": "Domain hinzufügen ...",
+                    "redirectProductId": "Gib das Produkt an, auf das weitergeleitet werden soll  ...",
+                    "redirectCategoryId": "Gib die Kategorie an, auf die weitergeleitet werden soll  ...",
+                    "deviatingRedirectSalesChannelDomainId": "Domain auswählen ..."
+                },
+                "helpText": {
+                    "hasSourceSalesChannelDomainRestriction": "Aktiviere diese Option um zu defineren, dass die Weiterleitung nur bei den unten definierten Domains durchgeführt wird.",
+                    "hasDeviatingRedirectSalesChannelDomain": "Standardmäßig entspricht die Ziel-Domain der Quell-Domain. Aktiviere diese Option, um eine abweichende Domain als Ziel-Domain zu definieren. <br><br>Steht die Katgeorie bzw. der Artikel für die Ziel-Domain nicht zur Verfügung, so findet auch keine Weiterleitung statt.",
+                    "parameterForwarding": "Wenn diese Option aktiviert ist, werden die sogenannten GET-Parameter der Quell-URL an die Ziel-URL weitergeleitet. <br><br><b>Beispiel:</b><br>Quell-URL: <i>https:\/\/www.mein-shop.de\/quell-url<b>?foo=bar</b><\/i><br><br>Ziel-URL: <i>https://www.mein-shop.de/ziel-url<b>?foo=bar</b></i><br><br>In diesem Beispiel wird der GET-Parameter <b>foo</b> von der Quell-URL an die Ziel-URL weitergeleitet."
+                }
+            }
+        },
+        "componentRedirectWidget": {
+            "cards": {
+                "titles": {
+                    "main": "Weiterleitungen"
+                }
+            },
+            "noRedirectText": {
+                "product": "Für dieses Produkt liegt keine Weiterleitung vor.",
+                "category": "Für diese Kategorie liegt keine Weiterleitung vor."
+            },
+            "createLinkText": {
+                "product": "Jetzt eine Weiterleitung für dieses Produkt erstellen",
+                "category": "Jetzt eine Weiterleitung für diese Kategorie erstellen"
+            },
+            "redirectText": {
+                "product": "Für dieses Produkt wurde über SEO Professional eine Weiterleitung definiert.",
+                "category": "Für diese Kategorie wurde über SEO Professional eine Weiterleitung definiert."
+            },
+            "showRedirect": "Konfiguration der Weiterleitung öffnen",
+            "showDetails": "Details anzeigen",
+            "hideDetails": "Details ausblenden",
+            "redirectIsForFollowingDomains": "Die Weiterleitung wird für die folgenden Domains durchgeführt:",
+            "redirectIsForAllDomains": "Die Weiterleitung wird für alle Domains durchgeführt.",
+            "redirectToInternalUrl": "Weiterleitung auf eine interne URL",
+            "redirectToExternalUrl": "Weiterleitung auf eine externe URL",
+            "redirectToProduct": "Weiterleitung auf ein Produkt",
+            "redirectToCategory": "Weiterleitung auf eine Kategorie"
+        }
+    }
+}

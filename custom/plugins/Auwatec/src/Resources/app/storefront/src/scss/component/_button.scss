@@ -1,0 +1,86 @@
+.btn{
+  font-family: $font-family-roboto;
+  font-weight: $font-weight-bold;
+  text-decoration: none;
+  .icon{
+    margin: 0 5px;
+  }
+  &:focus-visible{
+    box-shadow: none;
+  }
+}
+
+.btn-lg,
+.btn-group-lg > .btn,
+.btn-buy{
+  padding-top: $btn-padding-y;
+  padding-bottom: $btn-padding-y;
+}
+
+.btn-sm{
+  font-size: 16px;
+}
+
+.btn-block{
+  display: block;
+  width: 100%;
+}
+
+.btn-buy,
+.btn-primary{
+  &,
+  &:hover,
+  &:active,
+  &:first-child:active,
+  .icon{
+    color: $white;
+  }
+}
+
+.btn-outline-primary{
+  .icon{
+    color: $sw-color-brand-primary;
+  }
+  &:active,
+  &:hover{
+    &,
+    .icon{
+      color: $white;
+    }
+  }
+}
+
+.btn-success{
+  @include button-variant($sw-color-success, $sw-color-success, $white);
+  .icon{
+    color: $white;
+  }
+}
+
+.btn-buy-extra{
+  @include button-variant(#FEC601, #FEC601, $sw-text-color);
+  &,
+  .icon{
+    color: $sw-text-color;
+  }
+}
+
+.btn-light{
+  border-color: $gray-100;
+}
+
+.primary-text-btn{
+  padding: 0;
+  border: none;
+  color: $sw-color-brand-primary;
+  &,
+  &:hover,
+  &:active,
+  &:focus,
+  &:focus-visible{
+    background: transparent;
+  }
+  &:hover{
+    text-decoration: underline;
+  }
+}

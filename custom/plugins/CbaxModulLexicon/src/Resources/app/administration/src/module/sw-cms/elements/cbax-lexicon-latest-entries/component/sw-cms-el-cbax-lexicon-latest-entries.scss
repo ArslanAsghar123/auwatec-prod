@@ -1,0 +1,64 @@
+@import "~scss/variables";
+
+.sw-cms-slot {
+    .sw-cms-el-cbax-lexicon-listing {
+
+        .sw-cms-el-cbax-lexicon-listing__content {
+            display: grid;
+            //grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+            gap: 30px;
+            margin-top: 10px;
+
+            .lexicon-box {
+                border: 1px solid darkgray;
+                margin-bottom: 15px;
+                padding: 15px;
+                text-align: center;
+
+                img {
+                    width: 60%;
+                    height: auto;
+                    margin: auto;
+                }
+            }
+        }
+
+        .sw-cms-el-cbax-lexicon-listing__slider {
+            width: 100%;
+            margin: 20px;
+
+            .sw-cms-el-cbax-lexicon-listing-slider__content {
+                display: grid;
+                grid-template-columns: 32px 1fr 32px;
+                gap: 0 8px;
+
+                .sw-cms-el-cbax-lexicon-listing__navigation {
+                    align-self: center;
+                    justify-self: center;
+                }
+
+                .sw-cms-el-cbax-lexicon-listing__product-holder {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+                    gap: 0 32px;
+
+                    .lexicon-box {
+                        border: 1px solid darkgray;
+                        margin-bottom: 15px;
+                        padding: 15px;
+                        text-align: center;
+
+                        img {
+                            width: 60%;
+                            height: auto;
+                            margin: auto;
+                        }
+                    }
+                }
+            }
+
+
+        }
+    }
+}

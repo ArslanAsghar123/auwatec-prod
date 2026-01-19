@@ -1,0 +1,46 @@
+{
+  "name": "rapidmail/shopware-connector",
+  "description": "Rapidmail Connector",
+  "version": "2.1.0",
+  "license": "proprietary",
+  "require": {
+    "shopware/core": "6.6.*.*",
+    "shopware/administration": "6.6.*.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.4",
+    "spatie/phpunit-watcher": "^1.23"
+  },
+  "type": "shopware-platform-plugin",
+  "autoload": {
+    "psr-4": {
+      "Rapidmail\\Shopware\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Rapidmail\\Tests\\Shopware\\": "tests/"
+    }
+  },
+  "extra": {
+    "plugin-icon": "src/assets/logo.png",
+    "shopware-plugin-class": "Rapidmail\\Shopware\\rapi1Connector",
+    "copyright": "(c) rapidmail GmbH",
+    "label": {
+      "de-DE": "rapidmail: Newsletter & E-Mail Marketing Integration",
+      "en-GB": "rapidmail: Newsletter & E-Mail Marketing Integration"
+    },
+    "manufacturerLink": {
+      "de-DE": "https://www.rapidmail.de",
+      "en-GB": "https://www.rapidmail.com"
+    },
+    "supportLink": {
+      "de-DE": "https://www.rapidmail.de/wissen-und-hilfe",
+      "en-GB": "https://www.rapidmail.com/contact"
+    },
+    "description": {
+      "de-DE": "Einfach Newsletter für Kunden Ihres Shopware 6 Onlineshops erstellen, versenden - und so mehr verkaufen! Kontaktdaten werden automatisch synchronisiert.",
+      "en-GB": "Create and send newsletters for customers of your Shopware 6 online store with ease - and boost your sales! Contact data is automatically synchronized."
+    }
+  }
+}

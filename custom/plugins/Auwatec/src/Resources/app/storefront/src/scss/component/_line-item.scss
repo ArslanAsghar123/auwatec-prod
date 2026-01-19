@@ -1,0 +1,216 @@
+//general
+.line-item-img{
+  padding: 0 10px 0 0;
+  border: none;
+}
+
+.line-item-remove-button{
+  height: 45px;
+  width: 45px;
+  text-overflow: unset;
+  .icon{
+    margin: 0;
+    color: $sw-color-danger;
+  }
+}
+
+.line-item-ordernumber,
+.line-item-details-characteristics{
+  font-size: 14px;
+}
+
+.line-item-unit-price-label,
+.line-item-quantity-label,
+.line-item-tax-price-label,
+.line-item-total-price-label{
+  color: $sw-text-color;
+}
+
+//offcanvas-cart
+//checkout: step 2: register
+.offcanvas-cart-items,
+.checkout-aside-product-list{
+  .is-offcanvas.line-item {
+    .line-item-info-img{
+      width: 95px;
+    }
+    .line-item-details{
+      width: calc(100% - 95px);
+    }
+    .line-item-ordernumber,
+    .line-item-delivery-date,
+    .product-wishlist{
+      display: none;
+    }
+  }
+}
+
+//offcanvas-cart
+.offcanvas-cart-header{
+  font-size: 22px;
+}
+
+.offcanvas-cart-header-count{
+  font-size: 16px;
+  color: $sw-text-color;
+  font-family: $font-family-base;
+}
+
+.offcanvas-cart-actions{
+  #addPromotionOffcanvasCart{
+    @extend .btn-success;
+  }
+  .begin-checkout-btn{
+    @extend .btn-buy-extra;
+  }
+  .btn-link{
+    color: $sw-color-success;
+  }
+}
+
+.offcanvas-cart-items{
+  .is-offcanvas.line-item {
+    position: relative;
+    padding-bottom: 60px;
+    .line-item-quantity{
+      position: absolute;
+      bottom: 10px;
+      left: 90px;
+      width: 110px;
+    }
+    .line-item-quantity-select-wrapper{
+      width: auto;
+    }
+    .line-item-total-price,
+    .line-item-unit-price{
+      position: absolute;
+      width: auto;
+      right: 0;
+    }
+    .line-item-unit-price{
+      bottom: 30px;
+    }
+    .line-item-total-price{
+      bottom: 50px;
+    }
+
+    .line-item-quantity-label{
+      display: none;
+    }
+  }
+}
+
+//checkout: step 2: register
+.checkout-aside-product-list{
+  .is-offcanvas.line-item {
+    .line-item-info{
+      width: 100%;
+    }
+    .line-item-remove{
+      display: none;
+    }
+    .line-item-quantity,
+    .line-item-unit-price,
+    .line-item-total-price{
+      padding-left: 100px;
+    }
+    .line-item-quantity,
+    .line-item-quantity-row{
+      margin: 0;
+    }
+    .line-item-quantity-select-wrapper,
+    .line-item-quantity-label{
+      width: auto;
+      padding: 0;
+      font-weight: normal;
+      margin: 0;
+      font-size: 14px;
+    }
+    .line-item-unit-price.is-shown,
+    .line-item-total-price{
+      justify-content: flex-start;
+      font-weight: normal;
+      font-size: 14px;
+    }
+  }
+}
+
+
+//checkout step 1 (cart), checkout step 3 (confirm), account (order)
+.checkout-product-table,
+.confirm-product,
+.order-detail-content-list{
+  .line-item{
+    .line-item-delivery-date,
+    .product-wishlist{
+      display: none;
+    }
+    &:last-child{
+      border-bottom: 1px solid $sw-border-color;
+    }
+  }
+}
+
+@include media-breakpoint-down(md){
+  .order-detail-content-list,
+  .checkout-product-table,
+  .confirm-product{
+    .line-item{
+      .line-item-total-price-label,
+      .line-item-unit-price-label,
+      .line-item-unit-price{
+        display: block;
+      }
+      .line-item-unit-price,
+      .line-item-tax-price{
+        order: 4;
+        font-size: 16px;
+        font-style: normal;
+      }
+
+      .line-item-tax-price-label {
+        font-weight: bold;
+        margin-right: 0;
+      }
+      .line-item-total-price{
+        order: 5;
+      }
+
+      .line-item-tax-price-value,
+      .line-item-total-price-value{
+        text-align: right;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm){
+  .order-detail-content-list,
+  .checkout-product-table,
+  .confirm-product{
+    .line-item{
+      .line-item-total-price,
+      .line-item-unit-price,
+      .line-item-tax-price {
+        justify-content: space-between;
+        display: flex;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(sm){
+  .is-act-confirmpage,
+  .is-act-cartpage{
+    .checkout-product-table,
+    .confirm-product{
+      .line-item{
+        .line-item-unit-price-value,
+        .line-item-total-price-value,
+        .line-item-tax-price-value{
+          padding-top: 12px;
+        }
+      }
+    }
+  }
+}

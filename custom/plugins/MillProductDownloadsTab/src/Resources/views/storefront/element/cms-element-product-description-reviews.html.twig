@@ -1,0 +1,63 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-description-reviews.html.twig' %}
+
+{% block element_product_description_reviews_tabs_navigation_description %}
+
+    {{ parent() }}
+
+    {% block element_product_desciption_reviews_tabs_navigation_downloads %}
+
+        {% if page.MillProductDownloadsTab.files %}
+
+            <li class="nav-item">
+                <a class="nav-link product-detail-tab-navigation-link"
+                   id="downloads-tab"
+                   title="{{ "millProductDownloadsTab.detail.title"|trans }}"
+                   data-bs-toggle="tab"
+                   data-off-canvas-tabs="true"
+                   href="#downloads-tab-pane"
+                   role="tab"
+                   aria-controls="downloads-tab-pane"
+                   aria-selected="true">
+                    <span>
+                        {{ "millProductDownloadsTab.detail.title"|trans }}
+                        {% if config('MillProductDownloadsTab.config.showTabBadge') %}
+                            <span class="badge rounded-pill bg-secondary">{{ page.MillProductDownloadsTab.files|length }}</span>
+                        {% endif %}
+                    </span>
+                    <span class="product-detail-tab-navigation-icon">
+                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                    </span>
+                </a>
+            </li>
+
+        {% endif %}
+
+    {% endblock %}
+
+{% endblock %}
+
+{% block element_product_description_reviews_tabs_content_description %}
+
+    {{ parent() }}
+
+    {% block element_product_desciption_reviews_tabs_content_downloads %}
+
+        {% if page.MillProductDownloadsTab.files %}
+
+            <div class="tab-pane fade show"
+                 id="downloads-tab-pane"
+                 role="tabpanel"
+                 aria-labelledby="downloads-tab">
+
+                {% sw_include '@Storefront/storefront/component/product/downloads-tab-container.html.twig' with {
+                    product: element.data.product,
+                    dowloadTabFiles: page.MillProductDownloadsTab.files
+                } %}
+
+            </div>
+
+        {% endif %}
+
+    {% endblock %}
+
+{% endblock %}

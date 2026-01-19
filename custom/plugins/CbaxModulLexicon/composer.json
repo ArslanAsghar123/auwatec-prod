@@ -1,0 +1,40 @@
+{
+    "name": "cbax/modul-lexicon",
+    "description": "Professionell gestaltetes Lexikon mit Begriffsersetzung und Artikelzuweisung.",
+    "version": "4.1.3",
+	"type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Coolbax"
+        }
+    ],
+	"require": {
+        "shopware/core": ">=6.6, <6.7"
+    },
+	"extra": {
+		"shopware-plugin-class": "Cbax\\ModulLexicon\\CbaxModulLexicon",
+		"copyright": "(c) by Coolbax",
+        "label": {
+            "de-DE": "Lexikon Professionell",
+            "en-GB": "Lexicon Professional"
+        },
+        "description": {
+            "de-DE": "Professionell gestaltetes Lexikon mit Begriffersetzung und Artikelzuweisung.",
+            "en-GB": "Professionally designed lexicon with term replacement and article assignment."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://coolbax.de",
+            "en-GB": "https://coolbax.de"
+        },
+        "supportLink": {
+            "de-DE": "https://coolbax.gitbook.io/coolbax-docs/handbuecher/storefront/lexikon-glossar",
+            "en-GB": "https://coolbax.gitbook.io/coolbax-docs/handbuecher/storefront/lexikon-glossar"
+        }
+    },
+	"autoload": {
+        "psr-4": {
+            "Cbax\\ModulLexicon\\": "src/"
+        }
+    }
+}

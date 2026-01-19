@@ -1,0 +1,48 @@
+{% block aku_cms_factory_element_list %}
+
+
+
+    <sw-page class="cms-factory-element-list">
+
+            {% block sw_customer_list_search_bar %}
+            <template #search-bar>
+                <sw-search-bar
+                    initial-search-type="CMS Factory"
+                    :placeholder="$tc('aku-cms-factory-element.list.searchPlaceholderText')"
+                    @search="onSearch"
+                />
+            </template>
+            {% endblock %}
+
+        {% block aku_cms_factory_element_list_smart_bar_actions %}
+        <template #smart-bar-actions>
+            <sw-button :routerLink="{name: 'aku.cms.factory.element.import'}">
+                {{$tc('aku-cms-factory-element.list.importButtonText')}}
+            </sw-button>
+            <sw-button variant="primary" :routerLink="{name: 'aku.cms.factory.element.create'}">
+                {{$tc('aku-cms-factory-element.list.addButtonText')}}
+            </sw-button>
+        </template>
+        {% endblock %}
+
+        <template #content>
+            {% block aku_cms_factory_element_list_content %}
+                <sw-entity-listing
+                    v-if="cms_elements"
+                    :items="cms_elements"
+                    :repository="repository"
+                    :showSelection="false"
+                    :columns="columns"
+                    :criteria="element_list_criteria"
+                    detailRoute="aku.cms.factory.element.detail"
+                >
+                <template #more-actions="{ item, isInlineEdit, compact }">
+                <a class="sw-context-menu-item" href="#"
+                    @click.prevent="exportItem(item)">Export</a>
+                </template>
+                </sw-entity-listing>
+            {% endblock %}
+        </template>
+    </sw-page>
+
+{% endblock %}

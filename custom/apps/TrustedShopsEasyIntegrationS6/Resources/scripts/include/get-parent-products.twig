@@ -1,0 +1,65 @@
+{% macro processPage(page, context) %}
+    {% for section in page.sections.elements %}
+        {% for block in section.blocks %}
+            {% if block.type === "product-listing" or block.type === "product-slider" or block.type === "cross-selling" or block.type === "product-three-column" %}
+                {% set slots = block.slots %}
+                {% for element in slots.elements %}
+                    {% if block.type === "product-three-column" %}
+                        {% set product = element.data.product %}
+                        {% if product.parentId %}
+                            {% set criteria = {
+                                'ids': [ product.parentId ]
+                            } %}
+                            {% set parentProduct = services.repository.search('product', criteria).first %}
+                            {% do product.addExtension('tsParentProduct', parentProduct) %}
+                        {% endif %}
+
+                    {% else %}
+                        {% if block.type === "product-listing" %}
+                            {% set listingData = element.data.listing %}
+                        {% elseif block.type === "product-slider" %}
+                            {% set listingData = element.data.products %}
+                        {% elseif block.type === "cross-selling" %}
+                            {% set listingData = element.data.products %}
+                        {% endif %}
+
+                        {% do listingData.addExtension('tsParentProduct', listingData) %}
+                        {% set parentProductIds = [] %}
+                        {% for product in listingData.elements %}
+                            {% if product.parentId %}
+                                {% set parentProductIds = parentProductIds|merge([product.parentId]) %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if parentProductIds|length > 0 %}
+                            {% set criteria = {
+                                'ids': parentProductIds
+                            } %}
+                            {% set parentProducts = services.repository.search('product', criteria) %}
+
+                            {% for product in listingData.elements %}
+                                {% if product.parentId %}
+                                    {% for parentProduct in parentProducts.elements %}
+                                        {% if product.parentId === parentProduct.id %}
+                                            {% do product.addExtension('tsParentProduct', parentProduct) %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+
+    {% set criteria = {
+        'ids': [ context.languageId ],
+        'associations': {
+            'locale': {}
+        }
+    } %}
+
+    {% set activeLanguage = services.repository.search('language', criteria).first %}
+    {% do page.addExtension('activeLanguage', activeLanguage) %}
+{% endmacro %}

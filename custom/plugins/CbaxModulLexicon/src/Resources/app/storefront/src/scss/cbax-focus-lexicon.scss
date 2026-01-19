@@ -1,0 +1,33 @@
+/* Barrierefreiheit */
+$cbax-focus-ring-opacity:                       0.25 !default;
+$cbax-focus-ring-color:                         rgba($sw-color-brand-primary, $cbax-focus-ring-opacity) !default;
+
+@mixin focus-shadow {
+    box-shadow: 0 0 0 0.25rem #{$cbax-focus-ring-color};
+}
+
+@mixin focus-shadow-important {
+    box-shadow: 0 0 0 0.25rem #{$cbax-focus-ring-color} !important;
+}
+
+.is-lexicon {
+    a:focus-visible {
+        outline: 0;
+        @include focus-shadow;
+    }
+
+    .btn:focus-visible {
+        outline: 0;
+        @include focus-shadow-important;
+    }
+
+    button:focus-visible {
+        outline: 0;
+        @include focus-shadow-important;
+    }
+
+    .product-box .product-wishlist-action-circle:focus-visible {
+        outline: 0;
+        @include focus-shadow-important;
+    }
+}

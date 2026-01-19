@@ -1,0 +1,43 @@
+{% block sw_cms_list_item_image %}
+
+    <div
+            v-if="page && page.type === 'cbax_lexicon'"
+            class="sw-cms-list-item__image"
+            :style="previewMedia"
+            role="button"
+            tabindex="0"
+            @click="onItemClick(page)"
+            @keydown.enter="onItemClick(page)"
+    >
+        <div v-if="page.cbaxDefaultDetail !== undefined && page.cbaxDefaultDetail">
+            <span
+                    class="sw-cms-list-item__is-default"
+            >{{ $tc('sw-cms.components.cmsListItem.defaultLayoutLexiconDetail') }}</span>
+        </div>
+        <div v-else-if="page.cbaxDefaultIndex !== undefined && page.cbaxDefaultIndex">
+            <span
+                    class="sw-cms-list-item__is-default"
+            >{{ $tc('sw-cms.components.cmsListItem.defaultLayoutLexiconIndex') }}</span>
+        </div>
+        <div v-else-if="page.cbaxDefaultListing !== undefined && page.cbaxDefaultListing">
+            <span
+                    class="sw-cms-list-item__is-default"
+            >{{ $tc('sw-cms.components.cmsListItem.defaultLayoutLexiconListing') }}</span>
+        </div>
+        <div v-else-if="page.cbaxDefaultContent !== undefined && page.cbaxDefaultContent">
+            <span
+                    class="sw-cms-list-item__is-default"
+            >{{ $tc('sw-cms.components.cmsListItem.defaultLayoutLexiconContent') }}</span>
+        </div>
+    </div>
+    <div
+            v-else-if="!page"
+            class="sw-cms-list-item__image is--empty"
+    >
+        {{ $tc('sw-cms.components.cmsListItem.emptyText') }}
+    </div>
+
+    <div v-else>
+        {% parent %}
+    </div>
+{% endblock %}

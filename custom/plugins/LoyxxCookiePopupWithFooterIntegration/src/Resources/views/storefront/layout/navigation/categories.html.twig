@@ -1,0 +1,34 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/categories.html.twig' %}
+
+{% block layout_navigation_categories_item_link %}
+    {% if treeItem.category.type == 'folder' %}
+        {{ parent() }}
+    {% else %}
+        {% set pluginConfigurations = context.context.extensions.loyxx_configrations.configs %}
+        {% if (treeItem.category.id == pluginConfigurations.loyxx_category_id) %}
+            {% if  (pluginConfigurations.loyxx_cookie_enabled) and
+                (pluginConfigurations.loyxx_cookie_button_pos == 'category') %}
+                <a class="loyxx nav-item nav-link navigation-flyout-link is-level-{{ level }}{% if id == activeId or id in activePath %} active{% endif %}"
+                   href="{{ path('frontend.cookie.offcanvas') }}"
+                   itemprop="url"
+                   {% if category_linknewtab(treeItem.category) %}target="_blank"{% endif %}
+                   title="{{ name }}">
+                    <span itemprop="name">{{ name }}</span>
+                </a>
+            {% endif %}
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block layout_navigation_categories_item %}
+
+    {% set pluginConfigurations = context.context.extensions.loyxx_configrations.configs %}
+    {% if (treeItem.category.id != pluginConfigurations.loyxx_category_id) %}
+        {{ parent() }}
+    {% elseif (pluginConfigurations.loyxx_cookie_enabled) and (pluginConfigurations.loyxx_cookie_button_pos == 'category') %}
+        {{ parent() }}
+    {% else %}
+    {% endif %}
+{% endblock %}

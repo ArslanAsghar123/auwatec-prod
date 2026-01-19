@@ -1,0 +1,52 @@
+{% block php_schmiede_last_seen_products_component_last_seen_slider %}
+
+    {% set config = {
+        'border': {
+            'value': config('phpSchmiedLastSeenProducts.config.sliderBorder')
+        },
+        'rotate': {
+            'value': config('phpSchmiedLastSeenProducts.config.sliderRotate')
+        },
+        'products': {
+            'value': products
+        },
+        'boxLayout': {
+            'value': config('phpSchmiedLastSeenProducts.config.sliderDisplayLayoutType')
+        },
+        'elMinWidth': {
+            'value': config('phpSchmiedLastSeenProducts.config.sliderMinWidth')
+        },
+        'navigation': {
+            'value': config('phpSchmiedLastSeenProducts.config.sliderNavigation')
+        },
+        'displayMode': {
+            'value': config('phpSchmiedLastSeenProducts.config.sliderDisplayMode')
+        },
+        'navigationArrows': {
+            'value': true
+        }
+    } %}
+
+    {% block php_schmiede_last_seen_products_component_last_seen_slider_headline %}
+        {% if not config('phpSchmiedLastSeenProducts.config.hideHeadline') %}
+            <div class="h3 last-seen-title">
+                {{ 'phpSchmied.lastseenproducts.headline' | trans }}
+            </div>
+        {% endif %}
+    {% endblock php_schmiede_last_seen_products_component_last_seen_slider_headline %}
+
+    {% block php_schmiede_last_seen_products_component_last_seen_slider_content %}
+        {% sw_include "@Storefront/storefront/element/cms-element-product-slider.html.twig" with {
+            sliderConfig: config,
+            element: {
+                'data': {
+                    'products': {
+                        elements: products
+                    },
+                },
+                type: 'product-slider'
+            }
+        } only %}
+    {% endblock php_schmiede_last_seen_products_component_last_seen_slider_content %}
+
+{% endblock php_schmiede_last_seen_products_component_last_seen_slider %}

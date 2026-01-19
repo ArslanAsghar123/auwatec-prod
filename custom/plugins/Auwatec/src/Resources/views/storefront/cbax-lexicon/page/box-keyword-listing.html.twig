@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/cbax-lexicon/page/box-keyword-listing.html.twig' %}
+
+{#removed headline on listing pages#}
+{% block cbax_lexicon_page_box_keyword_listing_headline %}
+    {% if lexiconPage == 'index' %}
+        <h2>{{ boxKeywordHeadline }}</h2>
+    {%  else %}
+    {% endif %}
+{% endblock %}

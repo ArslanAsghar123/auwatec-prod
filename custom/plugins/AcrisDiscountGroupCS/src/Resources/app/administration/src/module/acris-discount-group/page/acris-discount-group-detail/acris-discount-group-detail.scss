@@ -1,0 +1,6 @@
+@import "~scss/variables";
+
+.acris-discount-group-detail__item_account_display_text .sw-text-editor__label::after {
+    content: "*";
+    color: $color-shopware-brand-500;
+}

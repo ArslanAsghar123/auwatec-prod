@@ -1,0 +1,264 @@
+.is-ctl-checkout{
+  .content-main > .container{
+    background: $white;
+    padding-bottom: 50px;
+  }
+  &.is-act-cartpage{
+    .content-main > .container{
+      padding-top: 50px;
+    }
+    .seo-text{
+      margin-top: 70px;
+    }
+  }
+}
+.is-act-confirmpage,
+.is-ctl-accountorder{
+  .checkout{
+    padding-top: 50px;
+  }
+}
+
+body{
+  &.is-act-cartpage{
+    .checkout{
+      .checkout-main{
+        @extend .col-lg-12;
+        @extend .col-xl-8;
+      }
+      .checkout-aside{
+        @extend .col-md-12;
+        @extend .offset-md-0;
+        @extend .offset-lg-6;
+        @extend .col-lg-6;
+        @extend .offset-xl-0;
+        @extend .col-xl-4;
+      }
+    }
+  }
+  &.is-act-confirmpage,
+  &.is-ctl-accountorder,
+  &.is-act-finishpage{
+    .checkout{
+      .checkout-main{
+        @extend .offset-lg-0;
+        @extend .col-lg-12;
+      }
+      .checkout-additional{
+        @extend .col-12;
+        @extend .col-md-12;
+        @extend .offset-lg-0;
+        @extend .col-lg-6;
+        @extend .col-xl-4;
+      }
+      .checkout-aside{
+        @extend .col-12;
+        @extend .offset-sm-0;
+        @extend .offset-md-0;
+        @extend .col-md-12;
+        @extend .col-lg-6;
+        @extend .offset-xl-4;
+        @extend .col-xl-4;
+      }
+    }
+  }
+
+  &.is-act-finishpage{
+    .checkout{
+      .checkout-aside{
+        @extend .col-12;
+        @extend .offset-lg-6;
+        @extend .offset-xl-8;
+      }
+    }
+  }
+}
+
+.confirm-tos{
+  .form-check,
+  .revocation-notice{
+    background: $gray-100;
+    margin: 0;
+  }
+  .revocation-notice{
+    padding: 30px 20px 20px 20px;
+  }
+  .form-check{
+    padding: 0 20px 30px 20px;
+    .form-check-input{
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  }
+}
+
+.checkout-aside-summary-header{
+  font-size: 23px;
+}
+
+.confirm-address{
+  .confirm-address-billing,
+  .confirm-address-shipping,
+  .card-actions{
+    background: $gray-100;
+    margin: 0;
+  }
+
+  .confirm-address-billing,
+  .confirm-address-shipping{
+    padding: 30px 20px 20px 20px;
+  }
+  .card-actions{
+    padding: 0 20px 20px 20px;
+    .btn{
+      @extend .primary-text-btn;
+    }
+  }
+}
+
+.btn#addPromotion{
+  @extend .btn-success;
+}
+
+
+#changeShippingForm,
+#changePaymentForm{
+  background: $gray-100;
+  padding: 30px 20px;
+}
+#changePaymentForm{
+  .payment-method-image{
+    display: none;
+  }
+}
+.confirm-shipping .checkout-card{
+  height: 100%;
+}
+#changeShippingForm{
+  height: calc(100% - 57px);
+}
+
+.payment-method-description > p{
+  color: $gray-text-color;
+}
+
+.confirm-address-shipping{
+  margin-bottom: 20px;
+}
+
+.cart-table-header{
+  margin-bottom: 15px;
+  border-bottom: 1px solid $sw-border-color;
+}
+
+.cart-header-quantity{
+  text-align: left;
+}
+
+.login-submit,
+.checkout-aside-action{
+  .btn{
+    @extend .btn-buy-extra;
+  }
+}
+
+.checkout-additional{
+  .card-title{
+    display: none;
+  }
+}
+
+.is-act-finishpage .checkout{
+  padding-top: 40px;
+}
+
+.finish-teaser,
+.finish-ordernumber,
+.finish-header{
+  text-align: left;
+}
+
+.finish-header{
+  color: $sw-color-success;
+  margin-bottom: 1rem;
+}
+
+.finish-content{
+  margin-bottom: 60px;
+  .alert{
+    display: inline-flex;
+    margin: 20px 0 40px 0;
+  }
+}
+
+.finish-info-box{
+  padding: 20px 10px;
+  border: 1px solid $sw-border-color;
+}
+
+.finish-info-box-table{
+  tr{
+    display: block;
+    padding-bottom: 20px;
+    &:last-child{
+      padding: 0;
+    }
+  }
+  td{
+    display: block;
+  }
+}
+
+.finish-info .checkout-card{
+  height: 100%;
+}
+
+.finish-order-details{
+  @extend .col-md-12;
+  @extend .col-xl-4;
+}
+
+.finish-address{
+  @extend .col-md-12;
+  @extend .col-xl-8;
+  .col-sm-6{
+    margin-bottom: 30px;
+  }
+}
+
+.finish-order-details .gray-box,
+.finish-address-billing,
+.finish-address-shipping{
+  background: $gray-100;
+  padding: 30px 20px;
+  height: calc(100% - 27px);
+}
+
+
+@include media-breakpoint-between(md,lg){
+  .checkout-aside-action{
+    .d-grid{
+      justify-items: end;
+    }
+    .btn{
+      width: 50%;
+    }
+  }
+}
+
+@include media-breakpoint-up(md){
+  .is-act-confirmpage .checkout .checkout-additional,
+  .is-ctl-accountorder .checkout .checkout-additional{
+    margin-top: 0;
+  }
+  .finish-info-box-table{
+    tr{
+      display: table-row;
+      padding: 0;
+    }
+    td{
+      display: table-cell;
+      padding: 10px;
+    }
+  }
+}

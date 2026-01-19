@@ -1,0 +1,27 @@
+.text-video-element{
+  .text-video-element-video{
+    margin-bottom: 30px;
+    video{
+      max-width: 100%;
+      margin: auto;
+      display: block;
+    }
+  }
+  .text-video-element-content{
+    text-align: center;
+    li{
+      text-align: left;
+    }
+  }
+}
+
+@include media-breakpoint-up(xl){
+  .text-video-element{
+    .text-video-element-video{
+      margin-bottom: 0;
+    }
+    .text-video-element-content{
+      text-align: left;
+    }
+  }
+}

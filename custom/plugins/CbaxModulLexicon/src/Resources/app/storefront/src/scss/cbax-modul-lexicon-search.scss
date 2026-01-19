@@ -1,0 +1,61 @@
+.cbax-lexicon-search-suggest-container {
+    color: $headings-color;
+    position: absolute;
+    top: 55px;
+    left: 0;
+    background: $white;
+    padding: 16px;
+    width: 100%;
+    border: 1px solid $border-color;
+    z-index: $search-suggest-zindex;
+    box-shadow: 0 10px 25px -15px $black;
+
+    .cbax-lexicon-search-suggest-lexicon-container {
+        .cbax-lexicon-search-suggest-lexicon {
+            padding-left: 2rem;
+
+            .cbax-search-suggest-lexicon {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding: 0.4rem 0 0 0;
+
+                .cbax-search-suggest-lexicon-title {
+                    white-space: nowrap;
+                    color: $headings-color;
+                    &:hover {
+                        color: $primary;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
+        .search-suggest-total {
+            padding-left: 2rem;
+        }
+    }
+
+
+    .cbax-lexicon-search-suggest-list {
+        list-style: none;
+        touch-action: manipulation;
+    }
+
+    .search-suggest-total-count {
+        padding-left: 2rem;
+    }
+
+    .cbax-lexicon-search-suggest-headline {
+        margin-left: 16px;
+        font-size: $font-size-lg;
+        font-weight: $btn-font-weight;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .cbax-lexicon-search-suggest-container {
+        width: 990px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

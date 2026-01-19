@@ -1,0 +1,9 @@
+{
+    "acris-gpsr-edit-download-modal": {
+        "general": {
+            "modalTitle": "Name der Datei",
+            "fileName": "Name der Datei",
+            "titlePlaceholder": "Name der Datei"
+        }
+    }
+}

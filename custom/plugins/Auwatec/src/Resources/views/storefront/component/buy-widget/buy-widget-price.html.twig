@@ -1,0 +1,37 @@
+{% sw_extends '@Storefront/storefront/component/buy-widget/buy-widget-price.html.twig' %}
+
+{# content moved to buy-widget.html.twig/buy_widget_tax #}
+{% block buy_widget_price_unit %}{% endblock %}
+
+{% block buy_widget_price_content %}
+    {{ parent() }}
+    {% set acrisDiscount = product.extensions.acrisDiscountGroupLineItemDiscount.discountGroups.elements|first %}
+    {% set acrisDiscount = acrisDiscount.discount %}
+    {% set priceGross = product.price.first.gross %}
+    {% if acrisDiscount and context.customer is not defined %}
+        {% set priceGross = priceGross + (priceGross * (acrisDiscount / 100)) %}
+    {% endif %}
+
+    (<small class="product-detail-price-gross-label">{{ 'detail.priceGrossLabel'|trans }}</small>
+    <small class="product-detail-price-gross">{{ priceGross|currency }}</small>)
+
+    {% if product.customFields.custom_dv_product_price_rm and context.customer is defined %}
+        {# product.extensions.acrisDiscountGroupLineItemDiscount is undefined when it's not needed. needed to define a customField because of that. #}
+        {% set acrisDiscount = context.salesChannel.customFields.custom_channel_discounts_rm %}
+        {% set listPrice = price.unitPrice + (price.unitPrice * (acrisDiscount / 100)) %}
+        <span class="product-detail-list-price-wrapper">
+            {% if beforeListPriceSnippetExists %}{{"listing.beforeListPrice"|trans|trim}}{% endif %}
+
+            <span{% if not (afterListPriceSnippetExists or beforeListPriceSnippetExists) %} class="list-price-price"{% endif %}>{{ listPrice|currency }}{{ "general.star"|trans|sw_sanitize }}</span>
+
+            {% if afterListPriceSnippetExists %}
+                {{"listing.afterListPrice"|trans|trim}}
+            {% endif %}
+        </span>
+    {% endif %}
+{% endblock %}
+
+
+{# if isListPrice #}
+{% block buy_widget_was_price %}{% endblock %}
+

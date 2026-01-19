@@ -1,0 +1,43 @@
+<sw-page class="cogi-footer-kit-module-create">
+
+    <template #smart-bar-header>
+        <h2>
+            {{ $tc('footer-kit.list.header') }}
+        </h2>
+    </template>
+
+    <template #smart-bar-actions>
+        <sw-button variant="primary"
+                   :isLoading="isLoading"
+                   @click="onFooterKitSave">
+            {{ $t('footer-kit.create.createButton') }}
+        </sw-button>
+
+        <sw-button variant="secondary-ghost"
+                   :isLoading="isLoading"
+                   @click="backToRoute">
+            {{ $t('footer-kit.create.backButton') }}
+        </sw-button>
+    </template>
+    <template #content>
+        <sw-card-view>
+            <sw-card :isLoading="isLoading">
+                <sw-container columns="2fr 2fr" gap="10px">
+
+                    <sw-container>
+                        <sw-text-field
+                                :label="$tc('footer-kit.create.name')"
+                                v-model:value="footerKit.name">
+                        </sw-text-field>
+                    </sw-container>
+
+                    <sw-entity-single-select
+                            :label="$tc('footer-kit.create.salesChannel')"
+                            entity="sales_channel"
+                            v-model:value="footerKit.salesChannelId">
+                    </sw-entity-single-select>
+                </sw-container>
+            </sw-card>
+        </sw-card-view>
+    </template>
+</sw-page>

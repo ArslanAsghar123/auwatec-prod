@@ -1,0 +1,118 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-manufacturer-logo.html.twig' %}
+
+ {% block element_manufacturer_logo_link %}
+     {% set acrisGpsrManufacturerForLink = page.product.manufacturer %}
+
+     {% if acrisGpsrManufacturerForLink.translated.customFields and acrisGpsrManufacturerForLink.translated.customFields.acris_gpsr_manufacturer_shopware_link == 'modal' %}
+         {% block element_manufacturer_logo_link_content %}
+             <a data-ajax-modal="true" class="gpsr-manufacturer-modal-link cms-image-link product-detail-manufacturer-link" href=""
+                {% if config.newTab.value %}target="_blank" rel="noreferrer noopener"{% endif %}
+                title="{{ manufacturer.name }}"
+                data-bs-toggle="modal" data-bs-target="#acrisGpsrManufacturerModal-{{ acrisGpsrManufacturerForLink.id }}">
+                 {% if manufacturer.media %}
+                     <div class="cms-image-container is-{{ config.displayMode.value }}"
+                             {% if config.minHeight.value and config.displayMode.value == "cover" %} style="min-height: {{ config.minHeight.value }};"{% endif %}>
+
+                         {% block element_manufacturer_logo_link_image %}
+                             {% set attributes = {
+                                 'class': 'cms-image product-detail-manufacturer-logo',
+                                 'alt': manufacturer.alt,
+                                 'title': manufacturer.name
+                             } %}
+
+                             {% if config.displayMode.value == 'cover' or config.displayMode.value == 'contain' %}
+                                 {% set attributes = attributes|merge({ 'data-object-fit': config.displayMode.value }) %}
+                             {% endif %}
+
+                             {% sw_thumbnails 'cms-image-thumbnails' with {
+                                 media: manufacturer.media,
+                                 sizes: {
+                                     'default': '200px'
+                                 }
+                             } %}
+                         {% endblock %}
+                     </div>
+                 {% else %}
+                     {% block element_manufacturer_link_text %}
+                         {{ manufacturer.name }}
+                     {% endblock %}
+                 {% endif %}
+             </a>
+         {% endblock %}
+
+         {% block element_manufacturer_logo_link_modal %}
+             <div class="modal fade" id="acrisGpsrManufacturerModal-{{ acrisGpsrManufacturerForLink.id }}" tabindex="-1" aria-labelledby="acrisGpsrManufacturerModalLabel" aria-hidden="true">
+                 <div class="modal-dialog  modal-dialog-centered">
+                     <div class="modal-content">
+                         {% block element_manufacturer_logo_link_modal_header %}
+                             <div class="modal-header">
+                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                             </div>
+                         {% endblock %}
+                         {% block element_manufacturer_logo_link_modal_body %}
+                             <div class="modal-body">
+                                 <div class="quickview-minimal-container">
+                                     {% block element_manufacturer_logo_link_modal_quickview_minimal_top %}
+                                         <div class="row quickview-minimal-content">
+                                             {% block element_manufacturer_logo_link_modal_quickview_minimal_img %}
+                                                 <div class="col-12 col-md-4 quickview-minimal-image">
+                                                     {% if page.product.manufacturer.media %}
+                                                         {% set attributes = {
+                                                             'class': 'cms-image',
+                                                             'alt': page.product.manufacturer.media.alt,
+                                                             'title': page.product.manufacturer.media.name
+                                                         } %}
+
+                                                         {% if config.displayMode.value == 'cover' or config.displayMode.value == 'contain' %}
+                                                             {% set attributes = attributes|merge({ 'data-object-fit': config.displayMode.value }) %}
+                                                         {% endif %}
+
+                                                         {% sw_thumbnails 'cms-image-thumbnails' with {
+                                                             media: page.product.manufacturer.media,
+                                                             sizes: {
+                                                                 default: '360px'
+                                                             }
+                                                         } %}
+                                                     {% else %}
+                                                         {% sw_icon 'placeholder' style {
+                                                             size: 'fluid'
+                                                         } %}
+                                                     {% endif %}
+                                                 </div>
+                                             {% endblock %}
+
+                                             {% block element_manufacturer_logo_link_modal_quickview_minimal_manufacturer %}
+                                                 <div class="col-12 col-md-8 quickview-minimal-manufacturer">
+                                                     {% block element_manufacturer_logo_link_modal_quickview_minimal_manufacturer_name %}
+                                                         <a href="{{ manufacturer.link }}"
+                                                            class="product-detail-manufacturer-link"
+                                                            {% if config.newTab.value %}target="_blank" rel="noreferrer noopener"{% endif %}
+                                                            title="{{ manufacturer.name }}"
+                                                            class="h4 quickview-minimal-manufacturer-name">
+                                                             {{ manufacturer.name }}
+                                                         </a>
+                                                     {% endblock %}
+
+                                                     {% block element_manufacturer_logo_link_modal_quickview_minimal_manufacturer_description %}
+                                                         {% if acrisGpsrManufacturerForLink.description %}
+                                                             <p class="quickview-minimal-footer-description">
+                                                                 {{ acrisGpsrManufacturerForLink.translated.description|sw_sanitize }}
+                                                             </p>
+                                                         {% endif %}
+                                                     {% endblock %}
+                                                 </div>
+                                             {% endblock %}
+                                         </div>
+                                     {% endblock %}
+                                 </div>
+                             </div>
+                         {% endblock %}
+                     </div>
+                 </div>
+             </div>
+         {% endblock %}
+     {% else %}
+         {{ parent() }}
+     {% endif %}
+
+ {% endblock %}

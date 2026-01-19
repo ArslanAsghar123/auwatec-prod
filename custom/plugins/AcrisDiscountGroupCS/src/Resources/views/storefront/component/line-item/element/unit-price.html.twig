@@ -1,0 +1,41 @@
+{% sw_extends '@Storefront/storefront/component/line-item/element/unit-price.html.twig' %}
+
+{% block component_line_item_unit_price_inner %}
+    {% if lineItem.payload.acrisListPrice and (lineItem.payload.acrisListPrice.unitPrice or lineItem.payload.acrisListPrice.unitPercentage) %}
+
+        {% if config("AcrisDiscountGroupCS.config.cartColumnLayout") == "custom" %}
+
+            {% if lineItem.payload.acrisListPrice.unitPrice and lineItem.payload.acrisListPrice.unitPercentage > 0 %}
+                <div class="line-item-unit-price-value">
+                    {{ lineItem.payload.acrisListPrice.unitPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+                    <span class="line-item-unit-price-value-descriptor"> / {{ 'checkout.lineItemUnitPriceDescriptor'|trans|sw_sanitize }}</span>
+                </div>
+            {% else %}
+                {{ parent() }}
+            {% endif %}
+        {% else %}
+            {{ parent() }}
+
+            {% block component_line_item_unit_price_inner_list_price %}
+
+                {% if config("AcrisDiscountGroupCS.config.discountAtUnitPrice") != 'no' %}
+                    <div class="line-item-unit-list-price">
+                        {% if config("AcrisDiscountGroupCS.config.discountAtUnitPrice") == 'listPriceAndDiscount' or config("AcrisDiscountGroupCS.config.discountAtUnitPrice") == 'listPrice' %}
+                            {% if lineItem.payload.acrisListPrice.unitPrice %}
+                                <span class="line-item-unit-list-price-price">{{ lineItem.payload.acrisListPrice.unitPrice|currency }}{% block page_checkout_item_unit_list_price_tax_symbol %}{{ "general.star"|trans|sw_sanitize }}{% endblock %}</span>
+                            {% endif %}
+                        {% endif %}
+
+                        {% if config("AcrisDiscountGroupCS.config.discountAtUnitPrice") == 'listPriceAndDiscount' or config("AcrisDiscountGroupCS.config.discountAtUnitPrice") == 'discount' %}
+                            {% if lineItem.payload.acrisListPrice.unitPercentage %}
+                                <span class="line-item-unit-list-price-percentage">{{ "acris-discount-group.checkout.listPriceDiscountPercentage"|trans({'%price%': lineItem.payload.acrisListPrice.unitPercentage })|sw_sanitize }}</span>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+        {% endif %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% block sw_cms_element_cbax_lexicon_sidebar %}
+    <div class="cbax-lexicon-cms-slot-wrapper">
+        <div v-if="isCbaxLexiconCmsPage" class="sw-cms-el-sidebar">
+            <div class="sw-cms-preview-sidebar-content">
+                <h2 class="sw-cms-preview-sidebar-headline">{{ $tc('elements.cbax-lexicon-sidebar.component.headline') }}</h2>
+                <div>Labore</div>
+                <div style="font-weight: bold">Lorem</div>
+                <div>Lure</div>
+            </div>
+        </div>
+        <sw-alert v-if="!isCbaxLexiconCmsPage" appearance="notification" :showIcon="true" :closable="false">
+            {{ $tc('elements.wrong-page-type-alert') }}
+        </sw-alert>
+    </div>
+{% endblock %}

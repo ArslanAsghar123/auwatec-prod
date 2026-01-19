@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/page/search/index.html.twig' %}
+
+{% set tsConfig = config('trustedShopsApp.config') %}
+{% set tsChannelId = context.salesChannel.id ?? null %}
+{% set activeLanguageIsoCode = page.header.activeLanguage.translationCode.code ?? null %}
+{% set tsChannelRef = tsChannelId ~ '.' ~ activeLanguageIsoCode %}
+
+{% block base_head %}
+    {{ parent() }}
+
+    {% if tsChannelId is not null %}
+        {% if tsConfig[tsChannelId][activeLanguageIsoCode].widgets is defined and tsConfig[tsChannelId][activeLanguageIsoCode].widgets is not null %}
+            {% if tsConfig[tsChannelId][activeLanguageIsoCode].widgets is defined and expectedMapping[tsChannelRef] === tsConfig[tsChannelId][activeLanguageIsoCode].widgets.eTrustedChannelRef %}
+                {% set widgetConfig = tsConfig[tsChannelId][activeLanguageIsoCode].widgets.children.0 %}
+                {% sw_include '@Storefront/storefront/includes/script-assembler.html.twig' with {
+                    scriptConfig: widgetConfig
+                } %}
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

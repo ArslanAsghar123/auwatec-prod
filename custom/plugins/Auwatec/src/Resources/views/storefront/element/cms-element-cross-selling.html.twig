@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-cross-selling.html.twig' %}
+
+{% block cms_element_cross_selling_tabs_content_container_slider %}
+    <div class="cross-selling-tab-accordion" data-accordion>
+        <div class="cross-selling-tab-accordion-title cms-element-title" >
+            <p class="cms-element-title-paragraph" data-accordion-trigger>
+                {{ crossSelling.name ?: crossSelling.translated.name }}
+                <span class="cross-selling-tab-accordion-closed-icon">
+                {% sw_icon 'plus-a' style { 'namespace': 'Auwatec', 'size': 'sm' } %}
+                </span>
+                <span class="cross-selling-tab-accordion-opened-icon">
+                {% sw_icon 'minus-a' style { 'namespace': 'Auwatec', 'size': 'sm' } %}
+                </span>
+            </p>
+        </div>
+        <div class="cross-selling-tab-accordion-content collapse" data-accordion-content>
+            {{ parent() }}
+        </div>
+    </div>
+{% endblock %}

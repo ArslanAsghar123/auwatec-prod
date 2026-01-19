@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- ENTITIES -->
+        <service id="Rapidmail\Shopware\Entities\DeletedEntityDefinition">
+            <tag name="shopware.entity.definition" entity="deleted_entity" />
+        </service>
+
+        <!-- CONTROLLERS -->
+        <service id="Rapidmail\Shopware\Controller\Admin\ConnectionController" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Rapidmail\Shopware\Services\Rapi1User"/>
+            <argument type="service" id="Rapidmail\Shopware\Services\Encrypter"/>
+            <argument>%env(APP_URL)%</argument>
+            <argument type="service" id="Rapidmail\Shopware\Services\PluginInfo"/>
+            <call method="setLogger">
+                <argument type="service" id="logger"/>
+            </call>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <!-- REPOSITORIES -->
+        <service id="Rapidmail\Shopware\Repositories\UserAccessKeyRepository" public="true">
+            <argument type="service" id="user_access_key.repository"/>
+        </service>
+
+        <!-- SUBSCRIBERS -->
+        <service id="Rapidmail\Shopware\Subscribers\DeletedEntitySubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="deleted_entity.repository"/>
+            <argument type="service" id="Psr\Log\LoggerInterface"/>
+        </service>
+
+        <service id="Rapidmail\Shopware\Subscribers\UpdatedCustomerOrderEntitySubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="Psr\Log\LoggerInterface"/>
+        </service>
+
+        <service id="Rapidmail\Shopware\Subscribers\UpdatedCustomerAddressEntitySubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="Psr\Log\LoggerInterface"/>
+        </service>
+
+        <!-- SERVICES -->
+        <service id="Rapidmail\Shopware\Services\Encrypter" public="true">
+            <argument type="string">RapidmailConnector</argument>
+            <argument type="string">6Sv1IDOgHUVK9t9A</argument>
+        </service>
+
+        <service id="Rapidmail\Shopware\Services\PluginInfo" public="true"/>
+
+        <service id="Rapidmail\Shopware\Services\Rapi1User" public="true">
+            <call method="setUserAccessKeyRepository">
+                <argument type="service" id="Rapidmail\Shopware\Repositories\UserAccessKeyRepository"/>
+            </call>
+            <call method="setConnection">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+    </services>
+</container>

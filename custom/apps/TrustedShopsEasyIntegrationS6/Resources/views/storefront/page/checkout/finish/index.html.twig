@@ -1,0 +1,77 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/index.html.twig' %}
+
+{% block page_checkout_finish %}
+    {% set tsConfig = config('trustedShopsApp.config') %}
+    {% set tsChannelId = context.salesChannel.id ?? null %}
+    {% set activeLanguageIsoCode = page.header.activeLanguage.translationCode.code ?? null %}
+    {% set tsChannelRef = tsChannelId ~ '.' ~ activeLanguageIsoCode %}
+
+    {{ parent() }}
+
+    {% if page.paymentFailed == false and tsConfig[tsChannelId][activeLanguageIsoCode] %}
+        <!-- added by Trusted Shops app: Start -->
+        <div id="trustedShopsCheckout" style="display: none;">
+            <span id="tsCheckoutOrderNr">{{ page.order.orderNumber }}</span>
+            <span id="tsCheckoutBuyerEmail">{{ context.customer.email }}</span>
+            <span id="tsCheckoutOrderAmount">{{ page.order.price.totalPrice }}</span>
+            <span id="tsCheckoutOrderCurrency">{{ context.currency.isoCode }}</span>
+            <span id="tsCheckoutOrderPaymentType">{{ context.paymentMethod.translated.name }}</span>
+
+            {% if tsConfig[tsChannelId][activeLanguageIsoCode].useEstimatedDeliveryDate and page.order.extensions.tsLatestDelivery.date %}
+                <span id="tsCheckoutOrderEstDeliveryDate">{{ page.order.extensions.tsLatestDelivery.date|date("Y-m-d") }}</span>
+            {% endif %}
+
+            {% set addedProductIds = [] %}
+
+            {% for lineItem in page.order.nestedLineItems %}
+
+                {% set orderedItems = [] %}
+
+                {#{% if lineItem.children and lineItem.children|length %}
+                    {% for childLineItem in lineItem.children %}
+                        {% set orderedItems = orderedItems|merge([childLineItem]) %}
+                    {% endfor %}
+                {% else %}
+                    {% set orderedItems = orderedItems|merge([lineItem]) %}
+                {% endif %}#}
+
+                {% set orderedItems = orderedItems|merge([lineItem]) %}
+
+                {% for orderedItem in orderedItems %}
+                    {% if orderedItem.type == 'product' or orderedItem.type == 'pickware_product_set_jit_product_set' %}
+                        {% if orderedItem.payload.parentId and orderedItem.extensions.tsParentData %}
+                            {% if orderedItem.extensions.tsParentData.sku not in addedProductIds %}
+                                {% set parentProductItem = orderedItem.extensions.tsParentData %}
+                                {% set addedProductIds = addedProductIds|merge([parentProductItem.sku]) %}
+                                <span class="tsCheckoutProductItem">
+                                    <span class="tsCheckoutProductUrl">{{ seoUrl('frontend.detail.page', {'productId': parentProductItem.productId}) }}</span>
+                                    <span class="tsCheckoutProductImageUrl">{% if parentProductItem.coverUrl %}{{ parentProductItem.coverUrl }}{% endif %}</span>
+                                    <span class="tsCheckoutProductName">{{ parentProductItem.label }}</span>
+                                    <span class="tsCheckoutProductSKU">{{ parentProductItem.sku }}</span>
+                                    {% if parentProductItem.gtin %}<span class="tsCheckoutProductGTIN">{{ parentProductItem.gtin }}</span>{% endif %}
+                                    {% if parentProductItem.mpn %}<span class="tsCheckoutProductMPN">{{ parentProductItem.mpn }}</span>{% endif %}
+                                    <span class="tsCheckoutProductBrand">{{ parentProductItem.brand }}</span>
+                                </span>
+                            {% endif %}
+                        {% else %}
+                            {% set productItem = orderedItem.extensions.tsAdditionalData %}
+                            {% if productItem.sku and productItem.sku not in addedProductIds %}
+                                {% set addedProductIds = addedProductIds|merge([productItem.sku]) %}
+                                <span class="tsCheckoutProductItem">
+                                <span class="tsCheckoutProductUrl">{{ seoUrl('frontend.detail.page', {'productId': orderedItem.productId}) }}</span>
+                                <span class="tsCheckoutProductImageUrl">{% if productItem.coverUrl %}{{ productItem.coverUrl }}{% endif %}</span>
+                                <span class="tsCheckoutProductName">{{ productItem.label }}</span>
+                                <span class="tsCheckoutProductSKU">{{ productItem.sku }}</span>
+                                {% if productItem.gtin %}<span class="tsCheckoutProductGTIN">{{ productItem.gtin }}</span>{% endif %}
+                                {% if productItem.mpn %}<span class="tsCheckoutProductMPN">{{ productItem.mpn }}</span>{% endif %}
+                                <span class="tsCheckoutProductBrand">{{ productItem.brand }}</span>
+                            </span>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <!-- End -->
+    {% endif %}
+{% endblock %}

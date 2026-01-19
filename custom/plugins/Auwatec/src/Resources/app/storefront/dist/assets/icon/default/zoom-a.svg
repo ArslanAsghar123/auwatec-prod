@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="clip-zoom-a">
+      <rect width="64" height="64"/>
+    </clipPath>
+  </defs>
+  <g id="zoom-a" clip-path="url(#clip-zoom-a)">
+    <path id="zoom-a-2" data-name="zoom-a" d="M50.366,44.721a28.014,28.014,0,1,0-5.646,5.646L58.277,63.923l5.646-5.635ZM28.038,47.974A19.936,19.936,0,1,1,47.974,28.038,19.936,19.936,0,0,1,28.038,47.974Z" transform="translate(0.077 0.077)"/>
+  </g>
+</svg>

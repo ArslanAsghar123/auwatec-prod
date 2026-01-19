@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Basic Settings</title>
+        <title lang="de-DE">Basis-Konfiguration</title>
+
+        <component name="sw-entity-single-select">
+            <name>directDebitPaymentMethod</name>
+            <label>Payment Method</label>
+            <label lang="de-DE">Zahlungsmethode</label>
+            <helpText>Select the default payment method.</helpText>
+            <helpText lang="de-DE">Wählen Sie die Standard-Zahlungsmethode aus.</helpText>
+            <entity>payment_method</entity>
+        </component>
+        <input-field type="bool">
+            <name>nameActive</name>
+            <label>Name query active</label>
+            <label lang="de-DE">Namensabfrage aktiv</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>swiftActive</name>
+            <label>SWIFT code query active</label>
+            <label lang="de-DE">BIC-Abfrage aktiv</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>saveDebitDataOnCustomer</name>
+            <label>Save debit data on customer</label>
+            <label lang="de-DE">Lastschriftdaten am Kunden speichern</label>
+            <helpText lang="de-DE">Lastschriftdaten werden nach der Bestellung am Kunden gespeichert</helpText>
+            <helpText>Save debit data on user account after order</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>queryMandateCreation</name>
+            <label>Query for mandate creation</label>
+            <label lang="de-DE">Abfrage zur Mandatserstellung</label>
+            <helpText lang="de-DE">Checkbox zur Abfrage der Erstellung des Mandats, die bestätigt werden muss.</helpText>
+            <helpText>Checkbox to query the creation of the mandate which must be confirmed.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>maskIban</name>
+            <label>Mask IBAN data</label>
+            <label lang="de-DE">IBAN Maskieren</label>
+            <helpText lang="de-DE">IBAN im Kundenkonto und Checkout Maskieren?</helpText>
+            <helpText>Mask IBAN in customer account and checkout?</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Additional Settings</title>
+        <title lang="de-DE">Zusatz-Konfiguration</title>
+
+        <input-field type="bool">
+            <name>changeCustomerDefaultPayment</name>
+            <label>Change customer default payment method after order</label>
+            <label lang="de-DE">Änderung der Standardzahlungsmethode nach der Bestellung</label>
+            <helpText lang="de-DE">Wenn aktiviert, wird nach einer Bestellung die Standard-Zahlungsart des Kunden durch die Zahlungsart seiner letzten Bestellung ersetzt.</helpText>
+            <helpText>If activated, the customer's default payment method after an order is replaced by the payment method of their last order.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+</config>

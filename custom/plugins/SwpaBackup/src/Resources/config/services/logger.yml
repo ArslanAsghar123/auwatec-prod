@@ -1,0 +1,22 @@
+# Logger
+services:
+
+  # Logging of the process "backup:database"
+  swpa.backup.process.handler:
+    class: Swpa\SwpaBackup\Logger\Handler\RotatingFileWithLockHandler
+    public: false
+    arguments:
+      - '%kernel.logs_dir%/backup/backup-%kernel.environment%.log'
+      - 10
+    calls:
+      - [ setArchiveService, [ '@swpa.backup.archive' ] ]
+      - [ setFormatter, [ '@swpa.backup.logger.formatter' ] ]
+
+  swpa.backup.logger:
+    class: Swpa\SwpaBackup\Logger\Logger
+    arguments:
+      - 'swpa.backup.process.database'
+    calls:
+      - method: pushHandler
+        arguments:
+          - '@swpa.backup.process.handler'
