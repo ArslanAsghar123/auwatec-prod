@@ -153,7 +153,8 @@
     }
   }
   .product-detail-advantage-teaser-text{
-
+    font-size: 14px;
+    line-height: 1.4;
   }
 }
 
@@ -240,6 +241,52 @@
     .product-slider .cms-element-title{
       display: none;
     }
+  }
+}
+
+@include media-breakpoint-down(sm){
+  .cms-block-product-description-reviews{
+    background: $white;
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+  .product-detail-cross-selling{
+    .tab-pane{
+      margin-top: 50px;
+    }
+  }
+  .cross-selling-tab-accordion{
+    .product-slider .cms-element-title{
+      display: none;
+    }
+  }
+}
+
+// Basic width fix attempt - can be revisited later
+.cms-block-product-description-reviews {
+  background: $white;
+  padding: 30px 20px;
+  margin: 0 -20px;
+}
+
+@include media-breakpoint-up(md){
+  .cms-block-product-description-reviews{
+    margin: 0 0 20px 0;
+  }
+}
+
+// Handle problematic font tags
+.product-detail-description-text {
+  font[face] {
+    font-family: inherit !important;
+    display: inline !important;
+    max-width: 100% !important;
+  }
+  
+  * {
+    max-width: 100% !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
   }
 }
 

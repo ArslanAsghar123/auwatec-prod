@@ -1,15 +1,7 @@
 {% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
 
-{% block layout_head_javascript_tracking %}
+{# Override meta template to prevent Trusted Shops scripts from loading #}
+{% block layout_head_meta_tags %}
     {{ parent() }}
-
-    <link rel="preconnect" href="//www.paypal.com">
-    <link rel="preconnect" href="//www.paypalobjects.com">
-    <link rel="preconnect" href="//t.paypal.com">
-    <link rel="preconnect" href="//www.facebook.com">
-    <link rel="preconnect" href="//www.google.com">
-    <link rel="preconnect" href="//www.google.de">
-    <link rel="preconnect" href="//matomo.auwatec.de">
-    <link rel="preconnect" href="//www.googletagmanager.com">
-    <link rel="preconnect" href="//cdn.doofinder.com">
+    {# Block any Trusted Shops meta tags or scripts #}
 {% endblock %}

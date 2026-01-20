@@ -7,6 +7,7 @@ window.PluginManager.register('Seotext', () => import('./js/plugins/seotext.plug
 window.PluginManager.register('Accordion', () => import('./js/plugins/accordion.plugin'), '[data-accordion]');
 window.PluginManager.override('FlyoutMenu', () => import('./js/plugins/flyout-menu-override.plugin'), '[data-flyout-menu]');
 window.PluginManager.register('AccountMenu', () => import('./js/plugins/account-menu-override.plugin'), '[data-offcanvas-account-menu]');
+window.PluginManager.register('ProductFix', () => import('./js/plugins/product-fix.plugin'), '.is-ctl-product');
 
 // PluginManager.register('ChooseBusinessAccount', ChooseBusinessAccountPlugin);
 

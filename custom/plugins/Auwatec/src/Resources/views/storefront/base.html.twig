@@ -1,5 +1,12 @@
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
+{# Completely override TrustedShopsEasyIntegrationS6 base template #}
+{% set tsConfig = null %}
+{% set tsChannelId = null %}
+{% set activeLanguageIsoCode = null %}
+{% set tsChannelRef = null %}
+{% set expectedMapping = [] %}
+
 {% block base_header %}
     {% sw_include '@Auwatec/storefront/layout/top-usp-bar.html.twig' %}
     {{ parent() }}
@@ -9,6 +16,126 @@
     {% sw_include '@Oellers/storefront/layout/footer/seo-text.html.twig' %}
     {% sw_include '@Oellers/storefront/layout/footer/footer-usp.html.twig' %}
     {{ parent() }}
+{% endblock %}
+
+{# Completely disable Trusted Shops scripts and badges #}
+{% block base_body_script %}
+    {{ parent() }}
+    
+    {# Add script to remove any Trusted Shops badges that might be injected by JavaScript #}
+    <script>
+        // Remove Trusted Shops badges on page load and periodically
+        function removeTrustedShopsBadges() {
+            // Common selectors for Trusted Shops badges
+            const selectors = [
+                '[id*="trustbadge"]',
+                '[class*="trustbadge"]',
+                '[id*="trusted-shops"]',
+                '[class*="trusted-shops"]',
+                '[id*="etrusted"]',
+                '[class*="etrusted"]',
+                'iframe[src*="trustedshops"]',
+                'iframe[src*="etrusted"]',
+                'div[style*="position: fixed"][style*="bottom"]',
+                'div[style*="position: fixed"][style*="right"]'
+            ];
+            
+            // Only check footer areas, NOT header
+            const footerElements = document.querySelectorAll('footer, .footer, .newsletter, [class*="newsletter"]');
+            footerElements.forEach(footer => {
+                const images = footer.querySelectorAll('img');
+                images.forEach(img => {
+                    const alt = (img.alt || '').toLowerCase();
+                    const src = (img.src || '').toLowerCase();
+                    if (alt.includes('geprüft') || alt.includes('webshop') || alt.includes('käuferschutz') ||
+                        src.includes('gepruefter') || src.includes('trusted')) {
+                        // Remove the image and its parent link if it exists
+                        const parent = img.closest('a');
+                        if (parent) {
+                            parent.remove();
+                        } else {
+                            img.remove();
+                        }
+                    }
+                });
+                
+                // Also check for links in footer only
+                const links = footer.querySelectorAll('a[href*="gepruefter-webshop.de"], a[href*="trustedshops.de"]');
+                links.forEach(link => {
+                    link.remove();
+                });
+            });
+            
+            selectors.forEach(selector => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(element => {
+                    // Skip if element is in header
+                    if (element.closest('header, .header-main, .header-phone')) {
+                        return;
+                    }
+                    
+                    // Check if it's likely a Trusted Shops badge
+                    const text = element.textContent || element.innerHTML || '';
+                    const alt = element.alt || '';
+                    const src = element.src || '';
+                    
+                    if (text.toLowerCase().includes('trusted') || 
+                        text.toLowerCase().includes('geprüft') || 
+                        text.toLowerCase().includes('etrusted') ||
+                        text.toLowerCase().includes('webshop') ||
+                        text.toLowerCase().includes('käuferschutz') ||
+                        alt.toLowerCase().includes('geprüft') ||
+                        alt.toLowerCase().includes('webshop') ||
+                        src.includes('trusted') ||
+                        src.includes('gepruefter')) {
+                        
+                        element.remove();
+                    }
+                });
+            });
+        }
+        
+        // Run immediately
+        removeTrustedShopsBadges();
+        
+        // Run after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            removeTrustedShopsBadges();
+            // Run again after a short delay to catch late-loading content
+            setTimeout(removeTrustedShopsBadges, 100);
+            setTimeout(removeTrustedShopsBadges, 500);
+            setTimeout(removeTrustedShopsBadges, 1000);
+        });
+        
+        // Run periodically to catch dynamically loaded badges
+        const interval = setInterval(removeTrustedShopsBadges, 500);
+        
+        // Also run when window loads (for iframes)
+        window.addEventListener('load', function() {
+            setTimeout(removeTrustedShopsBadges, 100);
+            setTimeout(removeTrustedShopsBadges, 500);
+            setTimeout(removeTrustedShopsBadges, 1000);
+            setTimeout(removeTrustedShopsBadges, 2000);
+        });
+        
+        // Use MutationObserver to catch dynamically added content
+        const observer = new MutationObserver(function(mutations) {
+            let shouldCheck = false;
+            mutations.forEach(function(mutation) {
+                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                    shouldCheck = true;
+                }
+            });
+            if (shouldCheck) {
+                setTimeout(removeTrustedShopsBadges, 50);
+            }
+        });
+        
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    </script>
 {% endblock %}
 
 {% block base_pseudo_modal %}

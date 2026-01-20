@@ -2,7 +2,7 @@
 /vendor/
 
 ###> shopware/core ###
-#.env.local
+.env.local
 .env.local.php
 .env.*.local
 /public/bundles/*
@@ -15,7 +15,7 @@
 /var/*
 !/var/.htaccess
 /auth.json
-#/install.lock
+/install.lock
 public/asset-manifest.json
 ###< shopware/core ###
 

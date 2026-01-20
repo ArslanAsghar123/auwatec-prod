@@ -41,12 +41,12 @@
   }
   .tab-pane-container{
     background: $white;
-    padding: 30px 20px;
+    padding: 30px 20px; // Back to original since we handle it in the parent now
   }
 }
 
 @include media-breakpoint-up(xl){
   .tab-pane-container{
-    padding: 30px 30px;
+    padding: 30px 30px; // Back to original
   }
 }

@@ -123,6 +123,26 @@
       margin-right: 5px;
     }
   }
+  
+  // Styling for Certified Webshop logo in header
+  .header-certified-link {
+    display: inline-block !important;
+    margin-right: 10px;
+    text-decoration: none;
+    
+    .header-certified-logo {
+      height: 60px; // Back to 60px as requested
+      width: auto;
+      max-height: 60px; // Ensure it doesn't exceed this
+      max-width: 100px; // Add width constraint to prevent it from being too wide
+      display: block !important;
+    }
+    
+    // Hide the logo on mobile to save space
+    @include media-breakpoint-down(md) {
+      display: none !important;
+    }
+  }
 }
 
 .header-minimal{
@@ -142,6 +162,61 @@
 
 .header-minimal-back-to-shop-button{
   @extend .btn-primary;
+}
+
+// Hide all Trusted Shops badges globally, but NOT in header
+[id*="trustbadge"],
+[class*="trustbadge"],
+[id*="trusted-shops"],
+[class*="trusted-shops"],
+[id*="etrusted"],
+[class*="etrusted"],
+iframe[src*="trustedshops"],
+iframe[src*="etrusted"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+// Hide any fixed positioned elements in bottom right (common for badges)
+div[style*="position: fixed"][style*="bottom"][style*="right"] {
+  display: none !important;
+}
+
+// Specifically target newsletter section badges (NOT header)
+.newsletter img[alt*="geprüft" i]:not(.header-certified-logo),
+.newsletter img[alt*="webshop" i]:not(.header-certified-logo),
+.newsletter img[alt*="käuferschutz" i]:not(.header-certified-logo),
+.newsletter a[href*="gepruefter-webshop.de"]:not(.header-certified-link),
+footer img[alt*="geprüft" i]:not(.header-certified-logo),
+footer img[alt*="webshop" i]:not(.header-certified-logo),
+footer img[alt*="käuferschutz" i]:not(.header-certified-logo),
+footer a[href*="gepruefter-webshop.de"]:not(.header-certified-link) {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+// Ensure header logo is always visible with proper sizing
+.header-certified-link,
+.header-certified-logo {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+}
+
+.header-certified-logo {
+  width: auto !important;
+  height: 60px !important; // Restore to 60px but ensure it's properly constrained
+  max-height: 60px !important;
+  max-width: 100px !important; // Add max-width constraint
 }
 
 @include media-breakpoint-up(sm){
@@ -250,9 +325,9 @@
 .header-main {
   .header-phone {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto; // Back to 2 columns (phone+logo, language)
     grid-column-gap: 1rem;
-    align-items: baseline;
+    align-items: center; // Changed from baseline to center for better alignment
 
     @include media-breakpoint-down(md) {
       position: relative;
@@ -260,9 +335,13 @@
 
     .header-phone-inner {
       padding-top: 3px;
+      display: flex;
+      align-items: center; // Center align the logo and phone elements
     }
 
     .header-language-inner {
+      align-self: center; // Ensure language selector stays centered
+      
       .languages-menu {
         &.dropdown {
           .dropdown-toggle {

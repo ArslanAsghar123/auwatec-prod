@@ -1,0 +1,24 @@
+{# Override script-assembler to prevent Trusted Shops scripts from loading #}
+{% if scriptConfig is defined and scriptConfig.tag is defined %}
+    {# Check if this is a Trusted Shops script and block it #}
+    {% set scriptContent = scriptConfig.content|default('') %}
+    {% set scriptSrc = scriptConfig.src|default('') %}
+    
+    {# Block any scripts containing trusted shops related content #}
+    {% if 'trusted' not in scriptContent|lower and 'trusted' not in scriptSrc|lower and 'etrusted' not in scriptContent|lower and 'etrusted' not in scriptSrc|lower %}
+        {# Only include non-Trusted Shops scripts #}
+        {% set script = '<'~scriptConfig.tag %}
+        
+        {% for attribute, value in scriptConfig.attributes %}
+            {% set script = script ~ ' ' ~ attribute ~ '="' ~ value ~ '"' %}
+        {% endfor %}
+        
+        {% if scriptConfig.content is defined and scriptConfig.content is not empty %}
+            {% set script = script ~ '>' ~ scriptConfig.content ~ '</'~scriptConfig.tag~'>' %}
+        {% else %}
+            {% set script = script ~ '></'~scriptConfig.tag~'>' %}
+        {% endif %}
+        
+        {{ script|raw }}
+    {% endif %}
+{% endif %}
